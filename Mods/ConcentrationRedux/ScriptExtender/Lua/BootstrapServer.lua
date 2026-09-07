@@ -215,6 +215,8 @@ local function GetActiveInnateCasterInfo(guidOrName)
     return nil, nil
 end
 
+local CONC_TRACKER_STATUS = "ACTIVE_CONCENTRATION_TRACKER"
+
 local function IsCharacterConcentrating(character)
     if not character or character == "" then return false end
     local isConc = false
@@ -231,11 +233,11 @@ local function IsCharacterConcentrating(character)
     end)
     if not isConc then
         pcall(function()
-            if Osi.HasActiveStatus(character, CONC_TRACKER_STATUS) == 1 then
+            if Osi.HasActiveStatus(character, "CONCENTRATION") == 1 or Osi.HasActiveStatus(character, CONC_TRACKER_STATUS) == 1 then
                 isConc = true
             elseif type(character) == "string" then
                 local raw = character:match("%x%x%x%x%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%x%x%x%x%x%x%x%x")
-                if raw and raw ~= character and Osi.HasActiveStatus(raw, CONC_TRACKER_STATUS) == 1 then
+                if raw and raw ~= character and (Osi.HasActiveStatus(raw, "CONCENTRATION") == 1 or Osi.HasActiveStatus(raw, CONC_TRACKER_STATUS) == 1) then
                     isConc = true
                 end
             end
@@ -244,7 +246,23 @@ local function IsCharacterConcentrating(character)
     return isConc
 end
 
-local CONC_TRACKER_STATUS = "ACTIVE_CONCENTRATION_TRACKER"
+local function BreakCharacterConcentration(character)
+    if not character or character == "" then return end
+    pcall(function() Osi.ApplyStatus(character, "AI_HELPER_BREAKCONCENTRATION", 0.1, 1) end)
+    pcall(function() Osi.PROC_GLO_BreakConcentration(character) end)
+    pcall(function() Osi.RemoveStatus(character, "CONCENTRATION") end)
+    pcall(function() Osi.RemoveStatus(character, CONC_TRACKER_STATUS) end)
+    
+    if type(character) == "string" then
+        local rawUuid = character:match("%x%x%x%x%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%x%x%x%x%x%x%x%x")
+        if rawUuid and rawUuid ~= character then
+            pcall(function() Osi.ApplyStatus(rawUuid, "AI_HELPER_BREAKCONCENTRATION", 0.1, 1) end)
+            pcall(function() Osi.PROC_GLO_BreakConcentration(rawUuid) end)
+            pcall(function() Osi.RemoveStatus(rawUuid, "CONCENTRATION") end)
+            pcall(function() Osi.RemoveStatus(rawUuid, CONC_TRACKER_STATUS) end)
+        end
+    end
+end
 
 local function UpdateConcentrationTracker(character)
     if not character or character == "" then return end
@@ -560,45 +578,68 @@ local function IsWeaponAction(spell, spellType)
     return false
 end
 
-Ext.Osiris.RegisterListener("UsingSpell", 5, "after", function(caster, spell, spellType, spellElement, storyActionID)
-    if IsCharacterConcentrating(caster) then
-        if GetInnateSpellInfo(spell) ~= nil then return end
-        if WHITELISTED_ACTIONS[spell] then return end
-        
-        if (spell == "Target_ShockingGrasp" or spell:find("ShockingGrasp")) and HasConcentrationAdvantage(caster) then
-            if CurrentTurnCharacter == nil or CurrentTurnCharacter ~= caster then
-                return
-            end
-        end
-        
-        local isWep = false
-        pcall(function() isWep = IsWeaponAction(spell, spellType) end)
-        
-        if isWep then
-            if HasCombatChanneling(caster) then
-                return
-            else
-                pcall(function() Osi.BreakConcentration(caster) end)
-                if type(caster) == "string" then
-                    local rawUuid = caster:match("%x%x%x%x%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%x%x%x%x%x%x%x%x")
-                    if rawUuid and rawUuid ~= caster then
-                        pcall(function() Osi.BreakConcentration(rawUuid) end)
-                    end
+local function IsConcentrationSpell(spell)
+    if not spell then return false end
+    local isConc = false
+    pcall(function()
+        local stat = Ext.Stats.Get(spell)
+        if stat and stat.SpellFlags then
+            if type(stat.SpellFlags) == "string" and stat.SpellFlags:find("IsConcentration") then
+                isConc = true
+            elseif type(stat.SpellFlags) == "table" or type(stat.SpellFlags) == "userdata" then
+                if tostring(stat.SpellFlags):find("IsConcentration") then
+                    isConc = true
                 end
-                pcall(function() Osi.ShowOverheadNotice(caster, "Channel broken by physical attack!") end)
-                return
             end
         end
-        
-        pcall(function() Osi.BreakConcentration(caster) end)
-        if type(caster) == "string" then
-            local rawUuid = caster:match("%x%x%x%x%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%x%x%x%x%x%x%x%x")
-            if rawUuid and rawUuid ~= caster then
-                pcall(function() Osi.BreakConcentration(rawUuid) end)
-            end
+    end)
+    return isConc
+end
+
+local function HandleSpellInterruption(caster, spell, spellType)
+    if not IsCharacterConcentrating(caster) then return end
+    
+    -- Focus buffs (Bless, Shield of Faith, Guidance, etc.) never break conduits (entering Overclock)
+    if GetInnateSpellInfo(spell) ~= nil then return end
+    
+    -- Whitelisted utility and tactical actions
+    if WHITELISTED_ACTIONS[spell] then return end
+    
+    -- If casting another concentration conduit spell, let the native engine handle replacement
+    if IsConcentrationSpell(spell) then return end
+    
+    -- War Caster Opportunity Attack reaction
+    if (spell == "Target_ShockingGrasp" or spell:find("ShockingGrasp")) and HasConcentrationAdvantage(caster) then
+        if CurrentTurnCharacter == nil or CurrentTurnCharacter ~= caster then
+            return
         end
-        pcall(function() Osi.ShowOverheadNotice(caster, "Channel broken by spellcasting!") end)
     end
+    
+    local isWep = false
+    pcall(function() isWep = IsWeaponAction(spell, spellType) end)
+    
+    if isWep then
+        if HasCombatChanneling(caster) then
+            return
+        else
+            Ext.Utils.Print(string.format("[%s] Physical action '%s' breaking active channel for %s", MOD_NAME, tostring(spell), tostring(caster)))
+            BreakCharacterConcentration(caster)
+            pcall(function() Osi.ShowOverheadNotice(caster, "Channel broken by physical attack!") end)
+            return
+        end
+    end
+    
+    Ext.Utils.Print(string.format("[%s] Spell '%s' breaking active channel for %s", MOD_NAME, tostring(spell), tostring(caster)))
+    BreakCharacterConcentration(caster)
+    pcall(function() Osi.ShowOverheadNotice(caster, "Channel broken by spellcasting!") end)
+end
+
+Ext.Osiris.RegisterListener("UsingSpell", 5, "after", function(caster, spell, spellType, spellElement, storyActionID)
+    HandleSpellInterruption(caster, spell, spellType)
+end)
+
+Ext.Osiris.RegisterListener("CastSpell", 5, "after", function(caster, spell, spellType, spellElement, storyActionID)
+    HandleSpellInterruption(caster, spell, spellType)
 end)
 
 -- ==============================================================================
