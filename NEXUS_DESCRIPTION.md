@@ -46,7 +46,8 @@ In D&D 5e and vanilla Baldur's Gate 3, nearly every iconic spell competes for a 
 - **Dismissing Concentration:** Uses BG3's **native 'X' button** beneath the portrait HUD (or casting another conduit).
 
 ### 4. Tactical Synergies & Rules
-- **Combat Channeling Perk:** War Domain and Tempest Domain Clerics can make melee/ranged weapon attacks and trigger martial weapon actions without breaking active Concentration.
+- **Combat Channeling & Martial Multiclassing:** War Domain Clerics, Tempest Domain Clerics, and characters multiclassed into martial classes (**Paladin, Fighter, Barbarian, Ranger, Rogue, Monk**) have the physical discipline to make weapon attacks and use weapon maneuvers without breaking active Concentration.
+- **Smites Shatter Conduits:** Expending spell slots for magical strikes (*Divine Smite*, *Searing Smite*, *Thunderous Smite*, *Wrathful Smite*, etc.) requires a burst of spellcasting focus and **immediately shatters active combat conduits** (*Spirit Guardians*), while leaving passive Focus buffs (*Bless*, *Shield of Faith*) completely undisturbed!
 - **War Caster Synergy:** Grants Advantage to Channeling saves. Because Focus already rolls with Advantage during Overclock, **War Caster ensures BOTH independent saves have Advantage!** Casting *Shocking Grasp* as an Opportunity Attack reaction via War Caster is fully permitted.
 - **Strict Reaction Discipline:** Casting emergency reaction spells (*Shield*, *Counterspell*, *Hellish Rebuke*) shatters active combat conduits (clear tooltip warnings provided).
 - **Loss of Control (5e Compliant):** Hard incapacitation (*Stunned*, *Paralyzed*, *Petrified*, *Sleep*, *Unconscious*, *Downed*, *Dead*) shatters Focus and all linked party buffs.

@@ -14,7 +14,30 @@ local COMBAT_PASSIVES = {
     [COMBAT_CHANNELING_PERK] = true,
     ["WarPriest"] = true,               -- War Domain Cleric
     ["WrathOfTheStorm"] = true,          -- Tempest Domain Cleric
-    ["Combat_Channeling_Active"] = true
+    ["Combat_Channeling_Active"] = true,
+    
+    -- Martial Multiclass Passives (Paladin, Fighter, Barbarian, Ranger, Rogue, Monk)
+    ["SecondWind"] = true,               -- Fighter
+    ["ActionSurge"] = true,              -- Fighter
+    ["Rage"] = true,                     -- Barbarian
+    ["UnarmoredDefense_Barbarian"] = true,
+    ["UnarmoredDefense_Monk"] = true,    -- Monk
+    ["MartialArts_Mastery"] = true,
+    ["SneakAttack_Passive"] = true,      -- Rogue
+    ["ChannelOath"] = true,              -- Paladin
+    ["LayOnHands"] = true,               -- Paladin
+    ["Paladin_LayOnHands"] = true,
+    ["DivineSmite"] = true,              -- Paladin
+    ["DivineSense"] = true               -- Paladin
+}
+
+local MARTIAL_TAGS = {
+    "PALADIN_6d85ab2d-5c23-498c-a61e-98f05a00177a",
+    "FIGHTER_1ae7017c-4884-4a43-bc4a-742fa0d201c0",
+    "BARBARIAN_02913f9a-f696-40cf-acdf-32032afab32c",
+    "RANGER_37a733c1-a862-4157-b92a-9cff46232c6a",
+    "ROGUE_f8a0608b-666c-4be6-a49c-03b369c10bd2",
+    "MONK_e1e460bb-d0ae-4452-8529-c9e176558731"
 }
 
 -- Whitelisted actions that NEVER disrupt an active channel
@@ -149,13 +172,66 @@ local function GetInnateSpellInfo(spell)
     return INNATE_SPELLS[baseSpell]
 end
 
+local function GetEntitySafe(character)
+    if not character then return nil end
+    local entity = nil
+    pcall(function()
+        entity = Ext.Entity.Get(character)
+        if not entity and type(character) == "string" then
+            local rawUuid = character:match("%x%x%x%x%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%x%x%x%x%x%x%x%x")
+            if rawUuid then
+                entity = Ext.Entity.Get(rawUuid)
+            end
+        end
+    end)
+    return entity
+end
+
 local function HasCombatChanneling(character)
     if not character then return false end
+    
+    -- 1. Check inherent domain & martial passives
     for passive, _ in pairs(COMBAT_PASSIVES) do
         if Osi.HasPassive(character, passive) == 1 then
             return true
         end
     end
+    
+    -- 2. Check martial class tags via Osiris
+    for _, tag in ipairs(MARTIAL_TAGS) do
+        local isT = false
+        pcall(function()
+            if Osi.IsTagged(character, tag) == 1 then
+                isT = true
+            elseif type(character) == "string" then
+                local rawUuid = character:match("%x%x%x%x%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%x%x%x%x%x%x%x%x")
+                if rawUuid and rawUuid ~= character and Osi.IsTagged(rawUuid, tag) == 1 then
+                    isT = true
+                end
+            end
+        end)
+        if isT then return true end
+    end
+    
+    -- 3. Check BG3SE entity classes component
+    local isMartial = false
+    pcall(function()
+        local entity = GetEntitySafe(character)
+        if entity and entity.Classes and entity.Classes.Classes then
+            for _, cl in ipairs(entity.Classes.Classes) do
+                local clsStr = tostring(cl.Class or ""):lower()
+                if clsStr:find("paladin") or clsStr:find("fighter") or clsStr:find("barbarian") 
+                   or clsStr:find("ranger") or clsStr:find("rogue") or clsStr:find("monk")
+                   or clsStr:find("ff4d9430") or clsStr:find("72764536") or clsStr:find("d8cad01a")
+                   or clsStr:find("0fc3e11f") or clsStr:find("e8b01031") or clsStr:find("e8f1e007") then
+                    isMartial = true
+                    return
+                end
+            end
+        end
+    end)
+    if isMartial then return true end
+    
     return false
 end
 
@@ -185,23 +261,6 @@ local function HasConcentrationAdvantage(character)
         end
     end
     return false
-end
-
-
-
-local function GetEntitySafe(character)
-    if not character then return nil end
-    local entity = nil
-    pcall(function()
-        entity = Ext.Entity.Get(character)
-        if not entity and type(character) == "string" then
-            local rawUuid = character:match("%x%x%x%x%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%x%x%x%x%x%x%x%x")
-            if rawUuid then
-                entity = Ext.Entity.Get(rawUuid)
-            end
-        end
-    end)
-    return entity
 end
 
 local function GetActiveInnateCasterInfo(guidOrName)
@@ -529,6 +588,10 @@ end)
 
 local function IsWeaponAction(spell, spellType)
     if not spell then return false end
+    
+    -- Smites are magical spell strikes that expend spell slots; they are NOT standard weapon attacks
+    if spell:lower():find("smite") then return false end
+    
     if spellType == "MeleeWeapon" or spellType == "RangedWeapon" then return true end
     
     local isWeapon = false
@@ -604,6 +667,14 @@ local function HandleSpellInterruption(caster, spell, spellType)
     
     -- Whitelisted utility and tactical actions
     if WHITELISTED_ACTIONS[spell] then return end
+    
+    -- Smites (Divine Smite, Searing Smite, Thunderous Smite, etc.) channel magical spell slots into strikes and shatter active conduits
+    if spell:lower():find("smite") then
+        Ext.Utils.Print(string.format("[%s] Smite '%s' breaking active channel for %s", MOD_NAME, tostring(spell), tostring(caster)))
+        BreakCharacterConcentration(caster)
+        pcall(function() Osi.ShowOverheadNotice(caster, "Channel broken by Smite!") end)
+        return
+    end
     
     -- If casting another concentration conduit spell, let the native engine handle replacement
     if IsConcentrationSpell(spell) then return end
