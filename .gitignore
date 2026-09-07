@@ -1,0 +1,14 @@
+# OS & Editor Files
+.DS_Store
+Thumbs.db
+*.bak
+*.tmp
+*.temp
+.vscode/
+.idea/
+
+# Local build artifacts (keep repository light and clean)
+*.pak
+Temp/
+bin/
+obj/

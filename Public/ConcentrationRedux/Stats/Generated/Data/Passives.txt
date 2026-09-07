@@ -1,0 +1,7 @@
+new entry "Combat_Channeling_Perk"
+type "PassiveData"
+data "DisplayName" "hcombat_chan_name;1"
+data "Description" "hcombat_chan_desc;1"
+data "Icon" "PassiveFeature_WarPriest"
+data "Properties" "Highlighted"
+

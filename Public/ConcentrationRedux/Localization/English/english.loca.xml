@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<contentList>
+    <content contentuid="hfocus_name" version="1">Focus</content>
+    <content contentuid="hfocus_desc" version="1">You are maintaining Focus on a spell. Immune to damage interruption while unburdened; does not conflict with active Concentration.</content>
+    <content contentuid="hdismiss_name" version="1">Dismiss Focus</content>
+    <content contentuid="hdismiss_desc" version="1">Voluntarily release your active Focus, freeing your mind.</content>
+    <content contentuid="hcombat_chan_name" version="1">Combat Channeling</content>
+    <content contentuid="hcombat_chan_desc" version="1">Through martial training, you can make melee and ranged weapon attacks, utilize Extra Attack, and execute weapon actions while Concentrating without breaking your concentration.</content>
+    <content contentuid="hchan_disrupt" version="1">Concentration Disruption: Casting this spell requires complete magical focus and will immediately shatter active Concentration.</content>
+</contentList>
