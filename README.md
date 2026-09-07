@@ -49,18 +49,25 @@ In vanilla 5e / Baldur's Gate 3, concentration creates arbitrary friction:
 - **Hard Crowd Control**: *Hold Person*, *Hold Monster*, *Hypnotic Pattern*, *Banishment*, *Tasha's Hideous Laughter*, *Slow*, *Confusion*, *Otiluke's Resilient Sphere*
 - **Attack Modifiers**: *True Strike* (intentionally kept on standard short-duration vanilla rules)
 
-### 3. Reapplication Spells (*Hex* & *Hunter's Mark*)
+### 3. The Cantrip Conundrum (Focus & Concentration Cantrips)
+In vanilla Baldur's Gate 3, only four cantrips require concentration: *Resistance*, *Friends*, *Dancing Lights*, and *True Strike*. Here is how each fits into the Concentration Redux architecture:
+- **Resistance (Defensive Twin to Guidance):** Converted to Focus (indefinite buff). In vanilla, Resistance is rarely used because burning an action and a concentration slot for a 10-turn +1d4 save bonus cannot compete with *Bless* or *Spirit Guardians*. As Focus, it becomes a reliable zero-slot ward for exploration and pre-buffing. Because it occupies your single Focus slot, it forces an honest tactical choice against *Bless* (+1d4 attack and saves) or *Shield of Faith* (+2 AC), while eliminating the dialogue trap during conversation saving throws.
+- **Friends (Social Utility with Difficulty Awareness):** Converted to Focus layer with duration retained (10 turns). Cast almost exclusively inside dialogue rolls, vanilla Friends instantly wipes out whatever combat spell your caster was maintaining prior to the conversation. Moving it to Focus protects your active combat conduits. However, because NPC suspicion and hostility triggers fire on status expiration, its standard 10-turn timer is intentionally preserved so higher difficulty (Tactician/Honour Mode) social penalties function exactly as intended.
+- **Dancing Lights (Exploration Lighting):** Converted to Focus (indefinite duration). Allows races lacking Darkvision (Humans, Halflings, Githyanki) to illuminate distant high ground or gloom-covered arenas at an 18m range without sacrificing pre-cast combat buffs. Floating wisps automatically despawn cleanly whenever you dismiss Focus or cast another buff.
+- **True Strike (Preserved on Vanilla Rules):** Left on standard 2-turn combat conduit rules. True Strike is an offensive attack modifier, not a cognitive ward. Converting it to an indefinite Focus buff would either provide permanent free Advantage for zero spell slots or conflict with one-hit consumption triggers. Leaving it as a short-duration conduit preserves standard combat attack math.
+
+### 4. Reapplication Spells (*Hex* & *Hunter's Mark*)
 - When a marked target dies, the corpse target is cleanly detached from tracking while preserving `INNATE_CONCENTRATION_CASTER` on the caster.
 - The free `Target_Hex_Reapply` and `Target_HuntersMark_Reapply` spells remain accessible on the hotbar and are fully whitelisted so re-marking a new foe never breaks active Concentration.
 
-### 4. Loss of Control & Incapacitation
+### 5. Loss of Control & Incapacitation
 - If a caster is afflicted with `STUNNED`, `PARALYZED`, `PETRIFIED`, `SLEEP`, `UNCONSCIOUS`, `KNOCKED_OUT`, `INCAPACITATED`, `BANISHED`, `POLYMORPH`, or `DOWNED`/`DEAD`, Focus and all linked party buffs immediately collapse, honoring standard 5e rules.
 
-### 5. Manual Dismissal (Releasing Spells Voluntarily)
+### 6. Manual Dismissal (Releasing Spells Voluntarily)
 - **Dismissing Focus (Buffs)**: While maintaining Focus (*Bless*, *Haste*, *Shield of Faith*, *Guidance*), the caster automatically gains a free, 0-action cost **Dismiss Focus** ability (`Shout_DismissInnateConcentration`) on their hotbar. Using it voluntarily releases Focus on demand without needing to cast another spell or rest.
 - **Dismissing Concentration (Conduits)**: Because Concentration (*Spirit Guardians*, *Wall of Fire*, *Cloud of Daggers*, *Hold Person*, *Fog Cloud*) runs in the engine's native concentration slot, players can cancel it at any moment using Baldur's Gate 3's **native "X" button** located directly beneath the character's portrait on the bottom-left HUD, or by casting another spell.
 
-### 6. Reaction Spells (Strict Mode Enforced)
+### 7. Reaction Spells (Strict Mode Enforced)
 - **Zero Spell Magic While Channeling**: Casting reaction spells (*Shield*, *Counterspell*, *Hellish Rebuke*) immediately **shatters** Channeling. Maintaining a continuous combat conduit demands 100% of your magical bandwidth; attempting to weave an emergency spell snaps the tether.
 - **In-Game Warning Popups**: The mod injects a dedicated **Channel Disruption** warning into the tooltip and reaction prompt card of all three reaction spells:
   > ⚠️ *Channel Disruption: Casting this spell requires complete magical focus and will immediately shatter any active Channel.*
@@ -68,7 +75,7 @@ In vanilla 5e / Baldur's Gate 3, concentration creates arbitrary friction:
 - **Physical Reactions Allowed**: Non-magical physical reactions (e.g. melee *Opportunity Attacks*) remain fully permitted for gish archetypes.
 - **Class Abilities Allowed**: Non-spell reaction features (*Warding Flare*, *Wrath of the Storm*, *Cutting Words*, *Uncanny Dodge*, *Deflect Missiles*) do not use spell slots and do not disrupt Channeling.
 
-### 7. Withers Respec Cleanup
+### 8. Withers Respec Cleanup
 - Visiting Withers to respec automatically triggers a full cleanup via `CharacterRespecCompleted`, guaranteeing no lingering buffs or statuses bleed into a newly chosen class.
 
 ---

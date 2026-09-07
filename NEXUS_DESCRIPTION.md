@@ -43,12 +43,19 @@ In D&D 5e and vanilla Baldur's Gate 3, nearly every iconic spell competes for a 
 
 > **Class Spells vs. Bound Gear & Scrolls:** Genuine class investments utilize the full Focus system. Spells granted by equipment (e.g. Whispering Promise, Darkfire Shortbow) and consumable scrolls follow standard vanilla rules (10-turn limit, standard damage saves) to prevent item abuse.
 
-### 3. UI & Visual Clarity
+### 3. The Cantrip Conundrum (Focus & Concentration Cantrips)
+In vanilla Baldur's Gate 3, only four cantrips require concentration: *Resistance*, *Friends*, *Dancing Lights*, and *True Strike*. Here is how each fits into the Concentration Redux architecture:
+- **Resistance (Defensive Twin to Guidance):** Converted to Focus (indefinite buff). In vanilla, Resistance is rarely used because burning an action and a concentration slot for a 10-turn +1d4 save bonus cannot compete with *Bless* or *Spirit Guardians*. As Focus, it becomes a reliable zero-slot ward for exploration and pre-buffing. Because it occupies your single Focus slot, it forces an honest tactical choice against *Bless* (+1d4 attack and saves) or *Shield of Faith* (+2 AC), while eliminating the dialogue trap during conversation saving throws.
+- **Friends (Social Utility with Difficulty Awareness):** Converted to Focus layer with duration retained (10 turns). Cast almost exclusively inside dialogue rolls, vanilla Friends instantly wipes out whatever combat spell your caster was maintaining prior to the conversation. Moving it to Focus protects your active combat conduits. However, because NPC suspicion and hostility triggers fire on status expiration, its standard 10-turn timer is intentionally preserved so higher difficulty (Tactician/Honour Mode) social penalties function exactly as intended.
+- **Dancing Lights (Exploration Lighting):** Converted to Focus (indefinite duration). Allows races lacking Darkvision (Humans, Halflings, Githyanki) to illuminate distant high ground or gloom-covered arenas at an 18m range without sacrificing pre-cast combat buffs. Floating wisps automatically despawn cleanly whenever you dismiss Focus or cast another buff.
+- **True Strike (Preserved on Vanilla Rules):** Left on standard 2-turn combat conduit rules. True Strike is an offensive attack modifier, not a cognitive ward. Converting it to an indefinite Focus buff would either provide permanent free Advantage for zero spell slots or conflict with one-hit consumption triggers. Leaving it as a short-duration conduit preserves standard combat attack math.
+
+### 4. UI & Visual Clarity
 - **Congruent Portrait Badges:** Side-by-side badges in the portrait buff tray (Radiant Sun for **Focus**, glowing Mind Conduit for **Concentration**).
 - **Dismissing Focus:** Free, 0-action **Dismiss Focus** ability added to your hotbar.
 - **Dismissing Concentration:** Uses BG3's **native 'X' button** beneath the portrait HUD (or casting another conduit).
 
-### 4. Tactical Synergies & Rules
+### 5. Tactical Synergies & Rules
 - **Spellcasting Snaps Conduits:** Channeling an active combat conduit (*Spirit Guardians*, *Wall of Fire*, *Call Lightning*) demands 100% of your spellcasting bandwidth:
   - Hard-casting any standard spell (*Fireball*, *Guiding Bolt*, *Magic Missile*) immediately snaps your active conduit. (Casting a Focus buff like *Bless* or *Shield of Faith* enters **The Overclock**).
   - Casting emergency reaction spells (*Shield*, *Counterspell*, *Hellish Rebuke*) also snaps active conduits (clear in-game tooltip warnings provided).
