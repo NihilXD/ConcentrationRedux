@@ -97,20 +97,29 @@ if ($Deploy) {
     Write-Host "`nDeployment complete! You can now run Baldur's Gate 3." -ForegroundColor Cyan
     Write-Host "In the BG3SE console, you can type 'reset' at any time to reload main.lua live." -ForegroundColor Cyan
 } elseif ($Package) {
-    Write-Host "[3/3] Building ConcentrationRedux.pak..." -ForegroundColor Yellow
+    $ModFolder = "ConcentrationRedux_5ca2dda8-eedc-41be-95f0-50747d552d10"
+    Write-Host "[3/3] Building $ModFolder.pak..." -ForegroundColor Yellow
     $DivinePath = "C:\Users\NihilXD\AppData\Roaming\Vortex\baldursgate3\mods\ExportTool-v1.20.4\tools\Divine.exe"
-    $DestPak = Join-Path $env:LOCALAPPDATA "Larian Studios\Baldur's Gate 3\Mods\$ModName.pak"
+    $DestPak = Join-Path $env:LOCALAPPDATA "Larian Studios\Baldur's Gate 3\Mods\$ModFolder.pak"
+    $ReleaseDir = Join-Path $ScriptDir "Release"
+    $ReleasePak = Join-Path $ReleaseDir "$ModFolder.pak"
     
     $TempDir = Join-Path $env:TEMP "ConcentrationRedux_pkg"
     if (Test-Path $TempDir) { Remove-Item -Recurse -Force $TempDir }
-    New-Item -ItemType Directory -Force -Path (Join-Path $TempDir "Mods\$ModName") | Out-Null
-    New-Item -ItemType Directory -Force -Path (Join-Path $TempDir "Public\$ModName") | Out-Null
+    New-Item -ItemType Directory -Force -Path (Join-Path $TempDir "Mods\$ModFolder") | Out-Null
+    New-Item -ItemType Directory -Force -Path (Join-Path $TempDir "Public\$ModFolder") | Out-Null
 
-    Copy-Item -Recurse -Force (Join-Path $ScriptDir "Mods\$ModName\*") (Join-Path $TempDir "Mods\$ModName")
-    Copy-Item -Recurse -Force (Join-Path $ScriptDir "Public\$ModName\*") (Join-Path $TempDir "Public\$ModName")
+    Copy-Item -Recurse -Force (Join-Path $ScriptDir "Mods\$ModName\*") (Join-Path $TempDir "Mods\$ModFolder")
+    Copy-Item -Recurse -Force (Join-Path $ScriptDir "Public\$ModName\*") (Join-Path $TempDir "Public\$ModFolder")
 
     & $DivinePath -g bg3 -a create-package -s $TempDir -d $DestPak -c lz4
     Remove-Item -Recurse -Force $TempDir
+
+    if (Test-Path $ReleaseDir) {
+        Copy-Item -Force $DestPak $ReleasePak
+        Compress-Archive -Path $ReleasePak -DestinationPath (Join-Path $ReleaseDir "ConcentrationRedux-v1.0.2.zip") -Force
+        Write-Host "  [OK] Updated Release package and zip archive." -ForegroundColor Green
+    }
 
     Write-Host "  [OK] Successfully built and installed package to:" -ForegroundColor Green
     Write-Host "       $DestPak" -ForegroundColor Gray
