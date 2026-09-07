@@ -1,0 +1,130 @@
+[size=6][b]Concentration Redux[/b][/size]
+[size=4][i]Dual-Stance Spellcasting Architecture for Baldur's Gate 3 (Patch 7 & Patch 8)[/i][/size]
+
+[line]
+
+[size=4][b]✦ The Problem in Vanilla 5e[/b][/size]
+In D&D 5e and vanilla Baldur's Gate 3, nearly every worthwhile spell competes for a single, restrictive concentration slot:
+[list]
+[*]Casting an iconic staple like [i]Bless[/i] or [i]Shield of Faith[/i] completely locks your caster out of using [i]Spirit Guardians[/i], [i]Wall of Fire[/i], [i]Call Lightning[/i], or [i]Hold Person[/i].
+[*]Buffs vanish from a single stray 1-damage surface tick or an off-screen archer.
+[*]Outside turn-based combat, 10-turn (60-second) timers expire while looting chests or reading dialogue.
+[/list]
+
+[size=4][b]✦ The Redesign: Three Tactical Stances[/b][/size]
+Concentration Redux splits spellcasting focus into two distinct, congruent cognitive layers:
+
+[size=4][color=#ffd700][b]1. Pure Support (Solo Focus)[/b][/color][/size]
+[list]
+[*][b]Condition:[/b] Only maintaining a Focus buff ([i]Bless[/i], [i]Shield of Faith[/i], [i]Heroism[/i], [i]Haste[/i], etc.).
+[*][b]Defensive Resilience:[/b] [b]100% Unbreakable by Damage.[/b] No Constitution saving throws required against damage ticks, DoTs, or environmental surfaces.
+[*][b]Duration:[/b] Indefinite until Long Rest or manual dismissal.
+[*][b]Allowed Actions:[/b] All weapon attacks, spells, and abilities permitted.
+[/list]
+
+[size=4][color=#87cefa][b]2. Dedicated Juggernaut (Solo Concentration)[/b][/color][/size]
+[list]
+[*][b]Condition:[/b] Only maintaining an active combat conduit ([i]Spirit Guardians[/i], [i]Wall of Fire[/i], [i]Fog Cloud[/i], [i]Moonbeam[/i], [i]Hold Person[/i], etc.).
+[*][b]Defensive Resilience:[/b] Runs in the native engine slot with standard Constitution saving throws. Benefits from [b]War Caster[/b] Advantage.
+[*][b]Allowed Actions:[/b] Whitelisted tactical actions ([i]Dash[/i], [i]Disengage[/i], [i]Shove[/i], [i]Throw[/i], [i]Jump[/i], etc.). Weapon attacks are permitted for martial domains ([i]War[/i] & [i]Tempest[/i]). Casting unauthorized spells breaks the conduit.
+[/list]
+
+[size=4][color=#da70d6][b]3. The Overclock (Both Active Simultaneously)[/b][/color][/size]
+[list]
+[*][b]Condition:[/b] Caster is actively maintaining both Focus AND Concentration at the same time.
+[*][b]Defensive Resilience:[/b] Pushes your caster's mental bandwidth to the absolute limit. When taking damage:
+[list]
+[*]The native Concentration conduit rolls standard saves (with War Caster if proficient).
+[*]Focus independently rolls a Constitution saving throw [b]with Advantage[/b] (2d20, pick highest)!
+[/list]
+[*][b]Graceful Fallback:[/b] If your combat conduit drops or is dismissed, Focus seamlessly drops back into unbreakable solo mode!
+[/list]
+
+[line]
+
+[size=4][b]✦ Spell Classifications[/b][/size]
+
+[b]1. Focus (Indefinite Duration Buffs)[/b]
+[list]
+[*][b]Combat & Defensive Wards:[/b] [i]Bless[/i], [i]Shield of Faith[/i], [i]Heroism[/i], [i]Protection from Evil and Good[/i], [i]Barkskin[/i], [i]Stoneskin[/i], [i]Shield of Thralls[/i]
+[*][b]Single-Target Marks:[/b] [i]Hunter's Mark[/i], [i]Hex[/i], [i]Bane[/i], [i]Bestow Curse[/i]
+[*][b]Physical Augmentations:[/b] [i]Haste[/i], [i]Enlarge/Reduce[/i], [i]Fly[/i], [i]Expeditious Retreat[/i], [i]Blur[/i], [i]Magic Weapon[/i], [i]Elemental Weapon[/i]
+[*][b]Stealth & Senses:[/b] [i]Invisibility[/i], [i]Greater Invisibility[/i], [i]Pass Without Trace[/i], [i]Detect Thoughts[/i]
+[/list]
+[i]Note: Focus buffs are mutually exclusive per caster. Casting a new Focus spell naturally replaces your current one.[/i]
+
+[quote][b]Class Spells vs. Equipment & Scrolls:[/b]
+Class investments (spellbook spells, Bard Magical Secrets, multiclassing, Magic Initiate feats) utilize the full Focus system.
+Spells granted by bound equipment (e.g. Whispering Promise, Darkfire Shortbow) and consumable scrolls intentionally follow vanilla rules (10-turn limit, standard damage saves) to prevent item abuse.[/quote]
+
+[b]2. Concentration (Combat Stances & Conduits)[/b]
+[list]
+[*][b]Emanations & Auras:[/b] [i]Spirit Guardians[/i] (Radiant / Necrotic), [i]Aura of Vitality[/i], [i]Crusader's Mantle[/i], [i]Holy Aura[/i]
+[*][b]Sustained Beams & Activations:[/b] [i]Call Lightning[/i], [i]Moonbeam[/i], [i]Witch Bolt[/i], [i]Heat Metal[/i], [i]Sunbeam[/i], [i]Eyebite[/i], [i]Telekinesis[/i]
+[*][b]Hazard Anchors:[/b] [i]Wall of Fire[/i], [i]Darkness[/i], [i]Cloud of Daggers[/i], [i]Fog Cloud[/i], [i]Silence[/i], [i]Spike Growth[/i], [i]Sleet Storm[/i], [i]Hunger of Hadar[/i], [i]Cloudkill[/i], [i]Evard's Black Tentacles[/i], [i]Insect Plague[/i]
+[*][b]Hard Crowd Control:[/b] [i]Hold Person[/i], [i]Hold Monster[/i], [i]Hypnotic Pattern[/i], [i]Banishment[/i], [i]Tasha's Hideous Laughter[/i], [i]Slow[/i], [i]Confusion[/i], [i]Otiluke's Resilient Sphere[/i]
+[/list]
+
+[b]3. Reapplication Spells (Hex & Hunter's Mark)[/b]
+[list]
+[*]When your marked target dies, the corpse target is cleanly detached from tracking while preserving Focus on the caster.
+[*]The free [i]Reapply[/i] abilities remain on your hotbar and are fully whitelisted—re-marking a new foe will never break active Concentration.
+[/list]
+
+[line]
+
+[size=4][b]✦ UI, Dismissal & Visual Clarity[/b][/size]
+[list]
+[*][b]Side-by-Side Portrait Badges:[/b] Both conditions display clearly in the character's portrait tray:
+[list]
+[*]Radiant Sun icon for [b]Focus[/b]
+[*]Purple Mind Conduit icon for [b]Concentration[/b]
+[/list]
+[*][b]Dismissing Focus:[/b] While maintaining Focus, the caster gains a free, 0-action [b]Dismiss Focus[/b] ability on their hotbar to cancel it on demand.
+[*][b]Dismissing Concentration:[/b] Uses Baldur's Gate 3's [b]native 'X' button[/b] directly beneath the portrait HUD (or by casting another conduit).
+[/list]
+
+[line]
+
+[size=4][b]✦ Tactical Synergies & Balance Rules[/b][/size]
+
+[b]Combat Channeling Perk[/b]
+War Domain and Tempest Domain Clerics receive the [b]Combat Channeling[/b] perk at Level 1:
+[list]
+[*]Execute melee and ranged weapon attacks, leverage Extra Attack, and trigger special weapon actions ([i]Lacerate[/i], [i]Topple[/i], [i]Flourish[/i], [i]Cleave[/i], [i]Pommel Strike[/i], etc.) without breaking active Concentration.
+[*]Script Extender dynamically inspects weapon action properties to support modded martial actions and weapon masteries.
+[*]Non-combat domains attempting unauthorized physical attacks will shatter their active channel.
+[/list]
+
+[b]War Caster Feat Integration[/b]
+[list]
+[*][b]Without War Caster:[/b] Focus rolls with Advantage during Overclock; Channeling rolls a standard 1d20 save.
+[*][b]With War Caster:[/b] Grants Advantage to Channeling saves. Because Focus already rolls with Advantage, [b]War Caster ensures BOTH saves have Advantage during Overclock![/b]
+[*][b]Reactive Spellcasting:[/b] Casting [i]Shocking Grasp[/i] as an Opportunity Attack reaction via War Caster is fully permitted and will not break your active channel.
+[/list]
+
+[b]Strict Reaction Spells[/b]
+[list]
+[*]Casting emergency spell reactions ([i]Shield[/i], [i]Counterspell[/i], [i]Hellish Rebuke[/i]) immediately shatters active combat conduits.
+[*]Tooltips and reaction cards feature clear [b]Concentration Disruption[/b] warnings.
+[*]Keep "Ask" enabled in your Reactions tab ([i]K[/i]) so you can deliberately choose when to trade your channel in life-or-death situations.
+[/list]
+
+[b]Loss of Control (5e Compliance)[/b]
+If a caster is afflicted with hard incapacitation ([i]Stunned[/i], [i]Paralyzed[/i], [i]Petrified[/i], [i]Sleep[/i], [i]Unconscious[/i], [i]Downed[/i], [i]Dead[/i]), Focus and all linked buffs immediately drop.
+
+[line]
+
+[size=4][b]✦ Requirements & Installation[/b][/size]
+[list]
+[*][b]Game Version:[/b] Baldur's Gate 3 ([b]Patch 7 / Patch 8+[/b])
+[*][b]Required Mod:[/b] [url=https://github.com/Norbyte/bg3se/releases]Baldur's Gate 3 Script Extender (BG3SE)[/url] (v32 or newer recommended)
+[/list]
+
+[b]Installation via Vortex or BG3 Mod Manager:[/b]
+[olist]
+[*]Download the `.zip` archive from the Files tab.
+[*]Import and install via [b]Vortex[/b] or [b]BG3 Mod Manager[/b].
+[*]Enable [b]Concentration Redux[/b] in your active load order and export.
+[*]Safe to install on existing playthroughs!
+[/olist]
