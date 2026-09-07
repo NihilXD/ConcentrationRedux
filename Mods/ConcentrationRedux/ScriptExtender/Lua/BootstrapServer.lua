@@ -12,42 +12,39 @@ local COMBAT_CHANNELING_PERK = "Combat_Channeling_Perk"
 -- Signature class passives that inherently grant Combat Channeling
 local COMBAT_PASSIVES = {
     [COMBAT_CHANNELING_PERK] = true,
-    ["WarPriest"] = true,               -- War Domain Cleric
-    ["WrathOfTheStorm"] = true,          -- Tempest Domain Cleric
+    ["WarPriest"] = true,               -- War Domain Cleric (Level 1)
+    ["WrathOfTheStorm"] = true,          -- Tempest Domain Cleric (Level 1)
     ["Combat_Channeling_Active"] = true,
     
-    -- Martial Multiclass Passives (Paladin, Fighter, Ranger, Rogue, Monk)
-    ["SecondWind"] = true,               -- Fighter
-    ["ActionSurge"] = true,              -- Fighter
-    ["UnarmoredDefense_Monk"] = true,    -- Monk
-    ["MartialArts_Mastery"] = true,      -- Monk
+    -- Monk (Level 1+: Core mental discipline and Ki flow)
+    ["UnarmoredDefense_Monk"] = true,
+    ["MartialArts_Mastery"] = true,
     ["MartialArts_UnarmedDamage"] = true,
     ["MartialArts_BonusUnarmedStrike"] = true,
     ["Ki_Passive"] = true,
-    ["SneakAttack_Passive"] = true,      -- Rogue
-    ["ChannelOath"] = true,              -- Paladin
-    ["LayOnHands"] = true,               -- Paladin
-    ["Paladin_LayOnHands"] = true,
-    ["DivineSmite"] = true,              -- Paladin
-    ["DivineSense"] = true,              -- Paladin
-    ["FavoredEnemy_BountyHunter"] = true,-- Ranger
-    ["FavoredEnemy_KeeperOfTheVeil"] = true,
-    ["FavoredEnemy_MageSlayer"] = true,
-    ["FavoredEnemy_RangerKnight"] = true,
-    ["FavoredEnemy_SanctifiedStalker"] = true,
-    ["NaturalExplorer_BeastTamer"] = true,
-    ["NaturalExplorer_UrbanTracker"] = true,
-    ["NaturalExplorer_WastelandWander_Cold"] = true,
-    ["NaturalExplorer_WastelandWander_Fire"] = true,
-    ["NaturalExplorer_WastelandWander_Poison"] = true
+    
+    -- Paladin (Level 2+ only: Unlocked with Divine Smite & Spellcasting)
+    ["DivineSmite"] = true,
+    ["Paladin_Spellcasting"] = true,
+    
+    -- Ranger (Level 2+ only: Unlocked with Ranger Spellcasting)
+    ["Ranger_Spellcasting"] = true,
+    
+    -- Eldritch Knight Fighter (Level 3+ subclass)
+    ["WeaponBond"] = true,
+    ["WarMagic"] = true,
+    ["EldritchStrike"] = true,
+    ["EldritchKnight_Spellcasting"] = true,
+    
+    -- Arcane Trickster Rogue (Level 3+ subclass)
+    ["MageHandLegerdemain"] = true,
+    ["MageHand_Legerdemain"] = true,
+    ["ArcaneTrickster_Spellcasting"] = true,
+    ["MagicalAmbush"] = true
 }
 
-local MARTIAL_TAGS = {
-    "PALADIN_6d85ab2d-5c23-498c-a61e-98f05a00177a",
-    "FIGHTER_1ae7017c-4884-4a43-bc4a-742fa0d201c0",
-    "RANGER_37a733c1-a862-4157-b92a-9cff46232c6a",
-    "MONK_e1e460bb-d0ae-4452-8529-c9e176558731",
-    "ROGUE_f8a0608b-666c-4be6-a49c-03b369c10bd2"
+local GISH_TAGS = {
+    "MONK_e1e460bb-d0ae-4452-8529-c9e176558731"
 }
 
 -- Whitelisted actions that NEVER disrupt an active channel
@@ -207,8 +204,8 @@ local function HasCombatChanneling(character)
         end
     end
     
-    -- 2. Check martial class tags via Osiris
-    for _, tag in ipairs(MARTIAL_TAGS) do
+    -- 2. Check gish class tags via Osiris (Monk)
+    for _, tag in ipairs(GISH_TAGS) do
         local isT = false
         pcall(function()
             if Osi.IsTagged(character, tag) == 1 then
@@ -224,24 +221,58 @@ local function HasCombatChanneling(character)
     end
     
     -- 3. Check BG3SE entity classes component
-    local isMartial = false
+    local isGish = false
     pcall(function()
         local entity = GetEntitySafe(character)
         if entity and entity.Classes and entity.Classes.Classes then
             for _, cl in ipairs(entity.Classes.Classes) do
                 local clsStr = tostring(cl.Class or ""):lower()
-                if clsStr:find("paladin") or clsStr:find("fighter")
-                   or clsStr:find("ranger") or clsStr:find("rogue") or clsStr:find("monk")
-                   or clsStr:find("ff4d9430") or clsStr:find("72764536")
-                   or clsStr:find("0fc3e11f") or clsStr:find("36e29d61")
-                   or clsStr:find("e8b01031") or clsStr:find("e8f1e007") then
-                    isMartial = true
-                    return
+                local subStr = tostring(cl.SubClass or ""):lower()
+                local lvl = tonumber(cl.Level or 0) or 0
+                
+                -- Monk: all Monks starting at Level 1 (core discipline & mental focus)
+                if clsStr:find("monk") or clsStr:find("e8f1e007") then
+                    if lvl >= 1 then
+                        isGish = true
+                        return
+                    end
+                end
+                
+                -- Paladin: hybrid gish starting at Level 2 (when spellcasting unlocks; level 1 is mundane)
+                if clsStr:find("paladin") or clsStr:find("ff4d9430") then
+                    if lvl >= 2 then
+                        isGish = true
+                        return
+                    end
+                end
+                
+                -- Ranger: hybrid gish starting at Level 2 (when spellcasting unlocks; level 1 is mundane)
+                if clsStr:find("ranger") or clsStr:find("0fc3e11f") or clsStr:find("36e29d61") then
+                    if lvl >= 2 then
+                        isGish = true
+                        return
+                    end
+                end
+                
+                -- Fighter: only Eldritch Knight (Level 3+ subclass)
+                if clsStr:find("fighter") or clsStr:find("72764536") then
+                    if subStr:find("eldritch") or subStr:find("e504cd60") or subStr:find("b764b8a7") then
+                        isGish = true
+                        return
+                    end
+                end
+                
+                -- Rogue: only Arcane Trickster (Level 3+ subclass)
+                if clsStr:find("rogue") or clsStr:find("e8b01031") then
+                    if subStr:find("trickster") or subStr:find("b886f452") or subStr:find("arcane") then
+                        isGish = true
+                        return
+                    end
                 end
             end
         end
     end)
-    if isMartial then return true end
+    if isGish then return true end
     
     return false
 end
