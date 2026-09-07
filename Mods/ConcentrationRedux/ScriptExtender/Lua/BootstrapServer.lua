@@ -16,28 +16,38 @@ local COMBAT_PASSIVES = {
     ["WrathOfTheStorm"] = true,          -- Tempest Domain Cleric
     ["Combat_Channeling_Active"] = true,
     
-    -- Martial Multiclass Passives (Paladin, Fighter, Barbarian, Ranger, Rogue, Monk)
+    -- Martial Multiclass Passives (Paladin, Fighter, Ranger, Rogue, Monk)
     ["SecondWind"] = true,               -- Fighter
     ["ActionSurge"] = true,              -- Fighter
-    ["Rage"] = true,                     -- Barbarian
-    ["UnarmoredDefense_Barbarian"] = true,
     ["UnarmoredDefense_Monk"] = true,    -- Monk
-    ["MartialArts_Mastery"] = true,
+    ["MartialArts_Mastery"] = true,      -- Monk
+    ["MartialArts_UnarmedDamage"] = true,
+    ["MartialArts_BonusUnarmedStrike"] = true,
+    ["Ki_Passive"] = true,
     ["SneakAttack_Passive"] = true,      -- Rogue
     ["ChannelOath"] = true,              -- Paladin
     ["LayOnHands"] = true,               -- Paladin
     ["Paladin_LayOnHands"] = true,
     ["DivineSmite"] = true,              -- Paladin
-    ["DivineSense"] = true               -- Paladin
+    ["DivineSense"] = true,              -- Paladin
+    ["FavoredEnemy_BountyHunter"] = true,-- Ranger
+    ["FavoredEnemy_KeeperOfTheVeil"] = true,
+    ["FavoredEnemy_MageSlayer"] = true,
+    ["FavoredEnemy_RangerKnight"] = true,
+    ["FavoredEnemy_SanctifiedStalker"] = true,
+    ["NaturalExplorer_BeastTamer"] = true,
+    ["NaturalExplorer_UrbanTracker"] = true,
+    ["NaturalExplorer_WastelandWander_Cold"] = true,
+    ["NaturalExplorer_WastelandWander_Fire"] = true,
+    ["NaturalExplorer_WastelandWander_Poison"] = true
 }
 
 local MARTIAL_TAGS = {
     "PALADIN_6d85ab2d-5c23-498c-a61e-98f05a00177a",
     "FIGHTER_1ae7017c-4884-4a43-bc4a-742fa0d201c0",
-    "BARBARIAN_02913f9a-f696-40cf-acdf-32032afab32c",
     "RANGER_37a733c1-a862-4157-b92a-9cff46232c6a",
-    "ROGUE_f8a0608b-666c-4be6-a49c-03b369c10bd2",
-    "MONK_e1e460bb-d0ae-4452-8529-c9e176558731"
+    "MONK_e1e460bb-d0ae-4452-8529-c9e176558731",
+    "ROGUE_f8a0608b-666c-4be6-a49c-03b369c10bd2"
 }
 
 -- Whitelisted actions that NEVER disrupt an active channel
@@ -220,10 +230,11 @@ local function HasCombatChanneling(character)
         if entity and entity.Classes and entity.Classes.Classes then
             for _, cl in ipairs(entity.Classes.Classes) do
                 local clsStr = tostring(cl.Class or ""):lower()
-                if clsStr:find("paladin") or clsStr:find("fighter") or clsStr:find("barbarian") 
+                if clsStr:find("paladin") or clsStr:find("fighter")
                    or clsStr:find("ranger") or clsStr:find("rogue") or clsStr:find("monk")
-                   or clsStr:find("ff4d9430") or clsStr:find("72764536") or clsStr:find("d8cad01a")
-                   or clsStr:find("0fc3e11f") or clsStr:find("e8b01031") or clsStr:find("e8f1e007") then
+                   or clsStr:find("ff4d9430") or clsStr:find("72764536")
+                   or clsStr:find("0fc3e11f") or clsStr:find("36e29d61")
+                   or clsStr:find("e8b01031") or clsStr:find("e8f1e007") then
                     isMartial = true
                     return
                 end
