@@ -1,103 +1,65 @@
 # Concentration Redux
-*Dual-Stance Spellcasting Architecture for Baldur's Gate 3 (Patch 7 & Patch 8)*
+*Dual-Stance Spellcasting Architecture for Baldur's Gate 3*
 
 ---
 
-### ✦ The Problem in Vanilla 5e
-In D&D 5e and vanilla Baldur's Gate 3, nearly every worthwhile spell competes for a single, restrictive concentration slot:
-- Casting an iconic staple like *Bless* or *Shield of Faith* completely locks your caster out of using *Spirit Guardians*, *Wall of Fire*, *Call Lightning*, or *Hold Person*.
-- Buffs vanish from a single stray 1-damage surface tick or an off-screen archer.
-- Outside turn-based combat, 10-turn (60-second) timers expire while looting chests or reading dialogue.
+## Description
+In D&D 5e and vanilla Baldur's Gate 3, nearly every iconic spell competes for a single, restrictive concentration slot. Casting a staple buff like *Bless* or *Shield of Faith* locks your caster out of using combat spells like *Spirit Guardians*, *Wall of Fire*, *Call Lightning*, or *Hold Person*. Worse, buffs vanish from a single 1-damage surface tick or an off-screen archer, and 10-turn timers expire while looting chests or reading dialogue.
+
+**Concentration Redux** redesigns spellcaster focus into two distinct, congruent cognitive layers:
+- **Focus (Buff Layer):** Indefinite, damage-unbreakable utility and defensive wards (*Bless*, *Shield of Faith*, *Haste*, *Heroism*).
+- **Concentration (Conduit Layer):** High-intensity, stance-based combat conduits (*Spirit Guardians*, *Wall of Fire*, *Fog Cloud*, *Moonbeam*).
+- **The Overclock:** Maintain both simultaneously! Pushes mental bandwidth to the limit with independent saving throws.
 
 ---
 
-### ✦ The Redesign: Three Tactical Stances
-Concentration Redux splits spellcasting focus into two distinct, congruent cognitive layers:
-
-#### 1. Pure Support (Solo Focus)
-- **Condition:** Only maintaining a Focus buff (*Bless*, *Shield of Faith*, *Heroism*, *Haste*, etc.).
-- **Defensive Resilience:** **100% Unbreakable by Damage.** No Constitution saving throws required against damage ticks, DoTs, or environmental surfaces.
-- **Duration:** Indefinite until Long Rest or manual dismissal.
-- **Allowed Actions:** All weapon attacks, spells, and abilities permitted.
-
-#### 2. Dedicated Juggernaut (Solo Concentration)
-- **Condition:** Only maintaining an active combat conduit (*Spirit Guardians*, *Wall of Fire*, *Fog Cloud*, *Moonbeam*, *Hold Person*, etc.).
-- **Defensive Resilience:** Runs in the native engine slot with standard Constitution saving throws. Benefits from **War Caster** Advantage.
-- **Allowed Actions:** Whitelisted tactical actions (*Dash*, *Disengage*, *Shove*, *Throw*, *Jump*, etc.). Weapon attacks are permitted for martial domains (*War* & *Tempest*). Casting unauthorized spells breaks the conduit.
-
-#### 3. The Overclock (Both Active Simultaneously)
-- **Condition:** Caster is actively maintaining both Focus AND Concentration at the same time.
-- **Defensive Resilience:** Pushes your caster's mental bandwidth to the absolute limit. When taking damage:
-  - The native Concentration conduit rolls standard saves (with War Caster if proficient).
-  - Focus independently rolls a Constitution saving throw **with Advantage** (2d20, pick highest)!
-- **Graceful Fallback:** If your combat conduit drops or is dismissed, Focus seamlessly drops back into unbreakable solo mode!
+## Installation instructions
+1. Download the mod archive from the **Files** tab.
+2. Import and install via **Vortex** or **Baldur's Gate 3 Mod Manager (BG3MM)**.
+3. Ensure **Concentration Redux** is enabled in your active load order and export.
+4. Launch the game—safe to install mid-playthrough!
 
 ---
 
-### ✦ Spell Classifications
+## Main features
 
-#### 1. Focus (Indefinite Duration Buffs)
-- **Combat & Defensive Wards:** *Bless*, *Shield of Faith*, *Heroism*, *Protection from Evil and Good*, *Barkskin*, *Stoneskin*, *Shield of Thralls*
-- **Single-Target Marks:** *Hunter's Mark*, *Hex*, *Bane*, *Bestow Curse*
-- **Physical Augmentations:** *Haste*, *Enlarge/Reduce*, *Fly*, *Expeditious Retreat*, *Blur*, *Magic Weapon*, *Elemental Weapon*
-- **Stealth & Senses:** *Invisibility*, *Greater Invisibility*, *Pass Without Trace*, *Detect Thoughts*
+### 1. Three Tactical Stances
+- **Pure Support (Solo Focus):** Only Focus is active. **100% Unbreakable by Damage.** No Constitution saves against damage ticks or surfaces. Indefinite duration until Long Rest or manual dismissal.
+- **Dedicated Juggernaut (Solo Concentration):** Only a combat conduit is active. Uses the native engine concentration slot with standard Con saves (benefits from War Caster). Whitelisted tactical actions (*Dash*, *Disengage*, *Shove*, *Throw*). Weapon attacks allowed for martial domains (*War* & *Tempest*).
+- **The Overclock (Both Active Simultaneously):** Maintain both Focus and Concentration at the same time! When damaged, the native conduit rolls standard saves, while Focus independently rolls a Constitution saving throw **with Advantage**! If the combat conduit drops, Focus gracefully continues undisturbed.
 
-*Note: Focus buffs are mutually exclusive per caster. Casting a new Focus spell naturally replaces your current one.*
+### 2. Spell Classifications
+- **Focus Spells (Indefinite Buffs):**
+  - Wards & Protection: *Bless*, *Shield of Faith*, *Heroism*, *Protection from Evil and Good*, *Barkskin*, *Stoneskin*, *Shield of Thralls*
+  - Single-Target Marks: *Hunter's Mark*, *Hex*, *Bane*, *Bestow Curse* (reapplication abilities are whitelisted and never break active conduits)
+  - Augmentations & Stealth: *Haste*, *Enlarge/Reduce*, *Fly*, *Blur*, *Invisibility*, *Pass Without Trace*, *Detect Thoughts*
+- **Concentration Spells (Combat Conduits):**
+  - Auras & Beams: *Spirit Guardians*, *Aura of Vitality*, *Crusader's Mantle*, *Call Lightning*, *Moonbeam*, *Witch Bolt*, *Heat Metal*, *Sunbeam*, *Telekinesis*
+  - Hazard Anchors: *Wall of Fire*, *Cloud of Daggers*, *Fog Cloud*, *Darkness*, *Silence*, *Spike Growth*, *Sleet Storm*, *Hunger of Hadar*, *Cloudkill*
+  - Hard CC: *Hold Person*, *Hold Monster*, *Hypnotic Pattern*, *Banishment*, *Tasha's Hideous Laughter*, *Slow*, *Confusion*
 
-> **Class Spells vs. Equipment & Scrolls:**  
-> Class investments (spellbook spells, Bard Magical Secrets, multiclassing, Magic Initiate feats) utilize the full Focus system.  
-> Spells granted by bound equipment (e.g. Whispering Promise, Darkfire Shortbow) and consumable scrolls intentionally follow vanilla rules (10-turn limit, standard damage saves) to prevent item abuse.
+> **Class Spells vs. Bound Gear & Scrolls:** Genuine class investments utilize the full Focus system. Spells granted by equipment (e.g. Whispering Promise, Darkfire Shortbow) and consumable scrolls follow standard vanilla rules (10-turn limit, standard damage saves) to prevent item abuse.
 
-#### 2. Concentration (Combat Stances & Conduits)
-- **Emanations & Auras:** *Spirit Guardians* (Radiant / Necrotic), *Aura of Vitality*, *Crusader's Mantle*, *Holy Aura*
-- **Sustained Beams & Activations:** *Call Lightning*, *Moonbeam*, *Witch Bolt*, *Heat Metal*, *Sunbeam*, *Eyebite*, *Telekinesis*
-- **Hazard Anchors:** *Wall of Fire*, *Darkness*, *Cloud of Daggers*, *Fog Cloud*, *Silence*, *Spike Growth*, *Sleet Storm*, *Hunger of Hadar*, *Cloudkill*, *Evard's Black Tentacles*, *Insect Plague*
-- **Hard Crowd Control:** *Hold Person*, *Hold Monster*, *Hypnotic Pattern*, *Banishment*, *Tasha's Hideous Laughter*, *Slow*, *Confusion*, *Otiluke's Resilient Sphere*
+### 3. UI & Visual Clarity
+- **Congruent Portrait Badges:** Side-by-side badges in the portrait buff tray (Radiant Sun for **Focus**, glowing Mind Conduit for **Concentration**).
+- **Dismissing Focus:** Free, 0-action **Dismiss Focus** ability added to your hotbar.
+- **Dismissing Concentration:** Uses BG3's **native 'X' button** beneath the portrait HUD (or casting another conduit).
 
-#### 3. Reapplication Spells (*Hex* & *Hunter's Mark*)
-- When your marked target dies, the corpse target is cleanly detached from tracking while preserving Focus on the caster.
-- The free *Reapply* abilities remain on your hotbar and are fully whitelisted—re-marking a new foe will never break active Concentration.
-
----
-
-### ✦ UI, Dismissal & Visual Clarity
-- **Side-by-Side Portrait Badges:** Both conditions display clearly in the character's portrait buff tray:
-  - Radiant Sun icon for **Focus**
-  - Purple Mind Conduit icon for **Concentration**
-- **Dismissing Focus:** While maintaining Focus, the caster gains a free, 0-action **Dismiss Focus** ability on their hotbar to cancel it on demand.
-- **Dismissing Concentration:** Uses Baldur's Gate 3's **native 'X' button** directly beneath the portrait HUD (or by casting another conduit).
+### 4. Tactical Synergies & Rules
+- **Combat Channeling Perk:** War Domain and Tempest Domain Clerics can make melee/ranged weapon attacks and trigger martial weapon actions without breaking active Concentration.
+- **War Caster Synergy:** Grants Advantage to Channeling saves. Because Focus already rolls with Advantage during Overclock, **War Caster ensures BOTH independent saves have Advantage!** Casting *Shocking Grasp* as an Opportunity Attack reaction via War Caster is fully permitted.
+- **Strict Reaction Discipline:** Casting emergency reaction spells (*Shield*, *Counterspell*, *Hellish Rebuke*) shatters active combat conduits (clear tooltip warnings provided).
+- **Loss of Control (5e Compliant):** Hard incapacitation (*Stunned*, *Paralyzed*, *Petrified*, *Sleep*, *Unconscious*, *Downed*, *Dead*) shatters Focus and all linked party buffs.
 
 ---
 
-### ✦ Tactical Synergies & Balance Rules
-
-#### Combat Channeling Perk
-War Domain and Tempest Domain Clerics receive the **Combat Channeling** perk at Level 1:
-- Execute melee and ranged weapon attacks, leverage Extra Attack, and trigger special weapon actions (*Lacerate*, *Topple*, *Flourish*, *Cleave*, *Pommel Strike*, etc.) without breaking active Concentration.
-- Script Extender dynamically inspects weapon action properties to support modded martial actions and weapon masteries.
-- Non-combat domains attempting unauthorized physical attacks will shatter their active channel.
-
-#### War Caster Feat Integration
-- **Without War Caster:** Focus rolls with Advantage during Overclock; Channeling rolls a standard 1d20 save.
-- **With War Caster:** Grants Advantage to Channeling saves. Because Focus already rolls with Advantage, **War Caster ensures BOTH saves have Advantage during Overclock!**
-- **Reactive Spellcasting:** Casting *Shocking Grasp* as an Opportunity Attack reaction via War Caster is fully permitted and will not break your active channel.
-
-#### Strict Reaction Spells
-- Casting emergency spell reactions (*Shield*, *Counterspell*, *Hellish Rebuke*) immediately shatters active combat conduits.
-- Tooltips and reaction cards feature clear **Concentration Disruption** warnings.
-- Keep "Ask" enabled in your Reactions tab (*K*) so you can deliberately choose when to trade your channel in life-or-death situations.
-
-#### Loss of Control (5e Compliance)
-If a caster is afflicted with hard incapacitation (*Stunned*, *Paralyzed*, *Petrified*, *Sleep*, *Unconscious*, *Downed*, *Dead*), Focus and all linked buffs immediately drop.
+## Requirements
+- **Baldur's Gate 3:** Patch 7 or Patch 8+
+- **Script Extender:** [Baldur's Gate 3 Script Extender (BG3SE)](https://github.com/Norbyte/bg3se/releases) (v32 or newer recommended)
 
 ---
 
-### ✦ Requirements & Installation
-- **Game Version:** Baldur's Gate 3 (**Patch 7 / Patch 8+**)
-- **Required Mod:** [Baldur's Gate 3 Script Extender (BG3SE)](https://github.com/Norbyte/bg3se/releases) (v32 or newer recommended)
+## Support the Project
+If Concentration Redux made your spellcasters fun and tactically rewarding to play, consider buying me a coffee! Any support is deeply appreciated and helps fuel future updates:
 
-#### Installation via Vortex or BG3 Mod Manager:
-1. Download the `.zip` archive from the Files tab.
-2. Import and install via **Vortex** or **BG3 Mod Manager**.
-3. Enable **Concentration Redux** in your active load order and export.
-4. Safe to install on existing playthroughs!
+☕ **[Support on Ko-fi (ko-fi.com/nihilxd)](https://ko-fi.com/nihilxd)**
