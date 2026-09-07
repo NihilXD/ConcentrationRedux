@@ -49,7 +49,29 @@ local COMBAT_PASSIVES = {
     ["Bladesinger_Training"] = true,
     ["TrainingInWarAndSong"] = true,
     ["Bladesinger_Bladesong"] = true,
-    ["Bladesong_ExtraAttack"] = true
+    ["Bladesong_ExtraAttack"] = true,
+    
+    -- Bard: College of Swords & College of Valour (Level 3+ subclasses)
+    ["Bard_CollegeOfSwords"] = true,
+    ["BladeFlourish"] = true,
+    ["SlashingFlourish"] = true,
+    ["DefensiveFlourish"] = true,
+    ["MobileFlourish"] = true,
+    ["Bard_CollegeOfValour"] = true,
+    ["CombatInspiration"] = true,
+    
+    -- Warlock: Pact of the Blade & Hexblade (Level 3+ / Melee Warlock)
+    ["PactOfTheBlade"] = true,
+    ["Warlock_PactOfTheBlade"] = true,
+    ["PactOfTheBlade_ExtraAttack"] = true,
+    ["Hexblade"] = true,
+    ["Hex_Warrior"] = true,
+    ["Hexblade_Curse"] = true,
+    
+    -- Druid: Circle of Spores (Level 2+ subclass)
+    ["CircleOfTheSpores"] = true,
+    ["HaloOfSpores"] = true,
+    ["SymbioticEntity"] = true
 }
 
 local GISH_TAGS = {
@@ -287,6 +309,25 @@ local function HasCombatChanneling(character)
                     end
                 end
                 
+                -- Bard: College of Swords or College of Valour (Level 3+ subclasses)
+                if clsStr:find("bard") or clsStr:find("92cdc989") then
+                    if subStr:find("sword") or subStr:find("d1c015ae") 
+                       or subStr:find("valour") or subStr:find("valor") or subStr:find("2b46330c") then
+                        isGish = true
+                        return
+                    end
+                end
+                
+                -- Druid: Circle of Spores (Level 2+ subclass)
+                if clsStr:find("druid") or clsStr:find("457e0b4e") then
+                    if subStr:find("spore") or subStr:find("4b60434f") then
+                        if lvl >= 2 then
+                            isGish = true
+                            return
+                        end
+                    end
+                end
+                
                 -- Catch-all for custom Bladesinger classes/subclasses
                 if subStr:find("bladesing") or clsStr:find("bladesing") then
                     isGish = true
@@ -297,19 +338,27 @@ local function HasCombatChanneling(character)
     end)
     if isGish then return true end
     
-    -- 4. Check active Bladesong status (Bladesingers actively singing)
-    local hasBladesong = false
+    -- 4. Check active gish engine statuses (Bladesong, Bound Pact Blade, Symbiotic Entity, Hexblade)
+    local hasGishStatus = false
     pcall(function()
-        if Osi.HasActiveStatus(character, "BLADESONG") == 1 or Osi.HasActiveStatus(character, "BLADESONG_ACTIVE") == 1 then
-            hasBladesong = true
+        if Osi.HasActiveStatus(character, "BLADESONG") == 1 or Osi.HasActiveStatus(character, "BLADESONG_ACTIVE") == 1
+           or Osi.HasActiveStatus(character, "PACT_BLADE") == 1 or Osi.HasActiveStatus(character, "PACT_BLADE_OWNER") == 1
+           or Osi.HasActiveStatus(character, "SYMBIOTIC_ENTITY") == 1
+           or Osi.HasActiveStatus(character, "MAG_HEXBLADE_HEX") == 1 then
+            hasGishStatus = true
         elseif type(character) == "string" then
             local rawUuid = character:match("%x%x%x%x%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%x%x%x%x%x%x%x%x")
-            if rawUuid and rawUuid ~= character and (Osi.HasActiveStatus(rawUuid, "BLADESONG") == 1 or Osi.HasActiveStatus(rawUuid, "BLADESONG_ACTIVE") == 1) then
-                hasBladesong = true
+            if rawUuid and rawUuid ~= character then
+                if Osi.HasActiveStatus(rawUuid, "BLADESONG") == 1 or Osi.HasActiveStatus(rawUuid, "BLADESONG_ACTIVE") == 1
+                   or Osi.HasActiveStatus(rawUuid, "PACT_BLADE") == 1 or Osi.HasActiveStatus(rawUuid, "PACT_BLADE_OWNER") == 1
+                   or Osi.HasActiveStatus(rawUuid, "SYMBIOTIC_ENTITY") == 1
+                   or Osi.HasActiveStatus(rawUuid, "MAG_HEXBLADE_HEX") == 1 then
+                    hasGishStatus = true
+                end
             end
         end
     end)
-    if hasBladesong then return true end
+    if hasGishStatus then return true end
     
     return false
 end
