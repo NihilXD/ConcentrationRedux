@@ -80,22 +80,76 @@ local GISH_TAGS = {
 
 -- Whitelisted actions that NEVER disrupt an active channel
 local WHITELISTED_ACTIONS = {
+    -- Dodge
     ["Action_Dodge"] = true,
-    ["Shove"] = true,
-    ["Throw"] = true,
-    ["Dash"] = true,
-    ["Disengage"] = true,
-    ["Dip"] = true,
+    ["Shout_Dodge"] = true,
+    ["Shout_PatientDefense"] = true,
+
+    -- Jump (physical jump vs transmutation spell Enhance Leap Target_Jump)
     ["Jump"] = true,
     ["Cast_Jump"] = true,
+    ["Projectile_Jump"] = true,
+    ["Projectile_Jump_Monk"] = true,
+
+    -- Dash
+    ["Dash"] = true,
+    ["Shout_Dash"] = true,
+    ["Shout_Dash_BonusAction"] = true,
+    ["Shout_CunningAction_Dash"] = true,
+    ["Shout_ActionSurge_Dash"] = true,
+    ["Shout_StepOfTheWind_Dash"] = true,
+    ["Shout_Dash_ExpeditiousRetreat"] = true,
+
+    -- Hide / Crouch / Stealth
     ["Action_Hide"] = true,
-    ["Action_Help"] = true,
+    ["Shout_Hide"] = true,
+    ["Shout_Hide_BonusAction"] = true,
+    ["Shout_CunningAction_Hide"] = true,
+
+    -- Disengage
+    ["Disengage"] = true,
+    ["Shout_Disengage"] = true,
+    ["Shout_Disengage_BonusAction"] = true,
+    ["Shout_CunningAction_Disengage"] = true,
+    ["Shout_StepOfTheWind_Disengage"] = true,
+
+    -- Shove
+    ["Shove"] = true,
+    ["Target_Shove"] = true,
+    ["Target_Shove_BonusAction"] = true,
+
+    -- Dip
+    ["Dip"] = true,
+    ["Shout_Dip"] = true,
+    ["Shout_Dip_BonusAction"] = true,
+
+    -- Throw
+    ["Throw"] = true,
+    ["Throw_Throw"] = true,
+    ["Throw_FrenziedThrow"] = true,
+    ["Target_Throw"] = true,
+    ["Projectile_Throw"] = true,
+
+    -- Help
     ["Help"] = true,
+    ["Action_Help"] = true,
+    ["Target_Help"] = true,
+
+    -- Potions & Consumables
     ["UsePotion"] = true,
     ["DrinkPotion"] = true,
     ["UseConsumable"] = true,
+    ["Use_Potion"] = true,
+    ["Drink_Potion"] = true,
+    ["Use_Consumable"] = true,
+    ["Shout_DrinkPotion"] = true,
+
+    -- Martial utilities & Turn actions
+    ["Shout_SecondWind"] = true,
+    ["Shout_ActionSurge"] = true,
+    ["Shout_ShortRest"] = true,
     ["Action_EndTurn"] = true,
-    
+
     -- Channel re-activations (moving or triggering ongoing active effects)
     ["Target_CallLightning_Reapply"] = true,
     ["Target_Moonbeam_Reapply"] = true,
@@ -107,6 +161,30 @@ local WHITELISTED_ACTIONS = {
     ["Target_DismissInnateConcentration"] = true,
     ["Shout_DismissInnateConcentration"] = true
 }
+
+local function IsWhitelistedAction(spell)
+    if not spell then return false end
+    if WHITELISTED_ACTIONS[spell] then return true end
+    
+    local lower = spell:lower()
+    
+    -- Movement & Tactical stances
+    if lower == "projectile_jump" or lower:find("projectile_jump") then return true end
+    if lower:find("dash") then return true end
+    if lower:find("hide") or lower:find("stealth") or lower:find("crouch") then return true end
+    if lower:find("disengage") then return true end
+    if lower:find("shove") then return true end
+    if lower:find("dip") then return true end
+    if lower:find("throw") then return true end
+    if lower:find("help") then return true end
+    if lower:find("dodge") or lower:find("patientdefense") then return true end
+    if lower:find("secondwind") or lower:find("actionsurge") then return true end
+    if lower:find("reapply") or lower:find("reactivate") then return true end
+    if lower:find("dismiss") then return true end
+    if lower:find("potion") or lower:find("drink") or lower:find("consumable") then return true end
+    
+    return false
+end
 
 -- Mapping of Innate spells to their isolated target status
 local INNATE_SPELLS = {
@@ -801,7 +879,7 @@ local function HandleSpellInterruption(caster, spell, spellType)
     if GetInnateSpellInfo(spell) ~= nil then return end
     
     -- Whitelisted utility and tactical actions
-    if WHITELISTED_ACTIONS[spell] then return end
+    if IsWhitelistedAction(spell) then return end
     
     -- Smites (Divine Smite, Searing Smite, Thunderous Smite, etc.) channel magical spell slots into strikes and shatter active conduits
     if spell:lower():find("smite") then
