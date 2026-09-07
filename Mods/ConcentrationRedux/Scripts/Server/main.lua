@@ -54,6 +54,7 @@ local INNATE_SPELLS = {
     ["Target_Bless_5"] = { Status = "INNATE_BUFF_BLESS" },
     ["Target_Bless_6"] = { Status = "INNATE_BUFF_BLESS" },
     ["Target_ShieldOfFaith"] = { Status = "INNATE_BUFF_SHIELD_OF_FAITH" },
+    ["Target_Guidance"] = { Status = "INNATE_BUFF_GUIDANCE" },
     ["Target_Heroism"] = { Status = "INNATE_BUFF_HEROISM" },
     ["Target_Heroism_2"] = { Status = "INNATE_BUFF_HEROISM" },
     ["Target_Heroism_3"] = { Status = "INNATE_BUFF_HEROISM" },
@@ -228,6 +229,18 @@ local function IsCharacterConcentrating(character)
             end
         end
     end)
+    if not isConc then
+        pcall(function()
+            if Osi.HasActiveStatus(character, CONC_TRACKER_STATUS) == 1 then
+                isConc = true
+            elseif type(character) == "string" then
+                local raw = character:match("%x%x%x%x%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%x%x%x%x%x%x%x%x")
+                if raw and raw ~= character and Osi.HasActiveStatus(raw, CONC_TRACKER_STATUS) == 1 then
+                    isConc = true
+                end
+            end
+        end)
+    end
     return isConc
 end
 
@@ -500,22 +513,39 @@ local function IsWeaponAction(spell, spellType)
     if not spell then return false end
     if spellType == "MeleeWeapon" or spellType == "RangedWeapon" then return true end
     
-    local stat = nil
-    pcall(function() stat = Ext.Stats.Get(spell) end)
-    if stat then
-        local req = stat.RequirementConditions or ""
-        if req:find("Weapon") or req:find("HasWeapon") or req:find("Melee") or req:find("Ranged") or req:find("MainHand") or req:find("OffHand") then
-            return true
+    local isWeapon = false
+    pcall(function()
+        local stat = Ext.Stats.Get(spell)
+        if stat then
+            if stat.SpellType == "MeleeWeapon" or stat.SpellType == "RangedWeapon" then
+                isWeapon = true
+                return
+            end
+            if type(stat.RequirementConditions) == "string" then
+                local req = stat.RequirementConditions
+                if req:find("Weapon") or req:find("HasWeapon") or req:find("Melee") or req:find("Ranged") or req:find("MainHand") or req:find("OffHand") then
+                    isWeapon = true
+                    return
+                end
+            end
+            if type(stat.UseCosts) == "string" and stat.UseCosts:find("WeaponActionPoint") then
+                isWeapon = true
+                return
+            end
+            if type(stat.SpellFlags) == "string" and stat.SpellFlags:find("HasWeaponProperties") then
+                isWeapon = true
+                return
+            end
+            if type(stat.TooltipDamageList) == "string" and (
+                stat.TooltipDamageList:find("MainWeaponDamageType") or 
+                stat.TooltipDamageList:find("WeaponDamageType")
+            ) then
+                isWeapon = true
+                return
+            end
         end
-        local useCosts = stat.UseCosts or ""
-        if useCosts:find("WeaponActionPoint") then return true end
-        local props = stat.SpellProperties or ""
-        if props:find("MainWeaponDamage") or props:find("OffHandWeaponDamage") or props:find("WeaponDamage") then return true end
-        local tooltipDamage = stat.TooltipDamageList or ""
-        if tooltipDamage:find("MainWeaponDamageType") or tooltipDamage:find("WeaponDamageType") then return true end
-        local flags = stat.SpellFlags or ""
-        if flags:find("HasWeaponProperties") then return true end
-    end
+    end)
+    if isWeapon then return true end
     
     local lowerSpell = spell:lower()
     if lowerSpell:find("attack") or lowerSpell:find("weapon") or lowerSpell:find("strike") 
@@ -541,17 +571,32 @@ Ext.Osiris.RegisterListener("UsingSpell", 5, "after", function(caster, spell, sp
             end
         end
         
-        if IsWeaponAction(spell, spellType) then
+        local isWep = false
+        pcall(function() isWep = IsWeaponAction(spell, spellType) end)
+        
+        if isWep then
             if HasCombatChanneling(caster) then
                 return
             else
                 pcall(function() Osi.BreakConcentration(caster) end)
+                if type(caster) == "string" then
+                    local rawUuid = caster:match("%x%x%x%x%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%x%x%x%x%x%x%x%x")
+                    if rawUuid and rawUuid ~= caster then
+                        pcall(function() Osi.BreakConcentration(rawUuid) end)
+                    end
+                end
                 pcall(function() Osi.ShowOverheadNotice(caster, "Channel broken by physical attack!") end)
                 return
             end
         end
         
         pcall(function() Osi.BreakConcentration(caster) end)
+        if type(caster) == "string" then
+            local rawUuid = caster:match("%x%x%x%x%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%x%x%x%x%x%x%x%x")
+            if rawUuid and rawUuid ~= caster then
+                pcall(function() Osi.BreakConcentration(rawUuid) end)
+            end
+        end
         pcall(function() Osi.ShowOverheadNotice(caster, "Channel broken by spellcasting!") end)
     end
 end)

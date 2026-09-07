@@ -30,7 +30,7 @@ In D&D 5e and vanilla Baldur's Gate 3, nearly every iconic spell competes for a 
 
 ### 2. Spell Classifications
 - **Focus Spells (Indefinite Buffs):**
-  - Wards & Protection: *Bless*, *Shield of Faith*, *Heroism*, *Protection from Evil and Good*, *Barkskin*, *Stoneskin*, *Shield of Thralls*
+  - **Wards & Protection:** *Bless*, *Shield of Faith*, *Guidance*, *Heroism*, *Protection from Evil and Good*, *Barkskin*, *Stoneskin*, *Shield of Thralls*
   - Single-Target Marks: *Hunter's Mark*, *Hex*, *Bane*, *Bestow Curse* (reapplication abilities are whitelisted and never break active conduits)
   - Augmentations & Stealth: *Haste*, *Enlarge/Reduce*, *Fly*, *Blur*, *Invisibility*, *Pass Without Trace*, *Detect Thoughts*
 - **Concentration Spells (Combat Conduits):**

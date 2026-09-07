@@ -43,6 +43,16 @@ data "StatusGroupId" "INNATE_BUFF_GROUP"
 data "Duration" "-1"
 data "StatusPropertyFlags" "ApplyToAllies;DisableOverhead;ClearOnLongRest;PassToShape;KeepOnShapeShift"
 
+new entry "INNATE_BUFF_GUIDANCE"
+type "StatusData"
+data "StatusType" "BOOST"
+using "GUIDANCE"
+data "StackId" "INNATE_CONCENTRATION_BUFF"
+data "StackPriority" "1"
+data "StatusGroupId" "INNATE_BUFF_GROUP"
+data "Duration" "-1"
+data "StatusPropertyFlags" "ApplyToAllies;DisableOverhead;ClearOnLongRest;PassToShape;KeepOnShapeShift"
+
 new entry "INNATE_BUFF_HEROISM"
 type "StatusData"
 data "StatusType" "BOOST"
@@ -422,20 +432,6 @@ data "StackPriority" "1"
 data "StatusGroupId" "INNATE_BUFF_GROUP"
 data "Duration" "-1"
 data "StatusPropertyFlags" "DisableOverhead;ClearOnLongRest;PassToShape;KeepOnShapeShift"
-// Visual condition badge when maintaining an active Concentration conduit
-// Visual condition badge when maintaining an active Concentration conduit
-
-// Visual condition badge when maintaining an active Concentration conduit
-
-// Visual condition badge when maintaining an active Concentration conduit
-
-// Visual condition badge when maintaining an active Concentration conduit
-
-// Visual condition badge when maintaining an active Concentration conduit
-
-// Visual condition badge when maintaining an active Concentration conduit
-
-// Visual condition badge when maintaining an active Concentration conduit
 
 // Visual condition badge when maintaining an active Concentration conduit
 new entry "ACTIVE_CONCENTRATION_TRACKER"
