@@ -119,6 +119,46 @@ The **War Caster** feat (`WarCaster_Concentration`) integrates directly into bot
 
 ---
 
+## Changelog
+
+### v1.0.3
+- **Cantrip Focus Overhaul**:
+  - **Resistance**: Converted to the Focus layer (`INNATE_BUFF_RESISTANCE`, indefinite duration). Serves as a zero-slot defensive counterpart to *Guidance* for exploration and conversation saving throws, mutually exclusive with *Bless* and *Shield of Faith*.
+  - **Friends**: Converted to Focus (`INNATE_BUFF_FRIENDS`) to prevent dialogue rolls from breaking pre-cast combat conduits. Standard 10-turn duration intentionally preserved so Tactician and Honour Mode NPC hostility triggers function as designed.
+  - **Dancing Lights**: Converted to Focus (`INNATE_BUFF_DANCING_LIGHTS`, indefinite duration) to allow 18m ranged illumination without sacrificing combat buffs. Floating wisps despawn cleanly upon dismissing or replacing Focus.
+  - **True Strike**: Formally preserved on vanilla 2-turn combat conduit rules to protect combat attack math.
+- **Documentation & UI**:
+  - Added Section 3 ("The Cantrip Conundrum") explaining cantrip design philosophy and balance choices.
+  - Fixed unsupported `[olist]` BBCode tags on Nexus to standard `[list]`.
+  - Documented emergency reaction spell disruption (*Shield*, *Counterspell*, *Hellish Rebuke*) and whitelisted reapplication spells (*Hex*, *Hunter's Mark*, *Call Lightning*).
+- **Tooling & Build System**:
+  - Updated `build.ps1` to structure internal package directories with the Patch 7 UUID (`ConcentrationRedux_5ca2dda8-eedc-41be-95f0-50747d552d10.pak`) and automatically synchronize release archives.
+
+### v1.0.2
+- **Smite Disruption**:
+  - Expending spell slots for magical strikes (*Divine Smite*, *Searing Smite*, *Thunderous Smite*, *Wrathful Smite*, etc.) now immediately shatters active combat conduits (*Spirit Guardians*), displaying an overhead notice (*"Channel broken by Smite!"*). Passive Focus buffs (*Bless*, *Shield of Faith*) remain undisturbed.
+- **Combat Channeling & Gish Archetype Overhaul**:
+  - **Monk**: Granted at Level 1 across all subclasses (core spiritual discipline and Ki flow).
+  - **Paladin & Ranger**: Unlocked at Level 2 alongside their official Spellcasting feature (Level 1 characters remain mundane combatants).
+  - **Eldritch Knight Fighter & Arcane Trickster Rogue**: Unlocked at Level 3. Mundane fighters (*Champion*, *Battle Master*) and rogues (*Thief*, *Assassin*) cannot attack while maintaining active conduits.
+  - **Bladesinger Wizard**: Added full support for Bladesingers and active *Bladesong*.
+  - **College of Swords & Valour Bard**: Added full support for Blade Flourishes and battle skalds.
+  - **Pact of the Blade Warlock**: Added full support for Bound Pact Weapons and Hexblades.
+  - **Circle of Spores Druid**: Added full support for frontline melee and *Symbiotic Entity*.
+  - **Barbarian Exclusion**: Pure physical rage continues to disrupt active concentration conduits.
+- **War Caster Synergy**:
+  - Clarified that gish multiclassing allows weapon attacks while channeling, but does not grant unearned Advantage on concentration saving throws (Advantage remains exclusive to War Caster or advantage gear).
+
+### v1.0.1
+- Fixed `IsWeaponAction` Script Extender crash when casting spells while concentrating.
+- Added *Guidance* as a zero-slot Focus buff.
+- Improved active conduit interruption with `AI_HELPER_BREAKCONCENTRATION`.
+
+### v1.0.0
+- Initial release of Concentration Redux: two-layer focus economy (Focus vs. Concentration), The Overclock, 36+ converted spells, and custom UI portrait badges.
+
+---
+
 ## Installation & Development
 
 ### Requirements
@@ -129,21 +169,28 @@ The **War Caster** feat (`WarCaster_Concentration`) integrates directly into bot
 Run PowerShell in the project root:
 ```powershell
 # Validate all files
-.\build.ps1
+powershell -ExecutionPolicy Bypass -File .\build.ps1
 
 # Package into .pak and install to AppData Mods (for Vortex / BG3MM / Patch 7)
-.\build.ps1 -Package
+powershell -ExecutionPolicy Bypass -File .\build.ps1 -Package
 
 # Deploy loose files directly into Baldur's Gate 3\Data (for active live development)
-.\build.ps1 -Deploy
+powershell -ExecutionPolicy Bypass -File .\build.ps1 -Deploy
 
 # Remove deployed mod files
-.\build.ps1 -Clean
+powershell -ExecutionPolicy Bypass -File .\build.ps1 -Clean
 ```
 
 ### Live Reloading
-When playing with the loose files installed, open the BG3SE console and type:
+When playing with loose files installed, open the BG3SE console and type:
 ```
 reset
 ```
 This reloads `main.lua` instantaneously without needing to restart the game.
+
+---
+
+## Support the Project
+If Concentration Redux made your spellcasters fun and tactically rewarding to play, consider buying me a coffee:
+- ☕ **[Support on Ko-fi](https://ko-fi.com/nihilxd)**
+

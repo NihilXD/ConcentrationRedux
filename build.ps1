@@ -112,17 +112,29 @@ if ($Deploy) {
     Copy-Item -Recurse -Force (Join-Path $ScriptDir "Mods\$ModName\*") (Join-Path $TempDir "Mods\$ModFolder")
     Copy-Item -Recurse -Force (Join-Path $ScriptDir "Public\$ModName\*") (Join-Path $TempDir "Public\$ModFolder")
 
-    & $DivinePath -g bg3 -a create-package -s $TempDir -d $DestPak -c lz4
+    if (-not (Test-Path $ReleaseDir)) { New-Item -ItemType Directory -Force -Path $ReleaseDir | Out-Null }
+    
+    # Create package directly into Release directory (never locked by BG3)
+    & $DivinePath -g bg3 -a create-package -s $TempDir -d $ReleasePak -c lz4
     Remove-Item -Recurse -Force $TempDir
 
-    if (Test-Path $ReleaseDir) {
-        Copy-Item -Force $DestPak $ReleasePak
-        Compress-Archive -Path $ReleasePak -DestinationPath (Join-Path $ReleaseDir "ConcentrationRedux-v1.0.2.zip") -Force
-        Write-Host "  [OK] Updated Release package and zip archive." -ForegroundColor Green
+    $ZipPath = Join-Path $ReleaseDir "ConcentrationRedux-v1.0.3.zip"
+    if (Test-Path $ZipPath) { Remove-Item -Force $ZipPath }
+    Compress-Archive -Path $ReleasePak -DestinationPath $ZipPath -Force
+    Write-Host "  [OK] Created Release package and zip archive:" -ForegroundColor Green
+    Write-Host "       $ZipPath" -ForegroundColor Gray
+
+    # Attempt install to active BG3 Mods folder
+    try {
+        Copy-Item -Force $ReleasePak $DestPak -ErrorAction Stop
+        Write-Host "  [OK] Installed latest package to game Mods directory:" -ForegroundColor Green
+        Write-Host "       $DestPak" -ForegroundColor Gray
+    } catch {
+        Write-Warning "Baldur's Gate 3 is currently running and locking the active .pak file."
+        Write-Warning "The release package ($ZipPath) was built successfully."
+        Write-Warning "Close BG3 and re-run to copy into your local game Mods folder."
     }
 
-    Write-Host "  [OK] Successfully built and installed package to:" -ForegroundColor Green
-    Write-Host "       $DestPak" -ForegroundColor Gray
     Write-Host "`nMod package ready! It will appear in Vortex and the in-game Mod Manager." -ForegroundColor Cyan
 } else {
     Write-Host "[3/3] Validation complete! Run with -Deploy (loose files) or -Package (.pak) to install." -ForegroundColor Cyan

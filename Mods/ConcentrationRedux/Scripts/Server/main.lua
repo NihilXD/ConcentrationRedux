@@ -1073,5 +1073,5 @@ end)
 
 Ext.Events.SessionLoaded:Subscribe(function()
     ReconstructSessionStateFromEngine()
-    Ext.Utils.Print(string.format("[%s] v1.0.0 initialized successfully. Dual concentration engine active.", MOD_NAME))
+    Ext.Utils.Print(string.format("[%s] v1.0.3 initialized successfully. Dual concentration engine active.", MOD_NAME))
 end)
