@@ -40,7 +40,16 @@ local COMBAT_PASSIVES = {
     ["MageHandLegerdemain"] = true,
     ["MageHand_Legerdemain"] = true,
     ["ArcaneTrickster_Spellcasting"] = true,
-    ["MagicalAmbush"] = true
+    ["MagicalAmbush"] = true,
+    
+    -- Bladesinger Wizard (Level 2+ subclass)
+    ["Bladesong"] = true,
+    ["Bladesong_Passive"] = true,
+    ["Bladesinger"] = true,
+    ["Bladesinger_Training"] = true,
+    ["TrainingInWarAndSong"] = true,
+    ["Bladesinger_Bladesong"] = true,
+    ["Bladesong_ExtraAttack"] = true
 }
 
 local GISH_TAGS = {
@@ -269,10 +278,38 @@ local function HasCombatChanneling(character)
                         return
                     end
                 end
+                
+                -- Wizard: only Bladesinger subclass
+                if clsStr:find("wizard") or clsStr:find("a86596d0") then
+                    if subStr:find("bladesing") or subStr:find("blade_sing") then
+                        isGish = true
+                        return
+                    end
+                end
+                
+                -- Catch-all for custom Bladesinger classes/subclasses
+                if subStr:find("bladesing") or clsStr:find("bladesing") then
+                    isGish = true
+                    return
+                end
             end
         end
     end)
     if isGish then return true end
+    
+    -- 4. Check active Bladesong status (Bladesingers actively singing)
+    local hasBladesong = false
+    pcall(function()
+        if Osi.HasActiveStatus(character, "BLADESONG") == 1 or Osi.HasActiveStatus(character, "BLADESONG_ACTIVE") == 1 then
+            hasBladesong = true
+        elseif type(character) == "string" then
+            local rawUuid = character:match("%x%x%x%x%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%x%x%x%x%x%x%x%x")
+            if rawUuid and rawUuid ~= character and (Osi.HasActiveStatus(rawUuid, "BLADESONG") == 1 or Osi.HasActiveStatus(rawUuid, "BLADESONG_ACTIVE") == 1) then
+                hasBladesong = true
+            end
+        end
+    end)
+    if hasBladesong then return true end
     
     return false
 end

@@ -49,6 +49,7 @@ In D&D 5e and vanilla Baldur's Gate 3, nearly every iconic spell competes for a 
   - **War Domain & Tempest Domain Clerics** (Level 1)
   - **Monks** (Level 1+: core spiritual discipline and Ki flow)
   - **Paladins & Rangers** (Level 2+: when spellcasting unlocks; level 1 characters are mundane combatants)
+  - **Bladesinger Wizards** (Level 2+: the epitome of martial blade-magic and Bladesong)
   - **Eldritch Knight Fighters & Arcane Trickster Rogues** (Level 3+: dedicated martial-arcane gishes)
   - *Mundane fighters (Champion/Battle Master), mundane rogues (Thief/Assassin), and Barbarians cannot attack without disrupting active Concentration.*
 - **Smites Shatter Conduits:** Expending spell slots for magical strikes (*Divine Smite*, *Searing Smite*, *Thunderous Smite*, *Wrathful Smite*, etc.) requires a burst of spellcasting focus and **immediately shatters active combat conduits** (*Spirit Guardians*), while leaving passive Focus buffs (*Bless*, *Shield of Faith*) completely undisturbed!
