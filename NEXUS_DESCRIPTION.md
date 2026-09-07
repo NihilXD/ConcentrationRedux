@@ -30,13 +30,16 @@ In D&D 5e and vanilla Baldur's Gate 3, nearly every iconic spell competes for a 
 
 ### 2. Spell Classifications
 - **Focus Spells (Indefinite Buffs):**
-  - **Wards & Protection:** *Bless*, *Shield of Faith*, *Guidance*, *Heroism*, *Protection from Evil and Good*, *Barkskin*, *Stoneskin*, *Shield of Thralls*
-  - Single-Target Marks: *Hunter's Mark*, *Hex*, *Bane*, *Bestow Curse* (reapplication abilities are whitelisted and never break active conduits)
-  - Augmentations & Stealth: *Haste*, *Enlarge/Reduce*, *Fly*, *Blur*, *Invisibility*, *Pass Without Trace*, *Detect Thoughts*
+  - **Wards & Protection:** *Bless*, *Shield of Faith*, *Guidance*, *Resistance*, *Heroism*, *Protection from Evil and Good*, *Barkskin*, *Stoneskin*, *Shield of Thralls*
+  - **Utility & Exploration:** *Dancing Lights* (indefinite remote illumination that never strips pre-cast buffs)
+  - **Social Charms (10-Turn Timer):** *Friends* (routed to Focus to protect combat conduits during dialogue checks, while retaining its 10-turn timer for Tactician/Honour Mode hostility)
+  - **Single-Target Marks:** *Hunter's Mark*, *Hex*, *Bane*, *Bestow Curse* (reapplication abilities are whitelisted and never break active conduits)
+  - **Augmentations & Stealth:** *Haste*, *Enlarge/Reduce*, *Fly*, *Blur*, *Invisibility*, *Pass Without Trace*, *Detect Thoughts*
 - **Concentration Spells (Combat Conduits):**
   - Auras & Beams: *Spirit Guardians*, *Aura of Vitality*, *Crusader's Mantle*, *Call Lightning*, *Moonbeam*, *Witch Bolt*, *Heat Metal*, *Sunbeam*, *Telekinesis*
   - Hazard Anchors: *Wall of Fire*, *Cloud of Daggers*, *Fog Cloud*, *Darkness*, *Silence*, *Spike Growth*, *Sleet Storm*, *Hunger of Hadar*, *Cloudkill*
   - Hard CC: *Hold Person*, *Hold Monster*, *Hypnotic Pattern*, *Banishment*, *Tasha's Hideous Laughter*, *Slow*, *Confusion*
+  - Attack Modifiers: *True Strike* (intentionally kept on standard short-duration vanilla rules)
 
 > **Class Spells vs. Bound Gear & Scrolls:** Genuine class investments utilize the full Focus system. Spells granted by equipment (e.g. Whispering Promise, Darkfire Shortbow) and consumable scrolls follow standard vanilla rules (10-turn limit, standard damage saves) to prevent item abuse.
 

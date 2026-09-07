@@ -28,7 +28,9 @@ In vanilla 5e / Baldur's Gate 3, concentration creates arbitrary friction:
 ## Spell Classifications
 
 ### 1. Focus (Indefinite Duration Buffs)
-- **Combat & Defensive Wards**: *Bless*, *Shield of Faith*, *Guidance*, *Heroism*, *Protection from Evil and Good*, *Barkskin*, *Stoneskin*, *Shield of Thralls*
+- **Combat & Defensive Wards**: *Bless*, *Shield of Faith*, *Guidance*, *Resistance*, *Heroism*, *Protection from Evil and Good*, *Barkskin*, *Stoneskin*, *Shield of Thralls*
+- **Utility & Exploration**: *Dancing Lights* (indefinite remote illumination that never strips pre-cast buffs)
+- **Social Charms (10-Turn Timer)**: *Friends* (routed to Focus to protect combat conduits during dialogue checks, while retaining its 10-turn timer for Tactician/Honour Mode hostility)
 - **Single-Target Marks**: *Hunter's Mark*, *Hex*, *Bane*, *Bestow Curse*
 - **Physical Augmentations**: *Haste*, *Enlarge/Reduce*, *Fly*, *Expeditious Retreat*, *Blur*, *Magic Weapon*, *Elemental Weapon*
 - **Stealth & Senses**: *Invisibility*, *Greater Invisibility*, *Pass Without Trace*, *Detect Thoughts*
@@ -45,6 +47,7 @@ In vanilla 5e / Baldur's Gate 3, concentration creates arbitrary friction:
 - **Sustained Beams & Activations**: *Call Lightning*, *Moonbeam*, *Witch Bolt*, *Heat Metal*, *Sunbeam*, *Eyebite*, *Telekinesis*
 - **Hazard Anchors**: *Wall of Fire*, *Darkness*, *Cloud of Daggers*, *Fog Cloud*, *Silence*, *Spike Growth*, *Sleet Storm*, *Hunger of Hadar*, *Cloudkill*, *Evard's Black Tentacles*, *Insect Plague*
 - **Hard Crowd Control**: *Hold Person*, *Hold Monster*, *Hypnotic Pattern*, *Banishment*, *Tasha's Hideous Laughter*, *Slow*, *Confusion*, *Otiluke's Resilient Sphere*
+- **Attack Modifiers**: *True Strike* (intentionally kept on standard short-duration vanilla rules)
 
 ### 3. Reapplication Spells (*Hex* & *Hunter's Mark*)
 - When a marked target dies, the corpse target is cleanly detached from tracking while preserving `INNATE_CONCENTRATION_CASTER` on the caster.
