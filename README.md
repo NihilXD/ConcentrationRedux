@@ -121,6 +121,11 @@ The **War Caster** feat (`WarCaster_Concentration`) integrates directly into bot
 
 ## Changelog
 
+### v1.0.4
+- **Tactical Movement & Action Whitelist Fix**:
+  - Fixed Jump (`Projectile_Jump`, `Projectile_Jump_Monk`), Crouch/Stealth (`Shout_Hide`, `Shout_CunningAction_Hide`), Dash (`Shout_Dash`, `Shout_ActionSurge_Dash`, `Shout_StepOfTheWind_Dash`), Disengage (`Shout_Disengage`), Shove (`Target_Shove`), Dip (`Shout_Dip`), Throw (`Throw_Throw`), and Help (`Target_Help`) inadvertently collapsing active combat conduits with a *"Channel broken by spellcasting!"* overhead notice.
+  - Implemented an `IsWhitelistedAction` pattern-matching filter in the server engine to automatically recognize all current and future tactical movement actions, bonus actions, and stance variants.
+
 ### v1.0.3
 - **Cantrip Focus Overhaul**:
   - **Resistance**: Converted to the Focus layer (`INNATE_BUFF_RESISTANCE`, indefinite duration). Serves as a zero-slot defensive counterpart to *Guidance* for exploration and conversation saving throws, mutually exclusive with *Bless* and *Shield of Faith*.
