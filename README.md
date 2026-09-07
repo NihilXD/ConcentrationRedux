@@ -28,7 +28,7 @@ In vanilla 5e / Baldur's Gate 3, concentration creates arbitrary friction:
 ## Spell Classifications
 
 ### 1. Focus (Indefinite Duration Buffs)
-- **Combat & Defensive Wards**: *Bless*, *Shield of Faith*, *Heroism*, *Protection from Evil and Good*, *Barkskin*, *Stoneskin*, *Shield of Thralls*
+- **Combat & Defensive Wards**: *Bless*, *Shield of Faith*, *Guidance*, *Heroism*, *Protection from Evil and Good*, *Barkskin*, *Stoneskin*, *Shield of Thralls*
 - **Single-Target Marks**: *Hunter's Mark*, *Hex*, *Bane*, *Bestow Curse*
 - **Physical Augmentations**: *Haste*, *Enlarge/Reduce*, *Fly*, *Expeditious Retreat*, *Blur*, *Magic Weapon*, *Elemental Weapon*
 - **Stealth & Senses**: *Invisibility*, *Greater Invisibility*, *Pass Without Trace*, *Detect Thoughts*
@@ -54,7 +54,7 @@ In vanilla 5e / Baldur's Gate 3, concentration creates arbitrary friction:
 - If a caster is afflicted with `STUNNED`, `PARALYZED`, `PETRIFIED`, `SLEEP`, `UNCONSCIOUS`, `KNOCKED_OUT`, `INCAPACITATED`, `BANISHED`, `POLYMORPH`, or `DOWNED`/`DEAD`, Focus and all linked party buffs immediately collapse, honoring standard 5e rules.
 
 ### 5. Manual Dismissal (Releasing Spells Voluntarily)
-- **Dismissing Focus (Buffs)**: While maintaining Focus (*Bless*, *Haste*, *Shield of Faith*), the caster automatically gains a free, 0-action cost **Dismiss Focus** ability (`Shout_DismissInnateConcentration`) on their hotbar. Using it voluntarily releases Focus on demand without needing to cast another spell or rest.
+- **Dismissing Focus (Buffs)**: While maintaining Focus (*Bless*, *Haste*, *Shield of Faith*, *Guidance*), the caster automatically gains a free, 0-action cost **Dismiss Focus** ability (`Shout_DismissInnateConcentration`) on their hotbar. Using it voluntarily releases Focus on demand without needing to cast another spell or rest.
 - **Dismissing Concentration (Conduits)**: Because Concentration (*Spirit Guardians*, *Wall of Fire*, *Cloud of Daggers*, *Hold Person*, *Fog Cloud*) runs in the engine's native concentration slot, players can cancel it at any moment using Baldur's Gate 3's **native "X" button** located directly beneath the character's portrait on the bottom-left HUD, or by casting another spell.
 
 ### 6. Reaction Spells (Strict Mode Enforced)
@@ -62,7 +62,7 @@ In vanilla 5e / Baldur's Gate 3, concentration creates arbitrary friction:
 - **In-Game Warning Popups**: The mod injects a dedicated **Channel Disruption** warning into the tooltip and reaction prompt card of all three reaction spells:
   > ⚠️ *Channel Disruption: Casting this spell requires complete magical focus and will immediately shatter any active Channel.*
 - **Reactions Tab ("Ask" Toggle)**: Keep **"Ask"** checked (the question mark icon) in your character's Reactions tab (`K`) for *Shield*, *Counterspell*, and *Hellish Rebuke*. The game will always pause combat and prompt you before casting, preventing accidental channel loss while letting you deliberately trade your channel in life-or-death situations.
-- **Physical Reactions Allowed**: Non-magical physical reactions (e.g. melee *Opportunity Attacks*) remain fully permitted for **Combat Domains** (*War*, *Tempest*).
+- **Physical Reactions Allowed**: Non-magical physical reactions (e.g. melee *Opportunity Attacks*) remain fully permitted for gish archetypes.
 - **Class Abilities Allowed**: Non-spell reaction features (*Warding Flare*, *Wrath of the Storm*, *Cutting Words*, *Uncanny Dodge*, *Deflect Missiles*) do not use spell slots and do not disrupt Channeling.
 
 ### 7. Withers Respec Cleanup
@@ -70,12 +70,29 @@ In vanilla 5e / Baldur's Gate 3, concentration creates arbitrary friction:
 
 ---
 
-## Combat Channeling Perk
+## Combat Channeling & Gish Archetypes
 
-Combat-focused domains (*War Domain* and *Tempest Domain* Clerics) receive the **Combat Channeling** perk at Level 1:
-- Can execute melee and ranged weapon attacks, leverage Extra Attack, and trigger special weapon actions (*Lacerate*, *Topple*, *Flourish*, *Piercing Strike*, *Pommel Strike*, *Cleave*, *Brace*, etc.) without disrupting Active Channels.
-- Script Extender inspects weapon action properties dynamically (`RequirementConditions`, `WeaponActionPoint` costs, weapon damage types, and weapon properties) to ensure martial actions and masteries never accidentally drop your channel.
-- Non-combat domains attempting physical attacks or casting unauthorized spells will shatter their active channel.
+Attacking with weapons while sustaining an active combat conduit requires true martial-magical discipline:
+
+| Class | Recognized Archetype | Unlock Level | Notes |
+| :--- | :--- | :---: | :--- |
+| **Cleric** | **War Domain & Tempest Domain** | Level 1 | Inherent divine martial training. |
+| **Monk** | **All Monks** | Level 1 | Core spiritual discipline and Ki flow. |
+| **Paladin** | **All Paladins** | Level 2+ | Unlocked with Spellcasting (Level 1 is mundane). |
+| **Ranger** | **All Rangers** | Level 2+ | Unlocked with Spellcasting (Level 1 is mundane). |
+| **Wizard** | **Bladesinger** | Level 2+ | Bladesong passives and active status. |
+| **Druid** | **Circle of Spores** | Level 2+ | Frontline fungal melee (*Symbiotic Entity*). |
+| **Bard** | **College of Swords & Valour** | Level 3+ | Blade Flourishes and battle skalds. |
+| **Warlock** | **Pact of the Blade** | Level 3+ | Bound Pact Weapons and Hexblades. |
+| **Fighter** | **Eldritch Knight Only** | Level 3+ | *Weapon Bond* and *War Magic*. |
+| **Rogue** | **Arcane Trickster Only** | Level 3+ | *Mage Hand Legerdemain*. |
+| **Mundane** | **Champion, Battle Master, Thief, Assassin, Barbarian** | *Never* | Raw physical momentum shatters active conduits. |
+
+> [!IMPORTANT]
+> **Smites Shatter Conduits**: Expending spell slots for magical burst strikes (*Divine Smite*, *Searing Smite*, *Thunderous Smite*, *Wrathful Smite*, *Blinding Smite*, etc.) requires an instant burst of spell focus and **immediately shatters active combat conduits** (*Spirit Guardians*), displaying an overhead notice (*"Channel broken by Smite!"*), while leaving passive Focus buffs (*Bless*, *Shield of Faith*) completely undisturbed.
+
+> [!NOTE]
+> **No Unearned Advantage**: Gish training grants the physical discipline to attack while channeling, but **does not grant Advantage on concentration saving throws** (Advantage remains strictly reserved for the *War Caster* feat or advantage gear).
 
 ---
 

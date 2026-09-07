@@ -45,6 +45,12 @@ In D&D 5e and vanilla Baldur's Gate 3, nearly every iconic spell competes for a 
 - **Dismissing Focus:** Free, 0-action **Dismiss Focus** ability added to your hotbar.
 - **Dismissing Concentration:** Uses BG3's **native 'X' button** beneath the portrait HUD (or casting another conduit).
 
+### 4. Tactical Synergies & Rules
+- **Spellcasting Snaps Conduits:** Channeling an active combat conduit (*Spirit Guardians*, *Wall of Fire*, *Call Lightning*) demands 100% of your spellcasting bandwidth:
+  - Hard-casting any standard spell (*Fireball*, *Guiding Bolt*, *Magic Missile*) immediately snaps your active conduit. (Casting a Focus buff like *Bless* or *Shield of Faith* enters **The Overclock**).
+  - Casting emergency reaction spells (*Shield*, *Counterspell*, *Hellish Rebuke*) also snaps active conduits (clear in-game tooltip warnings provided).
+  - *Non-spell reactions* (*Warding Flare*, *Wrath of the Storm*, *Cutting Words*, *Uncanny Dodge*, *Deflect Missiles*) expend no spell slots and are 100% safe to use!
+- **Smites Shatter Conduits:** Expending spell slots for magical burst strikes (*Divine Smite*, *Searing Smite*, *Thunderous Smite*, *Wrathful Smite*, *Blinding Smite*, etc.) requires an instant burst of spell focus and **immediately shatters active combat conduits** (*Spirit Guardians*), while leaving passive Focus buffs (*Bless*, *Shield of Faith*) completely undisturbed!
 - **Combat Channeling & Gish Archetypes:** Making weapon attacks while maintaining an active combat conduit requires true mind-body magical discipline:
   - **War Domain & Tempest Domain Clerics** (Level 1)
   - **Monks** (Level 1+: core spiritual discipline and Ki flow)
@@ -55,9 +61,12 @@ In D&D 5e and vanilla Baldur's Gate 3, nearly every iconic spell competes for a 
   - **Pact of the Blade Warlocks** (Level 3+: bound pact weapon specialists & Hexblades)
   - **Eldritch Knight Fighters & Arcane Trickster Rogues** (Level 3+: dedicated martial-arcane gishes)
   - *Mundane fighters (Champion/Battle Master), mundane rogues (Thief/Assassin), and Barbarians cannot attack without disrupting active Concentration.*
-- **Smites Shatter Conduits:** Expending spell slots for magical strikes (*Divine Smite*, *Searing Smite*, *Thunderous Smite*, *Wrathful Smite*, etc.) requires a burst of spellcasting focus and **immediately shatters active combat conduits** (*Spirit Guardians*), while leaving passive Focus buffs (*Bless*, *Shield of Faith*) completely undisturbed!
-- **War Caster Synergy:** Grants Advantage to Channeling saves. Because Focus already rolls with Advantage during Overclock, **War Caster ensures BOTH independent saves have Advantage!** Casting *Shocking Grasp* as an Opportunity Attack reaction via War Caster is fully permitted.
-- **Strict Reaction Discipline:** Casting emergency reaction spells (*Shield*, *Counterspell*, *Hellish Rebuke*) shatters active combat conduits (clear tooltip warnings provided).
+- **Advantage Balance:** Gish training allows weapon attacks while channeling, but **does not grant Advantage on concentration saving throws** (Advantage remains strictly reserved for the *War Caster* feat or advantage gear).
+- **War Caster Synergy:** Grants Advantage to Channeling saves. Because Focus already rolls with Advantage during Overclock, **War Caster ensures BOTH independent saves have Advantage!** Furthermore, casting *Shocking Grasp* as an Opportunity Attack reaction via War Caster is fully permitted.
+- **Whitelisted Tactical Actions & Recasts:** 
+  - Non-magical maneuvers (*Dash*, *Disengage*, *Shove*, *Throw*, *Dip*, *Dodge*, *Hide*) never disrupt active conduits.
+  - Re-activating ongoing concentration conduits (*Call Lightning*, *Moonbeam*, *Sunbeam*, *Witch Bolt*, *Eyebite*, *Telekinesis* recast/move) is fully whitelisted.
+  - Re-targeting marks (*Reapply Hunter's Mark*, *Reapply Hex*) is free and preserves active conduits.
 - **Loss of Control (5e Compliant):** Hard incapacitation (*Stunned*, *Paralyzed*, *Petrified*, *Sleep*, *Unconscious*, *Downed*, *Dead*) shatters Focus and all linked party buffs.
 
 ---
