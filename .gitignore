@@ -9,6 +9,9 @@ Thumbs.db
 
 # Local build artifacts (keep repository light and clean)
 *.pak
+*.zip
+Release/
 Temp/
 bin/
 obj/
+
