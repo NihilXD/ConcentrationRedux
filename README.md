@@ -136,6 +136,11 @@ The **War Caster** feat (`WarCaster_Concentration`) integrates directly into bot
   - **Involuntary Disruption (Inflicts Lethargy)**: Breaking your Channel involuntarily via damage, environmental surfaces, or hard crowd control (*Hold Person*, *Sleep*, *Hypnotic Pattern*, *Banishment*, *Stun*, *Paralyze*) inflicts 1 turn of Lethargy (*"Lethargic! (Damage/Incapacitated Disruption)"*).
   - **Sorcerer Twinned Haste Support**: Twinned Haste grants the caster an indefinite buff while the ally receives the 10-round buff. When the ally's duration expires, the ally releases safely without Lethargy, leaving the caster's Haste intact.
   - **In-Game Tooltips**: Fully updated spell card and status tooltips reflecting dual-duration and intelligent lethargy rules.
+- **In-Game Tooltip Indicators for All Focus & Channel Spells**:
+  - Embedded explicit tactical indicators on all Focus buffs (*Bless*, *Shield of Faith*, *Blade Ward*, *Guidance*, *Hex*, *Bane*, etc.):
+    > *Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.*
+  - Embedded matching tactical indicators across all combat Channel spells (*Spirit Guardians*, *Wall of Fire*, *Hold Person*, *Moonbeam*, *Hypnotic Pattern*, smites, hazards, etc.):
+    > *Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.*
 - **Gish Reaction Defensives & Melee Cantrips**:
   - Combat Channelers and characters with *War Caster* (enabling build-your-own gish setups on pure Sorcerers or Wizards) can cast personal reaction defensives (*Shield*, *Absorb Elements*) and melee spell cantrips (*Green-Flame Blade*, *Booming Blade*, *Vengeful Blade*) without breaking Channel.
   - Offensive counter-magic (*Counterspell*) and retaliatory damage reactions (*Hellish Rebuke*) demand full casting focus and continue to break active Channel spells for all casters.
