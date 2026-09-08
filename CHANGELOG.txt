@@ -1,6 +1,12 @@
 Concentration Redux - Changelog
 
 v1.1.2
+- Linked Container Spells & Sub-Spells Fix (Bestow Curse, Enlarge/Reduce, Hex, Elemental Weapon):
+  - Fixed an issue where spells offering multiple sub-spell options (such as Bestow Curse stat penalties, Enlarge vs Reduce, Hex ability curses, and Elemental Weapon elements) failed to appear as prepareable container spells in the spellbook, causing their raw child sub-spells to leak into the spell list and instantly un-prepare when clicked.
+  - Restored the required IsLinkedSpellContainer engine flag and container ID associations across Target_BestowCurse, Target_EnlargeReduce, Target_Hex, Target_Hex_Reapply, and Target_ElementalWeapon so they display cleanly as single prepareable spells in the spellbook and open their choice drawers upon casting.
+  - Replaced non-standard phantom spell IDs with true vanilla child entries (Target_Enlarge, Target_Reduce, Target_BestowCurse_ExtraDamage, Target_BestowCurse_SkipTurn, Target_BestowCurse_Ability_*) and properly linked 4th-level Bestow Curse upcast entries.
+  - Corrected inheritance in Statuses.txt so Bestow Curse innate buffs inherit directly from valid vanilla base curse statuses (CURSE_ATTACK, CURSE_EXTRA_DAMAGE, CURSE_SKIP_TURN, CURSE_ABILITY_*).
+  - Updated INNATE_SPELLS across the Lua engine to track all vanilla child spells and upcast levels.
 - Counterspell & Failed Cast Focus Icon Cleanup:
   - Fixed an issue where casting a Focus spell that was Counterspelled or interrupted left an orphaned Focus concentration icon (INNATE_CONCENTRATION_CASTER) permanently stuck on the caster's portrait.
   - Spell focus application is now strictly deferred until spell resolution in StatusApplied, and CastSpellFailed events immediately clean up any pending casts and synchronization trackers.
