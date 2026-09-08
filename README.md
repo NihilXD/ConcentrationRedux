@@ -172,7 +172,7 @@ The **War Caster** feat (`WarCaster_Concentration`) integrates directly into bot
   - Embedded explicit tactical indicators on all Focus buffs (*Bless*, *Shield of Faith*, *Blade Ward*, *Guidance*, *Hex*, *Bane*, etc.):
     > *Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.*
   - Embedded matching tactical indicators across all combat Channel spells (*Spirit Guardians*, *Wall of Fire*, *Hold Person*, *Moonbeam*, *Hypnotic Pattern*, smites, hazards, etc.):
-    > *Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.*
+    > *Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell. Casting Cantrips, Bonus Action spells, or Quickened spells does not break Channel.*
 - **Gish Reaction Defensives & Melee Cantrips**:
   - Combat Channelers and characters with *War Caster* (enabling build-your-own gish setups on pure Sorcerers or Wizards) can cast personal reaction defensives (*Shield*, *Absorb Elements*) and melee spell cantrips (*Green-Flame Blade*, *Booming Blade*, *Vengeful Blade*) without breaking Channel.
   - Offensive counter-magic (*Counterspell*) and retaliatory damage reactions (*Hellish Rebuke*) demand full casting focus and continue to break active Channel spells for all casters.
