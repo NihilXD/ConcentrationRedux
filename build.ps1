@@ -67,13 +67,6 @@ try {
         $LocaBin = Join-Path $ScriptDir "Public\$ModName\Localization\English\english.loca"
         & $DivinePath -g bg3 -a convert-loca -s $LocaXml -d $LocaBin | Out-Null
         Write-Host "  [OK] Compiled english.loca" -ForegroundColor Green
-
-        # Sync localization to Mods directory for Patch 7 engine compatibility
-        $ModsLoca = Join-Path $ScriptDir "Mods\$ModName\Localization\English"
-        New-Item -ItemType Directory -Force -Path $ModsLoca | Out-Null
-        Copy-Item -Force $LocaBin (Join-Path $ModsLoca "english.loca")
-        Copy-Item -Force $LocaXml (Join-Path $ModsLoca "english.xml")
-        Write-Host "  [OK] Synchronized localization to Mods\$ModName\Localization\English" -ForegroundColor Green
     }
 } catch {
     Write-Error "Syntax error in project files: $_"
@@ -93,15 +86,15 @@ function Build-ModPackage {
     
     New-Item -ItemType Directory -Force -Path (Join-Path $TempDir "Mods\$ModFolder") | Out-Null
     New-Item -ItemType Directory -Force -Path (Join-Path $TempDir "Public\$ModFolder") | Out-Null
-    New-Item -ItemType Directory -Force -Path (Join-Path $TempDir "Localization\English") | Out-Null
 
     Copy-Item -Recurse -Force (Join-Path $ScriptDir "Mods\$ModName\*") (Join-Path $TempDir "Mods\$ModFolder")
     Copy-Item -Recurse -Force (Join-Path $ScriptDir "Public\$ModName\*") (Join-Path $TempDir "Public\$ModFolder")
     
+    # Place english.loca in both Mods and Public for universal engine discovery (no root Localization)
     $LocaBin = Join-Path $ScriptDir "Public\$ModName\Localization\English\english.loca"
-    $LocaXml = Join-Path $ScriptDir "Public\$ModName\Localization\English\english.loca.xml"
-    Copy-Item -Force $LocaBin (Join-Path $TempDir "Localization\English\english.loca")
-    Copy-Item -Force $LocaXml (Join-Path $TempDir "Localization\English\english.xml")
+    $ModsLoca = Join-Path $TempDir "Mods\$ModFolder\Localization\English"
+    New-Item -ItemType Directory -Force -Path $ModsLoca | Out-Null
+    Copy-Item -Force $LocaBin (Join-Path $ModsLoca "english.loca")
 
     if (-not (Test-Path $ReleaseDir)) { New-Item -ItemType Directory -Force -Path $ReleaseDir | Out-Null }
     
