@@ -40,10 +40,10 @@
                     <attribute id="PublishHandle" type="uint64" value="0"/>
                     <attribute id="StartupLevelName" type="FixedString" value=""/>
                     <attribute id="UUID" type="FixedString" value="5ca2dda8-eedc-41be-95f0-50747d552d10"/>
-                    <attribute id="Version64" type="int64" value="36028807755702272"/>
+                    <attribute id="Version64" type="int64" value="36169534507319296"/>
                     <children>
                         <node id="PublishVersion">
-                            <attribute id="Version64" type="int64" value="144255927717549775"/>
+                            <attribute id="Version64" type="int64" value="36169534507319296"/>
                         </node>
                         <node id="Scripts"/>
                     </children>

@@ -128,8 +128,13 @@ The **War Caster** feat (`WarCaster_Concentration`) integrates directly into bot
 
 ## Changelog
 
-### v1.1.0 (DnD 5.5e All-In-One BEYOND Compatibility)
-- **New Classes & Subclasses Supported**:
+### v1.1.0 (DnD 5.5e Beyond Compatibility & Comprehensive Tooltips)
+- **Terminology Standardization (Focus & Channel)**:
+  - Streamlined and standardized all terminology across the entire mod, Lua engine, and documentation to strictly use **Focus** (buff layer) and **Channel** (combat layer). Removed legacy and ambiguous references to "conduit".
+- **100% Comprehensive Tooltip Coverage Across All Concentration Spells**:
+  - Over 480+ in-game spell cards, upcasts (levels 2–6), scrolls, racial abilities (e.g. Drow *Faerie Fire*), and applied status tooltips now feature dedicated **Focus** and **Channel** mechanic descriptions.
+  - Bumped internal localization version numbers to `version="10"`, guaranteeing mod descriptions always override base game strings regardless of load order.
+- **New Classes & Subclasses Supported (DnD 5.5e All-In-One BEYOND)**:
   - **Illrigger**: Full Combat Channeling for all subclasses (*Sanguine Knight*, *Hellspeaker*, *Painkiller*, *Shadowmaster*, *Architect of Ruin*). Whitelisted all Seals, Interdicts, Hell abilities, and Blood Price.
   - **Monster Hunter**: Full Combat Channeling for *Carver Guild*, *Devourer Guild*, and *Occultist Guild*. Whitelisted all Mutations and Hunting Tactics.
   - **Artificer**: Combat Channeling for martial gish subclasses (*Battle Smith*, *Armorer*). Whitelisted Experimental Elixirs, Armor Models, and Defensive Field.
@@ -141,10 +146,14 @@ The **War Caster** feat (`WarCaster_Concentration`) integrates directly into bot
     - **Cleric**: *Forge Domain*, *Twilight Domain*, *Dragon Domain*.
     - **Wizard & Warlock**: *Bladesinger* (Bladesinging School) and *Hexblade*.
     - **Monk, Paladin, Ranger**: All 2024 subclasses (*Mercy*, *Kensei*, *Sun Soul*, *Mystic Arts*, *Glory*, *Noble Genie*, *Conquest*, *Watchers*, *Fey Wanderer*, *Winter Walker*, *Hollow Warden*) fully integrated.
-- **Spell Classification & Tooltips**:
+- **Spell Classification & Tooltips (DnD 5.5e Spells)**:
   - Audited and updated all 38 custom and revised concentration spells from *DnD 5.5e Beyond* with explicit **Focus** or **Channel** trailers and mechanics.
   - Focus additions: *Holy Weapon*, *Dragon's Breath*, *Aura of Vitality* (upcasts 4-6), *Circle of Power*, *Cacophonic Shield*, *Fount of Moonlight*, *Cloak of Shadow*, *Fire Dance*, *Elminster's Elusion*, *Blade Ward (2024)*, *Hex*, and *Body Warping of Gorgoroth*.
   - Channel additions: *Hell's Lash*, *Sleep (2024)*, *Spellfire Storm*, *Dawn*, *Enervation*, *Ashardalon's Stride*, *Void Strike*, *Murmurs of Doom*, *Cloud of Daggers (2024)*, *Conjure Minor Elementals (2024)*, *Conjure Woodland Beings (2024)*, *Summon Celestial*, and *Summon Dragon*.
+- **Engine & Packaging Stability (Patch 7 / Patch 8+)**:
+  - Resolved a launch crash (`0xC0000005` in `bg3_dx11.exe`) caused by raw XML linebreaks creating text DOM nodes without attributes in Larian's localization parser.
+  - Re-architected localization pipeline into clean single-line entries with `&#10;` line breaks and compiled binary `.loca`.
+  - Removed duplicate package namespace directories and automated loose file cleanup on deployment.
 
 ### v1.0.5
 - **Haste Dual Duration & Intelligent Lethargy System**:

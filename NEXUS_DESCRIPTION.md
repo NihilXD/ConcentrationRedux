@@ -87,6 +87,32 @@ In vanilla Baldur's Gate 3, defensive and utility cantrips often suffer from awk
 
 ## Changelog
 
+### v1.1.0
+- **Terminology Standardization (Focus & Channel)**:
+  - Streamlined and standardized all terminology across the entire mod, Lua engine, and documentation to strictly use **Focus** (buff layer) and **Channel** (combat layer). Removed legacy and ambiguous references to "conduit".
+- **100% Comprehensive Tooltip Coverage Across All Concentration Spells**:
+  - Over 480+ in-game spell cards, upcasts (levels 2–6), scrolls, racial abilities (e.g. Drow *Faerie Fire*), and applied status tooltips now feature dedicated **Focus** and **Channel** mechanic descriptions.
+  - Bumped internal localization version hierarchy to `version="10"`, guaranteeing mod descriptions always override base game strings regardless of load order.
+- **DnD 5.5e All-In-One BEYOND Compatibility**:
+  - **New Classes Supported**:
+    - **Illrigger**: Full Combat Channeling for all subclasses (*Sanguine Knight*, *Hellspeaker*, *Painkiller*, *Shadowmaster*, *Architect of Ruin*). Whitelisted all Seals, Interdicts, Hell abilities, and Blood Price.
+    - **Monster Hunter**: Full Combat Channeling for *Carver Guild*, *Devourer Guild*, and *Occultist Guild*. Whitelisted all Mutations and Hunting Tactics.
+    - **Artificer**: Combat Channeling for martial gish subclasses (*Battle Smith*, *Armorer*). Whitelisted Experimental Elixirs, Armor Models, and Defensive Field.
+    - **Gunslinger**: Combat Channeling for the *Spellslinger* gun gish subclass.
+  - **New Subclasses Across Existing Classes**:
+    - *Fighter*: Rune Knight, Psi Warrior, Arcane Archer, Cavalier, Banneret, Viking.
+    - *Rogue*: Soulknife, Blade of Radiance, Arachnoid Stalker.
+    - *Bard*: College of Dance, College of Choreography.
+    - *Cleric*: Forge Domain, Twilight Domain, Dragon Domain.
+    - *Wizard & Warlock*: Bladesinger (Bladesinging School) and Hexblade.
+    - *Monk, Paladin, Ranger*: All 2024 subclasses (*Mercy*, *Kensei*, *Sun Soul*, *Mystic Arts*, *Glory*, *Noble Genie*, *Conquest*, *Watchers*, *Fey Wanderer*, *Winter Walker*, *Hollow Warden*) fully integrated.
+  - **38 Custom/Revised Concentration Spells**:
+    - Audited, categorized, and annotated all 2024 concentration spells (*Holy Weapon*, *Spellfire Storm*, *Dragon's Breath*, *Summon Celestial*, *Summon Dragon*, *Void Strike*, *Murmurs of Doom*, etc.).
+- **Engine & Packaging Stability (Patch 7 / Patch 8+)**:
+  - Fixed a launch crash (`0xC0000005` in `bg3_dx11.exe`) caused by raw XML linebreaks creating text DOM nodes without attributes in Larian's localization parser.
+  - Re-architected localization pipeline into clean single-line entries with `&#10;` line breaks and compiled binary `.loca`.
+  - Removed duplicate package namespace directories and automated loose file cleanup on deployment.
+
 ### v1.0.5
 - **Haste Dual Duration & Intelligent Lethargy System**:
   - **Self-Cast (Indefinite)**: Operates as an indefinite Channel spell with unlimited duration.

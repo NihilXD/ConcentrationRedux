@@ -110,6 +110,42 @@ In vanilla Baldur's Gate 3, defensive and utility cantrips often suffer from awk
 
 [size=5][b]Changelog[/b][/size]
 
+[size=4][color=#ffd700][b]v1.1.0 (DnD 5.5e Beyond Compatibility & Comprehensive Tooltips)[/b][/color][/size]
+[list]
+[*][b]Terminology Standardization (Focus & Channel):[/b]
+[list]
+[*]Streamlined and standardized all terminology across the entire mod, Lua engine, and documentation to strictly use [b]Focus[/b] (buff layer) and [b]Channel[/b] (combat layer). Removed legacy and ambiguous references to "conduit".
+[/list]
+[*][b]100% Comprehensive In-Game Tooltip Coverage:[/b]
+[list]
+[*]Over 480+ in-game spell cards, upcasts (levels 2–6), scrolls, racial abilities (e.g. Drow [i]Faerie Fire[/i]), and applied status tooltips now feature dedicated [b]Focus[/b] and [b]Channel[/b] mechanic descriptions.
+[*]Bumped internal localization version numbers to [b]version="10"[/b], guaranteeing mod descriptions always override base game strings regardless of load order.
+[/list]
+[*][b]DnD 5.5e All-In-One BEYOND Compatibility:[/b]
+[list]
+[*][b]Illrigger:[/b] Full Combat Channeling for all subclasses ([i]Sanguine Knight[/i], [i]Hellspeaker[/i], [i]Painkiller[/i], [i]Shadowmaster[/i], [i]Architect of Ruin[/i]). Whitelisted all Seals, Interdicts, Hell abilities, and Blood Price.
+[*][b]Monster Hunter:[/b] Full Combat Channeling for [i]Carver Guild[/i], [i]Devourer Guild[/i], and [i]Occultist Guild[/i]. Whitelisted all Mutations and Hunting Tactics.
+[*][b]Artificer:[/b] Combat Channeling for martial gish subclasses ([i]Battle Smith[/i], [i]Armorer[/i]). Whitelisted Experimental Elixirs, Armor Models, and Defensive Field.
+[*][b]Gunslinger:[/b] Combat Channeling for the [i]Spellslinger[/i] gun gish subclass.
+[*][b]New Subclasses Across Existing Classes:[/b]
+[list]
+[*]Fighter: [i]Rune Knight[/i], [i]Psi Warrior[/i], [i]Arcane Archer[/i], [i]Cavalier[/i], [i]Banneret[/i], [i]Viking[/i].
+[*]Rogue: [i]Soulknife[/i], [i]Blade of Radiance[/i], [i]Arachnoid Stalker[/i].
+[*]Bard: [i]College of Dance[/i], [i]College of Choreography[/i].
+[*]Cleric: [i]Forge Domain[/i], [i]Twilight Domain[/i], [i]Dragon Domain[/i].
+[*]Wizard & Warlock: [i]Bladesinger[/i] (Bladesinging School) and [i]Hexblade[/i].
+[*]Monk, Paladin, Ranger: All 2024 subclasses ([i]Mercy[/i], [i]Kensei[/i], [i]Sun Soul[/i], [i]Mystic Arts[/i], [i]Glory[/i], [i]Noble Genie[/i], [i]Conquest[/i], [i]Watchers[/i], [i]Fey Wanderer[/i], [i]Winter Walker[/i], [i]Hollow Warden[/i]) fully integrated.
+[/list]
+[*][b]38 Custom/Revised Concentration Spells:[/b] Audited, categorized, and annotated all 2024 concentration spells ([i]Holy Weapon[/i], [i]Spellfire Storm[/i], [i]Dragon's Breath[/i], [i]Summon Celestial[/i], [i]Summon Dragon[/i], [i]Void Strike[/i], [i]Murmurs of Doom[/i], etc.).
+[/list]
+[*][b]Engine & Packaging Stability (Patch 7 / Patch 8+):[/b]
+[list]
+[*]Resolved a launch crash ([i]0xC0000005[/i] in [i]bg3_dx11.exe[/i]) caused by raw XML linebreaks creating text DOM nodes without attributes in Larian's localization parser.
+[*]Re-architected localization pipeline into clean single-line entries with [i]&#10;[/i] line breaks and compiled binary [i].loca[/i].
+[*]Removed duplicate package namespace directories and automated loose file cleanup on deployment.
+[/list]
+[/list]
+
 [size=4][color=#ffd700][b]v1.0.5[/b][/color][/size]
 [list]
 [*][b]Haste Dual Duration & Intelligent Lethargy System:[/b]
