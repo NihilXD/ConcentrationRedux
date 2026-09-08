@@ -643,15 +643,29 @@ local function UpdateAllConcentrationTrackers()
     end)
 end
 
+local function IsValidEntity(targetGuid)
+    if not targetGuid or targetGuid == "" then return false end
+    local valid = false
+    pcall(function()
+        local entity = Ext.Entity.Get(targetGuid)
+        if entity ~= nil then
+            valid = true
+        end
+    end)
+    return valid
+end
+
 local function CleanUpInnateBuffs(caster)
     local info, realKey = GetActiveInnateCasterInfo(caster)
     if info and info.Targets then
         for target, _ in pairs(info.Targets) do
-            if info.Status and Osi.HasActiveStatus(target, info.Status) == 1 then
-                Osi.RemoveStatus(target, info.Status)
-            end
-            if info.Status == "INNATE_BUFF_DANCING_LIGHTS" then
-                pcall(function() Osi.Die(target) end)
+            if IsValidEntity(target) then
+                if info.Status and Osi.HasActiveStatus(target, info.Status) == 1 then
+                    Osi.RemoveStatus(target, info.Status)
+                end
+                if info.Status == "INNATE_BUFF_DANCING_LIGHTS" then
+                    pcall(function() Osi.Die(target) end)
+                end
             end
         end
     end
@@ -750,28 +764,33 @@ local function ResolveHasteTermination(caster, target)
             HasteTargetToCaster[terminateTarget] = nil
             HasteTargetToCaster[target] = nil
             
-            pcall(function()
-                if Osi.HasActiveStatus(target, "CHANNEL_HASTE") == 1 then Osi.RemoveStatus(target, "CHANNEL_HASTE") end
-                if Osi.HasActiveStatus(target, "CHANNEL_HASTE_ALLY") == 1 then Osi.RemoveStatus(target, "CHANNEL_HASTE_ALLY") end
-                if Osi.HasActiveStatus(target, "INNATE_BUFF_HASTE") == 1 then Osi.RemoveStatus(target, "INNATE_BUFF_HASTE") end
-            end)
-            
-            if isViolentDisruption then
-                Ext.Utils.Print(string.format("[%s] Haste ended on %s via disruption! Applying Lethargy (Dmg: %s, CC: %s)", 
-                    MOD_NAME, tostring(target), tostring(tookRecentDamage), tostring(wasIncapacitated)))
+            local isValid = IsValidEntity(target) or IsValidEntity(terminateTarget)
+            if isValid then
                 pcall(function()
-                    Osi.ApplyStatus(target, "HASTE_LETHARGY", 6.0, 1)
-                    if wasIncapacitated then
-                        Osi.ShowOverheadNotice(target, "Lethargic! (Incapacitated Disruption)")
-                    else
-                        Osi.ShowOverheadNotice(target, "Lethargic! (Damage Disruption)")
-                    end
+                    if Osi.HasActiveStatus(target, "CHANNEL_HASTE") == 1 then Osi.RemoveStatus(target, "CHANNEL_HASTE") end
+                    if Osi.HasActiveStatus(target, "CHANNEL_HASTE_ALLY") == 1 then Osi.RemoveStatus(target, "CHANNEL_HASTE_ALLY") end
+                    if Osi.HasActiveStatus(target, "INNATE_BUFF_HASTE") == 1 then Osi.RemoveStatus(target, "INNATE_BUFF_HASTE") end
                 end)
+                
+                if isViolentDisruption then
+                    Ext.Utils.Print(string.format("[%s] Haste ended on %s via disruption! Applying Lethargy (Dmg: %s, CC: %s)", 
+                        MOD_NAME, tostring(target), tostring(tookRecentDamage), tostring(wasIncapacitated)))
+                    pcall(function()
+                        Osi.ApplyStatus(target, "HASTE_LETHARGY", 6.0, 1)
+                        if wasIncapacitated then
+                            Osi.ShowOverheadNotice(target, "Lethargic! (Incapacitated Disruption)")
+                        else
+                            Osi.ShowOverheadNotice(target, "Lethargic! (Damage Disruption)")
+                        end
+                    end)
+                else
+                    Ext.Utils.Print(string.format("[%s] Haste ended on %s safely. No Lethargy applied.", MOD_NAME, tostring(target)))
+                    pcall(function()
+                        Osi.ShowOverheadNotice(target, "Haste Ended (Safe Release)")
+                    end)
+                end
             else
-                Ext.Utils.Print(string.format("[%s] Haste ended on %s safely. No Lethargy applied.", MOD_NAME, tostring(target)))
-                pcall(function()
-                    Osi.ShowOverheadNotice(target, "Haste Ended (Safe Release)")
-                end)
+                Ext.Utils.Print(string.format("[%s] Pruned annihilated/chasm entity %s from Haste targets", MOD_NAME, tostring(target)))
             end
             
             -- Count remaining targets for this caster
@@ -800,35 +819,40 @@ local function ResolveHasteTermination(caster, target)
     
     -- Case B: Full Channel Collapse (Caster lost concentration, took damage, became incapacitated, died, or dismissed)
     for hasteTarget, _ in pairs(hasteInfo.Targets) do
-        if isViolentDisruption then
-            Ext.Utils.Print(string.format("[%s] Haste channel violently broken! Applying Lethargy to %s (Dmg: %s, CC: %s)", 
-                MOD_NAME, tostring(hasteTarget), tostring(tookRecentDamage), tostring(wasIncapacitated)))
+        local isValid = IsValidEntity(hasteTarget)
+        if isValid then
+            if isViolentDisruption then
+                Ext.Utils.Print(string.format("[%s] Haste channel violently broken! Applying Lethargy to %s (Dmg: %s, CC: %s)", 
+                    MOD_NAME, tostring(hasteTarget), tostring(tookRecentDamage), tostring(wasIncapacitated)))
+                pcall(function()
+                    Osi.ApplyStatus(hasteTarget, "HASTE_LETHARGY", 6.0, 1)
+                    if wasIncapacitated then
+                        Osi.ShowOverheadNotice(hasteTarget, "Lethargic! (Incapacitated Disruption)")
+                    else
+                        Osi.ShowOverheadNotice(hasteTarget, "Lethargic! (Damage Disruption)")
+                    end
+                end)
+            else
+                Ext.Utils.Print(string.format("[%s] Haste channel ended voluntarily. No Lethargy applied to %s", MOD_NAME, tostring(hasteTarget)))
+                pcall(function()
+                    Osi.ShowOverheadNotice(hasteTarget, "Haste Ended (Safe Release)")
+                end)
+            end
+            
             pcall(function()
-                Osi.ApplyStatus(hasteTarget, "HASTE_LETHARGY", 6.0, 1)
-                if wasIncapacitated then
-                    Osi.ShowOverheadNotice(hasteTarget, "Lethargic! (Incapacitated Disruption)")
-                else
-                    Osi.ShowOverheadNotice(hasteTarget, "Lethargic! (Damage Disruption)")
+                if Osi.HasActiveStatus(hasteTarget, "CHANNEL_HASTE") == 1 then
+                    Osi.RemoveStatus(hasteTarget, "CHANNEL_HASTE")
+                end
+                if Osi.HasActiveStatus(hasteTarget, "CHANNEL_HASTE_ALLY") == 1 then
+                    Osi.RemoveStatus(hasteTarget, "CHANNEL_HASTE_ALLY")
+                end
+                if Osi.HasActiveStatus(hasteTarget, "INNATE_BUFF_HASTE") == 1 then
+                    Osi.RemoveStatus(hasteTarget, "INNATE_BUFF_HASTE")
                 end
             end)
         else
-            Ext.Utils.Print(string.format("[%s] Haste channel ended voluntarily. No Lethargy applied to %s", MOD_NAME, tostring(hasteTarget)))
-            pcall(function()
-                Osi.ShowOverheadNotice(hasteTarget, "Haste Ended (Safe Release)")
-            end)
+            Ext.Utils.Print(string.format("[%s] Pruned annihilated/chasm entity %s during channel collapse", MOD_NAME, tostring(hasteTarget)))
         end
-        
-        pcall(function()
-            if Osi.HasActiveStatus(hasteTarget, "CHANNEL_HASTE") == 1 then
-                Osi.RemoveStatus(hasteTarget, "CHANNEL_HASTE")
-            end
-            if Osi.HasActiveStatus(hasteTarget, "CHANNEL_HASTE_ALLY") == 1 then
-                Osi.RemoveStatus(hasteTarget, "CHANNEL_HASTE_ALLY")
-            end
-            if Osi.HasActiveStatus(hasteTarget, "INNATE_BUFF_HASTE") == 1 then
-                Osi.RemoveStatus(hasteTarget, "INNATE_BUFF_HASTE")
-            end
-        end)
         
         local rawHasteTarget = hasteTarget:match("%x%x%x%x%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%x%x%x%x%x%x%x%x") or hasteTarget
         HasteTargetToCaster[rawHasteTarget] = nil
@@ -1034,6 +1058,22 @@ Ext.Osiris.RegisterListener("StatusApplied", 4, "after", function(target, status
             ResolveHasteTermination(target, nil)
         end
     end
+
+    -- Chasm and Target Annihilation handling (shoved into chasm, falling death, disintegrated)
+    if status == "CHASM" or status == "FALLING_DEATH" or status == "DISINTEGRATED" then
+        local rawTarget = target:match("%x%x%x%x%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%x%x%x%x%x%x%x%x") or target
+        Ext.Utils.Print(string.format("[%s] Entity %s annihilated via %s - pruning all concentration and channel references", MOD_NAME, tostring(target), tostring(status)))
+        ResolveHasteTermination(target, nil)
+        ResolveHasteTermination(nil, target)
+        for caster, hasteInfo in pairs(ActiveHasteChannels) do
+            if hasteInfo.Targets then
+                hasteInfo.Targets[target] = nil
+                hasteInfo.Targets[rawTarget] = nil
+            end
+        end
+        HasteTargetToCaster[target] = nil
+        HasteTargetToCaster[rawTarget] = nil
+    end
 end)
 
 -- Cleanup when caster loses the Innate Concentration status (manual cancel, rest, etc.)
@@ -1054,19 +1094,30 @@ end)
 
 -- Character Death Listener: Cleans up deceased casters and handles marked target deaths
 Ext.Osiris.RegisterListener("Died", 1, "after", function(char)
+    local rawChar = char:match("%x%x%x%x%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%x%x%x%x%x%x%x%x") or char
     if Osi.HasActiveStatus(char, CONC_TRACKER_STATUS) == 1 then
         Osi.RemoveStatus(char, CONC_TRACKER_STATUS)
     end
     ResolveHasteTermination(char, nil)
+    ResolveHasteTermination(nil, char)
     if ActiveInnateCasters[char] then
         Osi.RemoveStatus(char, INNATE_CASTER_STATUS)
         CleanUpInnateBuffs(char)
     end
     for caster, info in pairs(ActiveInnateCasters) do
-        if info.Targets and info.Targets[char] then
+        if info.Targets then
             info.Targets[char] = nil
+            info.Targets[rawChar] = nil
         end
     end
+    for caster, hasteInfo in pairs(ActiveHasteChannels) do
+        if hasteInfo.Targets then
+            hasteInfo.Targets[char] = nil
+            hasteInfo.Targets[rawChar] = nil
+        end
+    end
+    HasteTargetToCaster[char] = nil
+    HasteTargetToCaster[rawChar] = nil
 end)
 
 -- Cleanup on Long Rest
