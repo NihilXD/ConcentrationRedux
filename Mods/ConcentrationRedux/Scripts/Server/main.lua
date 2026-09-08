@@ -287,7 +287,6 @@ local INNATE_SPELLS = {
     ["Target_ProtectionFromEvilAndGood"] = { Status = "INNATE_BUFF_PROTECTION_FROM_EVIL_AND_GOOD" },
     ["Target_Barkskin"] = { Status = "INNATE_BUFF_BARKSKIN" },
     ["Target_Stoneskin"] = { Status = "INNATE_BUFF_STONESKIN" },
-    ["Target_ShieldOfThralls"] = { Status = "INNATE_BUFF_SHIELD_OF_THRALLS" },
     ["Target_EnlargeReduce"] = { Status = "INNATE_BUFF_ENLARGE" },
     ["Target_Fly"] = { Status = "INNATE_BUFF_FLY" },
     ["Target_Fly_4"] = { Status = "INNATE_BUFF_FLY" },

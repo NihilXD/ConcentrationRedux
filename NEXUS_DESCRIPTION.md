@@ -30,7 +30,7 @@ In D&D 5e and vanilla Baldur's Gate 3, nearly every iconic spell competes for a 
 
 ### 2. Spell Classifications
 - **Focus Spells (Indefinite Buffs):**
-  - **Wards & Protection:** *Bless*, *Shield of Faith*, *Blade Ward*, *Guidance*, *Resistance*, *Heroism*, *Protection from Evil and Good*, *Barkskin*, *Stoneskin*, *Shield of Thralls*
+  - **Wards & Protection:** *Bless*, *Shield of Faith*, *Blade Ward*, *Guidance*, *Resistance*, *Heroism*, *Protection from Evil and Good*, *Barkskin*, *Stoneskin*
   - **Utility & Exploration:** *Dancing Lights* (indefinite remote illumination that never strips pre-cast buffs)
   - **Social Charms (10-Turn Timer):** *Friends* (routed to Focus to protect combat conduits during dialogue checks, while retaining its 10-turn timer for Tactician/Honour Mode hostility)
   - **Single-Target Marks:** *Hunter's Mark*, *Hex*, *Bane*, *Bestow Curse* (reapplication abilities are whitelisted and never break active conduits)
