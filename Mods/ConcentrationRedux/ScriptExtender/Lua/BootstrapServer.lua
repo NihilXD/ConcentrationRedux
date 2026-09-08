@@ -71,7 +71,59 @@ local COMBAT_PASSIVES = {
     -- Druid: Circle of Spores (Level 2+ subclass)
     ["CircleOfTheSpores"] = true,
     ["HaloOfSpores"] = true,
-    ["SymbioticEntity"] = true
+    ["SymbioticEntity"] = true,
+
+    -- Illrigger (Martial Hell-Knight)
+    ["Illrigger"] = true,
+    ["Illrigger_ForkedTongue"] = true,
+    ["Illrigger_BalefulInterdict"] = true,
+    ["Illrigger_CombatChanneling"] = true,
+    
+    -- Monster Hunter (Martial Monster Slayer)
+    ["MonsterHunter"] = true,
+    ["__MONSTER HUNTER 16000__"] = true,
+    
+    -- Artificer: Battle Smith & Armorer
+    ["BattleSmith"] = true,
+    ["BattleSmith_BattleReady"] = true,
+    ["Armorer"] = true,
+    ["ArmorModel_Guardian"] = true,
+    ["ArmorModel_Infiltrator"] = true,
+    
+    -- Gunslinger: Spellslinger
+    ["Spellslinger"] = true,
+    
+    -- Fighter: Rune Knight, Psi Warrior, Arcane Archer, Cavalier, Banneret, Viking
+    ["RuneKnight_3_GiantsMight"] = true,
+    ["__RUNE KNIGHT__"] = true,
+    ["PsiWarrior_3_PsionicPower"] = true,
+    ["__PSI WARRIOR 5400__"] = true,
+    ["ArcaneArcher"] = true,
+    ["Cavalier"] = true,
+    ["Banneret"] = true,
+    ["Viking"] = true,
+    
+    -- Rogue: Soulknife, Blade of Radiance, Arachnoid Stalker
+    ["Soulknife_3_PsychicBlades"] = true,
+    ["__SOULKNIFE 9400__"] = true,
+    ["BladeOfRadiance"] = true,
+    ["ArachnoidStalker"] = true,
+    
+    -- Bard: College of Dance & Choreography
+    ["DanceCollege"] = true,
+    ["CollegeOfDance"] = true,
+    ["ChoreographyCollege"] = true,
+    
+    -- Cleric: Forge, Twilight, Dragon Domains
+    ["ForgeDomain"] = true,
+    ["TwilightDomain"] = true,
+    ["DragonDomain"] = true,
+    
+    -- Wizard: Bladesinger (DnD 2024 / Custom)
+    ["BladesingingSchool"] = true,
+    
+    -- Warlock: Hexblade (DnD 2024 / Custom)
+    ["__HEXBLADE__"] = true,
 }
 
 local GISH_TAGS = {
@@ -173,7 +225,101 @@ local WHITELISTED_ACTIONS = {
     ["Target_HuntersMark_Reapply"] = true,
     ["Target_Hex_Reapply"] = true,
     ["Target_DismissInnateConcentration"] = true,
-    ["Shout_DismissInnateConcentration"] = true
+    ["Shout_DismissInnateConcentration"] = true,
+
+    -- Illrigger Seals, Interdicts & Hell features
+    ["Target_Seal"] = true,
+    ["Target_BurningSeals_Fire"] = true,
+    ["Target_BurningSeals_Necrotic"] = true,
+    ["Target_UnleashHell_Fire"] = true,
+    ["Target_UnleashHell_Necrotic"] = true,
+    ["Target_ConflagrantChannel"] = true,
+    ["Target_ShadowShroud"] = true,
+    ["Target_EmboldenAllies"] = true,
+    ["Target_EmboldenAllies_1"] = true,
+    ["Target_EmboldenAllies_2"] = true,
+    ["Target_EmboldenAllies_3"] = true,
+    ["Target_EmboldenAllies_4"] = true,
+    ["Target_EmboldenAllies_5"] = true,
+    ["Target_EmboldenAllies_6"] = true,
+    ["Target_StrikeFromTheDark"] = true,
+    ["Projectile_VengefulShot"] = true,
+    ["Shout_BloodPrice"] = true,
+    ["Shout_InfernalConduit"] = true,
+
+    -- Monster Hunter features
+    ["Shout_Mutations_AcidBlood"] = true,
+    ["Shout_Mutations_Acumen"] = true,
+    ["Shout_Mutations_Flight"] = true,
+    ["Shout_Mutations_Infused"] = true,
+    ["Shout_Mutations_Invisibility"] = true,
+    ["Shout_Mutations_Might"] = true,
+    ["Shout_Mutations_Regeneration"] = true,
+    ["Shout_Mutations_Resistance"] = true,
+    ["Shout_HuntersPrey"] = true,
+    ["Shout_HuntersPrey_ColossusSlayer"] = true,
+    ["Shout_HuntersPrey_HordeBreaker"] = true,
+    ["Shout_DefensiveTactics"] = true,
+    ["Projectile_SuperiorHuntersPrey"] = true,
+
+    -- Artificer features
+    ["Shout_ExperimentalElixir"] = true,
+    ["Shout_ArmorModel"] = true,
+    ["Shout_GiantStature"] = true,
+    ["Shout_DefensiveField"] = true,
+    ["Shout_EC_Protector"] = true,
+
+    -- Gunslinger features
+    ["Shout_BiteTheBullet"] = true,
+    ["Shout_Blindfire"] = true,
+    ["Shout_LiarsDice"] = true,
+
+    -- Rune Knight & Giant features
+    ["Shout_GiantsMight"] = true,
+    ["Shout_FrostRune"] = true,
+    ["Shout_HillRune"] = true,
+    ["Shout_StormRune"] = true,
+    ["Target_FireRune"] = true,
+    ["Target_StoneRune"] = true,
+    ["Target_StormRune_Advantage"] = true,
+    ["Target_StormRune_Disadvantage"] = true,
+    ["Shout_StrikeOfTheGiantsSelect"] = true,
+
+    -- Soulknife & Rogue features
+    ["Shout_PsychicBlades"] = true,
+    ["Shout_PsychicBlades_Dissmiss"] = true,
+    ["Shout_PsychicVeil"] = true,
+    ["Projectile_Throw_Soulknife"] = true,
+    ["Shout_SanctifiedChampion"] = true,
+
+    -- Dance & Bard features
+    ["Target_EncouragingSong"] = true,
+    ["Target_DoomSong"] = true,
+    ["Target_InspirationalDance"] = true,
+    ["Target_AgileStrike"] = true,
+
+    -- Cleric Domain Channel Divinities & Stances
+    ["Shout_TwilightSanctuary"] = true,
+    ["Shout_EyesOfNight"] = true,
+    ["Shout_StepsOfNight"] = true,
+    ["Shout_ChromaticAffinity"] = true,
+    ["Shout_DraconicMajesty"] = true,
+
+    -- Monk & Paladin & Warlock features
+    ["Target_FlurryOfHarm"] = true,
+    ["Target_FlurryOfHealing"] = true,
+    ["Zone_SearingArcStrike"] = true,
+    ["Shout_KenseisShot"] = true,
+    ["Shout_SharpenTheBlade"] = true,
+    ["Shout_AuraOf_Warding"] = true,
+    ["Shout_ConqueringPresence"] = true,
+    ["Shout_AuraOfConquest"] = true,
+    ["Shout_AbjureTheExtraplanar"] = true,
+    ["Shout_Tireless"] = true,
+    ["Shout_WrathOfTheWild"] = true,
+    ["Shout_OneWithShadows"] = true,
+    ["Shout_FormOfDread"] = true,
+    ["Shout_CelestialResilience"] = true,
 }
 
 local function IsGishStanceOrFeature(spell)
@@ -233,6 +379,43 @@ local function IsGishStanceOrFeature(spell)
 
     -- Rogue / Arcane Trickster: Cunning Actions
     if lower:find("cunningaction") or lower:find("cunning_action") or lower:find("sneakattack") then
+        return true
+    end
+    
+    -- Illrigger: Seals, Interdict, Hell features
+    if lower:find("seal") or lower:find("interdict") or lower:find("unleashhell") 
+       or lower:find("conflagrant") or lower:find("infernalconduit") or lower:find("bloodprice") then
+        return true
+    end
+
+    -- Monster Hunter: Mutations and Hunting Tactics
+    if lower:find("mutations_") or lower:find("huntersprey") or lower:find("defensivetactics") then
+        return true
+    end
+
+    -- Artificer: Armor Model, Experimental Elixirs, Defensive Field
+    if lower:find("armor_model") or lower:find("armormodel") or lower:find("experimentalelixir") or lower:find("defensivefield") then
+        return true
+    end
+
+    -- Rune Knight & Giants: Runes, Giant's Might, Strike of the Giants
+    if lower:find("rune") or lower:find("giantsmight") or lower:find("strikeofthegiants") then
+        return true
+    end
+
+    -- Soulknife: Psychic Blades and Psionic Talents
+    if lower:find("psychicblade") or lower:find("psychicveil") or lower:find("homingstrike") then
+        return true
+    end
+
+    -- Dance & Bard: Encouraging/Doom Songs, Inspirational Dance
+    if lower:find("encouragingsong") or lower:find("doomsong") or lower:find("inspirationaldance") or lower:find("agilestrike") then
+        return true
+    end
+
+    -- Cleric Domains: Twilight, Dragon, Forge domain features
+    if lower:find("twilightsanctuary") or lower:find("eyesonight") or lower:find("stepsofnight") 
+       or lower:find("chromaticaffinity") or lower:find("draconicmajesty") then
         return true
     end
     
@@ -425,6 +608,35 @@ local function HasCombatChanneling(character)
                 local subStr = tostring(cl.SubClass or ""):lower()
                 local lvl = tonumber(cl.Level or 0) or 0
                 
+                -- Illrigger: Martial Hell-Knight (heavy armor, martial weapons, seals)
+                if clsStr:find("illrigger") or clsStr:find("33bd368d") then
+                    isGish = true
+                    return
+                end
+
+                -- Monster Hunter: Martial Monster Slayer
+                if clsStr:find("monsterhunter") or clsStr:find("monster_hunter") or clsStr:find("e137179a") then
+                    isGish = true
+                    return
+                end
+
+                -- Artificer: Battle Smith & Armorer martial gishes
+                if clsStr:find("artificer") or clsStr:find("8aa2cf37") then
+                    if subStr:find("battlesmith") or subStr:find("battle_smith") or subStr:find("f574d2d6")
+                       or subStr:find("armorer") or subStr:find("d9c984db") then
+                        isGish = true
+                        return
+                    end
+                end
+
+                -- Gunslinger: Spellslinger hybrid gish
+                if clsStr:find("gunslinger") then
+                    if subStr:find("spellslinger") or subStr:find("f617ec08") then
+                        isGish = true
+                        return
+                    end
+                end
+
                 -- Monk: all Monks starting at Level 1 (core discipline & mental focus)
                 if clsStr:find("monk") or clsStr:find("e8f1e007") then
                     if lvl >= 1 then
@@ -492,6 +704,55 @@ local function HasCombatChanneling(character)
                     end
                 end
                 
+
+                -- Fighter martial/gish archetypes (Rune Knight, Psi Warrior, Arcane Archer, Cavalier, Banneret, Viking)
+                if clsStr:find("fighter") or clsStr:find("72764536") then
+                    if subStr:find("runeknight") or subStr:find("3d9e9113")
+                       or subStr:find("psiwarrior") or subStr:find("1d23232f")
+                       or subStr:find("arcanearcher") or subStr:find("1be5aa5a")
+                       or subStr:find("cavalier") or subStr:find("banneret") or subStr:find("viking") then
+                        isGish = true
+                        return
+                    end
+                end
+
+                -- Rogue gish archetypes (Soulknife, Blade of Radiance, Arachnoid Stalker)
+                if clsStr:find("rogue") or clsStr:find("e8b01031") then
+                    if subStr:find("soulknife") or subStr:find("5764faec")
+                       or subStr:find("bladeofradiance") or subStr:find("94def2b4")
+                       or subStr:find("arachnoidstalker") or subStr:find("a8000751") then
+                        isGish = true
+                        return
+                    end
+                end
+
+                -- Bard martial colleges (Dance, Choreography)
+                if clsStr:find("bard") or clsStr:find("92cdc989") then
+                    if subStr:find("dance") or subStr:find("0da91e7c")
+                       or subStr:find("choreography") or subStr:find("638b865a") then
+                        isGish = true
+                        return
+                    end
+                end
+
+                -- Cleric martial domains (Forge, Twilight, Dragon)
+                if clsStr:find("cleric") or clsStr:find("114e7aee") then
+                    if subStr:find("forge") or subStr:find("47bb5544")
+                       or subStr:find("twilight") or subStr:find("6a75d401")
+                       or subStr:find("dragon") or subStr:find("7fb5b4be") then
+                        isGish = true
+                        return
+                    end
+                end
+
+                -- Warlock Hexblade patron
+                if clsStr:find("warlock") or clsStr:find("b4225a4b") then
+                    if subStr:find("hexblade") or subStr:find("8fb57960") then
+                        isGish = true
+                        return
+                    end
+                end
+
                 -- Catch-all for custom Bladesinger classes/subclasses
                 if subStr:find("bladesing") or clsStr:find("bladesing") then
                     isGish = true
@@ -508,7 +769,9 @@ local function HasCombatChanneling(character)
         if Osi.HasActiveStatus(character, "BLADESONG") == 1 or Osi.HasActiveStatus(character, "BLADESONG_ACTIVE") == 1
            or Osi.HasActiveStatus(character, "PACT_BLADE") == 1 or Osi.HasActiveStatus(character, "PACT_BLADE_OWNER") == 1
            or Osi.HasActiveStatus(character, "SYMBIOTIC_ENTITY") == 1
-           or Osi.HasActiveStatus(character, "MAG_HEXBLADE_HEX") == 1 then
+           or Osi.HasActiveStatus(character, "MAG_HEXBLADE_HEX") == 1
+           or Osi.HasActiveStatus(character, "GIANTS_MIGHT") == 1
+           or Osi.HasActiveStatus(character, "TWILIGHT_SANCTUARY") == 1 then
             hasGishStatus = true
         elseif type(character) == "string" then
             local rawUuid = character:match("%x%x%x%x%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%x%x%x%x%x%x%x%x")
@@ -516,7 +779,9 @@ local function HasCombatChanneling(character)
                 if Osi.HasActiveStatus(rawUuid, "BLADESONG") == 1 or Osi.HasActiveStatus(rawUuid, "BLADESONG_ACTIVE") == 1
                    or Osi.HasActiveStatus(rawUuid, "PACT_BLADE") == 1 or Osi.HasActiveStatus(rawUuid, "PACT_BLADE_OWNER") == 1
                    or Osi.HasActiveStatus(rawUuid, "SYMBIOTIC_ENTITY") == 1
-                   or Osi.HasActiveStatus(rawUuid, "MAG_HEXBLADE_HEX") == 1 then
+                   or Osi.HasActiveStatus(rawUuid, "MAG_HEXBLADE_HEX") == 1
+                   or Osi.HasActiveStatus(rawUuid, "GIANTS_MIGHT") == 1
+                   or Osi.HasActiveStatus(rawUuid, "TWILIGHT_SANCTUARY") == 1 then
                     hasGishStatus = true
                 end
             end

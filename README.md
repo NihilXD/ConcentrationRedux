@@ -128,6 +128,24 @@ The **War Caster** feat (`WarCaster_Concentration`) integrates directly into bot
 
 ## Changelog
 
+### v1.1.0 (DnD 5.5e All-In-One BEYOND Compatibility)
+- **New Classes & Subclasses Supported**:
+  - **Illrigger**: Full Combat Channeling for all subclasses (*Sanguine Knight*, *Hellspeaker*, *Painkiller*, *Shadowmaster*, *Architect of Ruin*). Whitelisted all Seals, Interdicts, Hell abilities, and Blood Price.
+  - **Monster Hunter**: Full Combat Channeling for *Carver Guild*, *Devourer Guild*, and *Occultist Guild*. Whitelisted all Mutations and Hunting Tactics.
+  - **Artificer**: Combat Channeling for martial gish subclasses (*Battle Smith*, *Armorer*). Whitelisted Experimental Elixirs, Armor Models, and Defensive Field.
+  - **Gunslinger**: Combat Channeling for the *Spellslinger* gun gish subclass.
+  - **New Martial & Gish Subclasses Across Existing Classes**:
+    - **Fighter**: *Rune Knight*, *Psi Warrior*, *Arcane Archer*, *Cavalier*, *Banneret*, *Viking*.
+    - **Rogue**: *Soulknife*, *Blade of Radiance*, *Arachnoid Stalker*.
+    - **Bard**: *College of Dance*, *College of Choreography*.
+    - **Cleric**: *Forge Domain*, *Twilight Domain*, *Dragon Domain*.
+    - **Wizard & Warlock**: *Bladesinger* (Bladesinging School) and *Hexblade*.
+    - **Monk, Paladin, Ranger**: All 2024 subclasses (*Mercy*, *Kensei*, *Sun Soul*, *Mystic Arts*, *Glory*, *Noble Genie*, *Conquest*, *Watchers*, *Fey Wanderer*, *Winter Walker*, *Hollow Warden*) fully integrated.
+- **Spell Classification & Tooltips**:
+  - Audited and updated all 38 custom and revised concentration spells from *DnD 5.5e Beyond* with explicit **Focus** or **Channel** trailers and mechanics.
+  - Focus additions: *Holy Weapon*, *Dragon's Breath*, *Aura of Vitality* (upcasts 4-6), *Circle of Power*, *Cacophonic Shield*, *Fount of Moonlight*, *Cloak of Shadow*, *Fire Dance*, *Elminster's Elusion*, *Blade Ward (2024)*, *Hex*, and *Body Warping of Gorgoroth*.
+  - Channel additions: *Hell's Lash*, *Sleep (2024)*, *Spellfire Storm*, *Dawn*, *Enervation*, *Ashardalon's Stride*, *Void Strike*, *Murmurs of Doom*, *Cloud of Daggers (2024)*, *Conjure Minor Elementals (2024)*, *Conjure Woodland Beings (2024)*, *Summon Celestial*, and *Summon Dragon*.
+
 ### v1.0.5
 - **Haste Dual Duration & Intelligent Lethargy System**:
   - **Self-Cast (Indefinite)**: Operates as an indefinite Channel spell with unlimited duration.
