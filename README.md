@@ -128,6 +128,15 @@ The **War Caster** feat (`WarCaster_Concentration`) integrates directly into bot
 
 ## Changelog
 
+### v1.1.1 (Spell Weaving Overhaul)
+- **Spell Weaving (Cantrips, Bonus Actions & Quickened Metamagic)**:
+  - **All Cantrips (Level 0)**: Pure casters now have an active combat loop every turn! All cantrips (*Fire Bolt*, *Ray of Frost*, *Eldritch Blast*, *Sacred Flame*, *Acid Splash*, *Shocking Grasp*, etc.) are recognized as reflexive magic and can be cast freely without breaking an active Channel stance.
+  - **Native Bonus Action Spells**: Spells requiring only a Bonus Action (*Misty Step*, *Healing Word*, *Mass Healing Word*, *Spiritual Weapon*, *Sanctuary*) can now be cast without breaking Channel, enabling fluid tactical repositioning and emergency triage.
+  - **Sorcerer Quickened Spell Metamagic**: Quickening a standard-action leveled spell converts it to a bonus action weave, allowing Sorcerers to spend Sorcery Points to cast leveled spells without dropping their active Channel stance.
+  - **Standard Action Leveled Spells**: Casting standard-action leveled spells (Level 1+) or offensive reactions (*Counterspell*, *Hellish Rebuke*) continues to demand total mental concentration and breaks active Channel stances.
+- **In-Game Tooltip Trailers**:
+  - Updated all 326+ in-game combat Channel spell cards with explicit spell-weaving guidance: *"Casting Cantrips, Bonus Action spells, or Quickened spells does not break Channel."*
+
 ### v1.1.0 (DnD 5.5e Beyond Compatibility & Comprehensive Tooltips)
 - **Terminology Standardization (Focus & Channel)**:
   - Streamlined and standardized all terminology across the entire mod, Lua engine, and documentation to strictly use **Focus** (buff layer) and **Channel** (combat layer). Removed legacy and ambiguous references to "conduit".
@@ -150,11 +159,6 @@ The **War Caster** feat (`WarCaster_Concentration`) integrates directly into bot
   - Audited and updated all 38 custom and revised concentration spells from *DnD 5.5e Beyond* with explicit **Focus** or **Channel** trailers and mechanics.
   - Focus additions: *Holy Weapon*, *Dragon's Breath*, *Aura of Vitality* (upcasts 4-6), *Circle of Power*, *Cacophonic Shield*, *Fount of Moonlight*, *Cloak of Shadow*, *Fire Dance*, *Elminster's Elusion*, *Blade Ward (2024)*, *Hex*, and *Body Warping of Gorgoroth*.
   - Channel additions: *Hell's Lash*, *Sleep (2024)*, *Spellfire Storm*, *Dawn*, *Enervation*, *Ashardalon's Stride*, *Void Strike*, *Murmurs of Doom*, *Cloud of Daggers (2024)*, *Conjure Minor Elementals (2024)*, *Conjure Woodland Beings (2024)*, *Summon Celestial*, and *Summon Dragon*.
-- **Spell Weaving (Cantrips, Bonus Actions & Quickened Metamagic)**:
-  - **All Cantrips (Level 0)**: Pure casters now have an active combat loop every turn! All cantrips (*Fire Bolt*, *Ray of Frost*, *Eldritch Blast*, *Sacred Flame*, *Acid Splash*, *Shocking Grasp*, etc.) are recognized as reflexive magic and can be cast freely without breaking an active Channel.
-  - **Native Bonus Action Spells**: Spells requiring only a Bonus Action (*Misty Step*, *Healing Word*, *Mass Healing Word*, *Spiritual Weapon*, *Sanctuary*) can now be cast without breaking Channel, enabling fluid tactical repositioning and emergency triage.
-  - **Sorcerer Quickened Spell Metamagic**: Quickening a standard-action leveled spell converts it to a bonus action weave, allowing Sorcerers to spend Sorcery Points to cast leveled spells without dropping their active Channel stance.
-  - **Action Leveled Spells**: Casting standard-action leveled spells (Level 1+) or offensive reactions (*Counterspell*, *Hellish Rebuke*) continues to demand total mental concentration and breaks active Channel stances.
 - **Engine & Packaging Stability (Patch 7 / Patch 8+)**:
   - Resolved a launch crash (`0xC0000005` in `bg3_dx11.exe`) caused by raw XML linebreaks creating text DOM nodes without attributes in Larian's localization parser.
   - Re-architected localization pipeline into clean single-line entries with `&#10;` line breaks and compiled binary `.loca`.
