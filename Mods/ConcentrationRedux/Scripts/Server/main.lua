@@ -267,6 +267,8 @@ end
 -- Mapping of Innate spells to their isolated target status
 local INNATE_SPELLS = {
     ["Target_Bless"] = { Status = "INNATE_BUFF_BLESS" },
+    ["Target_Bless_2"] = { Status = "INNATE_BUFF_BLESS" },
+    ["Target_Bless_3"] = { Status = "INNATE_BUFF_BLESS" },
     ["Target_Bless_4"] = { Status = "INNATE_BUFF_BLESS" },
     ["Target_Bless_5"] = { Status = "INNATE_BUFF_BLESS" },
     ["Target_Bless_6"] = { Status = "INNATE_BUFF_BLESS" },
@@ -288,6 +290,8 @@ local INNATE_SPELLS = {
     ["Target_Barkskin"] = { Status = "INNATE_BUFF_BARKSKIN" },
     ["Target_Stoneskin"] = { Status = "INNATE_BUFF_STONESKIN" },
     ["Target_EnlargeReduce"] = { Status = "INNATE_BUFF_ENLARGE" },
+    ["Target_EnlargeReduce_Enlarge"] = { Status = "INNATE_BUFF_ENLARGE" },
+    ["Target_EnlargeReduce_Reduce"] = { Status = "INNATE_BUFF_REDUCE" },
     ["Target_Fly"] = { Status = "INNATE_BUFF_FLY" },
     ["Target_Fly_4"] = { Status = "INNATE_BUFF_FLY" },
     ["Target_Fly_5"] = { Status = "INNATE_BUFF_FLY" },
