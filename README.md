@@ -69,13 +69,16 @@ In vanilla Baldur's Gate 3, defensive and utility cantrips often suffer from awk
 - **Dismissing Focus (Buffs)**: While maintaining Focus (*Bless*, *Shield of Faith*, *Blade Ward*, *Guidance*), the caster automatically gains a free, 0-action cost **Dismiss Focus** ability (`Shout_DismissInnateConcentration`) on their hotbar. Using it voluntarily releases Focus on demand without needing to cast another spell or rest.
 - **Dismissing Concentration (Conduits)**: Because Concentration (*Haste*, *Spirit Guardians*, *Wall of Fire*, *Cloud of Daggers*, *Hold Person*, *Fog Cloud*) runs in the engine's native concentration slot, players can cancel it at any moment using Baldur's Gate 3's **native "X" button** located directly beneath the character's portrait on the bottom-left HUD, or by casting another spell. For *Haste*, voluntarily dismissing it releases the buff cleanly **without causing Lethargy**.
 
-### 7. Reaction Spells (Strict Mode Enforced)
-- **Zero Spell Magic While Channeling**: Casting reaction spells (*Shield*, *Counterspell*, *Hellish Rebuke*) immediately **shatters** Channeling. Maintaining a continuous combat conduit demands 100% of your magical bandwidth; attempting to weave an emergency spell snaps the tether.
-- **In-Game Warning Popups**: The mod injects a dedicated **Channel Disruption** warning into the tooltip and reaction prompt card of all three reaction spells:
-  > ⚠️ *Channel Disruption: Casting this spell requires complete magical focus and will immediately shatter any active Channel.*
-- **Reactions Tab ("Ask" Toggle)**: Keep **"Ask"** checked (the question mark icon) in your character's Reactions tab (`K`) for *Shield*, *Counterspell*, and *Hellish Rebuke*. The game will always pause combat and prompt you before casting, preventing accidental channel loss while letting you deliberately trade your channel in life-or-death situations.
-- **Physical Reactions Allowed**: Non-magical physical reactions (e.g. melee *Opportunity Attacks*) remain fully permitted for gish archetypes.
-- **Class Abilities Allowed**: Non-spell reaction features (*Warding Flare*, *Wrath of the Storm*, *Cutting Words*, *Uncanny Dodge*, *Deflect Missiles*) do not use spell slots and do not disrupt Channeling.
+### 7. Reaction Spells & Gish Wards
+- **Personal Reaction Defensives (Shield & Absorb Elements)**:
+  - Characters with **Combat Channeling** (those who can melee while concentrating, including *Bladesingers*, *Eldritch Knights*, *Paladins 2+*, *War/Tempest Clerics*, *Swords/Valour Bards*, *Arcane Tricksters*, *Circle of Spores Druids*, *Pact of the Blade Warlocks*, *Monks*, or anyone with *War Caster*) can cast **personal reaction defensives** (*Shield*, *Absorb Elements*) **without breaking Concentration**!
+  - Pure casters lacking martial-magical discipline (e.g., standard Wizards or Sorcerers without War Caster/Bladesong) still shatter active conduits if they cast *Shield*.
+- **Counter-Magic & Retaliatory Damage Reactions (Always Shatters)**:
+  - Casting *Counterspell* (external offensive counter-magic) or retaliatory damage reactions (*Hellish Rebuke*) demands 100% of your spell focus and **immediately shatters active conduits for ALL casters**, including gishes.
+- **Melee Spell Cantrips (Green-Flame Blade, Booming Blade, Vengeful Blade)**:
+  - Characters with **Combat Channeling** can cast **melee spell cantrips** (*Green-Flame Blade*, *Booming Blade*, *Vengeful Blade*) in melee combat **without breaking Concentration**!
+- **Physical Reactions & Class Features**:
+  - Non-magical reactions (melee *Opportunity Attacks*) and non-spell reaction features (*Warding Flare*, *Wrath of the Storm*, *Cutting Words*, *Uncanny Dodge*, *Deflect Missiles*) expend no spell slots and are 100% safe for all casters.
 
 ### 8. Withers Respec Cleanup
 - Visiting Withers to respec automatically triggers a full cleanup via `CharacterRespecCompleted`, guaranteeing no lingering buffs or statuses bleed into a newly chosen class.

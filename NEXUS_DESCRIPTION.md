@@ -58,9 +58,10 @@ In vanilla Baldur's Gate 3, defensive and utility cantrips often suffer from awk
 - **Dismissing Concentration:** Uses BG3's **native 'X' button** beneath the portrait HUD (or casting another conduit).
 
 ### 5. Tactical Synergies & Rules
-- **Spellcasting Snaps Conduits:** Channeling an active combat conduit (*Spirit Guardians*, *Wall of Fire*, *Call Lightning*) demands 100% of your spellcasting bandwidth:
+- **Spellcasting & Gish Reaction Wards:** Channeling an active combat conduit (*Spirit Guardians*, *Wall of Fire*, *Haste*) demands your primary spellcasting bandwidth:
   - Hard-casting any standard spell (*Fireball*, *Guiding Bolt*, *Magic Missile*) immediately snaps your active conduit. (Casting a Focus buff like *Bless* or *Shield of Faith* enters **The Overclock**).
-  - Casting emergency reaction spells (*Shield*, *Counterspell*, *Hellish Rebuke*) also snaps active conduits (clear in-game tooltip warnings provided).
+  - **Gish Defensives & Melee Cantrips:** Characters with **Combat Channeling** can cast **personal reaction defensives** (*Shield*, *Absorb Elements*) and **melee spell cantrips** (*Green-Flame Blade*, *Booming Blade*, *Vengeful Blade*) **without breaking Concentration**!
+  - **Counterspell & Damage Reactions:** Offensive counter-magic (*Counterspell*) and retaliatory damage reactions (*Hellish Rebuke*) demand full spell focus and shatter conduits for all casters. Pure casters without Combat Channeling also shatter active conduits if casting *Shield*.
   - *Non-spell reactions* (*Warding Flare*, *Wrath of the Storm*, *Cutting Words*, *Uncanny Dodge*, *Deflect Missiles*) expend no spell slots and are 100% safe to use!
 - **Smites Shatter Conduits:** Expending spell slots for magical burst strikes (*Divine Smite*, *Searing Smite*, *Thunderous Smite*, *Wrathful Smite*, *Blinding Smite*, etc.) requires an instant burst of spell focus and **immediately shatters active combat conduits** (*Spirit Guardians*), while leaving passive Focus buffs (*Bless*, *Shield of Faith*) completely undisturbed!
 - **Combat Channeling & Gish Archetypes:** Making weapon attacks while maintaining an active combat conduit requires true mind-body magical discipline:

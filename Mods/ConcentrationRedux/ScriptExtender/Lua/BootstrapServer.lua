@@ -976,6 +976,61 @@ local function IsWeaponAction(spell, spellType)
     return false
 end
 
+local function IsPersonalDefensiveReaction(spell)
+    if not spell then return false end
+    local lower = spell:lower()
+    
+    -- Explicitly exclude offensive counter-magic and retaliatory damage reactions
+    if lower:find("counterspell") or lower:find("hellish") or lower:find("rebuke") then
+        return false
+    end
+    
+    -- Shield spell (reaction)
+    if lower == "target_shield" or lower:find("^target_shield_") or lower == "shout_shield" or lower:find("^shout_shield_") or lower == "shield" then
+        if not lower:find("faith") and not lower:find("thrall") then
+            return true
+        end
+    end
+    
+    -- Absorb Elements (reaction)
+    if lower:find("absorbelements") or lower:find("absorb_elements") or (lower:find("absorb") and lower:find("element")) then
+        return true
+    end
+    
+    return false
+end
+
+local function IsMeleeSpellCantrip(spell)
+    if not spell then return false end
+    local lower = spell:lower()
+    
+    -- Iconic 5e melee blade cantrips
+    if lower:find("greenflame") or lower:find("green_flame")
+       or lower:find("boomingblade") or lower:find("booming_blade")
+       or lower:find("vengefulblade") or lower:find("vengeful_blade")
+       or lower:find("swordburst") or lower:find("sword_burst") then
+        return true
+    end
+    
+    -- General cantrips requiring weapon or with weapon strike properties
+    local isCantripMelee = false
+    pcall(function()
+        local stat = Ext.Stats.Get(spell)
+        if stat then
+            local isCantrip = (stat.Level == 0 or stat.PowerLevel == 0)
+            if isCantrip then
+                local req = tostring(stat.RequirementConditions or ""):lower()
+                local flags = tostring(stat.SpellFlags or ""):lower()
+                local sType = tostring(stat.SpellType or "")
+                if req:find("weapon") or req:find("hasweapon") or flags:find("hasweaponproperties") or sType:find("Weapon") then
+                    isCantripMelee = true
+                end
+            end
+        end
+    end)
+    return isCantripMelee
+end
+
 local function IsConcentrationSpell(spell)
     if not spell then return false end
     local isConc = false
@@ -1025,6 +1080,21 @@ local function HandleSpellInterruption(caster, spell, spellType)
     -- War Caster Opportunity Attack reaction
     if (spell == "Target_ShockingGrasp" or spell:find("ShockingGrasp")) and HasConcentrationAdvantage(caster) then
         if CurrentTurnCharacter == nil or CurrentTurnCharacter ~= caster then
+            return
+        end
+    end
+    
+    -- Combat Channeling perks (Gish archetypes)
+    if HasCombatChanneling(caster) then
+        -- Personal reaction defensives (Shield, Absorb Elements)
+        if IsPersonalDefensiveReaction(spell) then
+            Ext.Utils.Print(string.format("[%s] Personal defensive reaction '%s' permitted under Combat Channeling for %s", MOD_NAME, tostring(spell), tostring(caster)))
+            return
+        end
+        
+        -- Melee spell cantrips (Green-Flame Blade, Booming Blade, Vengeful Blade)
+        if IsMeleeSpellCantrip(spell) then
+            Ext.Utils.Print(string.format("[%s] Melee spell cantrip '%s' permitted under Combat Channeling for %s", MOD_NAME, tostring(spell), tostring(caster)))
             return
         end
     end
