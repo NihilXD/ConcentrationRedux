@@ -1552,31 +1552,45 @@ local function ReconstructSessionStateFromEngine()
     HasteTargetToCaster = {}
     
     pcall(function()
-        local partyMembers = {}
-        local function CollectMembers(db)
+        local candidateEntities = {}
+        local function CollectCandidates(db)
             if not db then return end
-            local list = db:Get(nil)
-            if list then
-                for _, row in ipairs(list) do
-                    local m = row[1]
-                    if m and m ~= "" then
-                        partyMembers[m] = true
+            pcall(function()
+                local list = db:Get(nil)
+                if list then
+                    for _, row in ipairs(list) do
+                        local m = row[1]
+                        if m and m ~= "" then
+                            candidateEntities[m] = true
+                        end
                     end
+                end
+            end)
+        end
+        CollectCandidates(Osi.DB_PartyMembers)
+        CollectCandidates(Osi.DB_Players)
+        CollectCandidates(Osi.DB_PartyFollowers)
+        CollectCandidates(Osi.DB_IsPlayerOrPartyMember)
+        CollectCandidates(Osi.DB_CombatCharacters)
+        
+        -- Identify which characters are actively concentrating, specifically targeting Haste casters
+        local hasteCasters = {}
+        local otherConcentrators = {}
+        for member, _ in pairs(candidateEntities) do
+            if IsCharacterConcentrating(member) then
+                local concSpell = nil
+                pcall(function()
+                    concSpell = Osi.GetConcentrationSpell(member)
+                end)
+                if concSpell and tostring(concSpell):lower():find("haste") then
+                    hasteCasters[member] = true
+                else
+                    otherConcentrators[member] = true
                 end
             end
         end
-        CollectMembers(Osi.DB_PartyMembers)
-        CollectMembers(Osi.DB_Players)
         
-        -- Identify which party members are actively concentrating
-        local concentratingMembers = {}
-        for member, _ in pairs(partyMembers) do
-            if IsCharacterConcentrating(member) then
-                concentratingMembers[member] = true
-            end
-        end
-        
-        for target, _ in pairs(partyMembers) do
+        for target, _ in pairs(candidateEntities) do
             local entity = Ext.Entity.Get(target)
             if entity and entity.StatusMachine and entity.StatusMachine.Statuses then
                 for _, statusObj in ipairs(entity.StatusMachine.Statuses) do
@@ -1589,16 +1603,22 @@ local function ReconstructSessionStateFromEngine()
                             causee = statusObj.StatusCausee.EntityUuid
                         end
                         
-                        -- Fallbacks if causee metadata is nil in save file:
+                        -- Fallbacks if causee metadata is null in save file:
                         if not causee or causee == "" then
                             if sId == "CHANNEL_HASTE" then
                                 -- Self-cast indefinite Haste: target is the caster
                                 causee = target
                             elseif sId == "CHANNEL_HASTE_ALLY" then
-                                -- Ally 10-round Haste: find concentrating party member
-                                for cm, _ in pairs(concentratingMembers) do
+                                -- Ally 10-round Haste: prioritize caster specifically concentrating on Target_Haste
+                                for cm, _ in pairs(hasteCasters) do
                                     causee = cm
                                     break
+                                end
+                                if not causee or causee == "" then
+                                    for cm, _ in pairs(otherConcentrators) do
+                                        causee = cm
+                                        break
+                                    end
                                 end
                             end
                         end
@@ -1625,7 +1645,7 @@ local function ReconstructSessionStateFromEngine()
                         end
                         
                         if not causee or causee == "" then
-                            for cm, _ in pairs(partyMembers) do
+                            for cm, _ in pairs(candidateEntities) do
                                 if Osi.HasActiveStatus(cm, INNATE_CASTER_STATUS) == 1 then
                                     causee = cm
                                     break
