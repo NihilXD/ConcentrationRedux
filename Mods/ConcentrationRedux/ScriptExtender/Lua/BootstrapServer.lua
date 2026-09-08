@@ -195,6 +195,8 @@ local INNATE_SPELLS = {
     ["Target_ShieldOfFaith"] = { Status = "INNATE_BUFF_SHIELD_OF_FAITH" },
     ["Target_Guidance"] = { Status = "INNATE_BUFF_GUIDANCE" },
     ["Target_Resistance"] = { Status = "INNATE_BUFF_RESISTANCE" },
+    ["Shout_BladeWard"] = { Status = "INNATE_BUFF_BLADE_WARD" },
+    ["Target_BladeWard"] = { Status = "INNATE_BUFF_BLADE_WARD" },
     ["Target_DancingLights"] = { Status = "INNATE_BUFF_DANCING_LIGHTS" },
     ["Target_DancingLights_DeepRothe"] = { Status = "INNATE_BUFF_DANCING_LIGHTS" },
     ["Target_Friends"] = { Status = "INNATE_BUFF_FRIENDS" },

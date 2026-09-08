@@ -28,7 +28,7 @@ In vanilla 5e / Baldur's Gate 3, concentration creates arbitrary friction:
 ## Spell Classifications
 
 ### 1. Focus (Indefinite Duration Buffs)
-- **Combat & Defensive Wards**: *Bless*, *Shield of Faith*, *Guidance*, *Resistance*, *Heroism*, *Protection from Evil and Good*, *Barkskin*, *Stoneskin*, *Shield of Thralls*
+- **Combat & Defensive Wards**: *Bless*, *Shield of Faith*, *Blade Ward*, *Guidance*, *Resistance*, *Heroism*, *Protection from Evil and Good*, *Barkskin*, *Stoneskin*, *Shield of Thralls*
 - **Utility & Exploration**: *Dancing Lights* (indefinite remote illumination that never strips pre-cast buffs)
 - **Social Charms (10-Turn Timer)**: *Friends* (routed to Focus to protect combat conduits during dialogue checks, while retaining its 10-turn timer for Tactician/Honour Mode hostility)
 - **Single-Target Marks**: *Hunter's Mark*, *Hex*, *Bane*, *Bestow Curse*
@@ -40,7 +40,7 @@ In vanilla 5e / Baldur's Gate 3, concentration creates arbitrary friction:
 > [!NOTE]
 > **Class Spells vs. Bound Equipment & Scrolls**:
 > - **Class Spells & Feats**: Genuine class investments (e.g., Cleric/Druid/Wizard spellbooks, Bard *Magical Secrets*, multiclassing, and *Magic Initiate*) utilize the full **Focus** system.
-> - **Bound Equipment & Scrolls**: Spells granted by equipment, weapons, armor, accessories (e.g. *Darkfire Shortbow*, *The Whispering Promise*, amulets/rings), and consumable scrolls intentionally follow **standard vanilla rules** (10-turn duration, normal engine concentration, and standard damage saving throws) to preserve class identity and prevent item cheese.
+> - **Bound Equipment & Scrolls**: Spells granted by equipment, weapons, armor, accessories (e.g. *Darkfire Shortbow*, *The Whispering Promise*, *Hellrider's Pride*, amulets/rings), and consumable scrolls intentionally follow **standard vanilla rules** (temporary duration, normal engine concentration or status, and standard damage saving throws) to preserve class identity and prevent item cheese.
 
 ### 2. Concentration (Combat Stances & Conduits)
 - **Emanations & Auras**: *Spirit Guardians* (Radiant / Necrotic), *Aura of Vitality*, *Crusader's Mantle*, *Holy Aura*
@@ -50,7 +50,8 @@ In vanilla 5e / Baldur's Gate 3, concentration creates arbitrary friction:
 - **Attack Modifiers**: *True Strike* (intentionally kept on standard short-duration vanilla rules)
 
 ### 3. The Cantrip Conundrum (Focus & Concentration Cantrips)
-In vanilla Baldur's Gate 3, only four cantrips require concentration: *Resistance*, *Friends*, *Dancing Lights*, and *True Strike*. Here is how each fits into the Concentration Redux architecture:
+In vanilla Baldur's Gate 3, defensive and utility cantrips often suffer from awkward action economy and duration limits. Here is how they integrate into the Concentration Redux architecture:
+- **Blade Ward (Physical Damage Aegis):** Converted to Focus (indefinite buff). In vanilla, Blade Ward costs a full Action for a fleeting 2-turn buff against physical weapon damage, making it virtually uncastable in active play. As Focus, it becomes a continuous physical ward (resistance to Bludgeoning, Piercing, and Slashing damage). Because it occupies your single Focus slot, running Blade Ward forces a genuine tactical trade-off against *Shield of Faith* (+2 AC to prevent hits), *Bless* (+1d4 to attack/saves), or *Resistance* (+1d4 saves). Gear that applies Blade Ward upon healing (such as *Hellrider's Pride* or *The Reviving Hands*) continues to apply standard short-duration vanilla statuses without disturbing your Focus slot.
 - **Resistance (Defensive Twin to Guidance):** Converted to Focus (indefinite buff). In vanilla, Resistance is rarely used because burning an action and a concentration slot for a 10-turn +1d4 save bonus cannot compete with *Bless* or *Spirit Guardians*. As Focus, it becomes a reliable zero-slot ward for exploration and pre-buffing. Because it occupies your single Focus slot, it forces an honest tactical choice against *Bless* (+1d4 attack and saves) or *Shield of Faith* (+2 AC), while eliminating the dialogue trap during conversation saving throws.
 - **Friends (Social Utility with Difficulty Awareness):** Converted to Focus layer with duration retained (10 turns). Cast almost exclusively inside dialogue rolls, vanilla Friends instantly wipes out whatever combat spell your caster was maintaining prior to the conversation. Moving it to Focus protects your active combat conduits. However, because NPC suspicion and hostility triggers fire on status expiration, its standard 10-turn timer is intentionally preserved so higher difficulty (Tactician/Honour Mode) social penalties function exactly as intended.
 - **Dancing Lights (Exploration Lighting):** Converted to Focus (indefinite duration). Allows races lacking Darkvision (Humans, Halflings, Githyanki) to illuminate distant high ground or gloom-covered arenas at an 18m range without sacrificing pre-cast combat buffs. Floating wisps automatically despawn cleanly whenever you dismiss Focus or cast another buff.
@@ -122,6 +123,10 @@ The **War Caster** feat (`WarCaster_Concentration`) integrates directly into bot
 ## Changelog
 
 ### v1.0.4
+- **Blade Ward Focus Conversion**:
+  - Converted *Blade Ward* (`Shout_BladeWard`) into an indefinite **Focus** buff (`INNATE_BUFF_BLADE_WARD`, duration -1).
+  - Grants continuous resistance to Bludgeoning, Piercing, and Slashing weapon damage, occupying your single Focus slot to force genuine tactical trade-offs against *Shield of Faith* (+2 AC), *Bless* (+1d4 attack/saves), or *Resistance*.
+  - Equipment procs applying Blade Ward on heal (e.g. *Hellrider's Pride*, *The Reviving Hands*) continue to apply standard vanilla short-duration statuses without disturbing your Focus slot.
 - **Tactical Movement & Action Whitelist Fix**:
   - Fixed Jump (`Projectile_Jump`, `Projectile_Jump_Monk`), Crouch/Stealth (`Shout_Hide`, `Shout_CunningAction_Hide`), Dash (`Shout_Dash`, `Shout_ActionSurge_Dash`, `Shout_StepOfTheWind_Dash`), Disengage (`Shout_Disengage`), Shove (`Target_Shove`), Dip (`Shout_Dip`), Throw (`Throw_Throw`), and Help (`Target_Help`) inadvertently collapsing active combat conduits with a *"Channel broken by spellcasting!"* overhead notice.
   - Implemented an `IsWhitelistedAction` pattern-matching filter in the server engine to automatically recognize all current and future tactical movement actions, bonus actions, and stance variants.
