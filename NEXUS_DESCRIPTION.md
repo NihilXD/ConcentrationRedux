@@ -100,9 +100,6 @@ In vanilla Baldur's Gate 3, defensive and utility cantrips often suffer from awk
   - Offensive counter-magic (*Counterspell*) and retaliatory damage reactions (*Hellish Rebuke*) demand full casting focus and continue to shatter active conduits for all casters.
 - **Gish Combat Stances & Class Forms**:
   - Activating martial class stances and disciplines (*Bladesong*, *Symbiotic Entity*, *Bind Pact Weapon*, *Hexblade's Curse*, *Weapon Bond*, Monk Ki maneuvers/stances, Bardic *Blade Flourishes*, and martial *Channel Divinities*) never breaks active Concentration conduits.
-- **In-Game Focus Tooltip Banners & Status Tags**:
-  - Every Focus spell now displays a dedicated framed *"Focus Buff"* callout banner on its spell card tooltip (in the hotbar, spellbook, and level-up screen) clarifying its single-slot, indefinite nature and damage immunity.
-  - Active Focus buffs on the character portrait tray and inspect pane now display an explicit `(Focus)` badge (e.g. *Bless (Focus)*, *Shield of Faith (Focus)*, *Blade Ward (Focus)*).
 - **Loss of Control & Hard CC**:
   - Hard incapacitation conditions (*Stunned*, *Paralyzed*, *Sleeping*, *Incapacitated*, *Banished*) reliably sever concentration and trigger full disruption penalties.
 
