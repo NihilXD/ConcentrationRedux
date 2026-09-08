@@ -60,6 +60,14 @@ try {
     [xml](Get-Content (Join-Path $ScriptDir "Public\$ModName\GUI\Icons_ConcentrationRedux.lsx")) | Out-Null
     Get-Content (Join-Path $ScriptDir "Mods\$ModName\ScriptExtender\Config.json") -Raw | ConvertFrom-Json | Out-Null
     Write-Host "  [OK] All XML and JSON files parsed cleanly." -ForegroundColor Green
+
+    $DivinePath = "C:\Users\NihilXD\AppData\Roaming\Vortex\baldursgate3\mods\ExportTool-v1.20.4\tools\Divine.exe"
+    if (Test-Path $DivinePath) {
+        $LocaXml = Join-Path $ScriptDir "Public\$ModName\Localization\English\english.loca.xml"
+        $LocaBin = Join-Path $ScriptDir "Public\$ModName\Localization\English\english.loca"
+        & $DivinePath -g bg3 -a convert-loca -s $LocaXml -d $LocaBin | Out-Null
+        Write-Host "  [OK] Compiled english.loca" -ForegroundColor Green
+    }
 } catch {
     Write-Error "Syntax error in project files: $_"
     exit 1

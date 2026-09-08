@@ -179,6 +179,7 @@ using "Target_Haste"
 data "SpellFlags" "HasVerbalComponent;HasSomaticComponent;IsSpell;IsConcentration"
 data "SpellProperties" "IF(IsSelf()):ApplyStatus(CHANNEL_HASTE, 100, -1);IF(not IsSelf()):ApplyStatus(CHANNEL_HASTE_ALLY, 100, 10)"
 data "TooltipStatusApply" "ApplyStatus(CHANNEL_HASTE, 100, -1)"
+data "Description" "hhaste_desc;1"
 
 new entry "Target_EnlargeReduce"
 type "SpellData"
