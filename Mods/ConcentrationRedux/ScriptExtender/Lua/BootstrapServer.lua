@@ -1548,13 +1548,35 @@ end)
 
 local function ReconstructSessionStateFromEngine()
     ActiveInnateCasters = {}
+    ActiveHasteChannels = {}
+    HasteTargetToCaster = {}
+    
     pcall(function()
-        local party = Osi.DB_PartyMembers:Get(nil)
-        if not party then party = Osi.DB_Players:Get(nil) end
-        if not party then return end
+        local partyMembers = {}
+        local function CollectMembers(db)
+            if not db then return end
+            local list = db:Get(nil)
+            if list then
+                for _, row in ipairs(list) do
+                    local m = row[1]
+                    if m and m ~= "" then
+                        partyMembers[m] = true
+                    end
+                end
+            end
+        end
+        CollectMembers(Osi.DB_PartyMembers)
+        CollectMembers(Osi.DB_Players)
         
-        for _, row in ipairs(party) do
-            local target = row[1]
+        -- Identify which party members are actively concentrating
+        local concentratingMembers = {}
+        for member, _ in pairs(partyMembers) do
+            if IsCharacterConcentrating(member) then
+                concentratingMembers[member] = true
+            end
+        end
+        
+        for target, _ in pairs(partyMembers) do
             local entity = Ext.Entity.Get(target)
             if entity and entity.StatusMachine and entity.StatusMachine.Statuses then
                 for _, statusObj in ipairs(entity.StatusMachine.Statuses) do
@@ -1566,16 +1588,34 @@ local function ReconstructSessionStateFromEngine()
                         elseif statusObj.StatusCausee and statusObj.StatusCausee.EntityUuid then
                             causee = statusObj.StatusCausee.EntityUuid
                         end
-                        if causee then
+                        
+                        -- Fallbacks if causee metadata is nil in save file:
+                        if not causee or causee == "" then
+                            if sId == "CHANNEL_HASTE" then
+                                -- Self-cast indefinite Haste: target is the caster
+                                causee = target
+                            elseif sId == "CHANNEL_HASTE_ALLY" then
+                                -- Ally 10-round Haste: find concentrating party member
+                                for cm, _ in pairs(concentratingMembers) do
+                                    causee = cm
+                                    break
+                                end
+                            end
+                        end
+                        
+                        if causee and causee ~= "" then
                             local rawCaster = causee:match("%x%x%x%x%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%x%x%x%x%x%x%x%x") or causee
                             local rawTarget = target:match("%x%x%x%x%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%x%x%x%x%x%x%x%x") or target
                             ActiveHasteChannels[rawCaster] = ActiveHasteChannels[rawCaster] or { Targets = {} }
                             ActiveHasteChannels[rawCaster].Targets[rawTarget] = true
                             ActiveHasteChannels[rawCaster].Targets[target] = true
+                            ActiveHasteChannels[causee] = ActiveHasteChannels[rawCaster]
                             HasteTargetToCaster[rawTarget] = rawCaster
                             HasteTargetToCaster[target] = rawCaster
+                            Ext.Utils.Print(string.format("[%s] Reconstructed Haste channel: Caster %s -> Target %s", MOD_NAME, tostring(causee), tostring(target)))
                         end
                     end
+                    
                     if sId and sId:find("INNATE_BUFF_") and sId ~= "INNATE_BUFF_HASTE" then
                         local causee = nil
                         if statusObj.Causee and statusObj.Causee.EntityUuid then
@@ -1583,7 +1623,20 @@ local function ReconstructSessionStateFromEngine()
                         elseif statusObj.StatusCausee and statusObj.StatusCausee.EntityUuid then
                             causee = statusObj.StatusCausee.EntityUuid
                         end
-                        if causee then
+                        
+                        if not causee or causee == "" then
+                            for cm, _ in pairs(partyMembers) do
+                                if Osi.HasActiveStatus(cm, INNATE_CASTER_STATUS) == 1 then
+                                    causee = cm
+                                    break
+                                end
+                            end
+                            if not causee or causee == "" then
+                                causee = target
+                            end
+                        end
+                        
+                        if causee and causee ~= "" then
                             if not ActiveInnateCasters[causee] then
                                 ActiveInnateCasters[causee] = {
                                     Targets = {},
@@ -1605,19 +1658,40 @@ local function ReconstructSessionStateFromEngine()
     end)
 end
 
--- Session state reconstruction handled via Ext.Events.SessionLoaded
-
--- Continuous synchronization of concentration state
+-- Continuous synchronization of concentration state & self-healing save recovery
 local tickCounter = 0
 Ext.Events.Tick:Subscribe(function()
     tickCounter = tickCounter + 1
     if tickCounter % 15 == 0 then
         UpdateAllConcentrationTrackers()
     end
+    -- Self-healing check: if party has active Haste but runtime tables are empty, rebuild immediately
+    if tickCounter % 60 == 0 then
+        local hasteActive = false
+        pcall(function()
+            local party = Osi.DB_PartyMembers:Get(nil)
+            if party then
+                for _, row in ipairs(party) do
+                    local m = row[1]
+                    if m and (Osi.HasActiveStatus(m, "CHANNEL_HASTE") == 1 or Osi.HasActiveStatus(m, "CHANNEL_HASTE_ALLY") == 1) then
+                        hasteActive = true
+                        break
+                    end
+                end
+            end
+        end)
+        if hasteActive and next(ActiveHasteChannels) == nil then
+            Ext.Utils.Print(string.format("[%s] Detected orphaned Haste status in party; running state reconstruction.", MOD_NAME))
+            ReconstructSessionStateFromEngine()
+        end
+    end
 end)
 
+Ext.Osiris.RegisterListener("LevelGameplayStarted", 2, "after", function(level, isEditor)
+    ReconstructSessionStateFromEngine()
+end)
 
 Ext.Events.SessionLoaded:Subscribe(function()
     ReconstructSessionStateFromEngine()
-    Ext.Utils.Print(string.format("[%s] v1.0.4 initialized successfully. Dual concentration engine active.", MOD_NAME))
+    Ext.Utils.Print(string.format("[%s] Dual concentration engine active. Save state reconstructed.", MOD_NAME))
 end)
