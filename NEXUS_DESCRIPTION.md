@@ -108,6 +108,11 @@ In vanilla Baldur's Gate 3, defensive and utility cantrips often suffer from awk
     - *Monk, Paladin, Ranger*: All 2024 subclasses (*Mercy*, *Kensei*, *Sun Soul*, *Mystic Arts*, *Glory*, *Noble Genie*, *Conquest*, *Watchers*, *Fey Wanderer*, *Winter Walker*, *Hollow Warden*) fully integrated.
   - **38 Custom/Revised Concentration Spells**:
     - Audited, categorized, and annotated all 2024 concentration spells (*Holy Weapon*, *Spellfire Storm*, *Dragon's Breath*, *Summon Celestial*, *Summon Dragon*, *Void Strike*, *Murmurs of Doom*, etc.).
+- **Spell Weaving (Cantrips, Bonus Actions & Quickened Metamagic)**:
+  - **All Cantrips (Level 0)**: Pure casters now have an active combat loop every turn! All cantrips (*Fire Bolt*, *Ray of Frost*, *Eldritch Blast*, *Sacred Flame*, *Acid Splash*, *Shocking Grasp*, etc.) are recognized as reflexive magic and can be cast freely without breaking an active Channel.
+  - **Native Bonus Action Spells**: Spells requiring only a Bonus Action (*Misty Step*, *Healing Word*, *Mass Healing Word*, *Spiritual Weapon*, *Sanctuary*) can now be cast without breaking Channel, enabling fluid tactical repositioning and emergency triage.
+  - **Sorcerer Quickened Spell Metamagic**: Quickening a standard-action leveled spell converts it to a bonus action weave, allowing Sorcerers to spend Sorcery Points to cast leveled spells without dropping their active Channel stance.
+  - **Action Leveled Spells**: Casting standard-action leveled spells (Level 1+) or offensive reactions (*Counterspell*, *Hellish Rebuke*) continues to demand total mental concentration and breaks active Channel stances.
 - **Engine & Packaging Stability (Patch 7 / Patch 8+)**:
   - Fixed a launch crash (`0xC0000005` in `bg3_dx11.exe`) caused by raw XML linebreaks creating text DOM nodes without attributes in Larian's localization parser.
   - Re-architected localization pipeline into clean single-line entries with `&#10;` line breaks and compiled binary `.loca`.

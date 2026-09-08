@@ -1555,26 +1555,92 @@ local function IsConcentrationSpell(spell)
     return isConc
 end
 
+local function IsCantripSpell(spell)
+    if not spell then return false end
+    local isCant = false
+    pcall(function()
+        local stat = Ext.Stats.Get(spell)
+        if stat then
+            local lvl = stat.Level
+            if (lvl == nil or lvl == "" or lvl == -1) and stat.PowerLevel ~= nil then
+                lvl = stat.PowerLevel
+            end
+            if lvl ~= nil and tonumber(lvl) == 0 then
+                local uc = tostring(stat.UseCosts or "")
+                if not uc:find("SpellSlotsGroup") and not uc:find("SpellSlot") then
+                    isCant = true
+                end
+            end
+        end
+    end)
+    return isCant
+end
+
+local function IsBonusActionSpell(spell)
+    if not spell then return false end
+    if spell:find("BonusAction") then return true end
+    local isBA = false
+    pcall(function()
+        local stat = Ext.Stats.Get(spell)
+        if stat then
+            local uc = stat.UseCosts
+            if uc then
+                local ucStr = tostring(uc)
+                if ucStr:find("BonusActionPoint") then
+                    isBA = true
+                elseif type(uc) == "table" or type(uc) == "userdata" then
+                    for k, v in pairs(uc) do
+                        if tostring(k):find("BonusActionPoint") or tostring(v):find("BonusActionPoint") then
+                            isBA = true
+                            break
+                        end
+                        if type(v) == "table" or type(v) == "userdata" then
+                            if tostring(v.Resource or ""):find("BonusActionPoint") or tostring(v.ActionResource or ""):find("BonusActionPoint") then
+                                isBA = true
+                                break
+                            end
+                        end
+                    end
+                end
+            end
+        end
+    end)
+    return isBA
+end
+
+local function IsQuickenedActive(character)
+    if not character then return false end
+    local isQ = false
+    pcall(function()
+        local entity = GetEntitySafe(character)
+        if entity then
+            if entity.ServerToggledPassives and entity.ServerToggledPassives.Passives then
+                if entity.ServerToggledPassives.Passives["Metamagic_Quickened"] == true then
+                    isQ = true
+                    return
+                end
+            end
+            if entity.ToggledPassives and entity.ToggledPassives.Passives then
+                if entity.ToggledPassives.Passives["Metamagic_Quickened"] == true then
+                    isQ = true
+                    return
+                end
+            end
+        end
+    end)
+    return isQ
+end
+
 local function HandleSpellInterruption(caster, spell, spellType)
     if not IsCharacterConcentrating(caster) then return end
     
     -- Focus buffs (Bless, Shield of Faith, Guidance, etc.) never break Channel (entering Overclock)
     if GetInnateSpellInfo(spell) ~= nil then return end
     
-    -- Whitelisted utility and tactical actions
+    -- Whitelisted utility and tactical actions (Dodge, Dash, Disengage, Jump, Potions, Class Stances)
     if IsWhitelistedAction(spell) then return end
     
     local rawUuid = caster:match("%x%x%x%x%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%x%x%x%x%x%x%x%x") or caster
-    
-    -- Smites (Divine Smite, Searing Smite, Thunderous Smite, etc.) channel magical spell slots into strikes and break an active Channel spell
-    if spell:lower():find("smite") then
-        Ext.Utils.Print(string.format("[%s] Smite '%s' breaking active channel for %s", MOD_NAME, tostring(spell), tostring(caster)))
-        VoluntaryInterruptionTimes[rawUuid] = Ext.Utils.MonotonicTime()
-        VoluntaryInterruptionTimes[caster] = VoluntaryInterruptionTimes[rawUuid]
-        BreakCharacterConcentration(caster)
-        pcall(function() Osi.ShowOverheadNotice(caster, "Channel broken by Smite!") end)
-        return
-    end
     
     -- If casting another Channel spell, let the native engine handle replacement
     if IsConcentrationSpell(spell) then
@@ -1583,28 +1649,31 @@ local function HandleSpellInterruption(caster, spell, spellType)
         return
     end
     
-    -- War Caster Opportunity Attack reaction
-    if (spell == "Target_ShockingGrasp" or spell:find("ShockingGrasp")) and HasConcentrationAdvantage(caster) then
-        if CurrentTurnCharacter == nil or CurrentTurnCharacter ~= caster then
-            return
-        end
+    -- 1. Cantrips (Level 0 spells) are reflexive magic and never break active Channel
+    if IsCantripSpell(spell) then
+        Ext.Utils.Print(string.format("[%s] Cantrip '%s' permitted while Channeling for %s", MOD_NAME, tostring(spell), tostring(caster)))
+        return
     end
     
-    -- Combat Channeling perks (Gish archetypes)
-    if HasCombatChanneling(caster) then
-        -- Personal reaction defensives (Shield, Absorb Elements)
-        if IsPersonalDefensiveReaction(spell) then
-            Ext.Utils.Print(string.format("[%s] Personal defensive reaction '%s' permitted under Combat Channeling for %s", MOD_NAME, tostring(spell), tostring(caster)))
-            return
-        end
-        
-        -- Melee spell cantrips (Green-Flame Blade, Booming Blade, Vengeful Blade)
-        if IsMeleeSpellCantrip(spell) then
-            Ext.Utils.Print(string.format("[%s] Melee spell cantrip '%s' permitted under Combat Channeling for %s", MOD_NAME, tostring(spell), tostring(caster)))
-            return
-        end
+    -- 2. Bonus Action spells (Misty Step, Healing Word, Spiritual Weapon, etc.) never break active Channel
+    if IsBonusActionSpell(spell) then
+        Ext.Utils.Print(string.format("[%s] Bonus Action spell '%s' permitted while Channeling for %s", MOD_NAME, tostring(spell), tostring(caster)))
+        return
     end
     
+    -- 3. Sorcerer Metamagic: Quickened Spell converts standard action spells to bonus action, permitting casting while Channeling
+    if IsQuickenedActive(caster) then
+        Ext.Utils.Print(string.format("[%s] Quickened spell '%s' permitted while Channeling for %s", MOD_NAME, tostring(spell), tostring(caster)))
+        return
+    end
+    
+    -- 4. Personal reaction defensives (Shield, Absorb Elements) for Combat Channelers or War Caster
+    if IsPersonalDefensiveReaction(spell) and (HasCombatChanneling(caster) or HasConcentrationAdvantage(caster)) then
+        Ext.Utils.Print(string.format("[%s] Personal defensive reaction '%s' permitted under Combat Channeling for %s", MOD_NAME, tostring(spell), tostring(caster)))
+        return
+    end
+    
+    -- 5. Physical weapon actions
     local isWep = false
     pcall(function() isWep = IsWeaponAction(spell, spellType) end)
     
@@ -1621,7 +1690,8 @@ local function HandleSpellInterruption(caster, spell, spellType)
         end
     end
     
-    Ext.Utils.Print(string.format("[%s] Spell '%s' breaking active channel for %s", MOD_NAME, tostring(spell), tostring(caster)))
+    -- 6. Leveled Standard-Action Spells & Offensive Reactions break active Channel
+    Ext.Utils.Print(string.format("[%s] Leveled action spell '%s' breaking active channel for %s", MOD_NAME, tostring(spell), tostring(caster)))
     VoluntaryInterruptionTimes[rawUuid] = Ext.Utils.MonotonicTime()
     VoluntaryInterruptionTimes[caster] = VoluntaryInterruptionTimes[rawUuid]
     BreakCharacterConcentration(caster)
