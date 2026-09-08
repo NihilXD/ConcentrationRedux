@@ -1552,46 +1552,53 @@ local function ReconstructSessionStateFromEngine()
     HasteTargetToCaster = {}
     
     pcall(function()
-        local candidateEntities = {}
-        local function CollectCandidates(db)
-            if not db then return end
+        local candidatePool = {}
+        local function CollectEntities(database)
+            if not database then return end
             pcall(function()
-                local list = db:Get(nil)
+                local list = database:Get(nil)
                 if list then
                     for _, row in ipairs(list) do
-                        local m = row[1]
-                        if m and m ~= "" then
-                            candidateEntities[m] = true
+                        local guid = row[1]
+                        if guid and guid ~= "" and IsValidEntity(guid) then
+                            local raw = guid:match("%x%x%x%x%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%x%x%x%x%x%x%x%x") or guid
+                            candidatePool[raw] = guid
                         end
                     end
                 end
             end)
         end
-        CollectCandidates(Osi.DB_PartyMembers)
-        CollectCandidates(Osi.DB_Players)
-        CollectCandidates(Osi.DB_PartyFollowers)
-        CollectCandidates(Osi.DB_IsPlayerOrPartyMember)
-        CollectCandidates(Osi.DB_CombatCharacters)
+
+        CollectEntities(Osi.DB_Players)
+        CollectEntities(Osi.DB_PartyMembers)
+        CollectEntities(Osi.DB_PartyFollowers)
+        CollectEntities(Osi.DB_IsPlayerOrPartyMember)
+        CollectEntities(Osi.DB_CombatCharacters)
         
         -- Identify which characters are actively concentrating, specifically targeting Haste casters
         local hasteCasters = {}
         local otherConcentrators = {}
-        for member, _ in pairs(candidateEntities) do
-            if IsCharacterConcentrating(member) then
+        for rawGuid, entityGuid in pairs(candidatePool) do
+            if IsCharacterConcentrating(entityGuid) or IsCharacterConcentrating(rawGuid) then
                 local concSpell = nil
                 pcall(function()
-                    concSpell = Osi.GetConcentrationSpell(member)
+                    concSpell = Osi.GetConcentrationSpell(entityGuid)
                 end)
+                if not concSpell and rawGuid ~= entityGuid then
+                    pcall(function()
+                        concSpell = Osi.GetConcentrationSpell(rawGuid)
+                    end)
+                end
                 if concSpell and tostring(concSpell):lower():find("haste") then
-                    hasteCasters[member] = true
+                    hasteCasters[rawGuid] = entityGuid
                 else
-                    otherConcentrators[member] = true
+                    otherConcentrators[rawGuid] = entityGuid
                 end
             end
         end
         
-        for target, _ in pairs(candidateEntities) do
-            local entity = Ext.Entity.Get(target)
+        for rawTarget, target in pairs(candidatePool) do
+            local entity = Ext.Entity.Get(target) or Ext.Entity.Get(rawTarget)
             if entity and entity.StatusMachine and entity.StatusMachine.Statuses then
                 for _, statusObj in ipairs(entity.StatusMachine.Statuses) do
                     local sId = statusObj.StatusId
@@ -1610,13 +1617,13 @@ local function ReconstructSessionStateFromEngine()
                                 causee = target
                             elseif sId == "CHANNEL_HASTE_ALLY" then
                                 -- Ally 10-round Haste: prioritize caster specifically concentrating on Target_Haste
-                                for cm, _ in pairs(hasteCasters) do
-                                    causee = cm
+                                for _, cGuid in pairs(hasteCasters) do
+                                    causee = cGuid
                                     break
                                 end
                                 if not causee or causee == "" then
-                                    for cm, _ in pairs(otherConcentrators) do
-                                        causee = cm
+                                    for _, cGuid in pairs(otherConcentrators) do
+                                        causee = cGuid
                                         break
                                     end
                                 end
@@ -1625,7 +1632,6 @@ local function ReconstructSessionStateFromEngine()
                         
                         if causee and causee ~= "" then
                             local rawCaster = causee:match("%x%x%x%x%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%x%x%x%x%x%x%x%x") or causee
-                            local rawTarget = target:match("%x%x%x%x%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%x%x%x%x%x%x%x%x") or target
                             ActiveHasteChannels[rawCaster] = ActiveHasteChannels[rawCaster] or { Targets = {} }
                             ActiveHasteChannels[rawCaster].Targets[rawTarget] = true
                             ActiveHasteChannels[rawCaster].Targets[target] = true
@@ -1645,9 +1651,9 @@ local function ReconstructSessionStateFromEngine()
                         end
                         
                         if not causee or causee == "" then
-                            for cm, _ in pairs(candidateEntities) do
-                                if Osi.HasActiveStatus(cm, INNATE_CASTER_STATUS) == 1 then
-                                    causee = cm
+                            for _, cGuid in pairs(candidatePool) do
+                                if Osi.HasActiveStatus(cGuid, INNATE_CASTER_STATUS) == 1 then
+                                    causee = cGuid
                                     break
                                 end
                             end
