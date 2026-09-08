@@ -90,11 +90,10 @@ function Build-ModPackage {
     Copy-Item -Recurse -Force (Join-Path $ScriptDir "Mods\$ModName\*") (Join-Path $TempDir "Mods\$ModFolder")
     Copy-Item -Recurse -Force (Join-Path $ScriptDir "Public\$ModName\*") (Join-Path $TempDir "Public\$ModFolder")
     
-    # Place english.loca in both Mods and Public for universal engine discovery (no root Localization)
-    $LocaBin = Join-Path $ScriptDir "Public\$ModName\Localization\English\english.loca"
-    $ModsLoca = Join-Path $TempDir "Mods\$ModFolder\Localization\English"
-    New-Item -ItemType Directory -Force -Path $ModsLoca | Out-Null
-    Copy-Item -Force $LocaBin (Join-Path $ModsLoca "english.loca")
+    # Package structure strictly matches v1.0.5 layout: Localization lives under Public/$ModFolder/Localization/English/
+    # Ensure no duplicate Localization directory under Mods
+    $ModsLoca = Join-Path $TempDir "Mods\$ModFolder\Localization"
+    if (Test-Path $ModsLoca) { Remove-Item -Recurse -Force $ModsLoca }
 
     if (-not (Test-Path $ReleaseDir)) { New-Item -ItemType Directory -Force -Path $ReleaseDir | Out-Null }
     
@@ -111,6 +110,12 @@ function Build-ModPackage {
         Copy-Item -Force $ReleasePak $DestPak -ErrorAction Stop
         Write-Host "  [OK] Installed latest package to active game Mods directory:" -ForegroundColor Green
         Write-Host "       $DestPak" -ForegroundColor Gray
+
+        # Also remove loose files from Game Data directory to prevent collision with the active .pak
+        $LooseMods = Join-Path $GameDir "Data\Mods\$ModName"
+        $LoosePublic = Join-Path $GameDir "Data\Public\$ModName"
+        if (Test-Path $LooseMods) { Remove-Item -Recurse -Force $LooseMods; Write-Host "  [OK] Cleaned conflicting loose files: $LooseMods" -ForegroundColor Gray }
+        if (Test-Path $LoosePublic) { Remove-Item -Recurse -Force $LoosePublic; Write-Host "  [OK] Cleaned conflicting loose files: $LoosePublic" -ForegroundColor Gray }
     } catch {
         Write-Warning "Baldur's Gate 3 is currently running and locking the active .pak file."
         Write-Warning "Close BG3 and re-run to copy into your local game Mods folder."
