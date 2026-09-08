@@ -10,4 +10,38 @@
     <content contentuid="hhaste_desc" version="1">Hasten yourself or an ally, gaining an extra Action, +2 to Armour Class, Advantage on Dexterity Saving Throws, and doubled Movement Speed.&#10;&#10;Concentration Conduit: Unlimited duration when self-cast; lasts 10 rounds when cast on an ally.&#10;&#10;Voluntarily releasing the spell or completing the 10 rounds safely ends Haste without penalty. If your concentration is broken by taking damage, the target becomes Lethargic for 1 turn.</content>
     <content contentuid="hhaste_status_desc" version="1">Target has an extra Action, +2 to Armour Class, Advantage on Dexterity Saving Throws, and doubled Movement Speed.&#10;&#10;Concentration Conduit: Unlimited duration. If concentration is broken by taking damage, the target becomes Lethargic for 1 turn. Voluntarily releasing concentration ends Haste safely without penalty.</content>
     <content contentuid="hhaste_ally_status_desc" version="1">Target has an extra Action, +2 to Armour Class, Advantage on Dexterity Saving Throws, and doubled Movement Speed.&#10;&#10;Concentration Conduit: Lasts 10 rounds. If concentration is broken by taking damage, the target becomes Lethargic for 1 turn. Completing the duration or voluntarily releasing concentration ends Haste safely without penalty.</content>
+    <!-- Focus Spell & Status Tooltip Descriptors -->
+    <content contentuid="hfocus_spell_extra" version="1">Focus Buff: Occupies your single Focus slot with indefinite duration. 100% immune to damage interruption while unburdened; does not conflict with active Concentration conduits.</content>
+    <content contentuid="hfocus_friends_extra" version="1">Focus Buff (10 Turns): Occupies your single Focus slot to protect active combat conduits. Immune to damage interruption while unburdened.</content>
+    <content contentuid="hfocus_bless_name" version="1">Bless (Focus)</content>
+    <content contentuid="hfocus_shield_of_faith_name" version="1">Shield of Faith (Focus)</content>
+    <content contentuid="hfocus_guidance_name" version="1">Guidance (Focus)</content>
+    <content contentuid="hfocus_resistance_name" version="1">Resistance (Focus)</content>
+    <content contentuid="hfocus_blade_ward_name" version="1">Blade Ward (Focus)</content>
+    <content contentuid="hfocus_dancing_lights_name" version="1">Dancing Lights (Focus)</content>
+    <content contentuid="hfocus_friends_name" version="1">Friends (Focus)</content>
+    <content contentuid="hfocus_heroism_name" version="1">Heroism (Focus)</content>
+    <content contentuid="hfocus_prot_evil_good_name" version="1">Protection from Evil and Good (Focus)</content>
+    <content contentuid="hfocus_barkskin_name" version="1">Barkskin (Focus)</content>
+    <content contentuid="hfocus_stoneskin_name" version="1">Stoneskin (Focus)</content>
+    <content contentuid="hfocus_shield_of_thralls_name" version="1">Shield of Thralls (Focus)</content>
+    <content contentuid="hfocus_enlarge_name" version="1">Enlarge (Focus)</content>
+    <content contentuid="hfocus_reduce_name" version="1">Reduce (Focus)</content>
+    <content contentuid="hfocus_fly_name" version="1">Fly (Focus)</content>
+    <content contentuid="hfocus_expeditious_retreat_name" version="1">Expeditious Retreat (Focus)</content>
+    <content contentuid="hfocus_blur_name" version="1">Blur (Focus)</content>
+    <content contentuid="hfocus_magic_weapon_name" version="1">Magic Weapon (Focus)</content>
+    <content contentuid="hfocus_elem_weapon_acid_name" version="1">Elemental Weapon: Acid (Focus)</content>
+    <content contentuid="hfocus_elem_weapon_cold_name" version="1">Elemental Weapon: Cold (Focus)</content>
+    <content contentuid="hfocus_elem_weapon_fire_name" version="1">Elemental Weapon: Fire (Focus)</content>
+    <content contentuid="hfocus_elem_weapon_lightning_name" version="1">Elemental Weapon: Lightning (Focus)</content>
+    <content contentuid="hfocus_elem_weapon_thunder_name" version="1">Elemental Weapon: Thunder (Focus)</content>
+    <content contentuid="hfocus_invisibility_name" version="1">Invisibility (Focus)</content>
+    <content contentuid="hfocus_greater_invisibility_name" version="1">Greater Invisibility (Focus)</content>
+    <content contentuid="hfocus_pass_without_trace_name" version="1">Pass Without Trace (Focus)</content>
+    <content contentuid="hfocus_detect_thoughts_name" version="1">Detect Thoughts (Focus)</content>
+    <content contentuid="hfocus_hunters_mark_name" version="1">Hunter's Mark (Focus)</content>
+    <content contentuid="hfocus_hex_name" version="1">Hex (Focus)</content>
+    <content contentuid="hfocus_bane_name" version="1">Bane (Focus)</content>
+    <content contentuid="hfocus_bestow_curse_name" version="1">Bestow Curse (Focus)</content>
 </contentList>
