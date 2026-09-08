@@ -123,6 +123,10 @@ In vanilla Baldur's Gate 3, defensive and utility cantrips often suffer from awk
 [list]
 [*]Updated all 326+ in-game combat Channel spell cards with explicit spell-weaving guidance: [i]"Casting Cantrips, Bonus Action spells, or Quickened spells does not break Channel."[/i]
 [/list]
+[*][b]Counterspell & Interrupted Cast Icon Cleanup:[/b]
+[list]
+[*]Fixed an issue where casting a Focus spell that was Counterspelled or interrupted left an orphaned Focus concentration icon on the caster's portrait. Spell focus application is now strictly deferred until spell resolution, and [i]CastSpellFailed[/i] events immediately clean up any pending casts and synchronization trackers.
+[/list]
 [/list]
 
 [size=4][color=#ffd700][b]v1.1.0 (DnD 5.5e Beyond Compatibility & Comprehensive Tooltips)[/b][/color][/size]
