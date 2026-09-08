@@ -128,6 +128,22 @@ The **War Caster** feat (`WarCaster_Concentration`) integrates directly into bot
 
 ## Changelog
 
+### v1.0.5
+- **Haste Dual Duration & Intelligent Lethargy System**:
+  - **Self-Cast (Indefinite)**: Operates as a continuous combat conduit with unlimited duration for as long as concentration is maintained.
+  - **Ally-Cast (10 Rounds)**: Standard tactical duration of 10 rounds (60 seconds) when cast on party members, companions, or summons.
+  - **Safe Release (No Lethargy)**: Voluntarily ending *Haste*—via portrait "X", casting non-whitelisted spells or offensive reactions, swapping concentration, or letting the 10 rounds expire naturally on an ally—safely releases the recipient with zero Lethargy (*"Haste Ended (Safe Release)"*).
+  - **Involuntary Disruption (Inflicts Lethargy)**: Breaking concentration involuntarily via damage, environmental surfaces, or hard crowd control (*Hold Person*, *Sleep*, *Hypnotic Pattern*, *Banishment*, *Stun*, *Paralyze*) inflicts 1 turn of Lethargy (*"Lethargic! (Damage/Incapacitated Disruption)"*).
+  - **Sorcerer Twinned Haste Support**: Twinned Haste grants the caster an indefinite buff while the ally receives the 10-round buff. When the ally's duration expires, the ally releases safely without Lethargy, leaving the caster's Haste intact.
+  - **In-Game Tooltips**: Fully updated spell card and status tooltips reflecting dual-duration and intelligent lethargy rules.
+- **Gish Reaction Defensives & Melee Cantrips**:
+  - Combat Channelers and characters with *War Caster* (enabling build-your-own gish setups on pure Sorcerers or Wizards) can cast personal reaction defensives (*Shield*, *Absorb Elements*) and melee spell cantrips (*Green-Flame Blade*, *Booming Blade*, *Vengeful Blade*) without breaking active Concentration.
+  - Offensive counter-magic (*Counterspell*) and retaliatory damage reactions (*Hellish Rebuke*) demand full casting focus and continue to shatter active conduits for all casters.
+- **Gish Combat Stances & Class Forms**:
+  - Activating martial class stances and disciplines (*Bladesong*, *Symbiotic Entity*, *Bind Pact Weapon*, *Hexblade's Curse*, *Weapon Bond*, Monk Ki maneuvers/stances, Bardic *Blade Flourishes*, and martial *Channel Divinities*) never breaks active Concentration conduits.
+- **Loss of Control & Hard CC**:
+  - Hard incapacitation conditions (*Stunned*, *Paralyzed*, *Sleeping*, *Incapacitated*, *Banished*) reliably sever concentration and trigger full disruption penalties.
+
 ### v1.0.4
 - **Blade Ward Focus Conversion**:
   - Converted *Blade Ward* (`Shout_BladeWard`) into an indefinite **Focus** buff (`INNATE_BUFF_BLADE_WARD`, duration -1).
