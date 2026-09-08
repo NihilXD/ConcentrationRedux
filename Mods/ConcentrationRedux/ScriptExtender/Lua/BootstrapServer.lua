@@ -210,7 +210,6 @@ local INNATE_SPELLS = {
     ["Target_Barkskin"] = { Status = "INNATE_BUFF_BARKSKIN" },
     ["Target_Stoneskin"] = { Status = "INNATE_BUFF_STONESKIN" },
     ["Target_ShieldOfThralls"] = { Status = "INNATE_BUFF_SHIELD_OF_THRALLS" },
-    ["Target_Haste"] = { Status = "INNATE_BUFF_HASTE" },
     ["Target_EnlargeReduce"] = { Status = "INNATE_BUFF_ENLARGE" },
     ["Target_Fly"] = { Status = "INNATE_BUFF_FLY" },
     ["Target_Fly_4"] = { Status = "INNATE_BUFF_FLY" },
@@ -606,6 +605,82 @@ local function CleanUpInnateBuffs(caster)
     Ext.Utils.Print(string.format("[%s] Cleaned up innate buffs for caster: %s", MOD_NAME, tostring(caster)))
 end
 
+-- ==============================================================================
+-- Haste Channel Tracking (Channel Conduit with Conditional Lethargy)
+-- ==============================================================================
+local ActiveHasteChannels = {}        -- [casterUuid] = { Targets = { [targetUuid] = true } }
+local HasteTargetToCaster = {}        -- [targetUuid] = casterUuid
+local LastDamageTimes = {}            -- [charUuid] = monotonic_timestamp
+local VoluntaryInterruptionTimes = {} -- [charUuid] = monotonic_timestamp
+local PendingHasteCaster = nil
+local PendingHasteTime = 0
+
+local function ResolveHasteTermination(caster, target)
+    local rawCaster = nil
+    if caster and caster ~= "" then
+        rawCaster = caster:match("%x%x%x%x%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%x%x%x%x%x%x%x%x") or caster
+    end
+    local hasteInfo = nil
+    if rawCaster then
+        hasteInfo = ActiveHasteChannels[rawCaster] or ActiveHasteChannels[caster]
+    end
+    if not hasteInfo and target and target ~= "" then
+        local rawTarget = target:match("%x%x%x%x%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%x%x%x%x%x%x%x%x") or target
+        local mappedCaster = HasteTargetToCaster[rawTarget] or HasteTargetToCaster[target]
+        if mappedCaster then
+            rawCaster = mappedCaster
+            hasteInfo = ActiveHasteChannels[rawCaster] or ActiveHasteChannels[mappedCaster]
+        end
+    end
+    
+    if not hasteInfo then return end
+    
+    local now = Ext.Utils.MonotonicTime()
+    local lastDmg = 0
+    local lastVol = 0
+    if rawCaster then
+        lastDmg = LastDamageTimes[rawCaster] or (caster and LastDamageTimes[caster]) or 0
+        lastVol = VoluntaryInterruptionTimes[rawCaster] or (caster and VoluntaryInterruptionTimes[caster]) or 0
+    end
+    
+    local tookRecentDamage = (now - lastDmg < 800)
+    local wasVoluntary = (now - lastVol < 1200)
+    local isBrokenByDamage = tookRecentDamage and not wasVoluntary
+    
+    for hasteTarget, _ in pairs(hasteInfo.Targets) do
+        if isBrokenByDamage then
+            Ext.Utils.Print(string.format("[%s] Haste channel broken by damage! Applying Lethargy to %s", MOD_NAME, tostring(hasteTarget)))
+            pcall(function()
+                Osi.ApplyStatus(hasteTarget, "HASTE_LETHARGY", 6.0, 1)
+                Osi.ShowOverheadNotice(hasteTarget, "Lethargic! (Damage Disruption)")
+            end)
+        else
+            Ext.Utils.Print(string.format("[%s] Haste channel ended voluntarily. No Lethargy applied to %s", MOD_NAME, tostring(hasteTarget)))
+            pcall(function()
+                Osi.ShowOverheadNotice(hasteTarget, "Haste Ended (Safe Release)")
+            end)
+        end
+        
+        pcall(function()
+            if Osi.HasActiveStatus(hasteTarget, "CHANNEL_HASTE") == 1 then
+                Osi.RemoveStatus(hasteTarget, "CHANNEL_HASTE")
+            end
+            if Osi.HasActiveStatus(hasteTarget, "INNATE_BUFF_HASTE") == 1 then
+                Osi.RemoveStatus(hasteTarget, "INNATE_BUFF_HASTE")
+            end
+        end)
+        
+        local rawHasteTarget = hasteTarget:match("%x%x%x%x%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%x%x%x%x%x%x%x%x") or hasteTarget
+        HasteTargetToCaster[rawHasteTarget] = nil
+        HasteTargetToCaster[hasteTarget] = nil
+    end
+    
+    if rawCaster then
+        ActiveHasteChannels[rawCaster] = nil
+        if caster then ActiveHasteChannels[caster] = nil end
+    end
+end
+
 local function GetConstitutionSaveBonus(entityGuid)
     local bonus = 0
     pcall(function()
@@ -646,6 +721,10 @@ end
 
 -- Hook cast start: record spell and clear prior buffs if switching spells
 Ext.Osiris.RegisterListener("UsingSpell", 5, "after", function(caster, spell, spellType, spellElement, storyActionID)
+    if spell == "Target_Haste" or (spell and spell:find("Target_Haste")) then
+        PendingHasteCaster = caster
+        PendingHasteTime = Ext.Utils.MonotonicTime()
+    end
     local innateInfo = GetInnateSpellInfo(spell)
     if innateInfo then
         local existing = ActiveInnateCasters[caster]
@@ -664,9 +743,43 @@ Ext.Osiris.RegisterListener("UsingSpell", 5, "after", function(caster, spell, sp
     end
 end)
 
--- Hook every recipient receiving the innate buff status
+-- Hook every recipient receiving the innate buff status or Haste channel
 Ext.Osiris.RegisterListener("StatusApplied", 4, "after", function(target, status, causee, storyActionID)
-    if status:find("INNATE_BUFF_") then
+    if status == "CHANNEL_HASTE" or status == "INNATE_BUFF_HASTE" then
+        local caster = causee
+        local now = Ext.Utils.MonotonicTime()
+        if (not caster or caster == "") and PendingHasteCaster and (now - PendingHasteTime < 2500) then
+            caster = PendingHasteCaster
+        end
+        if not caster or caster == "" then
+            pcall(function()
+                local party = Osi.DB_PartyMembers:Get(nil) or Osi.DB_Players:Get(nil)
+                if party then
+                    for _, row in ipairs(party) do
+                        local m = row[1]
+                        if m and IsCharacterConcentrating(m) then
+                            caster = m
+                            break
+                        end
+                    end
+                end
+            end)
+        end
+        if caster and caster ~= "" then
+            local rawCaster = caster:match("%x%x%x%x%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%x%x%x%x%x%x%x%x") or caster
+            local rawTarget = target:match("%x%x%x%x%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%x%x%x%x%x%x%x%x") or target
+            ActiveHasteChannels[rawCaster] = ActiveHasteChannels[rawCaster] or { Targets = {} }
+            ActiveHasteChannels[rawCaster].Targets[rawTarget] = true
+            ActiveHasteChannels[rawCaster].Targets[target] = true
+            ActiveHasteChannels[caster] = ActiveHasteChannels[rawCaster]
+            
+            HasteTargetToCaster[rawTarget] = rawCaster
+            HasteTargetToCaster[target] = rawCaster
+            Ext.Utils.Print(string.format("[%s] Registered Haste channel: Caster %s -> Target %s", MOD_NAME, tostring(caster), tostring(target)))
+        end
+    end
+
+    if status:find("INNATE_BUFF_") and status ~= "INNATE_BUFF_HASTE" then
         if causee and causee ~= "" then
             if not ActiveInnateCasters[causee] then
                 ActiveInnateCasters[causee] = {
@@ -742,6 +855,10 @@ Ext.Osiris.RegisterListener("StatusRemoved", 4, "after", function(target, status
         if Osi.HasActiveStatus(target, CONC_TRACKER_STATUS) == 1 then
             Osi.RemoveStatus(target, CONC_TRACKER_STATUS)
         end
+        ResolveHasteTermination(target, nil)
+    end
+    if status == "CHANNEL_HASTE" or status == "INNATE_BUFF_HASTE" then
+        ResolveHasteTermination(nil, target)
     end
     if status == INNATE_CASTER_STATUS then
         CleanUpInnateBuffs(target)
@@ -753,6 +870,7 @@ Ext.Osiris.RegisterListener("Died", 1, "after", function(char)
     if Osi.HasActiveStatus(char, CONC_TRACKER_STATUS) == 1 then
         Osi.RemoveStatus(char, CONC_TRACKER_STATUS)
     end
+    ResolveHasteTermination(char, nil)
     if ActiveInnateCasters[char] then
         Osi.RemoveStatus(char, INNATE_CASTER_STATUS)
         CleanUpInnateBuffs(char)
@@ -771,6 +889,8 @@ Ext.Osiris.RegisterListener("LongRestStarted", 0, "after", function()
         CleanUpInnateBuffs(caster)
     end
     ActiveInnateCasters = {}
+    ActiveHasteChannels = {}
+    HasteTargetToCaster = {}
 end)
 
 -- Cleanup on Withers Respec
@@ -883,16 +1003,24 @@ local function HandleSpellInterruption(caster, spell, spellType)
     -- Whitelisted utility and tactical actions
     if IsWhitelistedAction(spell) then return end
     
+    local rawUuid = caster:match("%x%x%x%x%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%x%x%x%x%x%x%x%x") or caster
+    
     -- Smites (Divine Smite, Searing Smite, Thunderous Smite, etc.) channel magical spell slots into strikes and shatter active conduits
     if spell:lower():find("smite") then
         Ext.Utils.Print(string.format("[%s] Smite '%s' breaking active channel for %s", MOD_NAME, tostring(spell), tostring(caster)))
+        VoluntaryInterruptionTimes[rawUuid] = Ext.Utils.MonotonicTime()
+        VoluntaryInterruptionTimes[caster] = VoluntaryInterruptionTimes[rawUuid]
         BreakCharacterConcentration(caster)
         pcall(function() Osi.ShowOverheadNotice(caster, "Channel broken by Smite!") end)
         return
     end
     
     -- If casting another concentration conduit spell, let the native engine handle replacement
-    if IsConcentrationSpell(spell) then return end
+    if IsConcentrationSpell(spell) then
+        VoluntaryInterruptionTimes[rawUuid] = Ext.Utils.MonotonicTime()
+        VoluntaryInterruptionTimes[caster] = VoluntaryInterruptionTimes[rawUuid]
+        return
+    end
     
     -- War Caster Opportunity Attack reaction
     if (spell == "Target_ShockingGrasp" or spell:find("ShockingGrasp")) and HasConcentrationAdvantage(caster) then
@@ -909,6 +1037,8 @@ local function HandleSpellInterruption(caster, spell, spellType)
             return
         else
             Ext.Utils.Print(string.format("[%s] Physical action '%s' breaking active channel for %s", MOD_NAME, tostring(spell), tostring(caster)))
+            VoluntaryInterruptionTimes[rawUuid] = Ext.Utils.MonotonicTime()
+            VoluntaryInterruptionTimes[caster] = VoluntaryInterruptionTimes[rawUuid]
             BreakCharacterConcentration(caster)
             pcall(function() Osi.ShowOverheadNotice(caster, "Channel broken by physical attack!") end)
             return
@@ -916,6 +1046,8 @@ local function HandleSpellInterruption(caster, spell, spellType)
     end
     
     Ext.Utils.Print(string.format("[%s] Spell '%s' breaking active channel for %s", MOD_NAME, tostring(spell), tostring(caster)))
+    VoluntaryInterruptionTimes[rawUuid] = Ext.Utils.MonotonicTime()
+    VoluntaryInterruptionTimes[caster] = VoluntaryInterruptionTimes[rawUuid]
     BreakCharacterConcentration(caster)
     pcall(function() Osi.ShowOverheadNotice(caster, "Channel broken by spellcasting!") end)
 end
@@ -1064,6 +1196,11 @@ if Ext.Events and Ext.Events.DealDamage then
         end)
         if not targetGuid then return end
         
+        local rawUuid = targetGuid:match("%x%x%x%x%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%x%x%x%x%x%x%x%x") or targetGuid
+        local tNow = Ext.Utils.MonotonicTime()
+        LastDamageTimes[rawUuid] = tNow
+        LastDamageTimes[targetGuid] = tNow
+        
         local totalDmg = 0
         pcall(function()
             if e.Attack and type(e.Attack) == "number" then
@@ -1086,6 +1223,10 @@ end
 
 -- Osiris AttackedBy fallback for physical weapon attack hits
 Ext.Osiris.RegisterListener("AttackedBy", 7, "after", function(defender, attackerOwner, attacker, damageType, damageAmount, damageCause, storyActionID)
+    local rawUuid = defender:match("%x%x%x%x%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%x%x%x%x%x%x%x%x") or defender
+    local tNow = Ext.Utils.MonotonicTime()
+    LastDamageTimes[rawUuid] = tNow
+    LastDamageTimes[defender] = tNow
     local dmg = tonumber(damageAmount) or 0
     if dmg <= 0 then dmg = 1 end
     pcall(function()
@@ -1110,7 +1251,24 @@ local function ReconstructSessionStateFromEngine()
             if entity and entity.StatusMachine and entity.StatusMachine.Statuses then
                 for _, statusObj in ipairs(entity.StatusMachine.Statuses) do
                     local sId = statusObj.StatusId
-                    if sId and sId:find("INNATE_BUFF_") then
+                    if sId and (sId == "CHANNEL_HASTE" or sId == "INNATE_BUFF_HASTE") then
+                        local causee = nil
+                        if statusObj.Causee and statusObj.Causee.EntityUuid then
+                            causee = statusObj.Causee.EntityUuid
+                        elseif statusObj.StatusCausee and statusObj.StatusCausee.EntityUuid then
+                            causee = statusObj.StatusCausee.EntityUuid
+                        end
+                        if causee then
+                            local rawCaster = causee:match("%x%x%x%x%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%x%x%x%x%x%x%x%x") or causee
+                            local rawTarget = target:match("%x%x%x%x%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%x%x%x%x%x%x%x%x") or target
+                            ActiveHasteChannels[rawCaster] = ActiveHasteChannels[rawCaster] or { Targets = {} }
+                            ActiveHasteChannels[rawCaster].Targets[rawTarget] = true
+                            ActiveHasteChannels[rawCaster].Targets[target] = true
+                            HasteTargetToCaster[rawTarget] = rawCaster
+                            HasteTargetToCaster[target] = rawCaster
+                        end
+                    end
+                    if sId and sId:find("INNATE_BUFF_") and sId ~= "INNATE_BUFF_HASTE" then
                         local causee = nil
                         if statusObj.Causee and statusObj.Causee.EntityUuid then
                             causee = statusObj.Causee.EntityUuid

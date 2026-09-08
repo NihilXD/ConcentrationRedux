@@ -11,7 +11,7 @@ A Baldur's Gate 3 mod powered by Norbyte's **Script Extender (BG3SE)** that rede
 ## The Philosophy: Cognitive Bandwidth
 
 In vanilla 5e / Baldur's Gate 3, concentration creates arbitrary friction:
-- High-value party buffs (*Bless*, *Shield of Faith*, *Haste*) compete with active combat emanations (*Spirit Guardians*, *Wall of Fire*), turning casters into passive buff-bots or forcing them to completely abandon party support.
+- High-value party buffs (*Bless*, *Shield of Faith*, *Heroism*) compete with active combat emanations and conduits (*Spirit Guardians*, *Wall of Fire*, *Haste*), turning casters into passive buff-bots or forcing them to completely abandon party support.
 - Buffs vanish from stray 1-damage surface ticks or off-screen archers.
 - Outside turn-based combat, 10-turn (60-second) timers expire while looting chests or reading dialogue.
 
@@ -19,8 +19,8 @@ In vanilla 5e / Baldur's Gate 3, concentration creates arbitrary friction:
 
 | Stance | Conditions | Defensive Resilience | Allowed Actions |
 |---|---|---|---|
-| **Pure Support** (Solo Focus) | Only Focus is active (*Bless*, *Shield of Faith*, *Heroism*, *Haste*, etc.) | **100% Unbreakable by Damage**. No Constitution saving throws against damage ticks or surfaces. Hard CC (Stun, Paralysis, Sleep, Incapacitation) shatters Focus. | All actions, spells, and attacks permitted. Indefinite duration until Long Rest or manual dismissal. |
-| **Dedicated Juggernaut** (Solo Concentration) | Only a Concentration spell is active (*Spirit Guardians*, *Wall of Fire*, *Hold Person*, *Fog Cloud*) | Uses native engine concentration slot with standard Con saves. Benefits from **War Caster** Advantage. | Whitelisted stances (*Dodge*, *Dash*, *Shove*, *Throw*, etc.). Weapon attacks permitted for **Combat Domains** (*War*, *Tempest*). Casting other spells breaks concentration. |
+| **Pure Support** (Solo Focus) | Only Focus is active (*Bless*, *Shield of Faith*, *Heroism*, *Blade Ward*, etc.) | **100% Unbreakable by Damage**. No Constitution saving throws against damage ticks or surfaces. Hard CC (Stun, Paralysis, Sleep, Incapacitation) shatters Focus. | All actions, spells, and attacks permitted. Indefinite duration until Long Rest or manual dismissal. |
+| **Dedicated Juggernaut** (Solo Concentration) | Only a Concentration spell is active (*Haste*, *Spirit Guardians*, *Wall of Fire*, *Hold Person*, *Fog Cloud*) | Uses native engine concentration slot with standard Con saves. Benefits from **War Caster** Advantage. | Whitelisted stances (*Dodge*, *Dash*, *Shove*, *Throw*, etc.). Weapon attacks permitted for **Combat Domains** (*War*, *Tempest*). Casting other spells breaks concentration. |
 | **The Overclock** (Both Active) | Both Focus and Concentration are maintained simultaneously | **Dual Focus Bandwidth**: Focus remains resilient while Concentration rolls standard saves with **War Caster** Advantage. | Pushes mental focus to the limit. If Concentration drops first, the remaining Focus gracefully continues undisturbed. |
 
 ---
@@ -32,7 +32,7 @@ In vanilla 5e / Baldur's Gate 3, concentration creates arbitrary friction:
 - **Utility & Exploration**: *Dancing Lights* (indefinite remote illumination that never strips pre-cast buffs)
 - **Social Charms (10-Turn Timer)**: *Friends* (routed to Focus to protect combat conduits during dialogue checks, while retaining its 10-turn timer for Tactician/Honour Mode hostility)
 - **Single-Target Marks**: *Hunter's Mark*, *Hex*, *Bane*, *Bestow Curse*
-- **Physical Augmentations**: *Haste*, *Enlarge/Reduce*, *Fly*, *Expeditious Retreat*, *Blur*, *Magic Weapon*, *Elemental Weapon*
+- **Physical Augmentations**: *Enlarge/Reduce*, *Fly*, *Expeditious Retreat*, *Blur*, *Magic Weapon*, *Elemental Weapon*
 - **Stealth & Senses**: *Invisibility*, *Greater Invisibility*, *Pass Without Trace*, *Detect Thoughts*
 
 *Note: Focus buffs are mutually exclusive per caster. Casting a new Focus spell naturally replaces the active one.*
@@ -43,6 +43,7 @@ In vanilla 5e / Baldur's Gate 3, concentration creates arbitrary friction:
 > - **Bound Equipment & Scrolls**: Spells granted by equipment, weapons, armor, accessories (e.g. *Darkfire Shortbow*, *The Whispering Promise*, *Hellrider's Pride*, amulets/rings), and consumable scrolls intentionally follow **standard vanilla rules** (temporary duration, normal engine concentration or status, and standard damage saving throws) to preserve class identity and prevent item cheese.
 
 ### 2. Concentration (Combat Stances & Conduits)
+- **Tactical Speed & Augmentation Conduits**: *Haste* (Indefinite Channel Conduit with Intelligent Lethargy Resolution: voluntary dismissals via the portrait "X", hard-cast spells, reaction spells, or concentration swaps safely release the recipient with **no Lethargy**; failing a concentration save due to damage breaks the conduit and inflicts 1 turn of **Lethargy**).
 - **Emanations & Auras**: *Spirit Guardians* (Radiant / Necrotic), *Aura of Vitality*, *Crusader's Mantle*, *Holy Aura*
 - **Sustained Beams & Activations**: *Call Lightning*, *Moonbeam*, *Witch Bolt*, *Heat Metal*, *Sunbeam*, *Eyebite*, *Telekinesis*
 - **Hazard Anchors**: *Wall of Fire*, *Darkness*, *Cloud of Daggers*, *Fog Cloud*, *Silence*, *Spike Growth*, *Sleet Storm*, *Hunger of Hadar*, *Cloudkill*, *Evard's Black Tentacles*, *Insect Plague*
@@ -65,8 +66,8 @@ In vanilla Baldur's Gate 3, defensive and utility cantrips often suffer from awk
 - If a caster is afflicted with `STUNNED`, `PARALYZED`, `PETRIFIED`, `SLEEP`, `UNCONSCIOUS`, `KNOCKED_OUT`, `INCAPACITATED`, `BANISHED`, `POLYMORPH`, or `DOWNED`/`DEAD`, Focus and all linked party buffs immediately collapse, honoring standard 5e rules.
 
 ### 6. Manual Dismissal (Releasing Spells Voluntarily)
-- **Dismissing Focus (Buffs)**: While maintaining Focus (*Bless*, *Haste*, *Shield of Faith*, *Guidance*), the caster automatically gains a free, 0-action cost **Dismiss Focus** ability (`Shout_DismissInnateConcentration`) on their hotbar. Using it voluntarily releases Focus on demand without needing to cast another spell or rest.
-- **Dismissing Concentration (Conduits)**: Because Concentration (*Spirit Guardians*, *Wall of Fire*, *Cloud of Daggers*, *Hold Person*, *Fog Cloud*) runs in the engine's native concentration slot, players can cancel it at any moment using Baldur's Gate 3's **native "X" button** located directly beneath the character's portrait on the bottom-left HUD, or by casting another spell.
+- **Dismissing Focus (Buffs)**: While maintaining Focus (*Bless*, *Shield of Faith*, *Blade Ward*, *Guidance*), the caster automatically gains a free, 0-action cost **Dismiss Focus** ability (`Shout_DismissInnateConcentration`) on their hotbar. Using it voluntarily releases Focus on demand without needing to cast another spell or rest.
+- **Dismissing Concentration (Conduits)**: Because Concentration (*Haste*, *Spirit Guardians*, *Wall of Fire*, *Cloud of Daggers*, *Hold Person*, *Fog Cloud*) runs in the engine's native concentration slot, players can cancel it at any moment using Baldur's Gate 3's **native "X" button** located directly beneath the character's portrait on the bottom-left HUD, or by casting another spell. For *Haste*, voluntarily dismissing it releases the buff cleanly **without causing Lethargy**.
 
 ### 7. Reaction Spells (Strict Mode Enforced)
 - **Zero Spell Magic While Channeling**: Casting reaction spells (*Shield*, *Counterspell*, *Hellish Rebuke*) immediately **shatters** Channeling. Maintaining a continuous combat conduit demands 100% of your magical bandwidth; attempting to weave an emergency spell snaps the tether.

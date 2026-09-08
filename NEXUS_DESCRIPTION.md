@@ -7,8 +7,8 @@
 In D&D 5e and vanilla Baldur's Gate 3, nearly every iconic spell competes for a single, restrictive concentration slot. Casting a staple buff like *Bless* or *Shield of Faith* locks your caster out of using combat spells like *Spirit Guardians*, *Wall of Fire*, *Call Lightning*, or *Hold Person*. Worse, buffs vanish from a single 1-damage surface tick or an off-screen archer, and 10-turn timers expire while looting chests or reading dialogue.
 
 **Concentration Redux** redesigns spellcaster focus into two distinct, congruent cognitive layers:
-- **Focus (Buff Layer):** Indefinite, damage-unbreakable utility and defensive wards (*Bless*, *Shield of Faith*, *Haste*, *Heroism*).
-- **Concentration (Conduit Layer):** High-intensity, stance-based combat conduits (*Spirit Guardians*, *Wall of Fire*, *Fog Cloud*, *Moonbeam*).
+- **Focus (Buff Layer):** Indefinite, damage-unbreakable utility and defensive wards (*Bless*, *Shield of Faith*, *Blade Ward*, *Heroism*).
+- **Concentration (Conduit Layer):** High-intensity, stance-based combat conduits (*Haste*, *Spirit Guardians*, *Wall of Fire*, *Fog Cloud*, *Moonbeam*).
 - **The Overclock:** Maintain both simultaneously! Pushes mental bandwidth to the limit with independent saving throws.
 
 ---
@@ -34,8 +34,9 @@ In D&D 5e and vanilla Baldur's Gate 3, nearly every iconic spell competes for a 
   - **Utility & Exploration:** *Dancing Lights* (indefinite remote illumination that never strips pre-cast buffs)
   - **Social Charms (10-Turn Timer):** *Friends* (routed to Focus to protect combat conduits during dialogue checks, while retaining its 10-turn timer for Tactician/Honour Mode hostility)
   - **Single-Target Marks:** *Hunter's Mark*, *Hex*, *Bane*, *Bestow Curse* (reapplication abilities are whitelisted and never break active conduits)
-  - **Augmentations & Stealth:** *Haste*, *Enlarge/Reduce*, *Fly*, *Blur*, *Invisibility*, *Pass Without Trace*, *Detect Thoughts*
+  - **Augmentations & Stealth:** *Enlarge/Reduce*, *Fly*, *Blur*, *Invisibility*, *Pass Without Trace*, *Detect Thoughts*
 - **Concentration Spells (Combat Conduits):**
+  - Speed & Augmentation Conduits: *Haste* (Indefinite Channel Conduit: voluntary dismissal via portrait "X", hard-cast spells, reaction spells, or concentration swaps cleanly ends Haste with **no Lethargy**; channel broken via damage inflicts 1 turn of **Lethargy**)
   - Auras & Beams: *Spirit Guardians*, *Aura of Vitality*, *Crusader's Mantle*, *Call Lightning*, *Moonbeam*, *Witch Bolt*, *Heat Metal*, *Sunbeam*, *Telekinesis*
   - Hazard Anchors: *Wall of Fire*, *Cloud of Daggers*, *Fog Cloud*, *Darkness*, *Silence*, *Spike Growth*, *Sleet Storm*, *Hunger of Hadar*, *Cloudkill*
   - Hard CC: *Hold Person*, *Hold Monster*, *Hypnotic Pattern*, *Banishment*, *Tasha's Hideous Laughter*, *Slow*, *Confusion*
