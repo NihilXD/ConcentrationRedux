@@ -1297,3 +1297,71 @@ data "SpellType" "Projectile"
 using "Projectile_HailOfThorns"
 data "Description" "hprojectile_hailofthorns_desc;1"
 
+// --- Faerie Fire Variants ---
+new entry "Target_FaerieFire_DrowMagic"
+type "SpellData"
+data "SpellType" "Target"
+using "Target_FaerieFire_DrowMagic"
+data "Description" "htarget_faeriefire_desc;10"
+
+new entry "Target_FaerieFire_2"
+type "SpellData"
+data "SpellType" "Target"
+using "Target_FaerieFire_2"
+data "Description" "h1b41d13bg42dcg47cfg91dbga2a2dfbb359e;10"
+
+new entry "Target_FaerieFire_3"
+type "SpellData"
+data "SpellType" "Target"
+using "Target_FaerieFire_3"
+data "Description" "h77edd615ge0e4g4921gb33cg01a31efe15f5;10"
+
+new entry "Target_FaerieFire_4"
+type "SpellData"
+data "SpellType" "Target"
+using "Target_FaerieFire_4"
+data "Description" "htarget_faeriefire_desc;10"
+
+new entry "Target_FaerieFire_5"
+type "SpellData"
+data "SpellType" "Target"
+using "Target_FaerieFire_5"
+data "Description" "htarget_faeriefire_desc;10"
+
+new entry "Target_FaerieFire_6"
+type "SpellData"
+data "SpellType" "Target"
+using "Target_FaerieFire_6"
+data "Description" "htarget_faeriefire_desc;10"
+
+new entry "Target_FaerieFire_spellscroll"
+type "SpellData"
+data "SpellType" "Target"
+using "Target_FaerieFire_spellscroll"
+data "Description" "htarget_faeriefire_desc;10"
+
+// --- Arcane Gate ---
+new entry "Teleportation_ArcaneGate"
+type "SpellData"
+data "SpellType" "Teleportation"
+using "Teleportation_ArcaneGate"
+data "Description" "hteleportation_arcanegate_desc;10"
+
+new entry "Teleportation_ArcaneGate_spellscroll"
+type "SpellData"
+data "SpellType" "Teleportation"
+using "Teleportation_ArcaneGate_spellscroll"
+data "Description" "hteleportation_arcanegate_desc;10"
+
+// --- Holy Weapon (DnD 5.5e) ---
+new entry "Target_HolyWeapon"
+type "SpellData"
+data "SpellType" "Target"
+using "Target_HolyWeapon"
+data "Description" "htarget_holyweapon_desc;10"
+
+new entry "Target_HolyWeapon_spellscroll"
+type "SpellData"
+data "SpellType" "Target"
+using "Target_HolyWeapon_spellscroll"
+data "Description" "htarget_holyweapon_desc;10"
