@@ -126,7 +126,7 @@ if ($Deploy) {
     & $DivinePath -g bg3 -a create-package -s $TempDir -d $ReleasePak -c lz4
     Remove-Item -Recurse -Force $TempDir
 
-    $ZipPath = Join-Path $ReleaseDir "ConcentrationRedux-v1.0.4.zip"
+    $ZipPath = Join-Path $ReleaseDir "ConcentrationRedux-v1.0.5.zip"
     if (Test-Path $ZipPath) { Remove-Item -Force $ZipPath }
     Compress-Archive -Path $ReleasePak -DestinationPath $ZipPath -Force
     Write-Host "  [OK] Created Release package and zip archive:" -ForegroundColor Green
