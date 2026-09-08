@@ -67,13 +67,63 @@ try {
         $LocaBin = Join-Path $ScriptDir "Public\$ModName\Localization\English\english.loca"
         & $DivinePath -g bg3 -a convert-loca -s $LocaXml -d $LocaBin | Out-Null
         Write-Host "  [OK] Compiled english.loca" -ForegroundColor Green
+
+        # Sync localization to Mods directory for Patch 7 engine compatibility
+        $ModsLoca = Join-Path $ScriptDir "Mods\$ModName\Localization\English"
+        New-Item -ItemType Directory -Force -Path $ModsLoca | Out-Null
+        Copy-Item -Force $LocaBin (Join-Path $ModsLoca "english.loca")
+        Copy-Item -Force $LocaXml (Join-Path $ModsLoca "english.xml")
+        Write-Host "  [OK] Synchronized localization to Mods\$ModName\Localization\English" -ForegroundColor Green
     }
 } catch {
     Write-Error "Syntax error in project files: $_"
     exit 1
 }
 
-# 3. Deployment / Cleaning
+# 3. Deployment / Cleaning / Packaging
+$ModFolder = "ConcentrationRedux_5ca2dda8-eedc-41be-95f0-50747d552d10"
+$DestPak = Join-Path $env:LOCALAPPDATA "Larian Studios\Baldur's Gate 3\Mods\$ModFolder.pak"
+$ReleaseDir = Join-Path $ScriptDir "Release"
+$ReleasePak = Join-Path $ReleaseDir "$ModFolder.pak"
+
+function Build-ModPackage {
+    Write-Host "`n[*] Packaging $ModFolder.pak..." -ForegroundColor Yellow
+    $TempDir = Join-Path $env:TEMP "ConcentrationRedux_pkg"
+    if (Test-Path $TempDir) { Remove-Item -Recurse -Force $TempDir }
+    
+    New-Item -ItemType Directory -Force -Path (Join-Path $TempDir "Mods\$ModFolder") | Out-Null
+    New-Item -ItemType Directory -Force -Path (Join-Path $TempDir "Public\$ModFolder") | Out-Null
+    New-Item -ItemType Directory -Force -Path (Join-Path $TempDir "Localization\English") | Out-Null
+
+    Copy-Item -Recurse -Force (Join-Path $ScriptDir "Mods\$ModName\*") (Join-Path $TempDir "Mods\$ModFolder")
+    Copy-Item -Recurse -Force (Join-Path $ScriptDir "Public\$ModName\*") (Join-Path $TempDir "Public\$ModFolder")
+    
+    $LocaBin = Join-Path $ScriptDir "Public\$ModName\Localization\English\english.loca"
+    $LocaXml = Join-Path $ScriptDir "Public\$ModName\Localization\English\english.loca.xml"
+    Copy-Item -Force $LocaBin (Join-Path $TempDir "Localization\English\english.loca")
+    Copy-Item -Force $LocaXml (Join-Path $TempDir "Localization\English\english.xml")
+
+    if (-not (Test-Path $ReleaseDir)) { New-Item -ItemType Directory -Force -Path $ReleaseDir | Out-Null }
+    
+    & $DivinePath -g bg3 -a create-package -s $TempDir -d $ReleasePak -c lz4
+    Remove-Item -Recurse -Force $TempDir
+
+    $ZipPath = Join-Path $ReleaseDir "ConcentrationRedux-v1.1.0.zip"
+    if (Test-Path $ZipPath) { Remove-Item -Force $ZipPath }
+    Compress-Archive -Path $ReleasePak -DestinationPath $ZipPath -Force
+    Write-Host "  [OK] Created Release package and zip archive:" -ForegroundColor Green
+    Write-Host "       $ZipPath" -ForegroundColor Gray
+
+    try {
+        Copy-Item -Force $ReleasePak $DestPak -ErrorAction Stop
+        Write-Host "  [OK] Installed latest package to active game Mods directory:" -ForegroundColor Green
+        Write-Host "       $DestPak" -ForegroundColor Gray
+    } catch {
+        Write-Warning "Baldur's Gate 3 is currently running and locking the active .pak file."
+        Write-Warning "Close BG3 and re-run to copy into your local game Mods folder."
+    }
+}
+
 if ($Clean) {
     Write-Host "[3/3] Removing deployed mod from game directory..." -ForegroundColor Yellow
     $TargetMods = Join-Path $GameDir "Data\Mods\$ModName"
@@ -84,66 +134,30 @@ if ($Clean) {
     exit 0
 }
 
-if ($Deploy) {
-    Write-Host "[3/3] Deploying to $GameDir\Data..." -ForegroundColor Yellow
-    if (-not (Test-Path (Join-Path $GameDir "bin\bg3.exe")) -and -not (Test-Path (Join-Path $GameDir "bin\bg3_dx11.exe"))) {
-        Write-Warning "Could not find bg3.exe in '$GameDir\bin'. Please verify GameDir."
+if ($Deploy -or $Package) {
+    if ($Deploy) {
+        Write-Host "[3/3] Deploying to $GameDir\Data..." -ForegroundColor Yellow
+        if (-not (Test-Path (Join-Path $GameDir "bin\bg3.exe")) -and -not (Test-Path (Join-Path $GameDir "bin\bg3_dx11.exe"))) {
+            Write-Warning "Could not find bg3.exe in '$GameDir\bin'. Please verify GameDir."
+        }
+        
+        $DestMods = Join-Path $GameDir "Data\Mods\$ModName"
+        $DestPublic = Join-Path $GameDir "Data\Public\$ModName"
+        
+        New-Item -ItemType Directory -Force -Path $DestMods | Out-Null
+        New-Item -ItemType Directory -Force -Path $DestPublic | Out-Null
+        
+        Copy-Item -Recurse -Force (Join-Path $ScriptDir "Mods\$ModName\*") $DestMods
+        Copy-Item -Recurse -Force (Join-Path $ScriptDir "Public\$ModName\*") $DestPublic
+        
+        Write-Host "  [OK] Deployed loose files to:" -ForegroundColor Green
+        Write-Host "       $DestMods" -ForegroundColor Gray
+        Write-Host "       $DestPublic" -ForegroundColor Gray
     }
-    
-    $DestMods = Join-Path $GameDir "Data\Mods\$ModName"
-    $DestPublic = Join-Path $GameDir "Data\Public\$ModName"
-    
-    New-Item -ItemType Directory -Force -Path $DestMods | Out-Null
-    New-Item -ItemType Directory -Force -Path $DestPublic | Out-Null
-    
-    Copy-Item -Recurse -Force (Join-Path $ScriptDir "Mods\$ModName\*") $DestMods
-    Copy-Item -Recurse -Force (Join-Path $ScriptDir "Public\$ModName\*") $DestPublic
-    
-    Write-Host "  [OK] Deployed loose files to:" -ForegroundColor Green
-    Write-Host "       $DestMods" -ForegroundColor Gray
-    Write-Host "       $DestPublic" -ForegroundColor Gray
-    Write-Host "`nDeployment complete! You can now run Baldur's Gate 3." -ForegroundColor Cyan
+
+    # Always build and sync the .pak so BG3 Mod Manager users have the latest version active
+    Build-ModPackage
+
+    Write-Host "`nDeployment & Packaging complete! You can now run Baldur's Gate 3." -ForegroundColor Cyan
     Write-Host "In the BG3SE console, you can type 'reset' at any time to reload main.lua live." -ForegroundColor Cyan
-} elseif ($Package) {
-    $ModFolder = "ConcentrationRedux_5ca2dda8-eedc-41be-95f0-50747d552d10"
-    Write-Host "[3/3] Building $ModFolder.pak..." -ForegroundColor Yellow
-    $DivinePath = "C:\Users\NihilXD\AppData\Roaming\Vortex\baldursgate3\mods\ExportTool-v1.20.4\tools\Divine.exe"
-    $DestPak = Join-Path $env:LOCALAPPDATA "Larian Studios\Baldur's Gate 3\Mods\$ModFolder.pak"
-    $ReleaseDir = Join-Path $ScriptDir "Release"
-    $ReleasePak = Join-Path $ReleaseDir "$ModFolder.pak"
-    
-    $TempDir = Join-Path $env:TEMP "ConcentrationRedux_pkg"
-    if (Test-Path $TempDir) { Remove-Item -Recurse -Force $TempDir }
-    New-Item -ItemType Directory -Force -Path (Join-Path $TempDir "Mods\$ModFolder") | Out-Null
-    New-Item -ItemType Directory -Force -Path (Join-Path $TempDir "Public\$ModFolder") | Out-Null
-
-    Copy-Item -Recurse -Force (Join-Path $ScriptDir "Mods\$ModName\*") (Join-Path $TempDir "Mods\$ModFolder")
-    Copy-Item -Recurse -Force (Join-Path $ScriptDir "Public\$ModName\*") (Join-Path $TempDir "Public\$ModFolder")
-
-    if (-not (Test-Path $ReleaseDir)) { New-Item -ItemType Directory -Force -Path $ReleaseDir | Out-Null }
-    
-    # Create package directly into Release directory (never locked by BG3)
-    & $DivinePath -g bg3 -a create-package -s $TempDir -d $ReleasePak -c lz4
-    Remove-Item -Recurse -Force $TempDir
-
-    $ZipPath = Join-Path $ReleaseDir "ConcentrationRedux-v1.0.5.zip"
-    if (Test-Path $ZipPath) { Remove-Item -Force $ZipPath }
-    Compress-Archive -Path $ReleasePak -DestinationPath $ZipPath -Force
-    Write-Host "  [OK] Created Release package and zip archive:" -ForegroundColor Green
-    Write-Host "       $ZipPath" -ForegroundColor Gray
-
-    # Attempt install to active BG3 Mods folder
-    try {
-        Copy-Item -Force $ReleasePak $DestPak -ErrorAction Stop
-        Write-Host "  [OK] Installed latest package to game Mods directory:" -ForegroundColor Green
-        Write-Host "       $DestPak" -ForegroundColor Gray
-    } catch {
-        Write-Warning "Baldur's Gate 3 is currently running and locking the active .pak file."
-        Write-Warning "The release package ($ZipPath) was built successfully."
-        Write-Warning "Close BG3 and re-run to copy into your local game Mods folder."
-    }
-
-    Write-Host "`nMod package ready! It will appear in Vortex and the in-game Mod Manager." -ForegroundColor Cyan
-} else {
-    Write-Host "[3/3] Validation complete! Run with -Deploy (loose files) or -Package (.pak) to install." -ForegroundColor Cyan
 }

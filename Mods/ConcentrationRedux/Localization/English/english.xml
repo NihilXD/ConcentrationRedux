@@ -1,0 +1,1251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<contentList>
+    <content contentuid="hfocus_name" version="1">Focus</content>
+
+    <content contentuid="hfocus_desc" version="1">You are maintaining Focus on a spell. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="hdismiss_name" version="1">Dismiss Focus</content>
+
+    <content contentuid="hdismiss_desc" version="1">Voluntarily release your active Focus, freeing your mind.</content>
+
+    <content contentuid="hcombat_chan_name" version="1">Combat Channeling</content>
+
+    <content contentuid="hcombat_chan_desc" version="1">Through martial training, you can make melee and ranged weapon attacks, utilize Extra Attack, and execute weapon actions while Channeling without breaking your Channel.</content>
+
+    <content contentuid="hchan_disrupt" version="1">Channel Disruption: Casting this spell requires complete magical focus and will immediately break an active Channel spell.</content>
+
+    <content contentuid="hhaste_desc" version="1">Hasten yourself or an ally, gaining an extra Action, +2 to Armour Class, Advantage on Dexterity Saving Throws, and doubled Movement Speed.
+
+Channel: Unlimited duration when self-cast; lasts 10 rounds when cast on an ally.
+
+Voluntarily releasing the spell or completing the 10 rounds ends Haste safely without penalty. If broken by taking damage, the target becomes Lethargic for 1 turn.</content>
+    <content contentuid="hhaste_status_desc" version="1">Target has an extra Action, +2 to Armour Class, Advantage on Dexterity Saving Throws, and doubled Movement Speed.
+
+Channel: Unlimited duration. If broken by taking damage, the target becomes Lethargic for 1 turn. Voluntarily releasing ends Haste safely without penalty.</content>
+    <content contentuid="hhaste_ally_status_desc" version="1">Target has an extra Action, +2 to Armour Class, Advantage on Dexterity Saving Throws, and doubled Movement Speed.
+
+Channel: Lasts 10 rounds. If broken by taking damage, the target becomes Lethargic for 1 turn. Completing the duration or voluntarily releasing ends Haste safely without penalty.</content>
+    <content contentuid="hfocus_extra" version="1">Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="hbless_desc" version="1">Bless up to [2] creatures. They gain a +[1] bonus to &lt;LSTag Tooltip="AttackRoll"&gt;Attack Rolls&lt;/LSTag&gt; and &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt;.
+
+Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+    <content contentuid="hshield_of_faith_desc" version="1">Protect a creature from attacks: increase its &lt;LSTag Tooltip="ArmourClass"&gt;Armour Class&lt;/LSTag&gt; by 2.
+
+Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+    <content contentuid="hbane_desc" version="1">Up to [2] creatures receive a -[1] penalty to &lt;LSTag Tooltip="AttackRoll"&gt;Attack Rolls&lt;/LSTag&gt; and &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt;.
+
+Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+    <content contentuid="hbarkskin_desc" version="1">Protect a creature from attacks: increase its &lt;LSTag Tooltip="ArmourClass"&gt;Armour Class&lt;/LSTag&gt; up to 16.
+
+Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+    <content contentuid="hbestow_curse_desc" version="1">Curse a creature with your touch. The curse can have one of several debilitating effects.
+
+Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+    <content contentuid="hbestow_curse_attack_desc" version="1">Curse a creature with your touch. It has &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt; on &lt;LSTag Tooltip="AttackRoll"&gt;Attack Rolls&lt;/LSTag&gt; against you.
+
+Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+    <content contentuid="hbestow_curse_damage_desc" version="1">Curse a creature with your touch. Your attacks and spells deal an additional [1] to the target.
+
+Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+    <content contentuid="hbestow_curse_disadvantage_charisma_desc" version="1">Curse a creature with your touch. It suffers &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt; on Charisma &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt; and &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt;.
+
+Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+    <content contentuid="hbestow_curse_disadvantage_constitution_desc" version="1">Curse a creature with your touch. It suffers &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt; on Constitution &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt; and &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt;.
+
+Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+    <content contentuid="hbestow_curse_disadvantage_dexterity_desc" version="1">Curse a creature with your touch. It suffers &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt; on Dexterity &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt; and &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt;.
+
+Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+    <content contentuid="hbestow_curse_disadvantage_intelligence_desc" version="1">Curse a creature with your touch. It suffers &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt; on Intelligence &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt; and &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt;.
+
+Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+    <content contentuid="hbestow_curse_disadvantage_strength_desc" version="1">Curse a creature with your touch. It suffers &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt; on Strength &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt; and &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt;.
+
+Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+    <content contentuid="hbestow_curse_disadvantage_wisdom_desc" version="1">Curse a creature with your touch. It suffers &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt; on Wisdom &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt; and &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt;.
+
+Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+    <content contentuid="hbestow_curse_dread_desc" version="1">Curse a creature with your touch. It fills with dread, possibly skipping its turn.
+
+Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+    <content contentuid="hblade_ward_desc" version="1">Take only half the damage from Bludgeoning, Piercing, and Slashing attacks.
+
+Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+    <content contentuid="hblur_desc" version="1">Attackers have &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt; on &lt;LSTag Tooltip="AttackRoll"&gt;Attack Rolls&lt;/LSTag&gt; against you.
+
+Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+    <content contentuid="hdancing_lights_desc" version="1">Illuminate a [1] radius.
+
+Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+    <content contentuid="hdetect_thoughts_desc" version="1">Focus your mind to read the thoughts of certain creatures while talking to them.
+
+Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+    <content contentuid="helemental_weapon_desc" version="1">Imbue a weapon with elemental power. It receives a +1 bonus to &lt;LSTag Tooltip="AttackRoll"&gt;Attack Rolls&lt;/LSTag&gt; and deals an additional 1d4 damage of your chosen damage type.
+
+Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+    <content contentuid="helemental_weapon_acid_desc" version="1">Imbue a weapon with a corrosive might. It receives a +[1] bonus to &lt;LSTag Tooltip="AttackRoll"&gt;Attack Rolls&lt;/LSTag&gt;, and deals an additional [2].
+
+Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+    <content contentuid="helemental_weapon_cold_desc" version="1">Imbue a weapon with an icy might. It receives a +[1] bonus to &lt;LSTag Tooltip="AttackRoll"&gt;Attack Rolls&lt;/LSTag&gt;, and deals an additional [2].
+
+Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+    <content contentuid="helemental_weapon_fire_desc" version="1">Imbue a weapon with a fiery might. It receives a +[1] bonus to &lt;LSTag Tooltip="AttackRoll"&gt;Attack Rolls&lt;/LSTag&gt;, and deals an additional [2].
+
+Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+    <content contentuid="helemental_weapon_lightning_desc" version="1">Imbue a weapon with an electrical might. It receives a +[1] bonus to &lt;LSTag Tooltip="AttackRoll"&gt;Attack Rolls&lt;/LSTag&gt;, and deals an additional [2].
+
+Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+    <content contentuid="helemental_weapon_thunder_desc" version="1">Imbue a weapon with a thunderous might. It receives a +[1] bonus to &lt;LSTag Tooltip="AttackRoll"&gt;Attack Rolls&lt;/LSTag&gt;, and deals an additional [2].
+
+Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+    <content contentuid="henlarge_reduce_desc" version="1">Make a creature larger or smaller to affect their weapon damage and Strength &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt; and &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt;.
+
+Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+    <content contentuid="henlarge_desc" version="1">Make a creature larger. Its weapons deal an extra 1d4 damage. It gains &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on Strength &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt; and &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt;.
+
+Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+    <content contentuid="hreduce_desc" version="1">Make a creature smaller. Its weapons deal 1d4 less damage. It suffers &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt; on Strength &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt; and &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt;.
+
+Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+    <content contentuid="hexpeditious_retreat_desc" version="1">Gain &lt;LSTag Type="Spell" Tooltip="Shout_Dash"&gt;Dash&lt;/LSTag&gt; immediately and as a bonus action on each of your turns until this spell ends.
+
+Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+    <content contentuid="hfly_desc" version="1">Bestow the ability to &lt;LSTag Type="Spell" Tooltip="Projectile_Fly"&gt;Fly&lt;/LSTag&gt; upon yourself or an ally.
+
+Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+    <content contentuid="hfriends_desc" version="1">Gain &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on Charisma &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt; against a non-hostile creature.
+
+Focus (10 Turns): Occupies your Focus slot with a 10-turn duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+    <content contentuid="hgreater_invisibility_desc" version="1">Turn a creature &lt;LSTag Type="Status" Tooltip="GREATER_INVISIBILITY"&gt;Invisible&lt;/LSTag&gt;. Attacks against it have &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt;. It attacks with &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt;.
+
+Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+    <content contentuid="hguidance_desc" version="1">The target gains a +1d4 bonus to &lt;LSTag Tooltip="AbilityCheck"&gt;Ability Checks&lt;/LSTag&gt;.
+
+Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+    <content contentuid="hheroism_desc" version="1">Make yourself or a target immune to &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frightened&lt;/LSTag&gt; and gain [1] each turn.
+
+Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+    <content contentuid="hhex_charisma_desc" version="1">Deal an additonal [1] when you attack the target and impart &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt; on Charisma &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt;.
+
+Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+    <content contentuid="hhex_constitution_desc" version="1">Deal an additonal [1] when you attack the target and impart &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt; on Constitution &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt;.
+
+Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+    <content contentuid="hhex_desc" version="1">Make your attacks deal an additional [1] damage to the target and give it &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt; on an &lt;LSTag Tooltip="Abilities"&gt;Ability&lt;/LSTag&gt; of your choosing.
+
+Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+    <content contentuid="hhex_dexterity_desc" version="1">Deal an additonal [1] when you attack the target and impart &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt; on Dexterity &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt;.
+
+Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+    <content contentuid="hhex_intelligence_desc" version="1">Deal an additonal [1] when you attack the target and impart &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt; on Intelligence &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt;.
+
+Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+    <content contentuid="hhex_reapply_desc" version="1">Curse a new creature without expending an extra &lt;LSTag Tooltip="SpellSlot"&gt;spell slot&lt;/LSTag&gt;.
+
+Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+    <content contentuid="hhex_strength_desc" version="1">Deal an additonal [1] when you attack the target and impart &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt; on Strength &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt;.
+
+Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+    <content contentuid="hhex_wisdom_desc" version="1">Deal an additonal [1] when you attack the target and impart &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt; on Wisdom &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt;.
+
+Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+    <content contentuid="hhunters_mark_desc" version="1">Mark a creature as your quarry to deal an additional [1] whenever you hit it with a weapon attack. 
+
+Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+    <content contentuid="hhunters_mark_reapply_desc" version="1">Shift your &lt;LSTag Type="Status" Tooltip="HUNTERS_MARK"&gt;Hunter's Mark&lt;/LSTag&gt; to a new creature without using a &lt;LSTag Tooltip="SpellSlot"&gt;spell slot&lt;/LSTag&gt;.
+
+Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+    <content contentuid="hinvisibility_desc" version="1">Touch a creature to turn it &lt;LSTag Type="Status" Tooltip="INVISIBILITY"&gt;Invisible&lt;/LSTag&gt;. Attacks against it have &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt;. It attacks with &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt;.
+
+Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+    <content contentuid="hmagic_weapon_desc" version="1">Infuse a weapon with arcane energy. The weapon becomes magical, receiving a +[1] bonus to &lt;LSTag Tooltip="AttackRoll"&gt;Attack&lt;/LSTag&gt; and Damage Rolls.
+
+Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+    <content contentuid="hpass_without_trace_desc" version="1">Call forth a veil of shadows and silence that gives you and all nearby companions a +10 bonus to Stealth &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt;.
+
+Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+    <content contentuid="hprotection_from_evil_and_good_desc" version="1">Protect an ally against the attacks and powers of aberrations, celestials, elementals, fey, fiends, and undead.
+
+Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+    <content contentuid="hresistance_desc" version="1">Make a target more resistant to spell effects and conditions: it receives a +[1] bonus to &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt;.
+
+Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+    <content contentuid="hstoneskin_desc" version="1">Turn a creature's flesh hard as stone. It takes only &lt;LSTag Tooltip="Resistant"&gt;half the damage&lt;/LSTag&gt; of all non-magical Bludgeoning, Piercing, and Slashing damage.
+
+Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+    <content contentuid="hchannel_extra" version="1">Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="htarget_holdperson_desc" version="1">&lt;LSTag Type="Status" Tooltip="HOLD_PERSON"&gt;Hold&lt;/LSTag&gt; a humanoid enemy still. They can't move, act or react. Attacks from within [1] are always &lt;LSTag Tooltip="CriticalHit"&gt;Critical Hits&lt;/LSTag&gt;.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="hcd87bb08g774ag4881g8194g3aac50e64f70" version="1">&lt;LSTag Type="Status" Tooltip="HOLD_PERSON"&gt;Hold&lt;/LSTag&gt; a humanoid enemy still. They can't move, act or react. Attacks from within [1] are always &lt;LSTag Tooltip="CriticalHit"&gt;Critical Hits&lt;/LSTag&gt;.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="htarget_holdmonster_desc" version="1">&lt;LSTag Type="Status" Tooltip="PARALYZED"&gt;Paralyse&lt;/LSTag&gt; a creature. It can't move, act or react. Attacks from within [1] are always Critical Hits.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="h2fa3f550ga856g47efgb138g117758b2224b" version="1">&lt;LSTag Type="Status" Tooltip="PARALYZED"&gt;Paralyse&lt;/LSTag&gt; a creature. It can't move, act or react. Attacks from within [1] are always Critical Hits.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="htarget_hypnoticpattern_desc" version="1">&lt;LSTag Type="Status" Tooltip="HYPNOTIC_PATTERN"&gt;Hypnotise&lt;/LSTag&gt; creatures that can see the pattern. They cannot attack you. They cannot move or act.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="h9823ea25g2440g449bgb758g21fdce376f00" version="1">&lt;LSTag Type="Status" Tooltip="HYPNOTIC_PATTERN"&gt;Hypnotise&lt;/LSTag&gt; creatures that can see the pattern. They cannot attack you. They cannot move or act.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="htarget_hideouslaughter_desc" version="1">Leave a creature &lt;LSTag Type="Status" Tooltip="PRONE"&gt;Prone&lt;/LSTag&gt; with laughter, without the ability to get up.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="hca38a481gf909g44ecg889fge168b53c1d5b" version="1">Leave a creature &lt;LSTag Type="Status" Tooltip="PRONE"&gt;Prone&lt;/LSTag&gt; with laughter, without the ability to get up.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="htarget_banishment_desc" version="1">Temporarily &lt;LSTag Type="Status" Tooltip="BANISHED"&gt;Banish&lt;/LSTag&gt; your target to another plane of existence.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="h024a4ca2g135dg49fcg92bcgd7464d904d7f" version="1">Temporarily &lt;LSTag Type="Status" Tooltip="BANISHED"&gt;Banish&lt;/LSTag&gt; your target to another plane of existence.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="htarget_irresistibledance_desc" version="1">Cause a creature to start dancing, making it unable to take actions or move. Its attackers have &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on Attack Rolls.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="hf03e24d9g8dbfg4928ga6deg389d5b4640bd" version="1">Cause a creature to start dancing, making it unable to take actions or move. Its attackers have &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on Attack Rolls.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="htarget_confusion_desc" version="1">&lt;LSTag Type="Status" Tooltip="CONFUSION"&gt;Confuse&lt;/LSTag&gt; a group of creatures, causing them to attack at random, wander around aimlessly, and occasionally skip turns in the stupor.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="h87cd10f2g9f7dg469ag9a40g4e0c2c1089a9" version="1">&lt;LSTag Type="Status" Tooltip="CONFUSION"&gt;Confuse&lt;/LSTag&gt; a group of creatures, causing them to attack at random, wander around aimlessly, and occasionally skip turns in the stupor.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="htarget_crownofmadness_desc" version="1">Instil madness in a humanoid enemy, making them attack the creature closest to them (other than you), even if it's allied.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="hadf3e255g0814g479bgb392gc0d3416ddd8f" version="1">Instil madness in a humanoid enemy, making them attack the creature closest to them (other than you), even if it's allied.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="htarget_slow_desc" version="1">Target up to 6 creatures and &lt;LSTag Type="Status" Tooltip="SLOW"&gt;Slow&lt;/LSTag&gt; them. Movement and actions are affected, and their &lt;LSTag Tooltip="ArmourClass"&gt;AC&lt;/LSTag&gt; and Dexterity &lt;LSTag Tooltip="SavingThrow"&gt;saves&lt;/LSTag&gt; are reduced by 2.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="h87e09423gaa01g4372g99d2g7ff4d657e8d1" version="1">Target up to 6 creatures and &lt;LSTag Type="Status" Tooltip="SLOW"&gt;Slow&lt;/LSTag&gt; them. Movement and actions are affected, and their &lt;LSTag Tooltip="ArmourClass"&gt;AC&lt;/LSTag&gt; and Dexterity &lt;LSTag Tooltip="SavingThrow"&gt;saves&lt;/LSTag&gt; are reduced by 2.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="hzone_fear_desc" version="1">Hostile targets drop everything and become &lt;LSTag Type="Status" Tooltip="FEARED"&gt;Fearful&lt;/LSTag&gt;: they have &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt; on &lt;LSTag Tooltip="AbilityCheck"&gt;Ability Checks&lt;/LSTag&gt; and &lt;LSTag Tooltip="AttackRoll"&gt;Attack Rolls&lt;/LSTag&gt;.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="h60a3f0acgf217g4e21gb1bdg25d53e49b4a6" version="1">Hostile targets drop everything and become &lt;LSTag Type="Status" Tooltip="FEARED"&gt;Fearful&lt;/LSTag&gt;: they have &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt; on &lt;LSTag Tooltip="AbilityCheck"&gt;Ability Checks&lt;/LSTag&gt; and &lt;LSTag Tooltip="AttackRoll"&gt;Attack Rolls&lt;/LSTag&gt;.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="hshout_spiritguardians_desc" version="1">Call forth spirits to protect you. Nearby enemies take [1] or [2] per turn, and their &lt;LSTag Tooltip="MovementSpeed"&gt;movement speed&lt;/LSTag&gt; is halved.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="h296479acg3e8bg4b8dg8816g9851951f2eae" version="1">Call forth spirits to protect you. Nearby enemies take [1] or [2] per turn, and their &lt;LSTag Tooltip="MovementSpeed"&gt;movement speed&lt;/LSTag&gt; is halved.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="hshout_spiritguardians_necrotic_desc" version="1">Call forth spirits to protect the area around you.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="hb97d5064g4062g4f54gaaa0gd6e67eb3bba6" version="1">Call forth spirits to protect the area around you.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="hshout_spiritguardians_radiant_desc" version="1">Call forth spirits to protect the area around you.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="h4b1e9786g99cdg4c8bg88e7g351d70681e55" version="1">Call forth spirits to protect the area around you.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="hwall_walloffire_desc" version="1">Create a blazing wall of fire, burning anyone who dares stand too close.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="he7fa1231g517cg40e3g89degfdbf7c232666" version="1">Create a blazing wall of fire, burning anyone who dares stand too close.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="hwall_wallofthorns_desc" version="1">Create a wall of pliable, twisted thorns surrounded by &lt;LSTag Type="Status" Tooltip="ENSNARED_VINES"&gt;Entangling&lt;/LSTag&gt; vines. 
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="hee633164ga693g4a96g9fb5gfdf90da78604" version="1">Create a wall of pliable, twisted thorns surrounded by &lt;LSTag Type="Status" Tooltip="ENSNARED_VINES"&gt;Entangling&lt;/LSTag&gt; vines. 
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="hwall_bladebarrier_desc" version="1">Summon a wall of razor-sharp blades that turns the area into &lt;LSTag Type="Status" Tooltip="DIFFICULT_TERRAIN"&gt;Difficult Terrain&lt;/LSTag&gt; and damages anyone foolish enough to come close.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="hcf5c2a35gffb5g4c5dg90cfg6b788231360f" version="1">Summon a wall of razor-sharp blades that turns the area into &lt;LSTag Type="Status" Tooltip="DIFFICULT_TERRAIN"&gt;Difficult Terrain&lt;/LSTag&gt; and damages anyone foolish enough to come close.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="htarget_cloudofdaggers_desc" version="1">Conjure a cloud of spinning daggers that attack anyone inside.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="h7dbc2201g83acg42e2ga54ag735be7d3b736" version="1">Conjure a cloud of spinning daggers that attack anyone inside.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="htarget_moonbeam_desc" version="1">Call down a beam of light that damages any creature that enters the beam or starts its turn in the light. You can use an action to move the beam [1].
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="h300e27a5g7a0bg4a3fg800dg03941fc68a61" version="1">Call down a beam of light that damages any creature that enters the beam or starts its turn in the light. You can use an action to move the beam [1].
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="htarget_moonbeam_move_desc" version="1">Move the beam of moonlight up to [1]. The beam of light damages any creature that enters the beam or starts its turn in the light.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="hfc7ff423gc4e2g408fg8cccg19a80c0e74dd" version="1">Move the beam of moonlight up to [1]. The beam of light damages any creature that enters the beam or starts its turn in the light.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="htarget_calllightning_desc" version="1">Lightning strikes all targets within range. Then for 10 turns, you can call down lightning again without expending a &lt;LSTag Tooltip="SpellSlot"&gt;spell slot&lt;/LSTag&gt;.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="h8ad2e147ge1d6g4ff9gb18fg7292e28e36a5" version="1">Lightning strikes all targets within range. Then for 10 turns, you can call down lightning again without expending a &lt;LSTag Tooltip="SpellSlot"&gt;spell slot&lt;/LSTag&gt;.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="htarget_calllightning_lightningbolt_desc" version="1">Call down more lightning to hit all targets within range.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="hfefb3451ge37ag4468g837cga796cb7f474e" version="1">Call down more lightning to hit all targets within range.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="hzone_sunbeam_desc" version="1">A beam of brilliant light sears and &lt;LSTag Type="Status" Tooltip="SUNBEAM"&gt;Blinds&lt;/LSTag&gt; all creatures in its path.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="h28bc92fegaeddg4ab5gbba3gb3440970298f" version="1">A beam of brilliant light sears and &lt;LSTag Type="Status" Tooltip="SUNBEAM"&gt;Blinds&lt;/LSTag&gt; all creatures in its path.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="hzone_sunbeam_recreate_desc" version="1">Call forth another beam of light that sears and &lt;LSTag Type="Status" Tooltip="SUNBEAM"&gt;Blinds&lt;/LSTag&gt; all creatures in its path, without expending a &lt;LSTag Tooltip="SpellSlot"&gt;spell slot&lt;/LSTag&gt;.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="h0e209d58geb72g4441g95dagfdf8112ca8a1" version="1">Call forth another beam of light that sears and &lt;LSTag Type="Status" Tooltip="SUNBEAM"&gt;Blinds&lt;/LSTag&gt; all creatures in its path, without expending a &lt;LSTag Tooltip="SpellSlot"&gt;spell slot&lt;/LSTag&gt;.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="hprojectile_witchbolt_desc" version="1">Link yourself to a target with a bolt of lightning. Deal an additional [1] each turn by activating it.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="hf3db745ag8310g415fgaa48ga8ae689eda50" version="1">Link yourself to a target with a bolt of lightning. Deal an additional [1] each turn by activating it.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="hshout_witchbolt_activate_desc" version="1">Activate the bolt and deal [1].
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="h6b4df664g714dg472dgaedbgc3808dc05723" version="1">Activate the bolt and deal [1].
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="htarget_flamingsphere_desc" version="1">Summon a flaming sphere that damages nearby enemies and objects. You can move the sphere. It emits a bright light.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="h8a0d587cgc27ag46b7g97ffg10ee6c71cc81" version="1">Summon a flaming sphere that damages nearby enemies and objects. You can move the sphere. It emits a bright light.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="htarget_blacktentacles_desc" version="1">Tentacles sprout from the ground, turning the area into &lt;LSTag Type="Status" Tooltip="DIFFICULT_TERRAIN"&gt;Difficult Terrain&lt;/LSTag&gt;, attacking and &lt;LSTag Type="Status" Tooltip="BLACK_TENTACLES"&gt;Smothering&lt;/LSTag&gt; creatures within.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="h7cf22b11g4041g4f8fg834bge5a9a153cfb8" version="1">Tentacles sprout from the ground, turning the area into &lt;LSTag Type="Status" Tooltip="DIFFICULT_TERRAIN"&gt;Difficult Terrain&lt;/LSTag&gt;, attacking and &lt;LSTag Type="Status" Tooltip="BLACK_TENTACLES"&gt;Smothering&lt;/LSTag&gt; creatures within.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="htarget_hungerofhadar_desc" version="1">Creatures within this black sphere are &lt;LSTag Type="Status" Tooltip="BLINDED"&gt;Blinded&lt;/LSTag&gt; and take damage at the end of their turn and the start of their turn. 
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="hfff92e93g7210g4d4aga082g2776bf534305" version="1">Creatures within this black sphere are &lt;LSTag Type="Status" Tooltip="BLINDED"&gt;Blinded&lt;/LSTag&gt; and take damage at the end of their turn and the start of their turn. 
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="htarget_sleetstorm_desc" version="1">Call forth a storm that disrupts the &lt;LSTag Tooltip="Concentration"&gt;Concentration&lt;/LSTag&gt; of spellcasters, douses fires, and creates an ice surface.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="hc2724c73ga423g41ebg884bgfb512195f1b0" version="1">Call forth a storm that disrupts the &lt;LSTag Tooltip="Concentration"&gt;Concentration&lt;/LSTag&gt; of spellcasters, douses fires, and creates an ice surface.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="htarget_fogcloud_desc" version="1">The cloud &lt;LSTag Type="Status" Tooltip="BLINDED"&gt;Blinds&lt;/LSTag&gt; and &lt;LSTag Type="Status" Tooltip="SNEAKING_HEAVILY_OBSCURED"&gt;Heavily Obscures&lt;/LSTag&gt; creatures within it. 
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="h3c804d34g56e4g4e60g8ec1ge6e8a81660c5" version="1">The cloud &lt;LSTag Type="Status" Tooltip="BLINDED"&gt;Blinds&lt;/LSTag&gt; and &lt;LSTag Type="Status" Tooltip="SNEAKING_HEAVILY_OBSCURED"&gt;Heavily Obscures&lt;/LSTag&gt; creatures within it. 
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="htarget_darkness_desc" version="1">Create a dark shroud that Heavily Obscures and &lt;LSTag Type="Status" Tooltip="BLINDED"&gt;Blinds&lt;/LSTag&gt; creatures within. Creatures cannot make ranged attacks into or out of it.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="h64652503g229ag4f9ag819cg8d9411c66209" version="1">Create a dark shroud that Heavily Obscures and &lt;LSTag Type="Status" Tooltip="BLINDED"&gt;Blinds&lt;/LSTag&gt; creatures within. Creatures cannot make ranged attacks into or out of it.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="htarget_silence_desc" version="1">Create a sound-proof sphere. All within are &lt;LSTag Type="Status" Tooltip="SILENCED"&gt;Silenced&lt;/LSTag&gt; and &lt;LSTag Tooltip="Immune"&gt;Immune&lt;/LSTag&gt; to Thunder damage.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="h25df5600g6f8eg4370ga3b2gfdb336819e7a" version="1">Create a sound-proof sphere. All within are &lt;LSTag Type="Status" Tooltip="SILENCED"&gt;Silenced&lt;/LSTag&gt; and &lt;LSTag Tooltip="Immune"&gt;Immune&lt;/LSTag&gt; to Thunder damage.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="htarget_spikegrowth_desc" version="1">Shape a piece of ground into hard spikes. Movement is halved. A creature walking on the spikes takes [1] for every [2] it moves.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="h955d2ba9g16cdg404fg9395gc7d35678e7f0" version="1">Shape a piece of ground into hard spikes. Movement is halved. A creature walking on the spikes takes [1] for every [2] it moves.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="htarget_insectplague_desc" version="1">Locusts attack everyone within range, make the area &lt;LSTag Type="Status" Tooltip="DIFFICULT_TERRAIN"&gt;Difficult Terrain&lt;/LSTag&gt;, and impose &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt; on Perception &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt;.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="h91608825gd7c0g40f0ga9a1g01ec683f5d35" version="1">Locusts attack everyone within range, make the area &lt;LSTag Type="Status" Tooltip="DIFFICULT_TERRAIN"&gt;Difficult Terrain&lt;/LSTag&gt;, and impose &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt; on Perception &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt;.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="htarget_cloudkill_desc" version="1">Craft a large cloud that inflicts [1] per turn. You can reposition the cloud every turn.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="h584b32dfg9cccg40b4gbb89g7e9472389f58" version="1">Craft a large cloud that inflicts [1] per turn. You can reposition the cloud every turn.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="htarget_stinkingcloud_desc" version="1">Create a cloud of gas so nauseating it prevents creatures from taking actions.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="h6f7a6539g22e2g487bga591g383b717e9229" version="1">Create a cloud of gas so nauseating it prevents creatures from taking actions.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="htarget_web_desc" version="1">Cover an area in thick, flammable webbing that slows creatures within and possibly &lt;LSTag Type="Status" Tooltip="WEB"&gt;Enwebs&lt;/LSTag&gt; them.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="hdc6ddc78g6009g4b69ga59dg31a8043ccecc" version="1">Cover an area in thick, flammable webbing that slows creatures within and possibly &lt;LSTag Type="Status" Tooltip="WEB"&gt;Enwebs&lt;/LSTag&gt; them.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="hzone_gustofwind_desc" version="1">Summon a strong wind that clears all clouds and pushes creatures back [1], forcing them &lt;LSTag Type="Status" Tooltip="OFF_BALANCED"&gt;Off Balance&lt;/LSTag&gt;.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="h6f899a5egd7a2g4961gbc09g4003baabbb48" version="1">Summon a strong wind that clears all clouds and pushes creatures back [1], forcing them &lt;LSTag Type="Status" Tooltip="OFF_BALANCED"&gt;Off Balance&lt;/LSTag&gt;.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="htarget_phantasmalkiller_desc" version="1">Haunt a creature with its worst nightmares. It takes [1] per turn, cannot move, has &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt; on &lt;LSTag Tooltip="AbilityCheck"&gt;Ability Checks&lt;/LSTag&gt; and &lt;LSTag Tooltip="AttackRoll"&gt;Attack Rolls&lt;/LSTag&gt;.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="h559aa7d2gba06g46cdg9f35gfbe868f06f23" version="1">Haunt a creature with its worst nightmares. It takes [1] per turn, cannot move, has &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt; on &lt;LSTag Tooltip="AbilityCheck"&gt;Ability Checks&lt;/LSTag&gt; and &lt;LSTag Tooltip="AttackRoll"&gt;Attack Rolls&lt;/LSTag&gt;.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="htarget_eyebite_desc" version="1">Your eyes become black corridors walled in teeth, your gaze capable of inflicting dread, sickness, or putting creatures to sleep. 
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="he0bf9a9eg613fg4b9egb12ag780f585c0955" version="1">Your eyes become black corridors walled in teeth, your gaze capable of inflicting dread, sickness, or putting creatures to sleep. 
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="htarget_eyebite_asleep_desc" version="1">Put a creature to &lt;LSTag Type="Status" Tooltip="SLEEP"&gt;sleep&lt;/LSTag&gt;.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="hccead8c1ga3c9g4943ga5a6gfb03af0f2e20" version="1">Put a creature to &lt;LSTag Type="Status" Tooltip="SLEEP"&gt;sleep&lt;/LSTag&gt;.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="htarget_eyebite_panicked_desc" version="1">Strike &lt;LSTag Type="Status" Tooltip="FEARED"&gt;Fear&lt;/LSTag&gt; deep into a creature's heart.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="h8e533650g386fg4ff9ga821g02c64bb44ab9" version="1">Strike &lt;LSTag Type="Status" Tooltip="FEARED"&gt;Fear&lt;/LSTag&gt; deep into a creature's heart.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="htarget_eyebite_sickened_desc" version="1">Afflict a creature with &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt; on &lt;LSTag Tooltip="AttackRolls"&gt;Attack Rolls&lt;/LSTag&gt; and &lt;LSTag Tooltip="AbilityCheck"&gt;Ability Checks&lt;/LSTag&gt;.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="hea58f4b3gbbd4g4ab5ga9ffgf619bbabeb8c" version="1">Afflict a creature with &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt; on &lt;LSTag Tooltip="AttackRolls"&gt;Attack Rolls&lt;/LSTag&gt; and &lt;LSTag Tooltip="AbilityCheck"&gt;Ability Checks&lt;/LSTag&gt;.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="hthrow_telekinesis_desc" version="1">Throw a creature or object up to [1] with a thought. Once per turn, you can use Telekinesis again without expending a &lt;LSTag Tooltip="SpellSlot"&gt;spell slot&lt;/LSTag&gt;.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="h61f5eba0geafdg4567gb72ag46ec17c988b0" version="1">Throw a creature or object up to [1] with a thought. Once per turn, you can use Telekinesis again without expending a &lt;LSTag Tooltip="SpellSlot"&gt;spell slot&lt;/LSTag&gt;.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="hthrow_telekinesis_recast_desc" version="1">Telekinetically throw a creature or object up to [1] without expending a &lt;LSTag Tooltip="SpellSlot"&gt;spell slot&lt;/LSTag&gt;.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="h71da31bcg51b2g4a46gb844ge47ac2b4204f" version="1">Telekinetically throw a creature or object up to [1] without expending a &lt;LSTag Tooltip="SpellSlot"&gt;spell slot&lt;/LSTag&gt;.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="htarget_polymorph_desc" version="1">Transform a creature into a harmless sheep.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="h5c0a497dg79d6g45d4ga045g28c21c2563cd" version="1">Transform a creature into a harmless sheep.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="htarget_dominatebeast_desc" version="1">Make a beast fight alongside you. Every time the beast takes damage, it makes a Wisdom &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throw&lt;/LSTag&gt; against your domination.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="h737517e8g2c59g4310gb446gbc5eceb053f9" version="1">Make a beast fight alongside you. Every time the beast takes damage, it makes a Wisdom &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throw&lt;/LSTag&gt; against your domination.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="htarget_dominateperson_desc" version="1">Make a humanoid fight alongside you. Every time the creature takes damage, it makes a Wisdom &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throw&lt;/LSTag&gt; against your domination. Allies cannot be dominated.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="h75e483fbge595g453fg83d3g9fc6118e6f47" version="1">Make a humanoid fight alongside you. Every time the creature takes damage, it makes a Wisdom &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throw&lt;/LSTag&gt; against your domination. Allies cannot be dominated.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="htarget_resilientsphere_desc" version="1">Enclose a target in a sphere of shimmering force, blocking all incoming damage and spell effects.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="h92e01dabg5f34g4fc0gb458gab3f3443883e" version="1">Enclose a target in a sphere of shimmering force, blocking all incoming damage and spell effects.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="htarget_heatmetal_desc" version="1">Cause a metal weapon or armour to glow red-hot and force the wearer to let go or receive &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt; on &lt;LSTag Tooltip="AttackRoll"&gt;Attack Rolls&lt;/LSTag&gt; and &lt;LSTag Tooltip="AbilityCheck"&gt;Ability Checks&lt;/LSTag&gt;.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="hf3b0bce7g978bg42d2ga7c4g372e725439dc" version="1">Cause a metal weapon or armour to glow red-hot and force the wearer to let go or receive &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt; on &lt;LSTag Tooltip="AttackRoll"&gt;Attack Rolls&lt;/LSTag&gt; and &lt;LSTag Tooltip="AbilityCheck"&gt;Ability Checks&lt;/LSTag&gt;.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="htarget_heatmetal_reapply_desc" version="1">Make the heated metal pulse with fire and force the creature touching it to drop it or receive &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt; on &lt;LSTag Tooltip="AttackRoll"&gt;Attack Rolls&lt;/LSTag&gt; and &lt;LSTag Tooltip="AbilityCheck"&gt;Ability Checks&lt;/LSTag&gt;.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="hf705d5e7g1595g4cd8g9523gc02a481c23dc" version="1">Make the heated metal pulse with fire and force the creature touching it to drop it or receive &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt; on &lt;LSTag Tooltip="AttackRoll"&gt;Attack Rolls&lt;/LSTag&gt; and &lt;LSTag Tooltip="AbilityCheck"&gt;Ability Checks&lt;/LSTag&gt;.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="htarget_faeriefire_desc" version="1">All targets within the light turn visible, and &lt;LSTag Tooltip="AttackRoll"&gt;Attack Rolls&lt;/LSTag&gt; against them have &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt;.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="h73b836a3gca0cg4bb3g8926ge61c881481d0" version="1">All targets within the light turn visible, and &lt;LSTag Tooltip="AttackRoll"&gt;Attack Rolls&lt;/LSTag&gt; against them have &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt;.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="htarget_entangle_desc" version="1">Create a vine surface, slowing down creatures, possibly &lt;LSTag Type="Status" Tooltip="ENSNARED_VINES"&gt;Entangling&lt;/LSTag&gt; them.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="h2bca5541g977bg4d92ga123g5a3984025e71" version="1">Create a vine surface, slowing down creatures, possibly &lt;LSTag Type="Status" Tooltip="ENSNARED_VINES"&gt;Entangling&lt;/LSTag&gt; them.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="hprojectile_rayofenfeeblement_desc" version="1">Weaken a foe: they deal half damage with weapon attacks using &lt;LSTag Tooltip="Strength"&gt;Strength&lt;/LSTag&gt;.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="h362d2bf7gdc21g4644gbb89g82f90f3e4364" version="1">Weaken a foe: they deal half damage with weapon attacks using &lt;LSTag Tooltip="Strength"&gt;Strength&lt;/LSTag&gt;.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="htarget_phantasmalforce_desc" version="1">Deal damage to a creature each turn. At the start of its turn, it takes Psychic damage. Each subsequent time it takes damage, the damage type of Phantasmal Force changes to match that damage type.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="hebec5d12ga353g43bfg8296ge553f7f40a17" version="1">Deal damage to a creature each turn. At the start of its turn, it takes Psychic damage. Each subsequent time it takes damage, the damage type of Phantasmal Force changes to match that damage type.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="htarget_calmemotions_desc" version="1">Humanoids can't be &lt;LSTag Type="Status" Tooltip="CHARMED"&gt;Charmed&lt;/LSTag&gt;, &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frightened&lt;/LSTag&gt;, or become enraged.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="h10eeaf35g5cf6g46d1gb943ge59c91bb2993" version="1">Humanoids can't be &lt;LSTag Type="Status" Tooltip="CHARMED"&gt;Charmed&lt;/LSTag&gt;, &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frightened&lt;/LSTag&gt;, or become enraged.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="htarget_protectionfromenergy_desc" version="1">Touch a creature to grant it &lt;LSTag Tooltip="Resistant"&gt;Resistance&lt;/LSTag&gt; to Acid, Cold, Fire, Lightning, or Thunder damage.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="he35b2f74g5892g44a8g87f0gc5dcd3557e60" version="1">Touch a creature to grant it &lt;LSTag Tooltip="Resistant"&gt;Resistance&lt;/LSTag&gt; to Acid, Cold, Fire, Lightning, or Thunder damage.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="htarget_protectionfromenergy_acid_desc" version="1">Grant the target &lt;LSTag Tooltip="Resistant"&gt;Resistance&lt;/LSTag&gt; to Acid damage. It will take only half the damage.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="h46a3eb24gb8f0g4390g8fa5g912bd198596b" version="1">Grant the target &lt;LSTag Tooltip="Resistant"&gt;Resistance&lt;/LSTag&gt; to Acid damage. It will take only half the damage.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="htarget_protectionfromenergy_cold_desc" version="1">Grant the target &lt;LSTag Tooltip="Resistant"&gt;Resistance&lt;/LSTag&gt; to Cold damage. It will take only half the damage.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="h65e0c9ceg1afcg427bg920egbaaa9267280d" version="1">Grant the target &lt;LSTag Tooltip="Resistant"&gt;Resistance&lt;/LSTag&gt; to Cold damage. It will take only half the damage.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="htarget_protectionfromenergy_fire_desc" version="1">Grant the target &lt;LSTag Tooltip="Resistant"&gt;Resistance&lt;/LSTag&gt; to Fire damage. It will take only half the damage.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="h9f48064dgb6f5g4543g99f7gea3a5d6d0a24" version="1">Grant the target &lt;LSTag Tooltip="Resistant"&gt;Resistance&lt;/LSTag&gt; to Fire damage. It will take only half the damage.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="htarget_protectionfromenergy_lightning_desc" version="1">Grant the target &lt;LSTag Tooltip="Resistant"&gt;Resistance&lt;/LSTag&gt; to Lightning damage. It will take only half the damage.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="hf08e9ae8g6e10g4393g9a33gd5cf03505f14" version="1">Grant the target &lt;LSTag Tooltip="Resistant"&gt;Resistance&lt;/LSTag&gt; to Lightning damage. It will take only half the damage.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="htarget_protectionfromenergy_thunder_desc" version="1">Grant the target &lt;LSTag Tooltip="Resistant"&gt;Resistance&lt;/LSTag&gt; to Thunder damage. It will take only half the damage.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="h68538533gf0dcg41d1gb823g19f1cd846bc6" version="1">Grant the target &lt;LSTag Tooltip="Resistant"&gt;Resistance&lt;/LSTag&gt; to Thunder damage. It will take only half the damage.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="htarget_gaseousform_desc" version="1">Transform yourself or an ally into a tiny gas cloud. It can't fall, and fits through small openings. It is very hard to damage.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="h0b98d9b2g9dd4g40b0g9cd7g3164e5903e24" version="1">Transform yourself or an ally into a tiny gas cloud. It can't fall, and fits through small openings. It is very hard to damage.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="htarget_vampirictouch_desc" version="1">Touch an enemy to siphon their life force and regain half as many &lt;LSTag Tooltip="HitPoints"&gt;hit points&lt;/LSTag&gt;.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="he83ef39dg9d0ag4375gbd52g3cab5d0bd1a8" version="1">Touch an enemy to siphon their life force and regain half as many &lt;LSTag Tooltip="HitPoints"&gt;hit points&lt;/LSTag&gt;.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="htarget_vampirictouch_free_desc" version="1">Siphon the life force from an enemy without expending a &lt;LSTag Tooltip="SpellSlot"&gt;spell slot&lt;/LSTag&gt;. They take [1] and you regain half as many &lt;LSTag Tooltip="HitPoints"&gt;hit points&lt;/LSTag&gt;.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="hb37c45d8gcdbfg4a84gb68ag3013f09edf53" version="1">Siphon the life force from an enemy without expending a &lt;LSTag Tooltip="SpellSlot"&gt;spell slot&lt;/LSTag&gt;. They take [1] and you regain half as many &lt;LSTag Tooltip="HitPoints"&gt;hit points&lt;/LSTag&gt;.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="hwall_wallofstone_desc" version="1">Raise a wall of non-magical, solid stone.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="h2688263cg5479g49dbg9ce1gd93a0c59615f" version="1">Raise a wall of non-magical, solid stone.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="hwall_wallofice_desc" version="1">Raise a wall of solid ice that deals [1] to anyone standing in its way.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="h57821bc1gaf2bg4bdagb5f1g264110b45cc7" version="1">Raise a wall of solid ice that deals [1] to anyone standing in its way.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="htarget_planarbinding_desc" version="1">Target an otherworldly creature and attach its consciousness to your own. It will follow and fight for you as an ally.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="h833d664bge7feg4259g982cgfbf47c1b9d74" version="1">Target an otherworldly creature and attach its consciousness to your own. It will follow and fight for you as an ally.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="htarget_globeofinvulnerability_desc" version="1">Create a barrier that makes creatures and objects inside it &lt;LSTag Tooltip="Immune"&gt;Immune&lt;/LSTag&gt; to all damage.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="h141455b3g272eg4ea0gafafge6af400ae1b2" version="1">Create a barrier that makes creatures and objects inside it &lt;LSTag Tooltip="Immune"&gt;Immune&lt;/LSTag&gt; to all damage.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="hshout_divinefavor_desc" version="1">Your weapon attacks deal an additional [1].
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="h62bc4600gf78fg4406g8ed5g3f5f6944b1cb" version="1">Your weapon attacks deal an additional [1].
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="htarget_smite_searing_desc" version="1">Deal an extra [1] and set your target on fire: it takes [2] every turn.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="h322c23a7g6c1ag4ad9g8b8dgd7ae4c194acf" version="1">Deal an extra [1] and set your target on fire: it takes [2] every turn.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="htarget_smite_wrathful_desc" version="1">Possibly &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frighten&lt;/LSTag&gt; your target. They'll have &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt; on &lt;LSTag Tooltip="AbilityCheck"&gt;Ability Checks&lt;/LSTag&gt; and &lt;LSTag Tooltip="AttackRoll"&gt;Attack Rolls&lt;/LSTag&gt; and be unable to move.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="h3cc84672g37a4g48aegb70eg881a98f6231c" version="1">Possibly &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frighten&lt;/LSTag&gt; your target. They'll have &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt; on &lt;LSTag Tooltip="AbilityCheck"&gt;Ability Checks&lt;/LSTag&gt; and &lt;LSTag Tooltip="AttackRoll"&gt;Attack Rolls&lt;/LSTag&gt; and be unable to move.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="htarget_smite_branding_desc" version="1">Possibly marks your target with light, preventing it from turning &lt;LSTag Type="Status" Tooltip="INVISIBLE"&gt;Invisible&lt;/LSTag&gt;.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="hf44d4aedgce78g4700gb024gfc7d53df20c2" version="1">Possibly marks your target with light, preventing it from turning &lt;LSTag Type="Status" Tooltip="INVISIBLE"&gt;Invisible&lt;/LSTag&gt;.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="htarget_smite_branding_container_desc" version="1">Possibly marks your target with light, preventing it from turning &lt;LSTag Type="Status" Tooltip="INVISIBLE"&gt;Invisible&lt;/LSTag&gt;.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="htarget_smite_banishing_desc" version="1">Possibly &lt;LSTag Type="Status" Tooltip="BANISHED"&gt;Banish&lt;/LSTag&gt; your target to another plane of existence.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="h322c7c04g0c2bg4b21gb867g181d32bc1c02" version="1">Possibly &lt;LSTag Type="Status" Tooltip="BANISHED"&gt;Banish&lt;/LSTag&gt; your target to another plane of existence.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="htarget_staggeringsmite_desc" version="1">Possibly &lt;LSTag Type="Status" Tooltip="STAGGERING_SMITE"&gt;Stagger&lt;/LSTag&gt; your target. It can't take reactions and is more likely to miss.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="heebc23deg28bbg4929g8253g4c1091c49dfe" version="1">Possibly &lt;LSTag Type="Status" Tooltip="STAGGERING_SMITE"&gt;Stagger&lt;/LSTag&gt; your target. It can't take reactions and is more likely to miss.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="htarget_ensnaringstrike_desc" version="1">Your attack summons thorny vines that possibly &lt;LSTag Type="Status" Tooltip="ENSNARING_STRIKE"&gt;Ensnare&lt;/LSTag&gt; your target.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="h61f1d020g7de5g494bg96a6g746ccfa68fd5" version="1">Your attack summons thorny vines that possibly &lt;LSTag Type="Status" Tooltip="ENSNARING_STRIKE"&gt;Ensnare&lt;/LSTag&gt; your target.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="hprojectile_ensnaringstrike_desc" version="1">Your attack summons thorny vines that possibly &lt;LSTag Type="Status" Tooltip="ENSNARING_STRIKE"&gt;Ensnare&lt;/LSTag&gt; your target.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="hfaf3dfeagffb2g4dfbg8d51gc51d582d6947" version="1">Your attack summons thorny vines that possibly &lt;LSTag Type="Status" Tooltip="ENSNARING_STRIKE"&gt;Ensnare&lt;/LSTag&gt; your target.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="hprojectile_hailofthorns_desc" version="1">The thorns deal [1] to the target and then explode. The explosion deals an additional [2] to the target and surrounding creatures.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="h79a79e7ag459dg4cecgaf6agd68ad06eeb67" version="1">The thorns deal [1] to the target and then explode. The explosion deals an additional [2] to the target and surrounding creatures.
+
+Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+    <content contentuid="h0c4d0e6bg384ag4759g8e59g778c2af53eed" version="1">Attackers have &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt; on &lt;LSTag Tooltip="AttackRoll"&gt;Attack Rolls&lt;/LSTag&gt; against you.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="h0f0fd40aga4f2g444eg8d1ag9ad1351a8515" version="1">Focus your mind to read the thoughts of certain creatures while talking to them.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="h4b20b3a0gb2b1g437cgaa4bg801cefc90a5a" version="1">Gain &lt;LSTag Type="Spell" Tooltip="Shout_Dash"&gt;Dash&lt;/LSTag&gt; immediately and as a bonus action on each of your turns until this spell ends.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="h3ce43d50g5b6dg4772g834fgba200cc3cdcd" version="1">Your allies will regain the maximum &lt;LSTag Tooltip="HitPoints"&gt;hit points&lt;/LSTag&gt; possible when healed. They also gain &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on Wisdom &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt; and Death Saving Throws.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="h5d1c1f49g43a6g44e0g807cgeb572b500fe2" version="1">Call forth a veil of shadows and silence that gives you and all nearby companions a +10 bonus to Stealth &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt;.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="h11c400b0ge585g4c68gb492g26b1fe49e5d1" version="1">Become Invisible.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="hc07ab314g3e99g405ega382gde24ece3da53" version="1">Protect a creature from attacks: increase its &lt;LSTag Tooltip="ArmourClass"&gt;Armour Class&lt;/LSTag&gt; up to 16.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="hdb24b7c0g74dag4e54gb7a3gac62ec5ca246" version="1">Grant another creature &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on Stealth &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt;.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="h8c9e7f4cg38deg4a95gb3e0g304b024930bb" version="1">Bestow a magical enhancement upon an ally. They gain &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on &lt;LSTag Tooltip="AbilityCheck"&gt;Ability Checks&lt;/LSTag&gt; with a chosen &lt;LSTag Tooltip="Abilities"&gt;Ability&lt;/LSTag&gt;.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="hf7fa1ac6g7e29g4a69gb9a6g404961b7df50" version="1">Creature gains &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on Constitution &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt; and gains [1].&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="h5b24b111g06f9g4f24g91d6ge1e352467c2f" version="1">Creature gains &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on Strength &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt;, and its &lt;LSTag Tooltip="CarryWeight"&gt;carrying capacity&lt;/LSTag&gt; is doubled.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="h9e6c3c8ag392cg49ceg9918gc1c21c19490c" version="1">Creature gains &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on Dexterity &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt; and only takes half damage from falling.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="h274a4789g61e4g49eeg8716g0f0de2f3cbb7" version="1">Creature gains &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on Charisma &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt;.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="h54a1eb42g210bg41cdg8830gd9c4464d0613" version="1">Creature gains &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on Intelligence &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt;.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="ha1c11b78gc77bg4941ga1f7g50214e4d3814" version="1">Creature gains &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on Wisdom &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt;.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="h06435a93gfe7cg40e7gbe7dg14a6faf0233b" version="1">Bestow a magical enhancement upon two allies. They gain &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on &lt;LSTag Tooltip="AbilityCheck"&gt;Ability Checks&lt;/LSTag&gt; with a chosen &lt;LSTag Tooltip="Abilities"&gt;Ability&lt;/LSTag&gt;.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="hf13bcec1g58e0g4079g9d48g01f7c664db7e" version="1">Bestow the ability to &lt;LSTag Type="Spell" Tooltip="Projectile_Fly"&gt;Fly&lt;/LSTag&gt; upon yourself or an ally.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="h9897a57cg0f50g4a5fg911fg9eb5b05064d3" version="1">The target gains a +1d4 bonus to &lt;LSTag Tooltip="AbilityCheck"&gt;Ability Checks&lt;/LSTag&gt;.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="he2c1c7ccg7b0cg4348gbd24gd585efb43e06" version="1">Make yourself or a target immune to &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frightened&lt;/LSTag&gt; and gain [1] each turn.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="h84fac665g901ag4c0ag857agfbaed9592795" version="1">Make yourself or a target immune to &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frightened&lt;/LSTag&gt; and gain [1] each turn.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="h03d809a2g6d93g4ebeg89acgcac2594d44fa" version="1">Make yourself or a target immune to &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frightened&lt;/LSTag&gt; and gain [1] each turn.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="hf30493d0g1858g4f2eg8c77ga32d930bdd56" version="1">Touch a creature to turn it &lt;LSTag Type="Status" Tooltip="INVISIBILITY"&gt;Invisible&lt;/LSTag&gt;. Attacks against it have &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt;. It attacks with &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt;.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="he81ea0c0gf0f1g48c6gb92ag73ee6e9ac950" version="1">Infuse a weapon with arcane energy. The weapon becomes magical, receiving a +[1] bonus to &lt;LSTag Tooltip="AttackRoll"&gt;Attack&lt;/LSTag&gt; and Damage Rolls.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="h40317e98g7466g4c9dg9053g7db2a5d70e9d" version="1">Protect an ally against the attacks and powers of aberrations, celestials, elementals, fey, fiends, and undead.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="h67a2ed94gbe23g4badgb76bg2f45972b34ad" version="1">Protect an ally against the attacks and powers of aberrations, celestials, elementals, fey, fiends, and undead.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="hc3d2694cg87d3g418dg9e49g26eb4b83ca2e" version="1">Protect an ally against the attacks and powers of aberrations, celestials, elementals, fey, fiends, and undead.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="h608c0341ga508g4b7bgba8egc80bf71f58c0" version="1">Make a target more resistant to spell effects and conditions: it receives a +[1] bonus to &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt;.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="hf4d3f156ga6aeg45f8g8898gdbb03d43a025" version="1">Up to [2] creatures receive a -[1] penalty to &lt;LSTag Tooltip="AttackRoll"&gt;Attack Rolls&lt;/LSTag&gt; and &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt;.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="hf173142cgfcf5g4336gba65g81e7191806b9" version="1">Up to [2] creatures receive a -[1] penalty to &lt;LSTag Tooltip="AttackRoll"&gt;Attack Rolls&lt;/LSTag&gt; and &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt;.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="h9c0a3b11g09d2g4e82g89e4g62bb5dbaa337" version="1">Up to [2] creatures receive a -[1] penalty to &lt;LSTag Tooltip="AttackRoll"&gt;Attack Rolls&lt;/LSTag&gt; and &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt;.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="h06e352fbgf48dg4652gbc65gbd5eb6ec2b89" version="1">Curse a creature with your touch. The curse either bestows &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt; on &lt;LSTag Tooltip="AbilityCheck"&gt;checks&lt;/LSTag&gt; and &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt; or &lt;LSTag Tooltip="AttackRoll"&gt;attacks&lt;/LSTag&gt;, lets you deal additional damage to the target, or robs it of its actions.  &#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="h4f61fe77g9c6eg4aa0gaa30g4290a0e8977f" version="1">Curse a creature with your touch. It suffers &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt; on Strength &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt; and &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt;.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="he7c20f55ga16fg46a6gbae0g541860705606" version="1">Curse a creature with your touch. It suffers &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt; on Dexterity &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt; and &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt;.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="hcfb9206fgd093g40c7g858dg12d5d97679bd" version="1">Curse a creature with your touch. It suffers &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt; on Constitution &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt; and &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt;.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="h93820370gce21g4da3g94d9g2b15b5863b9a" version="1">Curse a creature with your touch. It suffers &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt; on Intelligence &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt; and &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt;.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="hbed787f0gee95g4e1cg9f9cgc048abda3677" version="1">Curse a creature with your touch. It suffers &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt; on Wisdom &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt; and &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt;.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="h4b3047eeg2a61g4579g9658gbbb8e1b3bf01" version="1">Curse a creature with your touch. It suffers &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt; on Charisma &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt; and &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt;.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="h8940df8eg83f8g4e5dgbb25g3d86a36c2343" version="1">Curse a creature with your touch. It has &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt; on &lt;LSTag Tooltip="AttackRoll"&gt;Attack Rolls&lt;/LSTag&gt; against you.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="h2c58f9ebga313g47ffgbe6dgb8a67db0cd8c" version="1">Curse a creature with your touch. Your attacks and spells deal an additional [1] to the target.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="hb1c1ad8fg363ag48d3g9720g0d15c1ea36d7" version="1">Curse a creature with your touch. It fills with dread, possibly skipping its turn.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="h4facc745g1ad3g47e1gb044g4a111e5526d7" version="1">Bless up to [2] creatures. They gain a +[1] bonus to &lt;LSTag Tooltip="AttackRoll"&gt;Attack Rolls&lt;/LSTag&gt; and &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt;.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="h239cf118g09c9g46f1g99a1gc0ec4b11a6c6" version="1">Illuminate a [1] radius.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="ha4d7dafag8092g4156g82d9gd0a6f0d835a5" version="1">Make a creature larger or smaller to affect their weapon damage and Strength &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt; and &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt;.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="h21bab19cg2de1g46f5g9805g7fb58680f3ff" version="1">Gain &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on Charisma &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt; against a non-hostile creature.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="h1e2c767dg93ccg472bg8d5dgd990bf0ac8bf" version="1">Make your attacks deal an additional [1] damage to the target and give it &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt; on an &lt;LSTag Tooltip="Abilities"&gt;Ability&lt;/LSTag&gt; of your choosing.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="hbba76069g16d0g4a5dga7e9g8da438a4c19a" version="1">Deal an additonal [1] when you attack the target and impart &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt; on Strength &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt;.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="h88e63a98gff36g42aaga32cg9e328ddc608f" version="1">Deal an additonal [1] when you attack the target and impart &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt; on Dexterity &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt;.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="hef783c1eg0554g4099ga5c5g36bdfb09a5f0" version="1">Deal an additonal [1] when you attack the target and impart &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt; on Constitution &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt;.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="hf47a76deg3ff0g4469ga7dfg58f7689ae720" version="1">Deal an additonal [1] when you attack the target and impart &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt; on Intelligence &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt;.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="hfa7d20bdg80f8g488cgaf20gb80c9e74d164" version="1">Deal an additonal [1] when you attack the target and impart &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt; on Wisdom &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt;.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="hac56e910g7f81g42c8ga94cgd9fd34184328" version="1">Deal an additonal [1] when you attack the target and impart &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt; on Charisma &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt;.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="h167dadfdg7aeeg491cg9f74g8a7864783234" version="1">Make your attacks deal an additional [1] damage to the target and give it &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt; on an &lt;LSTag Tooltip="Abilities"&gt;Ability&lt;/LSTag&gt; of your choosing.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="hf76da5f1g4d3ag49fag87adgca7cd821335b" version="1">Make your attacks deal an additional [1] damage to the target and give it &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt; on an &lt;LSTag Tooltip="Abilities"&gt;Ability&lt;/LSTag&gt; of your choosing.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="hbf2a37edg0149g4fe3g8a3bg602d149c768f" version="1">Curse a new creature without expending an extra &lt;LSTag Tooltip="SpellSlot"&gt;spell slot&lt;/LSTag&gt;.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="h5700c2d0gda65g42c1gaa06g11f1ea28e6d3" version="1">Deal an additonal [1] when you attack the target and impart &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt; on Strength &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt;.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="he27f3f26g0294g4141g966bgdec341b98cc3" version="1">Deal an additonal [1] when you attack the target and impart &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt; on Dexterity &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt;.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="h5a186249gb7acg43eag93dbgf710109aa9f3" version="1">Deal an additonal [1] when you attack the target and impart &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt; on Constitution &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt;.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="h5d3a3dd0g3945g46e9g8e7agf82e2e8de375" version="1">Deal an additonal [1] when you attack the target and impart &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt; on Intelligence &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt;.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="h6658ed7eg516dg496bg8514g918a78b159c7" version="1">Deal an additonal [1] when you attack the target and impart &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt; on Wisdom &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt;.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="h0c536682g4ebeg4eabg90f5gd6e574e7f3c7" version="1">Deal an additonal [1] when you attack the target and impart &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt; on Charisma &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt;.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="hbf18c5f4g3952g4e08gaeb6ga9785601dd2c" version="1">Mark a creature as your quarry to deal an additional [1] whenever you hit it with a weapon attack. &#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="h7f626467g9c67g434dga36dg3038ec0cafec" version="1">Shift your &lt;LSTag Type="Status" Tooltip="HUNTERS_MARK"&gt;Hunter's Mark&lt;/LSTag&gt; to a new creature without using a &lt;LSTag Tooltip="SpellSlot"&gt;spell slot&lt;/LSTag&gt;.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="hff4eb999gf26eg445ag9492g1811bcee6bf4" version="1">Make a creature smaller. Its weapons deal [1] less damage. It has &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt; on &lt;LSTag Tooltip="Strength"&gt;Strength&lt;/LSTag&gt; &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt; and &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt;.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="h4024b238g0da6g4a23g80a5gc25bb4ae7ea6" version="1">Protect a creature from attacks: increase its &lt;LSTag Tooltip="ArmourClass"&gt;Armour Class&lt;/LSTag&gt; by 2.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="hfe7175fcg8de3g4f52g9386ge739232c0c59" version="1">Gain the ability to &lt;LSTag Type="Spell" Tooltip="Projectile_Fly"&gt;Fly&lt;/LSTag&gt;.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="h5235b0b2gc746g411agb0fegaf7b66e0919b" version="1">Become Invisible. The spell ends if you attack, take an action or take damage.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="haab5e91cg9a10g498eg8eb8g246da2e273b5" version="1">Turn &lt;LSTag Type="Status" Tooltip="INVISIBILITY"&gt;Invisible&lt;/LSTag&gt; after casting &lt;LSTag Type="Spell" Tooltip="Target_Misty_Step"&gt;Misty Step&lt;/LSTag&gt;.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="hdd0850d8g548cg4cdag846cgaced4200d44e" version="1">Manipulate the currents of the air to make yourself undetectable. &#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="h907ce69agfbe1g4ce9gb7fegb8e2b11e590e" version="1">Radiate a holy power that emboldens you and nearby allies. You and your allies' weapon attacks deal an additional [1].&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="h99eb4315g648cg442egaf59g52d4b0230d37" version="1">Imbue a weapon with elemental power. It receives a +[1] bonus to &lt;LSTag Tooltip="AttackRoll"&gt;Attack Rolls&lt;/LSTag&gt;, and deals an additional 1d4 damage of your choice.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="hf9e01bc9g4b62g4ce7ga0b6ga539df816f01" version="1">Imbue a weapon with a corrosive might. It receives a +[1] bonus to &lt;LSTag Tooltip="AttackRoll"&gt;Attack Rolls&lt;/LSTag&gt;, and deals an additional [2].&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="h728f0f09g0a4bg4702gb47egd6c0a91d00c2" version="1">Imbue a weapon with an icy might. It receives a +[1] bonus to &lt;LSTag Tooltip="AttackRoll"&gt;Attack Rolls&lt;/LSTag&gt;, and deals an additional [2].&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="hd7a0ea0ega6f5g4cefg890eg2ec06228b52f" version="1">Imbue a weapon with a fiery might. It receives a +[1] bonus to &lt;LSTag Tooltip="AttackRoll"&gt;Attack Rolls&lt;/LSTag&gt;, and deals an additional [2].&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="h83a0aa64gc83bg4194g809dg8736450e9158" version="1">Imbue a weapon with an electrical might. It receives a +[1] bonus to &lt;LSTag Tooltip="AttackRoll"&gt;Attack Rolls&lt;/LSTag&gt;, and deals an additional [2].&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="h209649e9g9432g4789g921eg52645bcc745b" version="1">Imbue a weapon with a thunderous might. It receives a +[1] bonus to &lt;LSTag Tooltip="AttackRoll"&gt;Attack Rolls&lt;/LSTag&gt;, and deals an additional [2].&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="hfed07662gaef0g42a2g9495ga2e81aeba6ef" version="1">Imbue a weapon with elemental power. It receives a +[1] bonus to &lt;LSTag Tooltip="AttackRoll"&gt;Attack Rolls&lt;/LSTag&gt;, and deals an additional 1d4 damage of your choice.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="h5130b1b5g7c5cg4bf2g87a2g71e8c3ef632a" version="1">Bestow a magical enhancement upon 3 allies. They gain &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on &lt;LSTag Tooltip="AbilityCheck"&gt;Ability Checks&lt;/LSTag&gt; with a chosen &lt;LSTag Tooltip="Abilities"&gt;Ability&lt;/LSTag&gt;.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="h886bd784gbaefg45a8gb6e3ga9b04b7e07fd" version="1">Turn a creature &lt;LSTag Type="Status" Tooltip="GREATER_INVISIBILITY"&gt;Invisible&lt;/LSTag&gt;. Attacks against it have &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt;. It attacks with &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt;.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="hd2a07b10g06e7g4fc2ga9adg1845a45f8d64" version="1">Turn a creature's flesh hard as stone. It takes only &lt;LSTag Tooltip="Resistant"&gt;half the damage&lt;/LSTag&gt; of all non-magical Bludgeoning, Piercing, and Slashing damage.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="h33f5db71g8f1ag43adgbb4egbec849832a85" version="1">Up to [2] creatures receive a -[1] penalty to &lt;LSTag Tooltip="AttackRoll"&gt;Attack Rolls&lt;/LSTag&gt; and &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt;.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="h10c9356ag971ag4611ga42fg6134c5ad11c8" version="1">Strike with the Black Hand's ire, dealing more damage and &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frightening&lt;/LSTag&gt; your target.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="hef065898ge958g4085gb33dg40078b0ee1f4" version="1">Illuminate the area around you with wisps of moonish light that make movement difficult for enemies and bolster your allies' damage. &#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="hbadbd713g306bg4887g95f1g470ad865ff1f" version="1">Become &lt;LSTag Type="Status" Tooltip="INVISIBILITY"&gt;Invisible&lt;/LSTag&gt;.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="h4de649bbgda22g4ac9ga3e1gb599ffd87e5b" version="1">Encase yourself with a shimmering field of magic that increases your &lt;LSTag Tooltip="ArmourClass"&gt;Armour Class&lt;/LSTag&gt; by 2.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="h10fca6c1gfb0cg4757g9510gf6bcac9acade" version="1">Encase yourself with a shimmering field of magic that increases your &lt;LSTag Tooltip="ArmourClass"&gt;Armour Class&lt;/LSTag&gt; by 2.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="hf8c40b91gf410g4accg9157g6565e0d72f81" version="1">Channel Auntie Ethel's hag magic to render [1] creatures within range &lt;LSTag Type="Status" Tooltip="GREATER_INVISIBILITY"&gt;Invisible&lt;/LSTag&gt;.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <content contentuid="h641dfdeagfb30g4956g885dgee3adae1d2ff" version="1">Your attack summons thorny vines that possibly &lt;LSTag Type="Status" Tooltip="ENSNARING_STRIKE_2"&gt;Ensnare&lt;/LSTag&gt; your target.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="hc3c37463gc659g4cf9g9324g4feaa8fd2806" version="1">Your attack summons thorny vines that possibly &lt;LSTag Type="Status" Tooltip="ENSNARING_STRIKE_3"&gt;Ensnare&lt;/LSTag&gt; your target.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="heecd4cdag84e7g4e9dg9416g98d9614996da" version="1">Possibly marks your target with light, preventing it from turning &lt;LSTag Type="Status" Tooltip="INVISIBLE"&gt;Invisible&lt;/LSTag&gt;.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="hbc5fc898gf1c8g4cf7gadbbg55b96bed8ad9" version="1">Link yourself to a target with a bolt of lightning. Deal an additional [1] each turn by activating it.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="hd7986d92g354ag4a2agacaagabc8b9fbf356" version="1">Link yourself to a target with a bolt of lightning. Deal an additional [1] each turn by activating it.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="he021aad9g7706g4acfg9aaegdb9de5a2401e" version="1">%%% Change your appearance permanently.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="hed3ad0a6g8f55g4892g96a9gc36526f0db02" version="1">%%% Change your appearance permanently.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h7678b28cg35bdg443egb656gb7f328322b61" version="1">%%% Change your appearance permanently.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="hfd53ff70g8a37g4ca7g91e8g733f9fd0ec5d" version="1">%%% Change your appearance permanently.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="hb8201413g80e0g4a89gb9d1g73a10d084b90" version="1">%%% Change your appearance permanently.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="hb3c865e0ga422g4535gb431g33a985b8e8a9" version="1">%%% Change your appearance permanently.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="hb6c19a08g2f86g4353g9dfdg07a4621be547" version="1">%%% Change your appearance permanently.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="hd9f304d6g7f2fg41bbg895cg4bf02b4d1a24" version="1">%%% Change your appearance permanently.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h91cdd715g29fdg4ee2g86c6gff4db27a62bb" version="1">%%% Change your appearance permanently.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h0e90f8c0g63d3g4cbdg9fbag4694fe17bbc1" version="1">%%% Change your appearance permanently.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h1b3454a5gcebeg4bf0gaae2g23081b1ba211" version="1">%%% Change your appearance permanently.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h1b148697gc610g4fb2g89cfg11e4b361bc27" version="1">%%% Detect supernatural creatures.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h1fe02456g5ddfg4030ga1e0gc2ed7951d0b3" version="1">A protective shell envelops you. It reflects any projectiles targeted at you back to their point of origin.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h84de1e54g793cg4e08gbbffg43b979f015ce" version="1">Charm nearby creatures with a magical melody to &lt;LSTag Type="Status" Tooltip="LURING_SONG"&gt;Lure&lt;/LSTag&gt; them to you.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h23eedbbdgdeadg4b3ag8558gf182bb740103" version="1">Your attack summons thorny vines that possibly &lt;LSTag Type="Status" Tooltip="ENSNARING_STRIKE_2"&gt;Ensnare&lt;/LSTag&gt; your target.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="hcd069ec1g4e5bg4c94g8fdeg3c5010cfb4a3" version="1">Your attack summons thorny vines that possibly &lt;LSTag Type="Status" Tooltip="ENSNARING_STRIKE_3"&gt;Ensnare&lt;/LSTag&gt; your target.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="ha3c6d2f3g59eeg4cd3g80aeg83a0fb71393c" version="1">Deal an extra [1] and set your target on fire: it takes [2] every turn.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h65ecf166g11a2g4720g842cg0b47d210866a" version="1">Deal an extra [1] and set your target on fire: it takes [2] every turn.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h5b1aff19g6818g4e3cga665g9a4e1402918e" version="1">Force an enemy to attack only you, giving it &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt; against other targets. &#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h6ac94998gf7f1g424bgb6a4g99e4fd91de09" version="1">The target's weapon and unarmed attacks deal an additional [1] damage. It has &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on &lt;LSTag Tooltip="Strength"&gt;Strength&lt;/LSTag&gt; &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt; and &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt;.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="hd6b086f5g9c01g4817g88d9g680fcbf62b62" version="1">Target yourself or an ally to become &lt;LSTag Type="Status" Tooltip="HASTE"&gt;Hastened&lt;/LSTag&gt;: gain an action, become faster and gain +2 to &lt;LSTag Tooltip="ArmourClass"&gt;Armour Class&lt;/LSTag&gt;.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h84a2eccfgd7d5g42bfg9fb2gb7e12b88d7f3" version="1">Leave a creature &lt;LSTag Type="Status" Tooltip="PRONE"&gt;Prone&lt;/LSTag&gt; with laughter, without the ability to get up.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h9bcc88bbgc26fg49a1g9ca3g17d10db0de40" version="1">Leave a creature &lt;LSTag Type="Status" Tooltip="PRONE"&gt;Prone&lt;/LSTag&gt; with laughter, without the ability to get up.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h768a46b7gbf9dg4892gb3d6gd70eae8ecde6" version="1">Distract your enemies with an illusion. Within [1] of the illusion, &lt;LSTag Tooltip="AttackRoll"&gt;Attack Rolls&lt;/LSTag&gt; have &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; for you and your allies.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h0904d068g1b91g4a96gb8dagfeb9501c75a1" version="1">Make a nearby object or creature float up in the air.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h6c09e973gb4ffg49e6g8832g9af0c3b06160" version="1">Pull one creature or object towards you.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h6d0cebbeg7028g4deeg9784g83b3947f67da" version="1">Summon a Scrying Eye.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="he014b03bg6138g431dga1ecg45e4ebba4869" version="1">Gain &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on your next &lt;LSTag Tooltip="AttackRoll"&gt;Attack Roll&lt;/LSTag&gt;.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h2d405928g60a1g4d1bg8a9cg4af27c95b734" version="1">Create a vine surface, slowing down creatures, possibly &lt;LSTag Type="Status" Tooltip="ENSNARED_VINES"&gt;Entangling&lt;/LSTag&gt; them.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h726ccd35gc077g4481g8102g12f524d9cd58" version="1">Create a vine surface, slowing down creatures, possibly &lt;LSTag Type="Status" Tooltip="ENSNARED_VINES"&gt;Entangling&lt;/LSTag&gt; them.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h1b41d13bg42dcg47cfg91dbga2a2dfbb359e" version="1">All targets within the light turn visible, and &lt;LSTag Tooltip="AttackRoll"&gt;Attack Rolls&lt;/LSTag&gt; against them have &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt;.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h77edd615ge0e4g4921gb33cg01a31efe15f5" version="1">All targets within the light turn visible, and &lt;LSTag Tooltip="AttackRoll"&gt;Attack Rolls&lt;/LSTag&gt; against them have &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt;.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="hb463c60cg237cg4d5cga881g3ebcb12c271f" version="1">The cloud &lt;LSTag Type="Status" Tooltip="BLINDED"&gt;Blinds&lt;/LSTag&gt; and &lt;LSTag Type="Status" Tooltip="SNEAKING_HEAVILY_OBSCURED"&gt;Heavily Obscures&lt;/LSTag&gt; creatures within it. .&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h3e286962gb0c6g4d65ga807g66babea5d817" version="1">The cloud &lt;LSTag Type="Status" Tooltip="BLINDED"&gt;Blinds&lt;/LSTag&gt; and &lt;LSTag Type="Status" Tooltip="SNEAKING_HEAVILY_OBSCURED"&gt;Heavily Obscures&lt;/LSTag&gt; creatures within it. &#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="haa5e1f56g5edcg4080g82dfg54cf0ca3cc22" version="1">The redcap's bloodthirsty cries fill one of its allies with bloodlust. It heals when it kills a creature and can attack three times.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h270a3cbag5b1ag40a9g900agb9845a55a6fe" version="1">Numb a creature's soul and offer it to Yeenoghu to prevent it from taking bonus actions or reactions.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h3f2d2f77gd061g4ac7g8df8g70dc05e45bd3" version="1">Bestow hallucinations on a humanoid creature to make it wander around uncontrollably.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h3a6f55a9g96f9g48b3g8385gc8a7d373fa68" version="1">Cause an enemy to make a weapon attack against one of its allies.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h37ecbb12g6442g427cga207g8a56171ed428" version="1">Expel a thick, flammable webbing that slows creatures within and possibly &lt;LSTag Type="Status" Tooltip="WEB"&gt;Enwebs&lt;/LSTag&gt; them.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="hb3171791g1491g4596g9e5eg955b641a4534" version="1">Aberrations, celestials, elementals, fey, fiends, and undead have &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt; on &lt;LSTag Tooltip="AttackRoll"&gt;Attack Rolls&lt;/LSTag&gt; against you.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h1d96960fg2753g4db8ga3aag470b8fa7b6f9" version="1">Transform into a tiny mist cloud. It can't fall, and fits through small openings. It is very hard to damage.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h84fcd443g6861g44b7g9ba8g1c53840f477b" version="1">Focus your mind to read the thoughts of certain creatures while talking to them.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h0ae21ef8g9d31g4fbdg9c3cgb3c4c4088c55" version="1">Ignite with incandescent, primordial flames that &lt;LSTag Type="Status" Tooltip="HASTE"&gt;Hasten&lt;/LSTag&gt; you.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h277a5323g8a85g4329g8482g50f1a50bb124" version="1">Turn &lt;LSTag Type="Status" Tooltip="INVISIBLE"&gt;Invisible&lt;/LSTag&gt; while stalking your prey. While Invisible, your first attack deals an additional [1] damage.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h4ae83505g1f70g49d2gbc65g777e9af6ca08" version="1">Atrophy a foe, &lt;LSTag Type="Status" Tooltip="FLESH_TO_STONE_1"&gt;Restraining&lt;/LSTag&gt; them until they temporarily turn to stone.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="he64de87egcc5fg499fgb827g1f28db161d10" version="1">&lt;LSTag Type="Status" Tooltip="HOLD_PERSON"&gt;Hold&lt;/LSTag&gt; a humanoid enemy still. They can't move, act or react. Attacks from within 3m are always Critical Hits.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="hf9436921ge38cg4515g871ag2ccc99d8d31c" version="1">Transform into a blue jay, able to &lt;LSTag Type="Spell" Tooltip="Projectile_Fly"&gt;Fly&lt;/LSTag&gt;.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="he68a830bgaf0fg4ef1g8df5g44657552ebfe" version="1">Command an ally in the Dark Lord's name, letting them channel &lt;LSTag Type="Spell" Tooltip="Target_BanesWrath"&gt;Bane's Wrath&lt;/LSTag&gt;.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h469aca05g35deg48f0gb5b3g48b609fb55f0" version="1">Create an invisible, magical eye that can scout the path ahead for you.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h622e6d0dg7218g4ce3g871ag8aec2ac7bc95" version="1">Reposition your noxious cloud. It deals [1] per turn and &lt;LSTag Type="Status" Tooltip="BLINDED"&gt;Blinds&lt;/LSTag&gt; foes.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="hbcafc537gb434g4464g8b21g131c082a1a2d" version="1">Wrap your cursed tendrils around a creature to &lt;LSTag Type="Status" Tooltip="BLIGHT_ENTANGLE"&gt;Constrict&lt;/LSTag&gt; it.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h57c18910g0b80g470fgb273g6c445b48dc22" version="1">Affix a target with your baleful gaze to &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frighten&lt;/LSTag&gt; it. &#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h2b6ad2a0g8235g47a3gb2cbge73f51984ee6" version="1">&lt;LSTag Type="Status" Tooltip="DOMINATE_PERSON"&gt;Dominate&lt;/LSTag&gt; a nearby humanoid. Allies are unaffected.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="hdd513ac5g7c2bg4ef0g8092g772d86f4fb0c" version="1">Grapple a creature.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="he63d0eb9g1985g4283gbdc0gd036877e7632" version="1">Grapples a creature and deals [1].&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="hb1dcb164gcd95g485bgbf9fgf2a79d185e70" version="1">Induce a spark of hellfire within a target to give them &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt; on Strength, Dexterity, and Constitution &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt;.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h508f6710g1ce3g4f10g859eg59bde8527401" version="1">Pull a miscreant towards you for more thorough correction.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h1af00d45g6dcdg4468gb950g682538770a3e" version="1">Spiral the wind into a choking maelstrom that inflicts [1] per turn and &lt;LSTag Type="Status" Tooltip="SILENCED"&gt;Silences&lt;/LSTag&gt; creatures.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h30c8b74eg9f39g4860g961eg9ae77ce0b5ce" version="1">Targets one creature it can see within [1]. The target must succeed a Wisdom &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throw&lt;/LSTag&gt; or be &lt;LSTag Type="Status" Tooltip="STUNNED"&gt;Stunned&lt;/LSTag&gt; until the end of its next turn.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h4521a835g32c2g4987gaaa1g6d4409d1c5da" version="1">Equips the Surgeon with a gory, jagged bonesaw, allowing him to cast &lt;LSTag Type="Spell" Tooltip="Target_SurgeryAttack_Bonesaw_Surgeon"&gt;Bloody Bonesaw&lt;/LSTag&gt;.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h20d3fcf0gde5dg4b3dga530g2ec6acbdfb2e" version="1">Equips the Surgeon with a bloated, biting leech, allowing him to cast &lt;LSTag Type="Spell" Tooltip="Target_SurgeryAttack_Leech_Surgeon"&gt;Leech&lt;/LSTag&gt;.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h55c00c44g1c94g43b9g8b9cgadce1ece1278" version="1">Equips the Surgeon with a crusty, rusted syringe, allowing him to cast &lt;LSTag Type="Spell" Tooltip="Target_SurgeryAttack_Syringe_Surgeon"&gt;This Won't Hurt A Bit&lt;/LSTag&gt;.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h7ed48a7eg82c1g41b5g888ag2c8c1fc8c912" version="1">Equips the Surgeon with a poisonous trepan, allowing him to cast &lt;LSTag Type="Spell" Tooltip="Target_SurgeryAttack_Trepan_Surgeon"&gt;Terror Trepan&lt;/LSTag&gt;.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h96883555g9131g4c99ga212g312e5a6ba3cf" version="1">Request a tool for advanced surgery.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h2401e266gb4edg457dg83c9g406c6facad86" version="1">Marks the Blights' primary target for 2 turns. Dispelled by Wet.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h1e0b1b6egeeeeg4ce3gba26g51ba616b338c" version="1">Create two linked teleportation portals.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h426fae9cg271dg4d07g946dgfe2e62c54b53" version="1">Manipulate creatures around you to your will.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="hc40ef94ag3331g41c3gbc37gcea8bad47b4e" version="1">Use telekinesis to pull targets closer.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="hc175ca5ag9a03g4d83gbbc9g8d5bf48dcad3" version="1">Use telekinesis to pull targets closer.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h11a5a2d3ge17ag4b44gb50egb08ef740bd72" version="1">The Absolute shields her faithful and curses her enemies!&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="ha9396de9g9b0ag4619g953fg2f1b68836ce6" version="1">Curse a creature with regret. It takes [1] every turn, and becomes &lt;LSTag Tooltip="Vulnerable"&gt;Vulnerable&lt;/LSTag&gt; to Psychic damage.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="he4b942a4g616dg44d1gbfb5gc4612577daf6" version="1">Turn a corpse into a zombie.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h50857524g6bb5g40eag8afeg4e610da6ac54" version="1">Leech off a foe's psychic energy to make them more vulnerable and strengthen yourself.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="hfd9a8796gf7bfg4708g8fa1g8c2de9033fbb" version="1">Force a psychic connection on those around you. Use &lt;LSTag Type="Spell" Tooltip="Projectile_CRE_GithyankiInquisitor_Mindsteal_Link"&gt;Mindsteal Link&lt;/LSTag&gt; on all nearby creatures.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h697c845cg2951g4cfbgbc57g629572f3cf53" version="1">%%% Buff for mage hand&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h58096498g4691g4778g867agf87437fb2e15" version="1">Scorch foes with fire.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h63406df1gd9b8g4bfcg8ec7g87f8c0630c11" version="1">Scorch foes with fire.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h6a4fdae8g5acdg4f6agbe67ga77325d9738c" version="1">Create heavy magical chains that bind to your targets, halving their &lt;LSTag Tooltip="MovementSpeed"&gt;Movement&lt;/LSTag&gt; speed. &lt;br&gt;&lt;br&gt;If the chains are still present at the beginning of your next turn, they break, dealing [1] to all targets.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h83864026gf27dg4fb4g86cdgb2ea99ea633f" version="1">Amplify your reflexes to better contend with incoming missiles. &lt;LSTag Tooltip="RangedWeaponAttack"&gt;Ranged weapon attacks&lt;/LSTag&gt; against you have &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt;, and their damage is halved. &#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h3807256dg9a6bg4221gbdc1gd826c0c752ce" version="1">Transform into a tiny mist cloud. It can't fall, and fits through small openings. It is very hard to damage. Foes within [1] of the cloud may be &lt;LSTag Type="Status" Tooltip="BLINDED"&gt;Blinded&lt;/LSTag&gt; and take [2] at the start of Cazador's turn.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h249c077cgde00g4cf9g917cg99646c9cf56b" version="1">You can read minds, but become &lt;LSTag Tooltip="Vulnerable"&gt;Vulnerable&lt;/LSTag&gt; to Psychic damage.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h5d0fa563gdd24g4f6fga280g47ec7e43e4eb" version="1">Transform into a cloud, becoming &lt;LSTag Tooltip="Resistant"&gt;Resistant&lt;/LSTag&gt; to all damage, gains &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on Constitution, Dexterity, and Strength &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt;, and tiny in size.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="hcfe3b3b6g9da9g4d39gb82dged39131848a0" version="1">Gain &lt;LSTag Type="Status" Tooltip="MAG_CELESTIAL_HASTE"&gt;Hastened&lt;/LSTag&gt;.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h82e221afg9c54g4190gbb00g59ac597dbef8" version="1">Hold Mol in place by enthralling her with a &lt;LSTag Type="Status" Tooltip="CHARMED"&gt;Charm&lt;/LSTag&gt;.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="hee05a181gb28ag40bdgb3afg21ced8325ef1" version="1">Assume the form of a dire wolf.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="hc77a94c6g80b4g45fbg8351g27135c2fe35e" version="1">Assume the form of a shadow mastiff.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="he50c1658g3f6bg4bc7gaf6dg39db1e4def7c" version="1">Assume the form of a phase spider.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h898990ccg6664g438dg9fe5g3fecdf5bb877" version="1">Assume the form of a minotaur.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="hc25bac39gdeadg414dg8586g179acb71cabb" version="1">Mark a target to make it &lt;LSTag Tooltip="Vulnerable"&gt;Vulnerable&lt;/LSTag&gt; to Necrotic damage.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h41c070fcg052dg455dg8584g8fd98daabb0e" version="1">Rob a creature of its life force and gain [1].&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h81bbaaa7g8c39g4903gac46g298d1198114a" version="1">Give your &lt;LSTag Type="Status" Tooltip="SHA_WITHERINGLIFE"&gt;Withering Life Force&lt;/LSTag&gt; to another creature.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h91ce984bga2cfg4f92gae08g18459a9bf985" version="1">Take command of another creature. &#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h90e2ebe0g1948g4e17g8f0fg70121c9fd858" version="1">Engulf your weapon in Selûne's light, an additional [1] and inflicting &lt;LSTag Type="Status" Tooltip="BURNING_HOLY"&gt;Holy Flame&lt;/LSTag&gt; on a hit.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h9f29e2bbg9d6eg4910g8747ge04cc0468991" version="1">Cast this upon shadow and undead creatures to &lt;LSTag Type="Status" Tooltip="ENSNARED_VINES"&gt;Entangle&lt;/LSTag&gt; them.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="he20525cfg3720g42e2gbd85gc12a97647a0f" version="1">Call on the darkness to drag your target [1] towards you.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h99c12515g93cag496fg987bg23f3dd1a8fca" version="1">Point your ringed finger at a target to make it &lt;LSTag Tooltip="Vulnerable"&gt;Vulnerable&lt;/LSTag&gt; to Poison damage, unless it is &lt;LSTag Tooltip="Immune"&gt;Immune&lt;/LSTag&gt; to Poison damage. &#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h80479fafg58a8g4df1gb303gb1adf50ecf4e" version="1">Expose the weak points of an enemy. They become &lt;LSTag Tooltip="Vulnerable"&gt;Vulnerable&lt;/LSTag&gt; to Bludgeoning, Slashing, or Piercing damage.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h1b56e7b8g6836g4b23g82c6gc5725c679c5b" version="1">Make an enemy &lt;LSTag Tooltip="Vulnerable"&gt;Vulnerable&lt;/LSTag&gt; to Slashing damage.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="hab871ce5ga97cg4f6fgb520gd47912723c86" version="1">Make an enemy &lt;LSTag Tooltip="Vulnerable"&gt;Vulnerable&lt;/LSTag&gt; to Piercing damage.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h905013f4g2b9cg4ebcgb4e3ga853af53e5e3" version="1">Make an enemy &lt;LSTag Tooltip="Vulnerable"&gt;Vulnerable&lt;/LSTag&gt; to Bludgeoning damage.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h66b669a3gf73eg4c8bgb137g95f68b5bb352" version="1">Your attack conjures thick sticky webbing that possibly &lt;LSTag Type="Status" Tooltip="WEB"&gt;Enwebs&lt;/LSTag&gt; your target(s).&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="hd9d6c3acgb442g4021gada0g753481101238" version="1">Command a creature to flee, move closer, freeze, drop to the ground or drop its weapon.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h637d25d5g33ddg41b2ga10cg08ca6b0a3ca6" version="1">Wrap a shadow rope around a Humanoid creature's throat to start &lt;LSTag Type="Status" Tooltip="GARROTE_TARGET_HUMANOID"&gt;Garrotting&lt;/LSTag&gt; it.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="hf54c5146g34c6g4b5ag9eaagcc06a9a77a2c" version="1">Challenge an enemy to attack only you, inflicting &lt;LSTag Type="Status" Tooltip="BLEEDING"&gt;Bleeding&lt;/LSTag&gt; on the target.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="hd8d276fbg7dffg484agab62gb56897c91b6e" version="1">Polymorph target into a cheese. It reverts to its original form when reduced to 0 hit points.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h254e109dgf362g4334g8cfbg8191217417ba" version="1">Summon the crafty devil Raphael to fight alongside you.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h9bd307e6g6dcag4227g9385g30dc17a8669c" version="1">Your target becomes &lt;LSTag Type="Status" Tooltip="LOW_HOUNDMASTER_HOUNDMASTERSMARK"&gt;Marked&lt;/LSTag&gt;. &#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="hd0953350g6755g473eg925agbf249dceef6c" version="1">Open a tear in reality itself, allowing allies to enter this plane from the Astral Sea. &#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h39401812ge9ceg4034g83cbg3bf8a97236ed" version="1">Attack with a weapon wreathed in righteous flames. &#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h43d5b96ag1811g49c7g8b35gc918d096f393" version="1">Bestow &lt;LSTag Type="Status" Tooltip="LOW_FATHERCARRION_GREATERCURSE_1"&gt;Mystic Carrion's Poisoned Curse&lt;/LSTag&gt; on a foe.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h466245dfg25ddg4f6ag964fgfc85adeab72e" version="1">Possess a creature, forcing it to act according to your will and dealing [1] to it every turn. &#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h4cab380eg9fa2g460fg8d03gf18456dba3f7" version="1">Mark a target with &lt;LSTag Type="Status" Tooltip="LOW_DEVILSFEE_WEALTH"&gt;Promise of Wealth&lt;/LSTag&gt;. Your allies with &lt;LSTag Type="Status" Tooltip="LOW_DEVILSFEE_BUFF"&gt;Infectious Greed&lt;/LSTag&gt; gain &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on &lt;LSTag Tooltip="AttackRoll"&gt;Attack Rolls&lt;/LSTag&gt; against it, convinced it carries great wealth.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h9655151dg6a9eg43b8g81ceg10d101fbe89e" version="1">Magically snatch a weapon from the target's hand.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h8ea43c38gaaf4g4e69g9da2g54a35cff7c98" version="1">When you take damage, you can retaliate, blasting your attacker with the elemental damage of each myrmidon currently &lt;LSTag Type="Passive" Tooltip="LOW_RamazithsTower_ElementalSiphon"&gt;Siphoned&lt;/LSTag&gt;.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h72965760gcf5fg4df4g8636g4e2697d5e15e" version="1">Form an impenetrable barrier of moonlight around a target that follows them and makes all creatures within &lt;LSTag Tooltip="Immune"&gt;Immune&lt;/LSTag&gt; to damage. &#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h552ddcc2g6bddg4d10g8d63gdf67bb55a259" version="1">Locusts attack everyone within range, make the area &lt;LSTag Type="Status" Tooltip="DIFFICULT_TERRAIN"&gt;Difficult Terrain&lt;/LSTag&gt;, and impose &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt; on Perception &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt;.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h84346b6egdc1bg4f17g8353g0ce0d76e97a5" version="1">After taking Radiant damage, &lt;LSTag Type="Status" Tooltip="LOW_RAPHAEL_STUNNED"&gt;Stun&lt;/LSTag&gt; the attacker, allowing you to &lt;LSTag Type="Spell" Tooltip="Target_LOW_Raphael_RepelDivinity_SoulDrain"&gt;Drain&lt;/LSTag&gt; its hit points. &#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h2ed0e135ga6ffg46aeg8c08g65e81f01c511" version="1">Drain the life force of an &lt;LSTag Type="Status" Tooltip="LOW_RAPHAEL_STUNNED"&gt;Infernally Stunned&lt;/LSTag&gt; creature, restoring your hit points by half the damage dealt.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h63d8bc1bg03a0g4f75g98f3g4cd2c392de1a" version="1">Hope banishes one of the unwelcome guests from her house forever.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h1a8043cag0bbcg4b7dgb21bg33d543c9be23" version="1">Exploit the target's mapped fear to &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frighten&lt;/LSTag&gt; it and inflict &lt;LSTag Type="Status" Tooltip="CONTAGION_BLINDING_SICKNESS"&gt;Blinding Sickness&lt;/LSTag&gt; upon it.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="hd183c846g88f0g4a21gae43gcf68432786ce" version="1">Exploit the target's mapped fear to &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frighten&lt;/LSTag&gt; it and inflict &lt;LSTag Type="Status" Tooltip="CONTAGION_FLESH_ROT"&gt;Flesh Rot&lt;/LSTag&gt; upon it.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h37861935g0979g4897g94f5gf1b6c0e4cc58" version="1">Exploit the target's mapped fear to &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frightened&lt;/LSTag&gt; it and &lt;LSTag Type="Status" Tooltip="CONTAGION_FLESH_ROT_3"&gt;Rot&lt;/LSTag&gt; its flesh.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="hfa904fe4g91bag4c1bg9443g10ab47b57e6e" version="1">Exploit the target's mapped fear to make it believe it has undergone &lt;LSTag Type="Status" Tooltip="LOW_HOUSEOFGRIEF_MINDFLAYER"&gt;ceremorphosis&lt;/LSTag&gt;. &#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h437fd1f0gea54g4390gb6f0g1424ce4658df" version="1">Exploit the target's mapped fear to &lt;LSTag Type="Status" Tooltip="FRIGHTENED"&gt;Frighten&lt;/LSTag&gt; it and &lt;LSTag Type="Status" Tooltip="LOW_HOUSEOFGRIEF_DOMINATED"&gt;Dominate&lt;/LSTag&gt; one of its allies.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h6c7a6c5fg37f3g480fg9335ga2609d905f8e" version="1">Exploit one of the target's deepest fears by transforming your followers into a pack of wolves.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="hd07329d6g0b31g41d7gb6a9g5e9a551833a0" version="1">Exploit one of the target's deepest fears by transforming your followers into spiders.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h915f8090g7611g4f21g926ag1339b5d8c607" version="1">Curse a creature whose heart you have mapped until they act against their nature. &#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h162c4af0gdb19g4b3egb610g3bda5066defd" version="1">Channel the stones' magic to control the Crown of Karsus and dominate the Netherbrain. &lt;br&gt;&lt;br&gt;The caster must &lt;LSTag Type="Status" Tooltip="END_KARSUSCOMPULSION_CHANNEL"&gt;channel&lt;/LSTag&gt; this spell until their next turn for it to take effect.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="ha539f173gea76g4d91g8832g2f4d9c2a5168" version="1">&lt;LSTag Type="Status" Tooltip="RESTRAINED"&gt;Restrain&lt;/LSTag&gt; a target and, after 3 rounds, the target becomes inactive solid gold until the spell ends.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h063cab23g03a4g4edcga3dagc48f8bd4343a" version="1">Rearrange a creature's very being into the image of Gale's darling pet. &#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h38ba601ege906g4c9cg82b5g4a1659558064" version="1">Conjure forth a barrel of Shadowdark Ale from the Yawning Portal and spread an &lt;LSTag Type="Status" Tooltip="IRRESISTIBLE_DANCE"&gt;Irrestible Dance&lt;/LSTag&gt; across all nearby creatures. &#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h572a429eg624fg4ff4g9556g62f322f4e560" version="1">Strike at a creature with a shadow whip and pull it [1] closer to you.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h5e4b24e3g089fg48f0gac9fgadc7bb4dffaf" version="1">Pulls the creature [1] closer to you.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="hc43db827g69fcg4881g9ee2g3099b5d5e83a" version="1">%%% Each creature in a 30-foot cone must succeed a Wisdom Saving Throw, or it will drop whatever it is holding and become feared for 1 minute.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="hf9b2c054g0a98g4663g9b7bg6dcdf9fa0116" version="1">Unleash a beam of brilliant light that &lt;LSTag Type="Status" Tooltip="SUNBEAM"&gt;Blinds&lt;/LSTag&gt; all creatures in its path.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h9e2c9cc5gf3ecg4f3cg894eg11eee84c637f" version="1">Command the red dragon of Supreme Kith'rak Voss to breathe a wall of fire onto the battlefield. &#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h514a0ae1g8e8bg4772g951cg30610d901d06" version="1">Throw a creature or object with your mind. Once per turn, you can use Telekinesis again while &lt;LSTag Tooltip="Concentration"&gt;Concentrating&lt;/LSTag&gt;.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <content contentuid="h1b9621d4gd455g41a0gb185gc9e6b53efdcd" version="1">The axe immediately returns to its thrower. &#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+
+    <!-- DnD 5.5e Beyond: Projectile_VoidStrike -->
+    <content contentuid="h5cfaf826gcbcdg6716gd3c9gb82508ad025d" version="1">With a short phrase of void speech, you gather writhing darkness around your hand. When you cast the spell, and as an action on subsequent turns, you can unleash a bolt of darkness at a target within range. Make a ranged spell attack. If your target is in dim light or darkness, you have advantage on the roll. On a hit, the target takes necrotic damage and is frightened of you until the start of your next turn.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <!-- DnD 5.5e Beyond: Shout_AshardalonsStride -->
+    <content contentuid="hc093f34eg734bg4909g8ea8g91e0aff0472a" version="1">The billowing flames of a dragon blast from your feet, granting you explosive speed. For the duration, your Speed increases by [1], and moving doesn't provoke Opportunity Attacks. Whenever you move within [2] of a creature, it takes Fire damage from your trail of heat. A creature can take this damage only once during a turn.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <!-- DnD 5.5e Beyond: Shout_AuraOfVitality -->
+    <content contentuid="h7f5b837cg0df3g8c6eg1f50ga527560cf9e6" version="1">While this aura lasts, you can cast &lt;LSTag Type="Spell" Tooltip="Target_AuraOfVitality_Activate"&gt;Restore Vitality&lt;/LSTag&gt; to heal yourself or nearby allies.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <!-- DnD 5.5e Beyond: Shout_AuraOfVitality_4 -->
+    <content contentuid="h476d4d67g76e8g6262gd36egb27efe1c901e" version="1">While this aura lasts, you can cast &lt;LSTag Type="Spell" Tooltip="Target_AuraOfVitality_Activate"&gt;Restore Vitality&lt;/LSTag&gt; to heal yourself or nearby allies.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <!-- DnD 5.5e Beyond: Shout_AuraOfVitality_5 -->
+    <content contentuid="h7d1ef8c7g9579g8074g2716gfb96c3ca8934" version="1">While this aura lasts, you can cast &lt;LSTag Type="Spell" Tooltip="Target_AuraOfVitality_Activate"&gt;Restore Vitality&lt;/LSTag&gt; to heal yourself or nearby allies.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <!-- DnD 5.5e Beyond: Shout_AuraOfVitality_6 -->
+    <content contentuid="ha752c62cg8192gf687g995fg58c4adc7169b" version="1">While this aura lasts, you can cast &lt;LSTag Type="Spell" Tooltip="Target_AuraOfVitality_Activate"&gt;Restore Vitality&lt;/LSTag&gt; to heal yourself or nearby allies.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <!-- DnD 5.5e Beyond: Shout_BladeWard -->
+    <content contentuid="h2d02ec84g3e0bgc04dg1756g3cb36683f435" version="1">Whenever a creature makes an attack roll against you before the spell ends, the attacker subtracts 1d4 from the attack roll.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <!-- DnD 5.5e Beyond: Shout_CacophonicShield -->
+    <content contentuid="hf67f7f88ga42fgb7c6g3526gd17410ea4287" version="1">Thunderous reverberations fill a 10-foot Emanation originating from you for the duration. Whenever the Emanation enters a creature’s space and whenever a creature enters the Emanation or ends its turn there, the creature makes a Constitution saving throw. On a failed save, the creature takes Thunder damage. On a successful save, the creature takes half as much damage only. A creature makes this save only once per turn.
+
+In addition, you have Resistance to Thunder damage, and ranged attack rolls against you are made with Disadvantage.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <!-- DnD 5.5e Beyond: Shout_CircleOfPower -->
+    <content contentuid="h72f29464ga410gf4f8g9388gc7bc97ac7ac0" version="1">An aura radiates from you in a 30-foot Emanation for the duration. While in the aura, you and your allies have Advantage on saving throws against spells and other magical effects and take only half damage from them.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <!-- DnD 5.5e Beyond: Shout_CloakOfShadow -->
+    <content contentuid="h8dbcd1e2ga506gd79fg540bgdeebf6743060" version="1">You cloak yourself in shadow, giving you advantage on Dexterity (&lt;LSTag Type="Skills" Tooltip="Stealth"&gt;Stealth&lt;/LSTag&gt;) checks against creatures that rely on sight.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <!-- DnD 5.5e Beyond: Shout_ElminstersElusion -->
+    <content contentuid="hba127cc1ga142gbe30g42a0gefcf3b5c831e" version="1">Arcane wards protect you against magic for the duration. You have Advantage on saving throws against spells and magical effects. Additionally, you have Resistance to damage from spells.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <!-- DnD 5.5e Beyond: Shout_FireDance -->
+    <content contentuid="h19186d60g16e9g1e3bgcbc7g45d59987d331" version="1">You conjure motes of dancing flame that hover and drift around you for the duration. At the start of each of their turns, non-allied creatures within 20 feet of the flames must succeed on a Wisdom saving throw or become charmed until the start of their next turn. While charmed in this way, the creature is incapacitated and has a speed of 0.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <!-- DnD 5.5e Beyond: Shout_FountOfMoonlight -->
+    <content contentuid="h7133dd62g2ff3g5631g286cgfb7c7edec60f" version="1">Until the spell ends, you have Resistance to Radiant damage, and your melee attacks deal an extra [1] on a hit.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <!-- DnD 5.5e Beyond: Target_BodyWarpingOfGorgoroth -->
+    <content contentuid="h2ee464d4g6606g2b85g7008gfc6f4aaa15b0" version="1">Choose a Humanoid of your size that you can see in range. You physically transform to become an exact duplicate of that creature for the duration. Even a thorough physical examination fails to find any differences between you and the target.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <!-- DnD 5.5e Beyond: Target_CloudOfDaggers -->
+    <content contentuid="h8a7a7954g6da6g0f9cgced3g9dfea486d831" version="1">You conjure spinning daggers in a 5-foot-radius, 40-foot-high Cylinder centered on a point within range. Each creature in that area takes Slashing damage. A creature also takes this damage if it ends its turn there or if the Cylinder moves into its space. A creature takes this damage only once per turn.
+
+On your later turns, you can take a Magic action to move the Cylinder up to 30 feet.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <!-- DnD 5.5e Beyond: Target_ConjureElementals_Minor_Container -->
+    <content contentuid="hd5c12bafga9aagfb28g8efbg6a56a1770bd5" version="1">You conjure spirits from the Elemental Planes that flit around you in a 15-foot Emanation for the duration. Until the spell ends, any attack you make deals an extra [1] damage when you hit a creature in the Emanation. This damage is Acid, Cold, Fire, or Lightning (your choice when you make the attack).
+
+In addition, the ground in the Emanation is Difficult Terrain for your enemies.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <!-- DnD 5.5e Beyond: Target_ConjureElementals_Minor_Container_5 -->
+    <content contentuid="h11cbe00dg7613g77ebgcbf6g82af126dc834" version="1">You conjure spirits from the Elemental Planes that flit around you in a 15-foot Emanation for the duration. Until the spell ends, any attack you make deals an extra [1] damage when you hit a creature in the Emanation. This damage is Acid, Cold, Fire, or Lightning (your choice when you make the attack).
+
+In addition, the ground in the Emanation is Difficult Terrain for your enemies.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <!-- DnD 5.5e Beyond: Target_ConjureElementals_Minor_Container_6 -->
+    <content contentuid="hf72ba7eeg74aeg8025g8d10g383f2aab6a51" version="1">You conjure spirits from the Elemental Planes that flit around you in a 15-foot Emanation for the duration. Until the spell ends, any attack you make deals an extra [1] damage when you hit a creature in the Emanation. This damage is Acid, Cold, Fire, or Lightning (your choice when you make the attack).
+
+In addition, the ground in the Emanation is Difficult Terrain for your enemies.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <!-- DnD 5.5e Beyond: Target_ConjureWoodlandBeings -->
+    <content contentuid="h96663848g22b6g4fd3g0749gcca87a42edab" version="1">You conjure nature spirits that flit around you in a 10-foot Emanation for the duration. Whenever the Emanation enters the space of a creature you can see and whenever a creature you can see enters the Emanation or ends its turn there, you can force that creature to make a Wisdom saving throw. The creature takes Force damage on a failed save or half as much damage on a successful one. A creature makes this save only once per turn.
+
+In addition, you can take the Disengage action as a Bonus Action for the spell’s duration.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <!-- DnD 5.5e Beyond: Target_ConjureWoodlandBeings_5 -->
+    <content contentuid="hfbad83efgcb7cg321ag47a0g402ce027568b" version="1">You conjure nature spirits that flit around you in a 10-foot Emanation for the duration. Whenever the Emanation enters the space of a creature you can see and whenever a creature you can see enters the Emanation or ends its turn there, you can force that creature to make a Wisdom saving throw. The creature takes Force damage on a failed save or half as much damage on a successful one. A creature makes this save only once per turn.
+
+In addition, you can take the Disengage action as a Bonus Action for the spell’s duration.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <!-- DnD 5.5e Beyond: Target_ConjureWoodlandBeings_6 -->
+    <content contentuid="hc98c1c9egd99agca86ged41g2a76a0c61645" version="1">You conjure nature spirits that flit around you in a 10-foot Emanation for the duration. Whenever the Emanation enters the space of a creature you can see and whenever a creature you can see enters the Emanation or ends its turn there, you can force that creature to make a Wisdom saving throw. The creature takes Force damage on a failed save or half as much damage on a successful one. A creature makes this save only once per turn.
+
+In addition, you can take the Disengage action as a Bonus Action for the spell’s duration.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <!-- DnD 5.5e Beyond: Target_Dawn -->
+    <content contentuid="hee4eeb62g90f6g0d54g43a5g6045f299125f" version="1">The light of dawn shines down on a location you specify within range. Until the spell ends, a 30-foot-radius, 40-foot-high cylinder of bright light glimmers there. This light is sunlight.
+
+When the cylinder appears, each creature in it must make a Constitution saving throw, taking 4d10 radiant damage on a failed save, or half as much damage on a successful one. A creature must also make this saving throw whenever it ends its turn in the cylinder.
+
+If you’re within 60 feet of the cylinder, you can move it up to 60 feet as a bonus action on your turn.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <!-- DnD 5.5e Beyond: Target_DragonsBreath -->
+    <content contentuid="h0dcdc1c9g2349g6dc5g0490g2bd7268e6913" version="1">You touch one willing creature, and choose Acid, Cold, Fire, Lightning, or Poison. Until the spell ends, the target can take a Magic action to exhale a 15-foot Cone. Each creature in that area makes a Dexterity saving throw, taking damage of the chosen type on a failed save or half as much damage on a successful one.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <!-- DnD 5.5e Beyond: Target_Enervation -->
+    <content contentuid="h0680f65eg2944g3595ga9d1gc7b9d923668f" version="1">A tendril of inky darkness reaches out from you, touching a creature you can see within range to drain life from it. The target must make a Dexterity saving throw. On a successful save, the target takes [1] necrotic damage, and the spell ends. On a failed save, the target takes [2] necrotic damage, and until the spell ends, you can use your action on each of your turns to automatically deal 4d8 necrotic damage to the target. The spell ends if you use your action to do anything else, if the target is ever outside the spell’s range, or if the target has total cover from you.
+
+Whenever the spell deals damage to a target, you regain hit points equal to half the amount of necrotic damage the target takes.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <!-- DnD 5.5e Beyond: Target_HellsLash -->
+    <content contentuid="h4ee31ebcgb443g419agf6c4gb829136d660a" version="1">You lash a whip of crimson energy at a creature you can see within range, creating a conduit between you and the target. The target must succeed on a Constitution saving throw or take 4d4 fire damage and be tethered. A tethered creature takes 2d4 fire damage at the beginning of each of their turns. A tethered creature can repeat the saving throw at the end of each of their turns, ending the effect on a success.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <!-- DnD 5.5e Beyond: Target_Hex -->
+    <content contentuid="h65f3ea14g5c79g6cdag91a8g8747542a090c" version="1">Make your attacks deal an additional [1] damage to the target and give it &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt; on an &lt;LSTag Tooltip="Abilities"&gt;Ability&lt;/LSTag&gt; of your choosing.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <!-- DnD 5.5e Beyond: Target_Hex_Strength -->
+    <content contentuid="h2237238fg8d1fgafb3g32e9ge243c83acb05" version="1">Deal an additional [1] when you attack the target and impart &lt;LSTag Tooltip="Disadvantage"&gt;Disadvantage&lt;/LSTag&gt; on Strength &lt;LSTag Tooltip="AbilityCheck"&gt;Checks&lt;/LSTag&gt;.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <!-- DnD 5.5e Beyond: Target_HolyWeapon -->
+    <content contentuid="he39926bdgdb3ag2cd8gd6c1g17c647980ce1" version="1">You imbue a weapon you touch with holy power. Until the spell ends, the weapon emits bright light in a 30-foot radius and dim light for an additional 30 feet. In addition, weapon attacks made with it deal an extra 2d8 radiant damage on a hit. If the weapon isn’t already a magic weapon, it becomes one for the duration.
+
+As a bonus action on your turn, you can dismiss this spell and cause the weapon to emit a burst of radiance. Each creature of your choice that you can see within 30 feet of the weapon must make a Constitution saving throw. On a failed save, a creature takes 4d8 radiant damage, and it is blinded for 1 minute. On a successful save, a creature takes half as much damage and isn’t blinded. At the end of each of its turns, a blinded creature can make a Constitution saving throw, ending the effect on itself on a success.&#10;&#10;Focus: Occupies your Focus slot with indefinite duration. Immune to damage interruption; does not conflict with an active Channel spell.</content>
+
+    <!-- DnD 5.5e Beyond: Target_MurmursOfDoom -->
+    <content contentuid="h5ed5413eg93c7gb24cg21d8g7901b49c4c83" version="1">You begin a whispered dirge that is magically accompanied by the howling of spirits and other grim portents. For the duration, an aura radiates from you in a 30-foot Emanation. When you create the aura and at the start of each of your turns while it persists, you can choose one creature in it to make a Constitution saving throw. On a failure, the creature takes 3d8 Necrotic damage.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <!-- DnD 5.5e Beyond: Target_Sleep -->
+    <content contentuid="h0fb46065g45fege74age2e5g0f1ff68942df" version="1">Each creature of your choice in a 5-foot-radius Sphere centered on a point within range must succeed on a Wisdom saving throw or have the Incapacitated condition until the end of its next turn, at which point it must repeat the save. If the target fails the second save, the target has the &lt;LSTag Type="Status" Tooltip="SLEEP"&gt;Unconscious&lt;/LSTag&gt; condition for the duration. The spell ends on a target if it takes damage or someone within 5 feet of it takes an action to shake it out of the spell’s effect.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <!-- DnD 5.5e Beyond: Target_Sleep_2 -->
+    <content contentuid="h4fcec4c9gde1eg19b6gebddg9af35fef4ff5" version="1">Each creature of your choice in a 5-foot-radius Sphere centered on a point within range must succeed on a Wisdom saving throw or have the Incapacitated condition until the end of its next turn, at which point it must repeat the save. If the target fails the second save, the target has the &lt;LSTag Type="Status" Tooltip="SLEEP"&gt;Unconscious&lt;/LSTag&gt; condition for the duration. The spell ends on a target if it takes damage or someone within 5 feet of it takes an action to shake it out of the spell’s effect.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <!-- DnD 5.5e Beyond: Target_Sleep_3 -->
+    <content contentuid="h2ba0acdeg33d2g33c7g5f83gb4c34e1444c0" version="1">Each creature of your choice in a 5-foot-radius Sphere centered on a point within range must succeed on a Wisdom saving throw or have the Incapacitated condition until the end of its next turn, at which point it must repeat the save. If the target fails the second save, the target has the &lt;LSTag Type="Status" Tooltip="SLEEP"&gt;Unconscious&lt;/LSTag&gt; condition for the duration. The spell ends on a target if it takes damage or someone within 5 feet of it takes an action to shake it out of the spell’s effect.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <!-- DnD 5.5e Beyond: Target_Sleep_4 -->
+    <content contentuid="ha765fffag4904gfe52g8d54gd4472a83f8fc" version="1">Each creature of your choice in a 5-foot-radius Sphere centered on a point within range must succeed on a Wisdom saving throw or have the Incapacitated condition until the end of its next turn, at which point it must repeat the save. If the target fails the second save, the target has the &lt;LSTag Type="Status" Tooltip="SLEEP"&gt;Unconscious&lt;/LSTag&gt; condition for the duration. The spell ends on a target if it takes damage or someone within 5 feet of it takes an action to shake it out of the spell’s effect.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <!-- DnD 5.5e Beyond: Target_Sleep_5 -->
+    <content contentuid="h804ad0f1g6cb1ge2ecg1066g91b9c7f2effa" version="1">Each creature of your choice in a 5-foot-radius Sphere centered on a point within range must succeed on a Wisdom saving throw or have the Incapacitated condition until the end of its next turn, at which point it must repeat the save. If the target fails the second save, the target has the &lt;LSTag Type="Status" Tooltip="SLEEP"&gt;Unconscious&lt;/LSTag&gt; condition for the duration. The spell ends on a target if it takes damage or someone within 5 feet of it takes an action to shake it out of the spell’s effect.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <!-- DnD 5.5e Beyond: Target_Sleep_6 -->
+    <content contentuid="h47a0106cg9a69g79a5g7f31g8c859cf2dd61" version="1">Each creature of your choice in a 5-foot-radius Sphere centered on a point within range must succeed on a Wisdom saving throw or have the Incapacitated condition until the end of its next turn, at which point it must repeat the save. If the target fails the second save, the target has the &lt;LSTag Type="Status" Tooltip="SLEEP"&gt;Unconscious&lt;/LSTag&gt; condition for the duration. The spell ends on a target if it takes damage or someone within 5 feet of it takes an action to shake it out of the spell’s effect.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <!-- DnD 5.5e Beyond: Target_SpellfireStorm -->
+    <content contentuid="hc68e827eg501cgbab0ga48egb7055d764e5b" version="1">You conjure a pillar of spellfire in a 20-foot-radius, 20-foot-high Cylinder centered on a point within range. The area of the Cylinder is Bright Light, and each creature in it when it appears makes a Constitution saving throw, taking Radiant damage on a failed save or half as much damage on a successful one. A creature also makes this save when it enters the spell’s area for the first time on a turn or ends its turn there. A creature makes this save only once per turn.
+
+In addition, whenever a creature in the Cylinder casts a spell, that creature makes a Constitution saving throw. On a failed save, the spell dissipates with no effect, and the action, Bonus Action, or Reaction used to cast it is wasted.
+
+When you cast this spell, you can designate creatures to be unaffected by it.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <!-- DnD 5.5e Beyond: Target_SummonCelestial -->
+    <content contentuid="h102e9b14g2c12gd739gf2fegff7c28ae9efe" version="1">You call forth a Celestial spirit. It manifests in an angelic form in an unoccupied space that you can see within range and uses the Celestial Spirit stat block.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+    <!-- DnD 5.5e Beyond: Target_SummonDragon -->
+    <content contentuid="h9d6713c3gcb8cgea0fg44deg1925c2bcb55d" version="1">You call forth a Dragon spirit. It manifests in an unoccupied space that you can see within range and uses the Draconic Spirit stat block. The creature disappears when it drops to 0 Hit Points or when the spell ends.&#10;&#10;Channel: Occupies your Channel slot. Subject to damage saving throws; does not conflict with an active Focus spell.</content>
+
+</contentList>
