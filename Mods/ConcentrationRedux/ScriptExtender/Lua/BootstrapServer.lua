@@ -690,6 +690,7 @@ local ActiveHasteChannels = {}        -- [casterUuid] = { Targets = { [targetUui
 local HasteTargetToCaster = {}        -- [targetUuid] = casterUuid
 local LastDamageTimes = {}            -- [charUuid] = monotonic_timestamp
 local VoluntaryInterruptionTimes = {} -- [charUuid] = monotonic_timestamp
+local InvoluntaryDisruptionTimes = {} -- [charUuid] = monotonic_timestamp
 local PendingHasteCaster = nil
 local PendingHasteTime = 0
 
@@ -702,12 +703,15 @@ local function ResolveHasteTermination(caster, target)
     if rawCaster then
         hasteInfo = ActiveHasteChannels[rawCaster] or ActiveHasteChannels[caster]
     end
-    if not hasteInfo and target and target ~= "" then
-        local rawTarget = target:match("%x%x%x%x%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%x%x%x%x%x%x%x%x") or target
-        local mappedCaster = HasteTargetToCaster[rawTarget] or HasteTargetToCaster[target]
-        if mappedCaster then
-            rawCaster = mappedCaster
-            hasteInfo = ActiveHasteChannels[rawCaster] or ActiveHasteChannels[mappedCaster]
+    local singleTarget = nil
+    if target and target ~= "" then
+        singleTarget = target:match("%x%x%x%x%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%x%x%x%x%x%x%x%x") or target
+        if not hasteInfo then
+            local mappedCaster = HasteTargetToCaster[singleTarget] or HasteTargetToCaster[target]
+            if mappedCaster then
+                rawCaster = mappedCaster
+                hasteInfo = ActiveHasteChannels[rawCaster] or ActiveHasteChannels[mappedCaster]
+            end
         end
     end
     
@@ -716,21 +720,96 @@ local function ResolveHasteTermination(caster, target)
     local now = Ext.Utils.MonotonicTime()
     local lastDmg = 0
     local lastVol = 0
+    local lastInvol = 0
     if rawCaster then
         lastDmg = LastDamageTimes[rawCaster] or (caster and LastDamageTimes[caster]) or 0
         lastVol = VoluntaryInterruptionTimes[rawCaster] or (caster and VoluntaryInterruptionTimes[caster]) or 0
+        lastInvol = InvoluntaryDisruptionTimes[rawCaster] or (caster and InvoluntaryDisruptionTimes[caster]) or 0
     end
     
-    local tookRecentDamage = (now - lastDmg < 800)
+    local tookRecentDamage = (now - lastDmg < 1200)
     local wasVoluntary = (now - lastVol < 1200)
-    local isBrokenByDamage = tookRecentDamage and not wasVoluntary
+    local wasIncapacitated = (now - lastInvol < 1500)
+    if not wasIncapacitated and rawCaster then
+        pcall(function()
+            if Osi.HasActiveStatus(rawCaster, "DOWNED") == 1 or Osi.HasActiveStatus(rawCaster, "DEAD") == 1 then
+                wasIncapacitated = true
+            end
+        end)
+    end
     
+    local isViolentDisruption = (tookRecentDamage or wasIncapacitated) and not wasVoluntary
+    
+    -- Case A: Single Target Expiration (e.g. Twinned Haste ally 10-turn expiration or single-target dispel)
+    -- When 'caster' is nil, 'target' is specified, and the caster is still actively concentrating with other targets!
+    if not caster and singleTarget and hasteInfo.Targets then
+        local terminateTarget = singleTarget
+        if hasteInfo.Targets[terminateTarget] or hasteInfo.Targets[target] then
+            hasteInfo.Targets[terminateTarget] = nil
+            hasteInfo.Targets[target] = nil
+            HasteTargetToCaster[terminateTarget] = nil
+            HasteTargetToCaster[target] = nil
+            
+            pcall(function()
+                if Osi.HasActiveStatus(target, "CHANNEL_HASTE") == 1 then Osi.RemoveStatus(target, "CHANNEL_HASTE") end
+                if Osi.HasActiveStatus(target, "CHANNEL_HASTE_ALLY") == 1 then Osi.RemoveStatus(target, "CHANNEL_HASTE_ALLY") end
+                if Osi.HasActiveStatus(target, "INNATE_BUFF_HASTE") == 1 then Osi.RemoveStatus(target, "INNATE_BUFF_HASTE") end
+            end)
+            
+            if isViolentDisruption then
+                Ext.Utils.Print(string.format("[%s] Haste ended on %s via disruption! Applying Lethargy (Dmg: %s, CC: %s)", 
+                    MOD_NAME, tostring(target), tostring(tookRecentDamage), tostring(wasIncapacitated)))
+                pcall(function()
+                    Osi.ApplyStatus(target, "HASTE_LETHARGY", 6.0, 1)
+                    if wasIncapacitated then
+                        Osi.ShowOverheadNotice(target, "Lethargic! (Incapacitated Disruption)")
+                    else
+                        Osi.ShowOverheadNotice(target, "Lethargic! (Damage Disruption)")
+                    end
+                end)
+            else
+                Ext.Utils.Print(string.format("[%s] Haste ended on %s safely. No Lethargy applied.", MOD_NAME, tostring(target)))
+                pcall(function()
+                    Osi.ShowOverheadNotice(target, "Haste Ended (Safe Release)")
+                end)
+            end
+            
+            -- Count remaining targets for this caster
+            local remainingCount = 0
+            for _, _ in pairs(hasteInfo.Targets) do
+                remainingCount = remainingCount + 1
+            end
+            
+            if remainingCount == 0 then
+                if rawCaster then
+                    ActiveHasteChannels[rawCaster] = nil
+                    if caster then ActiveHasteChannels[caster] = nil end
+                    pcall(function()
+                        if IsCharacterConcentrating(rawCaster) then
+                            VoluntaryInterruptionTimes[rawCaster] = Ext.Utils.MonotonicTime()
+                            BreakCharacterConcentration(rawCaster)
+                        end
+                    end)
+                end
+            else
+                Ext.Utils.Print(string.format("[%s] Twinned Haste: %d targets remain active for caster %s", MOD_NAME, remainingCount, tostring(rawCaster)))
+            end
+            return
+        end
+    end
+    
+    -- Case B: Full Channel Collapse (Caster lost concentration, took damage, became incapacitated, died, or dismissed)
     for hasteTarget, _ in pairs(hasteInfo.Targets) do
-        if isBrokenByDamage then
-            Ext.Utils.Print(string.format("[%s] Haste channel broken by damage! Applying Lethargy to %s", MOD_NAME, tostring(hasteTarget)))
+        if isViolentDisruption then
+            Ext.Utils.Print(string.format("[%s] Haste channel violently broken! Applying Lethargy to %s (Dmg: %s, CC: %s)", 
+                MOD_NAME, tostring(hasteTarget), tostring(tookRecentDamage), tostring(wasIncapacitated)))
             pcall(function()
                 Osi.ApplyStatus(hasteTarget, "HASTE_LETHARGY", 6.0, 1)
-                Osi.ShowOverheadNotice(hasteTarget, "Lethargic! (Damage Disruption)")
+                if wasIncapacitated then
+                    Osi.ShowOverheadNotice(hasteTarget, "Lethargic! (Incapacitated Disruption)")
+                else
+                    Osi.ShowOverheadNotice(hasteTarget, "Lethargic! (Damage Disruption)")
+                end
             end)
         else
             Ext.Utils.Print(string.format("[%s] Haste channel ended voluntarily. No Lethargy applied to %s", MOD_NAME, tostring(hasteTarget)))
@@ -937,12 +1016,22 @@ Ext.Osiris.RegisterListener("StatusApplied", 4, "after", function(target, status
         UpdateConcentrationTracker(target)
     end
     if IsIncapacitatingStatus(status) then
+        local rawTarget = target:match("%x%x%x%x%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%x%x%x%x%x%x%x%x") or target
+        local tNow = Ext.Utils.MonotonicTime()
+        InvoluntaryDisruptionTimes[rawTarget] = tNow
+        InvoluntaryDisruptionTimes[target] = tNow
+
         if Osi.HasActiveStatus(target, INNATE_CASTER_STATUS) == 1 then
             Osi.RemoveStatus(target, INNATE_CASTER_STATUS)
             CleanUpInnateBuffs(target)
             pcall(function()
                 Osi.ShowOverheadNotice(target, "Focus Lost (Incapacitated)")
             end)
+        end
+
+        -- Involuntary disruption: hard CC severs Haste with Lethargy
+        if ActiveHasteChannels[rawTarget] or ActiveHasteChannels[target] then
+            ResolveHasteTermination(target, nil)
         end
     end
 end)
