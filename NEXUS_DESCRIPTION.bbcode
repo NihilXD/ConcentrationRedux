@@ -9,7 +9,7 @@ In D&D 5e and vanilla Baldur's Gate 3, nearly every iconic spell competes for a 
 [b]Concentration Redux[/b] redesigns spellcaster focus into two distinct, congruent cognitive layers:
 [list]
 [*][b]Focus (Buff Layer):[/b] Indefinite, damage-unbreakable utility and defensive wards ([i]Bless[/i], [i]Shield of Faith[/i], [i]Blade Ward[/i], [i]Heroism[/i]).
-[*][b]Concentration (Conduit Layer):[/b] High-intensity, stance-based combat conduits ([i]Haste[/i], [i]Spirit Guardians[/i], [i]Wall of Fire[/i], [i]Fog Cloud[/i], [i]Moonbeam[/i]).
+[*][b]Channel (Combat Layer):[/b] High-intensity, stance-based combat spells ([i]Haste[/i], [i]Spirit Guardians[/i], [i]Wall of Fire[/i], [i]Fog Cloud[/i], [i]Moonbeam[/i]).
 [*][b]The Overclock:[/b] Maintain both simultaneously! Pushes mental bandwidth to the limit with independent saving throws.
 [/list]
 
@@ -30,8 +30,8 @@ In D&D 5e and vanilla Baldur's Gate 3, nearly every iconic spell competes for a 
 [size=4][color=#ffd700][b]1. Three Tactical Stances[/b][/color][/size]
 [list]
 [*][b]Pure Support (Solo Focus):[/b] Only Focus is active. [b]100% Unbreakable by Damage.[/b] No Constitution saves against damage ticks or surfaces. Indefinite duration until Long Rest or manual dismissal.
-[*][b]Dedicated Juggernaut (Solo Concentration):[/b] Only a combat conduit is active. Uses the native engine concentration slot with standard Con saves (benefits from War Caster). Whitelisted tactical actions ([i]Dash[/i], [i]Disengage[/i], [i]Shove[/i], [i]Throw[/i]). Weapon attacks allowed for martial domains ([i]War[/i] & [i]Tempest[/i]).
-[*][b]The Overclock (Both Active Simultaneously):[/b] Maintain both Focus and Concentration at the same time! When damaged, the native conduit rolls standard saves, while Focus independently rolls a Constitution saving throw [b]with Advantage[/b]! If the combat conduit drops, Focus gracefully continues undisturbed.
+[*][b]Combat Channeling (Solo Channel):[/b] Only a Channel spell is active. Uses standard Con saves (benefits from War Caster). Whitelisted tactical actions ([i]Dash[/i], [i]Disengage[/i], [i]Shove[/i], [i]Throw[/i]). Weapon attacks permitted for Combat Channelers (martial domains, paladins, gishes). Casting non-whitelisted spells breaks Channel.
+[*][b]The Overclock (Both Active Simultaneously):[/b] Maintain both Focus and Channel at the same time! When damaged, Channel rolls standard saves (with War Caster Advantage if present), while Focus independently rolls a Constitution saving throw [b]with Advantage[/b]! If Channel drops, Focus gracefully continues undisturbed.
 [/list]
 
 [size=4][color=#87cefa][b]2. Spell Classifications[/b][/color][/size]
@@ -40,15 +40,15 @@ In D&D 5e and vanilla Baldur's Gate 3, nearly every iconic spell competes for a 
 [list]
 [*]Wards & Protection: [i]Bless[/i], [i]Shield of Faith[/i], [i]Blade Ward[/i], [i]Guidance[/i], [i]Resistance[/i], [i]Heroism[/i], [i]Protection from Evil and Good[/i], [i]Barkskin[/i], [i]Stoneskin[/i]
 [*]Utility & Exploration: [i]Dancing Lights[/i] (indefinite remote illumination that never strips pre-cast buffs)
-[*]Social Charms (10-Turn Timer): [i]Friends[/i] (routed to Focus to protect combat conduits during dialogue checks, while retaining its 10-turn timer for Tactician/Honour Mode hostility)
-[*]Single-Target Marks: [i]Hunter's Mark[/i], [i]Hex[/i], [i]Bane[/i], [i]Bestow Curse[/i] (reapplication abilities are whitelisted and never break active conduits)
+[*]Social Charms (10-Turn Timer): [i]Friends[/i] (routed to Focus to protect active Channel spells during dialogue checks, while retaining its 10-turn timer for Tactician/Honour Mode hostility)
+[*]Single-Target Marks: [i]Hunter's Mark[/i], [i]Hex[/i], [i]Bane[/i], [i]Bestow Curse[/i] (reapplication abilities are whitelisted and never break active Channel spells)
 [*]Augmentations & Stealth: [i]Enlarge/Reduce[/i], [i]Fly[/i], [i]Blur[/i], [i]Invisibility[/i], [i]Pass Without Trace[/i], [i]Detect Thoughts[/i]
 [/list]
-[*][b]Concentration Spells (Combat Conduits):[/b]
+[*][b]Channel Spells (Combat Stances):[/b]
 [list]
-[*]Speed & Augmentation Conduits: [i]Haste[/i] (Concentration Conduit: [b]unlimited duration[/b] when self-cast, [b]10 rounds[/b] when cast on an ally; ending gracefully after 10 rounds, voluntary dismissal via portrait "X", or casting non-whitelisted spells/offensive reactions cleanly releases Haste with [b]no Lethargy[/b]; channel broken via damage, environmental surfaces, or hard crowd control inflicts 1 turn of [b]Lethargy[/b])
+[*]Speed & Augmentation: [i]Haste[/i] (Channel Spell: [b]unlimited duration[/b] when self-cast, [b]10 rounds[/b] when cast on an ally; ending gracefully after 10 rounds, voluntary dismissal via portrait "X", or casting non-whitelisted spells/offensive reactions cleanly releases Haste with [b]no Lethargy[/b]; Channel broken via damage, environmental surfaces, or hard crowd control inflicts 1 turn of [b]Lethargy[/b])
 [*]Auras & Beams: [i]Spirit Guardians[/i], [i]Aura of Vitality[/i], [i]Crusader's Mantle[/i], [i]Call Lightning[/i], [i]Moonbeam[/i], [i]Witch Bolt[/i], [i]Heat Metal[/i], [i]Sunbeam[/i], [i]Telekinesis[/i]
-[*]Hazard Anchors: [i]Wall of Fire[/i], [i]Cloud of Daggers[/i], [i]Fog Cloud[/i], [i]Darkness[/i], [i]Silence[/i], [i]Spike Growth[/i], [i]Sleet Storm[/i], [i]Hunger of Hadar[/i], [i]Cloudkill[/i]
+[*]Area Hazards & Fields: [i]Wall of Fire[/i], [i]Cloud of Daggers[/i], [i]Fog Cloud[/i], [i]Darkness[/i], [i]Silence[/i], [i]Spike Growth[/i], [i]Sleet Storm[/i], [i]Hunger of Hadar[/i], [i]Cloudkill[/i]
 [*]Hard CC: [i]Hold Person[/i], [i]Hold Monster[/i], [i]Hypnotic Pattern[/i], [i]Banishment[/i], [i]Tasha's Hideous Laughter[/i], [i]Slow[/i], [i]Confusion[/i]
 [*]Attack Modifiers: [i]True Strike[/i] (intentionally kept on standard short-duration vanilla rules)
 [/list]
@@ -60,30 +60,30 @@ In vanilla Baldur's Gate 3, defensive and utility cantrips often suffer from awk
 [list]
 [*][b]Blade Ward (Physical Damage Aegis):[/b] Converted to Focus (indefinite buff). Whether evaluated against vanilla's fleeting 2-turn duration or 5e update patches where it lasts 10 rounds alongside spells like [i]Bless[/i], Blade Ward is the quintessential defensive ward. As Focus, it becomes a continuous physical shield (resistance to Bludgeoning, Piercing, and Slashing weapon damage) that eliminates tedious re-casting outside turn-based combat. Because it occupies your single Focus slot, running Blade Ward creates an authentic tactical trade-off against [i]Shield of Faith[/i] (+2 AC to prevent attacks from connecting), [i]Bless[/i] (+1d4 attack and saves), or [i]Resistance[/i] (+1d4 saves). Gear that applies Blade Ward upon healing (such as [i]Hellrider's Pride[/i] or [i]The Reviving Hands[/i]) continues to apply standard temporary vanilla statuses without disturbing your Focus slot.
 [*][b]Resistance (Defensive Twin to Guidance):[/b] Converted to Focus (indefinite buff). In vanilla, Resistance is rarely used because burning an action and a concentration slot for a 10-turn +1d4 save bonus cannot compete with [i]Bless[/i] or [i]Spirit Guardians[/i]. As Focus, it becomes a reliable zero-slot ward for exploration and pre-buffing. Because it occupies your single Focus slot, it forces an honest tactical choice against [i]Bless[/i] (+1d4 attack and saves) or [i]Shield of Faith[/i] (+2 AC), while eliminating the dialogue trap during conversation saving throws.
-[*][b]Friends (Social Utility with Difficulty Awareness):[/b] Converted to Focus layer with duration retained (10 turns). Cast almost exclusively inside dialogue rolls, vanilla Friends instantly wipes out whatever combat spell your caster was maintaining prior to the conversation. Moving it to Focus protects your active combat conduits. However, because NPC suspicion and hostility triggers fire on status expiration, its standard 10-turn timer is intentionally preserved so higher difficulty (Tactician/Honour Mode) social penalties function exactly as intended.
+[*][b]Friends (Social Utility with Difficulty Awareness):[/b] Converted to Focus layer with duration retained (10 turns). Cast almost exclusively inside dialogue rolls, vanilla Friends instantly wipes out whatever combat spell your caster was maintaining prior to the conversation. Moving it to Focus protects your active Channel spells. However, because NPC suspicion and hostility triggers fire on status expiration, its standard 10-turn timer is intentionally preserved so higher difficulty (Tactician/Honour Mode) social penalties function exactly as intended.
 [*][b]Dancing Lights (Exploration Lighting):[/b] Converted to Focus (indefinite duration). Allows races lacking Darkvision (Humans, Halflings, Githyanki) to illuminate distant high ground or gloom-covered arenas at an 18m range without sacrificing pre-cast combat buffs. Floating wisps automatically despawn cleanly whenever you dismiss Focus or cast another buff.
-[*][b]True Strike (Preserved on Vanilla Rules):[/b] Left on standard 2-turn combat conduit rules. True Strike is an offensive attack modifier, not a cognitive ward. Converting it to an indefinite Focus buff would either provide permanent free Advantage for zero spell slots or conflict with one-hit consumption triggers. Leaving it as a short-duration conduit preserves standard combat attack math.
+[*][b]True Strike (Preserved on Vanilla Rules):[/b] Left on standard 2-turn Channel rules. True Strike is an offensive attack modifier, not a cognitive ward. Converting it to an indefinite Focus buff would either provide permanent free Advantage for zero spell slots or conflict with one-hit consumption triggers. Leaving it as a short-duration Channel preserves standard combat attack math.
 [/list]
 
 [size=4][color=#da70d6][b]4. UI & Visual Clarity[/b][/color][/size]
 [list]
-[*][b]Congruent Portrait Badges:[/b] Side-by-side badges in the portrait buff tray (Radiant Sun for [b]Focus[/b], glowing Mind Conduit for [b]Concentration[/b]).
+[*][b]Congruent Portrait Badges:[/b] Side-by-side badges in the portrait buff tray (Radiant Sun for [b]Focus[/b], glowing Mind Channel for [b]Channel[/b]).
 [*][b]Dismissing Focus:[/b] Free, 0-action [b]Dismiss Focus[/b] ability added to your hotbar.
-[*][b]Dismissing Concentration:[/b] Uses BG3's [b]native 'X' button[/b] beneath the portrait HUD (or casting another conduit).
+[*][b]Dismissing Channel:[/b] Uses BG3's [b]native 'X' button[/b] beneath the portrait HUD (or casting another Channel spell).
 [/list]
 
 [size=4][color=#98fb98][b]5. Tactical Synergies & Rules[/b][/color][/size]
 [list]
-[*][b]Spellcasting & Gish Reaction Wards:[/b] Channeling an active combat conduit ([i]Haste[/i], [i]Spirit Guardians[/i], [i]Wall of Fire[/i]) demands your primary spellcasting bandwidth:
+[*][b]Spellcasting & Gish Reaction Wards:[/b] Maintaining an active Channel spell ([i]Haste[/i], [i]Spirit Guardians[/i], [i]Wall of Fire[/i]) demands your primary spellcasting bandwidth:
 [list]
-[*]Hard-casting any standard spell ([i]Fireball[/i], [i]Guiding Bolt[/i], [i]Magic Missile[/i]) immediately snaps your active conduit. (Casting a Focus buff like [i]Bless[/i] or [i]Shield of Faith[/i] enters [b]The Overclock[/b]).
-[*][b]Gish Defensives & Melee Cantrips:[/b] Characters with [b]Combat Channeling[/b] or [b]War Caster[/b] (enabling build-your-own gish setups on pure Sorcerers or Wizards) can cast [b]personal reaction defensives[/b] ([i]Shield[/i], [i]Absorb Elements[/i]) and [b]melee spell cantrips[/b] ([i]Green-Flame Blade[/i], [i]Booming Blade[/i], [i]Vengeful Blade[/i]) [b]without breaking Concentration[/b]!
-[*][b]Gish Stances & Combat Forms:[/b] Activating martial combat stances ([i]Bladesong[/i], Circle of Spores [i]Symbiotic Entity[/i], [i]Pact Weapon Binding[/i], [i]Hexblade's Curse[/i], Eldritch Knight [i]Weapon Bond[/i], Monk [i]Step of the Wind / Patient Defense / Wholeness of Body[/i], Bardic [i]Blade Flourishes[/i], and martial [i]Channel Divinities[/i]) [b]never breaks Concentration[/b]!
-[*][b]Counterspell & Damage Reactions:[/b] Offensive counter-magic ([i]Counterspell[/i]) and retaliatory damage reactions ([i]Hellish Rebuke[/i]) demand full spell focus and shatter conduits for all casters. Pure casters without Combat Channeling also shatter active conduits if casting [i]Shield[/i].
+[*]Hard-casting any standard spell ([i]Fireball[/i], [i]Guiding Bolt[/i], [i]Magic Missile[/i]) immediately breaks your active Channel. (Casting a Focus buff like [i]Bless[/i] or [i]Shield of Faith[/i] enters [b]The Overclock[/b]).
+[*][b]Gish Defensives & Melee Cantrips:[/b] Characters with [b]Combat Channeling[/b] or [b]War Caster[/b] (enabling build-your-own gish setups on pure Sorcerers or Wizards) can cast [b]personal reaction defensives[/b] ([i]Shield[/i], [i]Absorb Elements[/i]) and [b]melee spell cantrips[/b] ([i]Green-Flame Blade[/i], [i]Booming Blade[/i], [i]Vengeful Blade[/i]) [b]without breaking Channel[/b]!
+[*][b]Gish Stances & Combat Forms:[/b] Activating martial combat stances ([i]Bladesong[/i], Circle of Spores [i]Symbiotic Entity[/i], [i]Pact Weapon Binding[/i], [i]Hexblade's Curse[/i], Eldritch Knight [i]Weapon Bond[/i], Monk [i]Step of the Wind / Patient Defense / Wholeness of Body[/i], Bardic [i]Blade Flourishes[/i], and martial [i]Channel Divinities[/i]) [b]never breaks Channel[/b]!
+[*][b]Counterspell & Damage Reactions:[/b] Offensive counter-magic ([i]Counterspell[/i]) and retaliatory damage reactions ([i]Hellish Rebuke[/i]) demand full spell focus and break active Channel spells for all casters. Pure casters without Combat Channeling also break active Channel spells if casting [i]Shield[/i].
 [*][i]Non-spell reactions[/i] ([i]Warding Flare[/i], [i]Wrath of the Storm[/i], [i]Cutting Words[/i], [i]Uncanny Dodge[/i], [i]Deflect Missiles[/i]) expend no spell slots and are 100% safe to use!
 [/list]
-[*][b]Smites Shatter Conduits:[/b] Expending spell slots for magical strikes ([i]Divine Smite[/i], [i]Searing Smite[/i], [i]Thunderous Smite[/i], [i]Wrathful Smite[/i], [i]Blinding Smite[/i], etc.) requires a burst of spellcasting focus and [b]immediately shatters active combat conduits[/b] ([i]Spirit Guardians[/i]), displaying an overhead notice ([i]"Channel broken by Smite!"[/i]), while leaving passive Focus buffs ([i]Bless[/i], [i]Shield of Faith[/i]) completely undisturbed!
-[*][b]Combat Channeling & Gish Archetypes:[/b] Making weapon attacks while maintaining an active combat conduit requires true mind-body magical discipline:
+[*][b]Smites Break Channels:[/b] Expending spell slots for magical strikes ([i]Divine Smite[/i], [i]Searing Smite[/i], [i]Thunderous Smite[/i], [i]Wrathful Smite[/i], [i]Blinding Smite[/i], etc.) requires an instant burst of magical force and [b]immediately breaks active Channel spells[/b] ([i]Spirit Guardians[/i]), displaying an overhead notice ([i]"Channel broken by Smite!"[/i]), while leaving passive Focus buffs ([i]Bless[/i], [i]Shield of Faith[/i]) completely undisturbed!
+[*][b]Combat Channeling & Gish Archetypes:[/b] Making weapon attacks while maintaining an active Channel spell requires true mind-body magical discipline:
 [list]
 [*][b]War Domain & Tempest Domain Clerics[/b] (Level 1)
 [*][b]Monks[/b] (Level 1+: core spiritual discipline and Ki control)
@@ -93,15 +93,15 @@ In vanilla Baldur's Gate 3, defensive and utility cantrips often suffer from awk
 [*][b]College of Swords & Valour Bards[/b] (Level 3+: blade flourishes and frontline battle skalds)
 [*][b]Pact of the Blade Warlocks[/b] (Level 3+: bound pact weapon specialists & Hexblades)
 [*][b]Eldritch Knight Fighters & Arcane Trickster Rogues[/b] (Level 3+: dedicated martial-arcane gishes)
-[*][i]Mundane fighters (Champion/Battle Master), mundane rogues (Thief/Assassin), and Barbarians cannot attack without disrupting active Concentration.[/i]
+[*][i]Mundane fighters (Champion/Battle Master), mundane rogues (Thief/Assassin), and Barbarians cannot attack without breaking an active Channel.[/i]
 [/list]
 [*][b]Advantage Balance:[/b] Gish training allows weapon attacks while channeling, but [b]does not grant Advantage on concentration saving throws[/b] (Advantage remains strictly reserved for the [i]War Caster[/i] feat or advantage gear).
 [*][b]War Caster Synergy:[/b] Grants [b]Combat Channeling[/b] (enabling build-your-own gish setups on pure Sorcerers or Wizards) and Advantage to Channeling saves. Because Focus already rolls with Advantage during Overclock, [b]War Caster ensures BOTH independent saves have Advantage![/b] Casting [i]Shocking Grasp[/i] as an Opportunity Attack reaction via War Caster is fully permitted.
 [*][b]Whitelisted Tactical Actions & Recasts:[/b] 
 [list]
-[*]Non-magical maneuvers ([i]Dash[/i], [i]Disengage[/i], [i]Shove[/i], [i]Throw[/i], [i]Dip[/i], [i]Dodge[/i], [i]Hide[/i]) never disrupt active conduits.
-[*]Re-activating ongoing concentration conduits ([i]Call Lightning[/i], [i]Moonbeam[/i], [i]Sunbeam[/i], [i]Witch Bolt[/i], [i]Eyebite[/i], [i]Telekinesis[/i] recast/move) is fully whitelisted.
-[*]Re-targeting marks ([i]Reapply Hunter's Mark[/i], [i]Reapply Hex[/i]) is free and preserves active conduits.
+[*]Non-magical maneuvers ([i]Dash[/i], [i]Disengage[/i], [i]Shove[/i], [i]Throw[/i], [i]Dip[/i], [i]Dodge[/i], [i]Hide[/i]) never break active Channel spells.
+[*]Re-activating ongoing Channel spells ([i]Call Lightning[/i], [i]Moonbeam[/i], [i]Sunbeam[/i], [i]Witch Bolt[/i], [i]Eyebite[/i], [i]Telekinesis[/i] recast/move) is fully whitelisted.
+[*]Re-targeting marks ([i]Reapply Hunter's Mark[/i], [i]Reapply Hex[/i]) is free and preserves active Channel spells.
 [/list]
 [*][b]Loss of Control (5e Compliant):[/b] Hard incapacitation ([i]Stunned[/i], [i]Paralyzed[/i], [i]Petrified[/i], [i]Sleep[/i], [i]Unconscious[/i], [i]Downed[/i], [i]Dead[/i]) shatters Focus and all linked party buffs.
 [/list]
@@ -114,25 +114,25 @@ In vanilla Baldur's Gate 3, defensive and utility cantrips often suffer from awk
 [list]
 [*][b]Haste Dual Duration & Intelligent Lethargy System:[/b]
 [list]
-[*][b]Self-Cast (Indefinite):[/b] Continuous combat conduit with unlimited duration for as long as concentration is maintained.
+[*][b]Self-Cast (Indefinite):[/b] Indefinite Channel spell with unlimited duration.
 [*][b]Ally-Cast (10 Rounds):[/b] Standard tactical duration of 10 rounds (60 seconds) when cast on party members, companions, or summons.
-[*][b]Safe Release (No Lethargy):[/b] Voluntarily ending [i]Haste[/i]—by clicking portrait "X", casting non-whitelisted spells or offensive reactions, swapping concentration, or letting the 10 rounds expire naturally on an ally—safely releases the recipient with zero Lethargy ([i]"Haste Ended (Safe Release)"[/i]).
-[*][b]Involuntary Disruption (Inflicts Lethargy):[/b] Breaking concentration involuntarily via damage, environmental surfaces, or hard crowd control ([i]Hold Person[/i], [i]Sleep[/i], [i]Hypnotic Pattern[/i], [i]Banishment[/i], [i]Stun[/i], [i]Paralyze[/i]) inflicts 1 turn of Lethargy ([i]"Lethargic! (Damage/Incapacitated Disruption)"[/i]).
+[*][b]Safe Release (No Lethargy):[/b] Voluntarily ending [i]Haste[/i]—by clicking portrait "X", casting non-whitelisted spells or offensive reactions, swapping Channel spells, or letting the 10 rounds expire naturally on an ally—safely releases the recipient with zero Lethargy ([i]"Haste Ended (Safe Release)"[/i]).
+[*][b]Involuntary Disruption (Inflicts Lethargy):[/b] Breaking your Channel involuntarily via damage, environmental surfaces, or hard crowd control ([i]Hold Person[/i], [i]Sleep[/i], [i]Hypnotic Pattern[/i], [i]Banishment[/i], [i]Stun[/i], [i]Paralyze[/i]) inflicts 1 turn of Lethargy ([i]"Lethargic! (Damage/Incapacitated Disruption)"[/i]).
 [*][b]Sorcerer Twinned Haste Support:[/b] Twinning Haste grants the caster an indefinite buff while the ally receives the 10-round buff. When the ally's duration expires, the ally releases safely without Lethargy, leaving the caster's Haste intact.
 [*][b]In-Game Tooltips:[/b] Fully updated spell card and status tooltips reflecting dual-duration and intelligent lethargy rules.
 [/list]
 [*][b]Gish Reaction Defensives & Melee Cantrips:[/b]
 [list]
-[*]Combat Channelers and characters with [i]War Caster[/i] (enabling build-your-own gish setups on pure Sorcerers or Wizards) can cast personal reaction defensives ([i]Shield[/i], [i]Absorb Elements[/i]) and melee spell cantrips ([i]Green-Flame Blade[/i], [i]Booming Blade[/i], [i]Vengeful Blade[/i]) without breaking active Concentration.
-[*]Offensive counter-magic ([i]Counterspell[/i]) and retaliatory damage reactions ([i]Hellish Rebuke[/i]) demand full casting focus and continue to shatter active conduits for all casters.
+[*]Combat Channelers and characters with [i]War Caster[/i] (enabling build-your-own gish setups on pure Sorcerers or Wizards) can cast personal reaction defensives ([i]Shield[/i], [i]Absorb Elements[/i]) and melee spell cantrips ([i]Green-Flame Blade[/i], [i]Booming Blade[/i], [i]Vengeful Blade[/i]) without breaking active Channel spells.
+[*]Offensive counter-magic ([i]Counterspell[/i]) and retaliatory damage reactions ([i]Hellish Rebuke[/i]) demand full casting focus and continue to break active Channel spells for all casters.
 [/list]
 [*][b]Gish Combat Stances & Class Forms:[/b]
 [list]
-[*]Activating martial class stances and disciplines ([i]Bladesong[/i], [i]Symbiotic Entity[/i], [i]Bind Pact Weapon[/i], [i]Hexblade's Curse[/i], [i]Weapon Bond[/i], Monk Ki maneuvers/stances, Bardic [i]Blade Flourishes[/i], and martial [i]Channel Divinities[/i]) never breaks active Concentration conduits.
+[*]Activating martial class stances and disciplines ([i]Bladesong[/i], [i]Symbiotic Entity[/i], [i]Bind Pact Weapon[/i], [i]Hexblade's Curse[/i], [i]Weapon Bond[/i], Monk Ki maneuvers/stances, Bardic [i]Blade Flourishes[/i], and martial [i]Channel Divinities[/i]) never breaks an active Channel spell.
 [/list]
 [*][b]Loss of Control & Hard CC:[/b]
 [list]
-[*]Hard incapacitation conditions ([i]Stunned[/i], [i]Paralyzed[/i], [i]Sleeping[/i], [i]Incapacitated[/i], [i]Banished[/i]) reliably sever concentration and trigger full disruption penalties.
+[*]Hard incapacitation conditions ([i]Stunned[/i], [i]Paralyzed[/i], [i]Sleeping[/i], [i]Incapacitated[/i], [i]Banished[/i]) reliably sever both Focus and Channel and trigger full disruption penalties.
 [/list]
 [/list]
 

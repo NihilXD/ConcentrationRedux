@@ -81,8 +81,8 @@ In vanilla BG3, an enemy cleric who casts *Bless* on Turn 1 will lose it on Turn
 Because *Bless* no longer requires the engine's native concentration slot, **the enemy AI can maintain its defensive buff on Turn 1 and freely cast an offensive concentration spell on Turn 2**.
 
 ### Overclock Damage Saves for Enemies
-When an enemy maintains both Focus and an active combat conduit, they enter **The Overclock**:
-1. When damaged, the native engine rolls a standard concentration saving throw for their conduit (*Hold Person*).
+When an enemy maintains both Focus and an active Channel spell, they enter **The Overclock**:
+1. When damaged, the native engine rolls a standard saving throw for their Channel (*Hold Person*).
 2. Concurrently, the server script rolls an independent Constitution saving throw **with Advantage** for their Focus (*Bless*), factoring in the enemy's Constitution modifier and level.
 3. If the player breaks the enemy's offensive concentration, their *Bless* remains active.
 
@@ -102,9 +102,9 @@ The mod inspects character tags, class hierarchies, and signature passives dynam
 * `SymbioticEntity`, `HaloOfSpores` (Spores Druids)
 
 ### Gishes vs. Pure Casters
-* **Enemy Gishes:** Enemy Paladins (e.g. Minthara, Ketheric Thorm, Flaming Fist Paladins), Githyanki warriors, and enemy Monks/Rangers are recognized as Combat Channelers. They can sustain an active combat conduit (*Hold Person*, *Spirit Guardians*) and attack players with weapons without losing concentration.
-* **Pure Enemy Mages:** Generic enemy Wizards, Necromancers, or Cultists who lack martial passives will drop active combat conduits if they make a physical weapon attack (displaying `"Channel broken by physical attack!"`).
-* **Enemy Smites:** If an enemy Paladin expends a spell slot on *Divine Smite* while concentrating on a conduit like *Hold Person*, the smite hook shatters the combat conduit (`"Channel broken by Smite!"`) while preserving any passive Focus buff (*Heroism*, *Bless*).
+* **Enemy Gishes:** Enemy Paladins (e.g. Minthara, Ketheric Thorm, Flaming Fist Paladins), Githyanki warriors, and enemy Monks/Rangers are recognized as Combat Channelers. They can sustain an active Channel spell (*Hold Person*, *Spirit Guardians*) and attack players with weapons without breaking their Channel.
+* **Pure Enemy Mages:** Generic enemy Wizards, Necromancers, or Cultists who lack martial passives will drop active Channel spells if they make a physical weapon attack (displaying `"Channel broken by physical attack!"`).
+* **Enemy Smites:** If an enemy Paladin expends a spell slot on *Divine Smite* while concentrating on a Channel spell like *Hold Person*, the smite hook breaks the Channel spell (`"Channel broken by Smite!"`) while preserving any passive Focus buff (*Heroism*, *Bless*).
 
 ---
 
@@ -113,7 +113,7 @@ The mod inspects character tags, class hierarchies, and signature passives dynam
 When an enemy spellcaster casts `Target_Haste`:
 
 ### Dual-Duration
-* **Self-Cast:** Operates as an indefinite combat conduit (`CHANNEL_HASTE`).
+* **Self-Cast:** Operates as an indefinite Channel spell (`CHANNEL_HASTE`).
 * **Ally-Cast:** Operates for 10 tactical rounds (`CHANNEL_HASTE_ALLY`).
 
 ### Tactical Disruption Rewards
@@ -132,8 +132,8 @@ The mod's Haste tracker actively tracks enemy casters and their targets:
 | :--- | :--- |
 | **Focus Buffs (*Bless*, *Shield of Faith*)** | Indefinite duration. 100% immune to chip damage in Solo Focus. Broken on caster death, hard CC (*Hold Person*, *Sleep*, *Stun*), or buff replacement. |
 | **Chain-Casting Prevention** | AI utility scoring evaluates `INNATE_BUFF_BLESS` presence on targets. Costing resources for 0 utility produces negative score; AI moves to offensive actions. |
-| **The Overclock** | AI can cast *Bless* on Turn 1 and *Hold Person* on Turn 2. Damage rolls standard saves for conduit and independent Advantage saves for Focus. |
-| **Combat Channeling** | Enemy Paladins, Githyanki, Monks, and Rangers attack without dropping conduits; pure enemy mages drop conduits if making physical strikes. |
-| **Smites** | Enemy *Divine Smite* shatters active combat conduits (*Hold Person*), leaving Focus buffs intact. |
+| **The Overclock** | AI can cast *Bless* on Turn 1 and *Hold Person* on Turn 2. Damage rolls standard saves for Channel and independent Advantage saves for Focus. |
+| **Combat Channeling** | Enemy Paladins, Githyanki, Monks, and Rangers attack without dropping Channel spells; pure enemy mages drop Channel if making physical strikes. |
+| **Smites** | Enemy *Divine Smite* breaks active Channel spells (*Hold Person*), leaving Focus buffs intact. |
 | **Haste Disruption** | Breaking an enemy caster's Haste slaps the buffed enemy with 1 round of **Lethargy**. |
 | **Pre-scripted Encounters** | Vanilla status IDs and boss-specific auras remain completely untouched and vanilla-compliant. |

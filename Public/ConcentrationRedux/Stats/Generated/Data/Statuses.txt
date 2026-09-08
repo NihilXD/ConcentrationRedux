@@ -477,7 +477,7 @@ data "StatusGroupId" "INNATE_BUFF_GROUP"
 data "Duration" "-1"
 data "StatusPropertyFlags" "DisableOverhead;ClearOnLongRest;PassToShape;KeepOnShapeShift"
 
-// Visual condition badge when maintaining an active Concentration conduit
+// Visual condition badge when maintaining an active Channel spell
 new entry "ACTIVE_CONCENTRATION_TRACKER"
 type "StatusData"
 data "StatusType" "BOOST"

@@ -701,7 +701,7 @@ local function CleanUpInnateBuffs(caster)
 end
 
 -- ==============================================================================
--- Haste Channel Tracking (Channel Conduit with Conditional Lethargy)
+-- Haste Channel Tracking (Channel Spell with Conditional Lethargy)
 -- ==============================================================================
 local ActiveHasteChannels = {}        -- [casterUuid] = { Targets = { [targetUuid] = true } }
 local HasteTargetToCaster = {}        -- [targetUuid] = casterUuid
@@ -1293,7 +1293,7 @@ end
 local function HandleSpellInterruption(caster, spell, spellType)
     if not IsCharacterConcentrating(caster) then return end
     
-    -- Focus buffs (Bless, Shield of Faith, Guidance, etc.) never break conduits (entering Overclock)
+    -- Focus buffs (Bless, Shield of Faith, Guidance, etc.) never break Channel (entering Overclock)
     if GetInnateSpellInfo(spell) ~= nil then return end
     
     -- Whitelisted utility and tactical actions
@@ -1301,7 +1301,7 @@ local function HandleSpellInterruption(caster, spell, spellType)
     
     local rawUuid = caster:match("%x%x%x%x%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%x%x%x%x%x%x%x%x") or caster
     
-    -- Smites (Divine Smite, Searing Smite, Thunderous Smite, etc.) channel magical spell slots into strikes and shatter active conduits
+    -- Smites (Divine Smite, Searing Smite, Thunderous Smite, etc.) channel magical spell slots into strikes and break an active Channel spell
     if spell:lower():find("smite") then
         Ext.Utils.Print(string.format("[%s] Smite '%s' breaking active channel for %s", MOD_NAME, tostring(spell), tostring(caster)))
         VoluntaryInterruptionTimes[rawUuid] = Ext.Utils.MonotonicTime()
@@ -1311,7 +1311,7 @@ local function HandleSpellInterruption(caster, spell, spellType)
         return
     end
     
-    -- If casting another concentration conduit spell, let the native engine handle replacement
+    -- If casting another Channel spell, let the native engine handle replacement
     if IsConcentrationSpell(spell) then
         VoluntaryInterruptionTimes[rawUuid] = Ext.Utils.MonotonicTime()
         VoluntaryInterruptionTimes[caster] = VoluntaryInterruptionTimes[rawUuid]
