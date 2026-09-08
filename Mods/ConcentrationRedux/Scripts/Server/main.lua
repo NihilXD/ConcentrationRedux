@@ -853,11 +853,11 @@ local function IsCharacterConcentrating(character)
     end)
     if not isConc then
         pcall(function()
-            if Osi.HasActiveStatus(character, "CONCENTRATION") == 1 or Osi.HasActiveStatus(character, CONC_TRACKER_STATUS) == 1 then
+            if Osi.HasActiveStatus(character, "CONCENTRATION") == 1 then
                 isConc = true
             elseif type(character) == "string" then
                 local raw = character:match("%x%x%x%x%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%x%x%x%x%x%x%x%x")
-                if raw and raw ~= character and (Osi.HasActiveStatus(raw, "CONCENTRATION") == 1 or Osi.HasActiveStatus(raw, CONC_TRACKER_STATUS) == 1) then
+                if raw and raw ~= character and Osi.HasActiveStatus(raw, "CONCENTRATION") == 1 then
                     isConc = true
                 end
             end
@@ -898,6 +898,18 @@ local function UpdateConcentrationTracker(character)
             Ext.Utils.Print(string.format("[%s] Removed concentration tracker from %s", MOD_NAME, tostring(character)))
         end
     end)
+    if type(character) == "string" then
+        local rawUuid = character:match("%x%x%x%x%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%x%x%x%x%x%x%x%x")
+        if rawUuid and rawUuid ~= character then
+            pcall(function()
+                local isConc = IsCharacterConcentrating(rawUuid)
+                local hasTracker = (Osi.HasActiveStatus(rawUuid, CONC_TRACKER_STATUS) == 1)
+                if not isConc and hasTracker then
+                    Osi.RemoveStatus(rawUuid, CONC_TRACKER_STATUS)
+                end
+            end)
+        end
+    end
 end
 
 local function UpdateAllConcentrationTrackers()
@@ -1182,7 +1194,9 @@ end
 -- 1. Tracking Innate Buff Application & Target Association
 -- ==============================================================================
 
--- Hook cast start: record spell and clear prior buffs if switching spells
+local PendingInnateCast = {} -- [casterGuid] = { Spell = spell, Status = status, Time = timestamp }
+
+-- Hook cast start: record pending spell intent
 Ext.Osiris.RegisterListener("UsingSpell", 5, "after", function(caster, spell, spellType, spellElement, storyActionID)
     if spell == "Target_Haste" or (spell and spell:find("Target_Haste")) then
         PendingHasteCaster = caster
@@ -1190,19 +1204,13 @@ Ext.Osiris.RegisterListener("UsingSpell", 5, "after", function(caster, spell, sp
     end
     local innateInfo = GetInnateSpellInfo(spell)
     if innateInfo then
-        local existing = ActiveInnateCasters[caster]
-        if existing and existing.Spell ~= spell then
-            CleanUpInnateBuffs(caster)
-        end
-        ActiveInnateCasters[caster] = {
+        local rawCaster = caster:match("%x%x%x%x%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%x%x%x%x%x%x%x%x") or caster
+        PendingInnateCast[rawCaster] = {
             Spell = spell,
             Status = innateInfo.Status,
-            Targets = {}
+            Time = Ext.Utils.MonotonicTime()
         }
-        -- Ensure ONLY the CASTER gets INNATE_CONCENTRATION_CASTER
-        if Osi.HasActiveStatus(caster, INNATE_CASTER_STATUS) == 0 then
-            Osi.ApplyStatus(caster, INNATE_CASTER_STATUS, -1.0, 1, caster)
-        end
+        PendingInnateCast[caster] = PendingInnateCast[rawCaster]
     end
 end)
 
@@ -1253,22 +1261,97 @@ Ext.Osiris.RegisterListener("StatusApplied", 4, "after", function(target, status
     end
 
     if status:find("INNATE_BUFF_") and status ~= "INNATE_BUFF_HASTE" then
-        if causee and causee ~= "" then
-            if not ActiveInnateCasters[causee] then
-                ActiveInnateCasters[causee] = {
+        local caster = causee
+        local now = Ext.Utils.MonotonicTime()
+        if (not caster or caster == "") and PendingInnateCast then
+            for c, pending in pairs(PendingInnateCast) do
+                if pending.Status == status and (now - pending.Time < 3500) then
+                    caster = c
+                    break
+                end
+            end
+        end
+        if (not caster or caster == "") and (status:find("SELF") or status:find("DETECT") or status:find("EXPEDITIOUS") or status:find("BLUR") or status:find("PASSWITHOUTTRACE")) then
+            caster = target
+        end
+        
+        if caster and caster ~= "" then
+            local rawCaster = caster:match("%x%x%x%x%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%x%x%x%x%x%x%x%x") or caster
+            local rawTarget = target:match("%x%x%x%x%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%x%x%x%x%x%x%x%x") or target
+
+            -- If switching focus spells, clean up previous focus buffs now that new spell actually landed
+            local existing = ActiveInnateCasters[rawCaster] or ActiveInnateCasters[caster]
+            if existing and existing.Status ~= status then
+                CleanUpInnateBuffs(rawCaster)
+            end
+
+            local info = ActiveInnateCasters[rawCaster] or ActiveInnateCasters[caster]
+            if not info then
+                local spellName = (PendingInnateCast and PendingInnateCast[caster] and PendingInnateCast[caster].Spell)
+                    or (PendingInnateCast and PendingInnateCast[rawCaster] and PendingInnateCast[rawCaster].Spell)
+                info = {
+                    Spell = spellName,
                     Status = status,
                     Targets = {}
                 }
+                ActiveInnateCasters[rawCaster] = info
+                ActiveInnateCasters[caster] = info
             end
-            ActiveInnateCasters[causee].Targets[target] = true
-            ActiveInnateCasters[causee].Status = status
+            info.Targets[rawTarget] = true
+            info.Targets[target] = true
+            info.Status = status
             
             -- Guarantee CASTER has INNATE_CONCENTRATION_CASTER
-            if Osi.HasActiveStatus(causee, INNATE_CASTER_STATUS) == 0 then
-                Osi.ApplyStatus(causee, INNATE_CASTER_STATUS, -1.0, 1, causee)
+            if Osi.HasActiveStatus(rawCaster, INNATE_CASTER_STATUS) == 0 then
+                Osi.ApplyStatus(rawCaster, INNATE_CASTER_STATUS, -1.0, 1, rawCaster)
             end
-            Ext.Utils.Print(string.format("[%s] Registered target %s for caster %s (status: %s)", MOD_NAME, tostring(target), tostring(causee), tostring(status)))
+            if caster ~= rawCaster and Osi.HasActiveStatus(caster, INNATE_CASTER_STATUS) == 0 then
+                Osi.ApplyStatus(caster, INNATE_CASTER_STATUS, -1.0, 1, caster)
+            end
+            Ext.Utils.Print(string.format("[%s] Registered target %s for caster %s (status: %s)", MOD_NAME, tostring(target), tostring(rawCaster), tostring(status)))
         end
+    end
+end)
+
+-- Cast failure handler: Counterspell, target invalidation, or interrupted cast
+Ext.Osiris.RegisterListener("CastSpellFailed", 5, "after", function(caster, spell, spellType, spellElement, storyActionID)
+    Ext.Utils.Print(string.format("[%s] CastSpellFailed: %s failed spell %s (type: %s)", MOD_NAME, tostring(caster), tostring(spell), tostring(spellType)))
+    
+    if PendingHasteCaster == caster then
+        PendingHasteCaster = nil
+    end
+    
+    local rawUuid = nil
+    if type(caster) == "string" then
+        rawUuid = caster:match("%x%x%x%x%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%x%x%x%x%x%x%x%x")
+    end
+    
+    if PendingInnateCast then
+        PendingInnateCast[caster] = nil
+        if rawUuid then
+            PendingInnateCast[rawUuid] = nil
+        end
+    end
+    
+    -- If caster somehow has INNATE_CONCENTRATION_CASTER without any active targets, clean it up
+    local info, realKey = GetActiveInnateCasterInfo(caster)
+    if (not info or not info.Targets or next(info.Targets) == nil) then
+        if realKey then ActiveInnateCasters[realKey] = nil end
+        ActiveInnateCasters[caster] = nil
+        if rawUuid then ActiveInnateCasters[rawUuid] = nil end
+        
+        if Osi.HasActiveStatus(caster, INNATE_CASTER_STATUS) == 1 then
+            pcall(function() Osi.RemoveStatus(caster, INNATE_CASTER_STATUS) end)
+        end
+        if rawUuid and rawUuid ~= caster and Osi.HasActiveStatus(rawUuid, INNATE_CASTER_STATUS) == 1 then
+            pcall(function() Osi.RemoveStatus(rawUuid, INNATE_CASTER_STATUS) end)
+        end
+    end
+    
+    -- Sync concentration tracker with engine reality
+    UpdateConcentrationTracker(caster)
+    if rawUuid and rawUuid ~= caster then
+        UpdateConcentrationTracker(rawUuid)
     end
 end)
 
