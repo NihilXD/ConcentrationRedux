@@ -150,6 +150,20 @@ local WHITELISTED_ACTIONS = {
     ["Shout_ShortRest"] = true,
     ["Action_EndTurn"] = true,
 
+    -- Gish stances & class features (never break concentration)
+    ["Shout_Bladesong"] = true,
+    ["Shout_Bladesong_End"] = true,
+    ["Shout_Bladesong_Activate"] = true,
+    ["Shout_ActivateBladesong"] = true,
+    ["Shout_SymbioticEntity"] = true,
+    ["Shout_WildShape_Spore"] = true,
+    ["Shout_BindPactWeapon"] = true,
+    ["Target_BindPactWeapon"] = true,
+    ["Target_HexbladeCurse"] = true,
+    ["Shout_WeaponBond"] = true,
+    ["Target_WeaponBond"] = true,
+    ["Shout_WholenessOfBody"] = true,
+
     -- Channel re-activations (moving or triggering ongoing active effects)
     ["Target_CallLightning_Reapply"] = true,
     ["Target_Moonbeam_Reapply"] = true,
@@ -162,9 +176,73 @@ local WHITELISTED_ACTIONS = {
     ["Shout_DismissInnateConcentration"] = true
 }
 
+local function IsGishStanceOrFeature(spell)
+    if not spell then return false end
+    local lower = spell:lower()
+    
+    -- Bladesinger Wizard: Bladesong activation and dismissal
+    if lower:find("bladesong") or lower:find("blade_song") then
+        return true
+    end
+    
+    -- Circle of Spores Druid: Symbiotic Entity / Spore Wildshape
+    if lower:find("symbioticentity") or lower:find("symbiotic_entity") or lower:find("wildshape_spore") then
+        return true
+    end
+    
+    -- Warlock: Pact of the Blade & Hexblade stances
+    if lower:find("bindpactweapon") or lower:find("bind_pact_weapon") or lower:find("pactweapon") or lower:find("pact_weapon")
+       or lower:find("hexblade") or lower:find("hex_warrior") then
+        return true
+    end
+    
+    -- Fighter: Eldritch Knight Weapon Bond
+    if lower:find("weaponbond") or lower:find("weapon_bond") then
+        return true
+    end
+    
+    -- Monk Ki stances and disciplines
+    if lower:find("stepofthewind") or lower:find("step_of_the_wind")
+       or lower:find("patientdefense") or lower:find("patient_defense")
+       or lower:find("wholenessofbody") or lower:find("wholeness_of_body")
+       or lower:find("deflectmissiles") or lower:find("deflect_missiles")
+       or lower:find("kiresonation") or lower:find("harmonyoffireandwater") then
+        return true
+    end
+    
+    -- Bard: Bardic / Combat Inspiration & Flourishes
+    if lower:find("bladeflourish") or lower:find("blade_flourish")
+       or lower:find("bardicinspiration") or lower:find("bardic_inspiration")
+       or lower:find("combinspiration") or lower:find("combat_inspiration") then
+        return true
+    end
+    
+    -- Channel Divinity (Martial & Gish Subclasses)
+    if lower:find("guidedstrike") or lower:find("guided_strike") or lower:find("wargod")
+       or lower:find("destructivewrath") or lower:find("destructive_wrath")
+       or lower:find("sacredweapon") or lower:find("sacred_weapon")
+       or lower:find("vowofenmity") or lower:find("vow_of_enmity")
+       or lower:find("nature_wrath") or lower:find("turnundead") then
+        return true
+    end
+    
+    -- Battle Master Maneuvers & Martial Stances
+    if lower:find("maneuver") or lower:find("rally") or lower:find("evasivefootwork") or lower:find("parry") or lower:find("riposte") then
+        return true
+    end
+
+    -- Rogue / Arcane Trickster: Cunning Actions
+    if lower:find("cunningaction") or lower:find("cunning_action") or lower:find("sneakattack") then
+        return true
+    end
+    
+    return false
+end
+
 local function IsWhitelistedAction(spell)
     if not spell then return false end
     if WHITELISTED_ACTIONS[spell] then return true end
+    if IsGishStanceOrFeature(spell) then return true end
     
     local lower = spell:lower()
     

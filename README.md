@@ -77,6 +77,8 @@ In vanilla Baldur's Gate 3, defensive and utility cantrips often suffer from awk
   - Casting *Counterspell* (external offensive counter-magic) or retaliatory damage reactions (*Hellish Rebuke*) demands 100% of your spell focus and **immediately shatters active conduits for ALL casters**, including gishes.
 - **Melee Spell Cantrips (Green-Flame Blade, Booming Blade, Vengeful Blade)**:
   - Characters with **Combat Channeling** can cast **melee spell cantrips** (*Green-Flame Blade*, *Booming Blade*, *Vengeful Blade*) in melee combat **without breaking Concentration**!
+- **Gish Combat Stances & Class Features**:
+  - Activating martial combat stances (*Bladesong*, Circle of Spores *Symbiotic Entity*, *Pact Weapon Binding*, *Hexblade's Curse*, Eldritch Knight *Weapon Bond*, Monk *Step of the Wind / Patient Defense / Wholeness of Body*, Bardic *Blade Flourishes*, and martial *Channel Divinities*) **never breaks Concentration**!
 - **Physical Reactions & Class Features**:
   - Non-magical reactions (melee *Opportunity Attacks*) and non-spell reaction features (*Warding Flare*, *Wrath of the Storm*, *Cutting Words*, *Uncanny Dodge*, *Deflect Missiles*) expend no spell slots and are 100% safe for all casters.
 
