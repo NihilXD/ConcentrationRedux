@@ -1,5 +1,16 @@
 # Concentration Redux - Changelog
 
+## v1.1.2
+- **Counterspell & Failed Cast Focus Icon Cleanup**:
+  - Fixed an issue where casting a Focus spell that was Counterspelled or interrupted left an orphaned Focus concentration icon (`INNATE_CONCENTRATION_CASTER`) permanently stuck on the caster's portrait.
+  - Spell focus application is now strictly deferred until spell resolution in `StatusApplied`, and `CastSpellFailed` events immediately clean up any pending casts and synchronization trackers.
+  - Eliminated the circular self-referential check on `ACTIVE_CONCENTRATION_TRACKER` inside `IsCharacterConcentrating`, allowing the concentration tracker icon to cleanly disappear whenever concentration ends or fails.
+- **Expeditious Retreat & Self-Buff Spells (Focus vs Channeling Fix)**:
+  - Fixed an issue where *Expeditious Retreat* was labelled as a Focus spell in tooltips but acted as a Channeling spell in gameplay due to vanilla engine spell prefix definitions (`Shout_ExpeditiousRetreat`).
+  - Properly mapped *Expeditious Retreat*, *Blur*, *Pass Without Trace*, and *Detect Thoughts* across `INNATE_SPELLS` so they function strictly as indefinite, damage-resilient Focus buffs as designed.
+
+---
+
 ## v1.1.1
 - **Spell Weaving (Cantrips, Bonus Actions & Quickened Metamagic)**:
   - **All Cantrips (Level 0)**: Pure casters now have an active combat loop every turn! All cantrips (*Fire Bolt*, *Ray of Frost*, *Eldritch Blast*, *Sacred Flame*, *Acid Splash*, *Shocking Grasp*, etc.) are recognized as reflexive magic and can be cast freely without breaking an active Channel stance.
@@ -8,8 +19,6 @@
   - **Standard Action Leveled Spells**: Casting standard-action leveled spells (Level 1+) or offensive reactions (*Counterspell*, *Hellish Rebuke*) continues to demand total mental concentration and breaks active Channel stances.
 - **In-Game Tooltip Trailers**:
   - Updated all 326+ in-game combat Channel spell cards with explicit spell-weaving guidance: *"Casting Cantrips, Bonus Action spells, or Quickened spells does not break Channel."*
-- **Counterspell & Interrupted Cast Icon Cleanup**:
-  - Fixed an issue where casting a Focus spell that was Counterspelled or interrupted left an orphaned Focus concentration icon on the caster's portrait. Spell focus application is now strictly deferred until spell resolution, and `CastSpellFailed` events immediately clean up any pending casts and synchronization trackers.
 
 ---
 

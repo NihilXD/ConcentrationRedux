@@ -1,3 +1,18 @@
+[size=4][color=#ffd700][b]v1.1.2[/b][/color][/size]
+[list]
+[*][b]Counterspell & Failed Cast Focus Icon Cleanup:[/b]
+[list]
+[*]Fixed an issue where casting a Focus spell that was Counterspelled or interrupted left an orphaned Focus concentration icon ([i]INNATE_CONCENTRATION_CASTER[/i]) permanently stuck on the caster's portrait.
+[*]Spell focus application is now strictly deferred until spell resolution in [i]StatusApplied[/i], and [i]CastSpellFailed[/i] events immediately clean up any pending casts and synchronization trackers.
+[*]Eliminated the circular self-referential check on [i]ACTIVE_CONCENTRATION_TRACKER[/i] inside [i]IsCharacterConcentrating[/i], allowing the concentration tracker icon to cleanly disappear whenever concentration ends or fails.
+[/list]
+[*][b]Expeditious Retreat & Self-Buff Spells (Focus vs Channeling Fix):[/b]
+[list]
+[*]Fixed an issue where [i]Expeditious Retreat[/i] was labelled as a Focus spell in tooltips but acted as a Channeling spell in gameplay due to vanilla engine spell prefix definitions ([i]Shout_ExpeditiousRetreat[/i]).
+[*]Properly mapped [i]Expeditious Retreat[/i], [i]Blur[/i], [i]Pass Without Trace[/i], and [i]Detect Thoughts[/i] across [i]INNATE_SPELLS[/i] so they function strictly as indefinite, damage-resilient Focus buffs as designed.
+[/list]
+[/list]
+
 [size=4][color=#ffd700][b]v1.1.1 (Spell Weaving Overhaul)[/b][/color][/size]
 [list]
 [*][b]Spell Weaving (Cantrips, Bonus Actions & Quickened Metamagic):[/b]
@@ -10,10 +25,6 @@
 [*][b]In-Game Channel Tooltip Trailers:[/b]
 [list]
 [*]Updated all 326+ in-game combat Channel spell cards with explicit spell-weaving guidance: [i]"Casting Cantrips, Bonus Action spells, or Quickened spells does not break Channel."[/i]
-[/list]
-[*][b]Counterspell & Interrupted Cast Icon Cleanup:[/b]
-[list]
-[*]Fixed an issue where casting a Focus spell that was Counterspelled or interrupted left an orphaned Focus concentration icon on the caster's portrait. Spell focus application is now strictly deferred until spell resolution, and [i]CastSpellFailed[/i] events immediately clean up any pending casts and synchronization trackers.
 [/list]
 [/list]
 
