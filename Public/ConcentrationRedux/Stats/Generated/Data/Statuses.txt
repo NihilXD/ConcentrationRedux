@@ -150,6 +150,13 @@ using "HASTE"
 data "Duration" "-1"
 data "OnRemoveFunctors" ""
 
+new entry "CHANNEL_HASTE_ALLY"
+type "StatusData"
+data "StatusType" "BOOST"
+using "HASTE"
+data "Duration" "10"
+data "OnRemoveFunctors" ""
+
 new entry "INNATE_BUFF_HASTE"
 type "StatusData"
 data "StatusType" "BOOST"

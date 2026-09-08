@@ -665,6 +665,9 @@ local function ResolveHasteTermination(caster, target)
             if Osi.HasActiveStatus(hasteTarget, "CHANNEL_HASTE") == 1 then
                 Osi.RemoveStatus(hasteTarget, "CHANNEL_HASTE")
             end
+            if Osi.HasActiveStatus(hasteTarget, "CHANNEL_HASTE_ALLY") == 1 then
+                Osi.RemoveStatus(hasteTarget, "CHANNEL_HASTE_ALLY")
+            end
             if Osi.HasActiveStatus(hasteTarget, "INNATE_BUFF_HASTE") == 1 then
                 Osi.RemoveStatus(hasteTarget, "INNATE_BUFF_HASTE")
             end
@@ -678,6 +681,13 @@ local function ResolveHasteTermination(caster, target)
     if rawCaster then
         ActiveHasteChannels[rawCaster] = nil
         if caster then ActiveHasteChannels[caster] = nil end
+        -- Gracefully release caster's concentration slot if all Haste targets ended
+        pcall(function()
+            if IsCharacterConcentrating(rawCaster) then
+                VoluntaryInterruptionTimes[rawCaster] = Ext.Utils.MonotonicTime()
+                BreakCharacterConcentration(rawCaster)
+            end
+        end)
     end
 end
 
@@ -745,7 +755,7 @@ end)
 
 -- Hook every recipient receiving the innate buff status or Haste channel
 Ext.Osiris.RegisterListener("StatusApplied", 4, "after", function(target, status, causee, storyActionID)
-    if status == "CHANNEL_HASTE" or status == "INNATE_BUFF_HASTE" then
+    if status == "CHANNEL_HASTE" or status == "CHANNEL_HASTE_ALLY" or status == "INNATE_BUFF_HASTE" then
         local caster = causee
         local now = Ext.Utils.MonotonicTime()
         if (not caster or caster == "") and PendingHasteCaster and (now - PendingHasteTime < 2500) then
@@ -768,6 +778,16 @@ Ext.Osiris.RegisterListener("StatusApplied", 4, "after", function(target, status
         if caster and caster ~= "" then
             local rawCaster = caster:match("%x%x%x%x%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%x%x%x%x%x%x%x%x") or caster
             local rawTarget = target:match("%x%x%x%x%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%x%x%x%x%x%x%x%x") or target
+            
+            -- Ally duration safety check: If cast on someone else, ensure ally receives 10-turn status
+            if rawCaster ~= rawTarget and status == "CHANNEL_HASTE" then
+                pcall(function()
+                    Osi.RemoveStatus(target, "CHANNEL_HASTE")
+                    Osi.ApplyStatus(target, "CHANNEL_HASTE_ALLY", 60.0, 1, caster)
+                end)
+                return
+            end
+            
             ActiveHasteChannels[rawCaster] = ActiveHasteChannels[rawCaster] or { Targets = {} }
             ActiveHasteChannels[rawCaster].Targets[rawTarget] = true
             ActiveHasteChannels[rawCaster].Targets[target] = true
@@ -775,7 +795,7 @@ Ext.Osiris.RegisterListener("StatusApplied", 4, "after", function(target, status
             
             HasteTargetToCaster[rawTarget] = rawCaster
             HasteTargetToCaster[target] = rawCaster
-            Ext.Utils.Print(string.format("[%s] Registered Haste channel: Caster %s -> Target %s", MOD_NAME, tostring(caster), tostring(target)))
+            Ext.Utils.Print(string.format("[%s] Registered Haste channel: Caster %s -> Target %s (Self: %s, Status: %s)", MOD_NAME, tostring(caster), tostring(target), tostring(rawCaster == rawTarget), tostring(status)))
         end
     end
 
@@ -857,7 +877,7 @@ Ext.Osiris.RegisterListener("StatusRemoved", 4, "after", function(target, status
         end
         ResolveHasteTermination(target, nil)
     end
-    if status == "CHANNEL_HASTE" or status == "INNATE_BUFF_HASTE" then
+    if status == "CHANNEL_HASTE" or status == "CHANNEL_HASTE_ALLY" or status == "INNATE_BUFF_HASTE" then
         ResolveHasteTermination(nil, target)
     end
     if status == INNATE_CASTER_STATUS then
@@ -1321,7 +1341,7 @@ local function ReconstructSessionStateFromEngine()
             if entity and entity.StatusMachine and entity.StatusMachine.Statuses then
                 for _, statusObj in ipairs(entity.StatusMachine.Statuses) do
                     local sId = statusObj.StatusId
-                    if sId and (sId == "CHANNEL_HASTE" or sId == "INNATE_BUFF_HASTE") then
+                    if sId and (sId == "CHANNEL_HASTE" or sId == "CHANNEL_HASTE_ALLY" or sId == "INNATE_BUFF_HASTE") then
                         local causee = nil
                         if statusObj.Causee and statusObj.Causee.EntityUuid then
                             causee = statusObj.Causee.EntityUuid

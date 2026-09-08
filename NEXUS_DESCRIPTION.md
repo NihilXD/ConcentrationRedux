@@ -36,7 +36,7 @@ In D&D 5e and vanilla Baldur's Gate 3, nearly every iconic spell competes for a 
   - **Single-Target Marks:** *Hunter's Mark*, *Hex*, *Bane*, *Bestow Curse* (reapplication abilities are whitelisted and never break active conduits)
   - **Augmentations & Stealth:** *Enlarge/Reduce*, *Fly*, *Blur*, *Invisibility*, *Pass Without Trace*, *Detect Thoughts*
 - **Concentration Spells (Combat Conduits):**
-  - Speed & Augmentation Conduits: *Haste* (Indefinite Channel Conduit: voluntary dismissal via portrait "X", hard-cast spells, reaction spells, or concentration swaps cleanly ends Haste with **no Lethargy**; channel broken via damage inflicts 1 turn of **Lethargy**)
+  - Speed & Augmentation Conduits: *Haste* (Concentration Conduit: **unlimited duration** when self-cast, **10 rounds** when cast on an ally; ending gracefully after 10 rounds, or voluntary dismissal via portrait "X"/spells cleanly releases Haste with **no Lethargy**; channel broken via damage inflicts 1 turn of **Lethargy**)
   - Auras & Beams: *Spirit Guardians*, *Aura of Vitality*, *Crusader's Mantle*, *Call Lightning*, *Moonbeam*, *Witch Bolt*, *Heat Metal*, *Sunbeam*, *Telekinesis*
   - Hazard Anchors: *Wall of Fire*, *Cloud of Daggers*, *Fog Cloud*, *Darkness*, *Silence*, *Spike Growth*, *Sleet Storm*, *Hunger of Hadar*, *Cloudkill*
   - Hard CC: *Hold Person*, *Hold Monster*, *Hypnotic Pattern*, *Banishment*, *Tasha's Hideous Laughter*, *Slow*, *Confusion*
