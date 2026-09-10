@@ -1,5 +1,12 @@
 Concentration Redux - Changelog
 
+v1.1.3
+- Dynamic Channeling Status Indicators & Visual Clarity (No Mechanical Changes):
+  - Added dedicated dynamic status badges directly to the character portrait/status tray while actively maintaining a Channel spell:
+    - Pure Casters (Channeling): Displays the "Channeling" badge (Arcane Acuity radiant purple eye icon) explicitly detailing in-game what actions are permitted (Cantrips, Bonus Action spells, Quickened spells, defensive reactions like Shield, and War Caster opportunity spells) and what breaks concentration (action-costing levelled spells, offensive reactions like Counterspell, and physical weapon attacks).
+    - Martial Gishes (Combat Channeling): Displays the "Combat Channeling" badge (Arcane Synergy radiant purple blade icon) detailing the martial channel stance and explicitly clarifying permissions (including physical weapon attacks).
+  - Note: This update is strictly a quality-of-life and visual clarity improvement to make active channel rules immediately transparent in-game directly on your character portrait; it does not change underlying mechanics or combat balancing.
+
 v1.1.2
 - Linked Container Spells & Sub-Spells Fix (Bestow Curse, Enlarge/Reduce, Hex, Elemental Weapon):
   - Fixed an issue where spells offering multiple sub-spell options (such as Bestow Curse stat penalties, Enlarge vs Reduce, Hex ability curses, and Elemental Weapon elements) failed to appear as prepareable container spells in the spellbook, causing their raw child sub-spells to leak into the spell list and instantly un-prepare when clicked.
@@ -14,13 +21,9 @@ v1.1.2
 - Expeditious Retreat & Self-Buff Spells (Focus vs Channeling Fix):
   - Fixed an issue where Expeditious Retreat was labelled as a Focus spell in tooltips but acted as a Channeling spell in gameplay due to vanilla engine spell prefix definitions (Shout_ExpeditiousRetreat).
   - Properly mapped Expeditious Retreat, Blur, Pass Without Trace, and Detect Thoughts across INNATE_SPELLS so they function strictly as indefinite, damage-resilient Focus buffs as designed.
-- Dynamic Channeling Status Indicators & Defensive Reaction Rules:
-  - Added dynamic player status badges (CHANNEL_ACTIVE and CHANNEL_ACTIVE_COMBAT) to the character portrait/status tray while actively maintaining a Channel spell.
-  - Distinct tooltips and icons dynamically adapt to caster discipline:
-    - Pure Casters (Channeling): Permitted: Cantrips, Bonus Action spells (including Quickened spells), defensive reactions (Shield), and War Caster opportunity spells. Breaks Channel: Action-costing levelled spells, offensive reactions (Counterspell), and physical weapon attacks.
-    - Martial Gishes (Combat Channeling): Permitted: Physical weapon attacks, Cantrips, Bonus Action spells (including Quickened spells), defensive reactions (Shield), and War Caster opportunity spells. Breaks Channel: Action-costing levelled spells and offensive reactions (Counterspell).
-  - Personal defensive reactions (Shield, Absorb Elements, Feather Fall) are now unconditionally permitted during active Channeling for all characters without breaking concentration.
-  - War Caster reaction opportunity spells are now permitted during active Channeling for characters with War Caster.
+- Defensive Reaction Rules & War Caster Clarifications:
+  - Personal defensive reactions (Shield, Absorb Elements, Feather Fall) are unconditionally permitted during active Channeling for all characters without breaking concentration.
+  - War Caster reaction opportunity spells are permitted during active Channeling for characters with War Caster.
   - Offensive reactions (Counterspell, Hellish Rebuke) consistently demand total focus and break active Channeling as intended.
 
 v1.1.1
