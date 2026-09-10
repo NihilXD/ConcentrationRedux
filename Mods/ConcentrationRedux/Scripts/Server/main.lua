@@ -936,6 +936,8 @@ local function GetActiveInnateCasterInfo(guidOrName)
 end
 
 local CONC_TRACKER_STATUS = "ACTIVE_CONCENTRATION_TRACKER"
+local CHANNEL_ACTIVE_STATUS = "CHANNEL_ACTIVE"
+local CHANNEL_ACTIVE_COMBAT_STATUS = "CHANNEL_ACTIVE_COMBAT"
 
 local function IsCharacterConcentrating(character)
     if not character or character == "" then return false end
@@ -972,6 +974,8 @@ local function BreakCharacterConcentration(character)
     pcall(function() Osi.PROC_GLO_BreakConcentration(character) end)
     pcall(function() Osi.RemoveStatus(character, "CONCENTRATION") end)
     pcall(function() Osi.RemoveStatus(character, CONC_TRACKER_STATUS) end)
+    pcall(function() Osi.RemoveStatus(character, CHANNEL_ACTIVE_STATUS) end)
+    pcall(function() Osi.RemoveStatus(character, CHANNEL_ACTIVE_COMBAT_STATUS) end)
     
     if type(character) == "string" then
         local rawUuid = character:match("%x%x%x%x%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%x%x%x%x%x%x%x%x")
@@ -980,6 +984,8 @@ local function BreakCharacterConcentration(character)
             pcall(function() Osi.PROC_GLO_BreakConcentration(rawUuid) end)
             pcall(function() Osi.RemoveStatus(rawUuid, "CONCENTRATION") end)
             pcall(function() Osi.RemoveStatus(rawUuid, CONC_TRACKER_STATUS) end)
+            pcall(function() Osi.RemoveStatus(rawUuid, CHANNEL_ACTIVE_STATUS) end)
+            pcall(function() Osi.RemoveStatus(rawUuid, CHANNEL_ACTIVE_COMBAT_STATUS) end)
         end
     end
 end
@@ -988,14 +994,28 @@ local function UpdateConcentrationTracker(character)
     if not character or character == "" then return end
     pcall(function()
         local isConc = IsCharacterConcentrating(character)
-        local hasTracker = (Osi.HasActiveStatus(character, CONC_TRACKER_STATUS) == 1)
+        local isCombat = HasCombatChanneling(character)
+        local desiredStatus = isCombat and CHANNEL_ACTIVE_COMBAT_STATUS or CHANNEL_ACTIVE_STATUS
+        local otherStatus = isCombat and CHANNEL_ACTIVE_STATUS or CHANNEL_ACTIVE_COMBAT_STATUS
         
-        if isConc and not hasTracker then
-            Osi.ApplyStatus(character, CONC_TRACKER_STATUS, -1.0, 1, character)
-            Ext.Utils.Print(string.format("[%s] Applied concentration tracker to %s", MOD_NAME, tostring(character)))
-        elseif not isConc and hasTracker then
-            Osi.RemoveStatus(character, CONC_TRACKER_STATUS)
-            Ext.Utils.Print(string.format("[%s] Removed concentration tracker from %s", MOD_NAME, tostring(character)))
+        if isConc then
+            if Osi.HasActiveStatus(character, otherStatus) == 1 then
+                Osi.RemoveStatus(character, otherStatus)
+            end
+            if Osi.HasActiveStatus(character, desiredStatus) == 0 then
+                Osi.ApplyStatus(character, desiredStatus, -1.0, 1, character)
+                Ext.Utils.Print(string.format("[%s] Applied %s to %s", MOD_NAME, desiredStatus, tostring(character)))
+            end
+        else
+            if Osi.HasActiveStatus(character, CHANNEL_ACTIVE_STATUS) == 1 then
+                Osi.RemoveStatus(character, CHANNEL_ACTIVE_STATUS)
+            end
+            if Osi.HasActiveStatus(character, CHANNEL_ACTIVE_COMBAT_STATUS) == 1 then
+                Osi.RemoveStatus(character, CHANNEL_ACTIVE_COMBAT_STATUS)
+            end
+            if Osi.HasActiveStatus(character, CONC_TRACKER_STATUS) == 1 then
+                Osi.RemoveStatus(character, CONC_TRACKER_STATUS)
+            end
         end
     end)
     if type(character) == "string" then
@@ -1003,9 +1023,26 @@ local function UpdateConcentrationTracker(character)
         if rawUuid and rawUuid ~= character then
             pcall(function()
                 local isConc = IsCharacterConcentrating(rawUuid)
-                local hasTracker = (Osi.HasActiveStatus(rawUuid, CONC_TRACKER_STATUS) == 1)
-                if not isConc and hasTracker then
-                    Osi.RemoveStatus(rawUuid, CONC_TRACKER_STATUS)
+                local isCombat = HasCombatChanneling(rawUuid)
+                local desiredStatus = isCombat and CHANNEL_ACTIVE_COMBAT_STATUS or CHANNEL_ACTIVE_STATUS
+                local otherStatus = isCombat and CHANNEL_ACTIVE_STATUS or CHANNEL_ACTIVE_COMBAT_STATUS
+                if isConc then
+                    if Osi.HasActiveStatus(rawUuid, otherStatus) == 1 then
+                        Osi.RemoveStatus(rawUuid, otherStatus)
+                    end
+                    if Osi.HasActiveStatus(rawUuid, desiredStatus) == 0 then
+                        Osi.ApplyStatus(rawUuid, desiredStatus, -1.0, 1, rawUuid)
+                    end
+                else
+                    if Osi.HasActiveStatus(rawUuid, CHANNEL_ACTIVE_STATUS) == 1 then
+                        Osi.RemoveStatus(rawUuid, CHANNEL_ACTIVE_STATUS)
+                    end
+                    if Osi.HasActiveStatus(rawUuid, CHANNEL_ACTIVE_COMBAT_STATUS) == 1 then
+                        Osi.RemoveStatus(rawUuid, CHANNEL_ACTIVE_COMBAT_STATUS)
+                    end
+                    if Osi.HasActiveStatus(rawUuid, CONC_TRACKER_STATUS) == 1 then
+                        Osi.RemoveStatus(rawUuid, CONC_TRACKER_STATUS)
+                    end
                 end
             end)
         end
@@ -1534,6 +1571,12 @@ end)
 -- Cleanup when caster loses the Innate Concentration status (manual cancel, rest, etc.)
 Ext.Osiris.RegisterListener("StatusRemoved", 4, "after", function(target, status, causee, storyActionID)
     if status == "CONCENTRATION" then
+        if Osi.HasActiveStatus(target, CHANNEL_ACTIVE_STATUS) == 1 then
+            Osi.RemoveStatus(target, CHANNEL_ACTIVE_STATUS)
+        end
+        if Osi.HasActiveStatus(target, CHANNEL_ACTIVE_COMBAT_STATUS) == 1 then
+            Osi.RemoveStatus(target, CHANNEL_ACTIVE_COMBAT_STATUS)
+        end
         if Osi.HasActiveStatus(target, CONC_TRACKER_STATUS) == 1 then
             Osi.RemoveStatus(target, CONC_TRACKER_STATUS)
         end
@@ -1550,6 +1593,12 @@ end)
 -- Character Death Listener: Cleans up deceased casters and handles marked target deaths
 Ext.Osiris.RegisterListener("Died", 1, "after", function(char)
     local rawChar = char:match("%x%x%x%x%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%x%x%x%x%x%x%x%x") or char
+    if Osi.HasActiveStatus(char, CHANNEL_ACTIVE_STATUS) == 1 then
+        Osi.RemoveStatus(char, CHANNEL_ACTIVE_STATUS)
+    end
+    if Osi.HasActiveStatus(char, CHANNEL_ACTIVE_COMBAT_STATUS) == 1 then
+        Osi.RemoveStatus(char, CHANNEL_ACTIVE_COMBAT_STATUS)
+    end
     if Osi.HasActiveStatus(char, CONC_TRACKER_STATUS) == 1 then
         Osi.RemoveStatus(char, CONC_TRACKER_STATUS)
     end
@@ -1581,6 +1630,19 @@ Ext.Osiris.RegisterListener("LongRestStarted", 0, "after", function()
         Osi.RemoveStatus(caster, INNATE_CASTER_STATUS)
         CleanUpInnateBuffs(caster)
     end
+    pcall(function()
+        local party = Osi.DB_PartyMembers:Get(nil) or Osi.DB_Players:Get(nil)
+        if party then
+            for _, row in ipairs(party) do
+                local m = row[1]
+                if m then
+                    Osi.RemoveStatus(m, CHANNEL_ACTIVE_STATUS)
+                    Osi.RemoveStatus(m, CHANNEL_ACTIVE_COMBAT_STATUS)
+                    Osi.RemoveStatus(m, CONC_TRACKER_STATUS)
+                end
+            end
+        end
+    end)
     ActiveInnateCasters = {}
     ActiveHasteChannels = {}
     HasteTargetToCaster = {}
@@ -1592,6 +1654,10 @@ Ext.Osiris.RegisterListener("RespecCompleted", 1, "after", function(character)
         Osi.RemoveStatus(character, INNATE_CASTER_STATUS)
         CleanUpInnateBuffs(character)
     end
+    Osi.RemoveStatus(character, CHANNEL_ACTIVE_STATUS)
+    Osi.RemoveStatus(character, CHANNEL_ACTIVE_COMBAT_STATUS)
+    Osi.RemoveStatus(character, CONC_TRACKER_STATUS)
+    UpdateConcentrationTracker(character)
 end)
 
 -- ==============================================================================
@@ -1669,12 +1735,53 @@ local function IsWeaponAction(spell, spellType)
     return false
 end
 
+local function IsOffensiveReaction(spell)
+    if not spell then return false end
+    local lower = spell:lower()
+    if lower:find("counterspell") or lower:find("hellish") or lower:find("rebuke") then
+        return true
+    end
+    return false
+end
+
+local function IsReactionSpellCast(spell, caster)
+    if not spell then return false end
+    local lower = spell:lower()
+    
+    if lower:find("counterspell") or lower:find("shield") or lower:find("hellish") or lower:find("rebuke") 
+       or lower:find("absorbelements") or lower:find("absorb_elements") or lower:find("reaction") then
+        return true
+    end
+    
+    -- If spell is cast during someone else's turn in combat, it is by definition an out-of-turn Reaction (such as War Caster opportunity spell)
+    if CurrentTurnCharacter and caster and CurrentTurnCharacter ~= caster then
+        local rawCurrent = CurrentTurnCharacter:match("%x%x%x%x%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%x%x%x%x%x%x%x%x") or CurrentTurnCharacter
+        local rawCaster = caster:match("%x%x%x%x%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%x%x%x%x%x%x%x%x") or caster
+        if rawCurrent ~= rawCaster then
+            return true
+        end
+    end
+    
+    -- Check UseCosts for ReactionActionPoint
+    local hasReactionCost = false
+    pcall(function()
+        local stat = Ext.Stats.Get(spell)
+        if stat and stat.UseCosts then
+            local uc = tostring(stat.UseCosts)
+            if uc:find("ReactionActionPoint") or uc:find("Reaction") then
+                hasReactionCost = true
+            end
+        end
+    end)
+    return hasReactionCost
+end
+
 local function IsPersonalDefensiveReaction(spell)
     if not spell then return false end
     local lower = spell:lower()
     
     -- Explicitly exclude offensive counter-magic and retaliatory damage reactions
-    if lower:find("counterspell") or lower:find("hellish") or lower:find("rebuke") then
+    if IsOffensiveReaction(spell) then
         return false
     end
     
@@ -1687,6 +1794,11 @@ local function IsPersonalDefensiveReaction(spell)
     
     -- Absorb Elements (reaction)
     if lower:find("absorbelements") or lower:find("absorb_elements") or (lower:find("absorb") and lower:find("element")) then
+        return true
+    end
+    
+    -- Feather Fall as reaction
+    if lower:find("featherfall") or lower:find("feather_fall") then
         return true
     end
     
@@ -1854,13 +1966,29 @@ local function HandleSpellInterruption(caster, spell, spellType)
         return
     end
     
-    -- 4. Personal reaction defensives (Shield, Absorb Elements) for Combat Channelers or War Caster
-    if IsPersonalDefensiveReaction(spell) and (HasCombatChanneling(caster) or HasConcentrationAdvantage(caster)) then
-        Ext.Utils.Print(string.format("[%s] Personal defensive reaction '%s' permitted under Combat Channeling for %s", MOD_NAME, tostring(spell), tostring(caster)))
+    -- 1. Offensive reactions (Counterspell, Hellish Rebuke) always break active Channel
+    if IsOffensiveReaction(spell) then
+        Ext.Utils.Print(string.format("[%s] Offensive reaction '%s' breaking active channel for %s", MOD_NAME, tostring(spell), tostring(caster)))
+        VoluntaryInterruptionTimes[rawUuid] = Ext.Utils.MonotonicTime()
+        VoluntaryInterruptionTimes[caster] = VoluntaryInterruptionTimes[rawUuid]
+        BreakCharacterConcentration(caster)
+        pcall(function() Osi.ShowOverheadNotice(caster, "Channel broken by offensive reaction!") end)
+        return
+    end
+
+    -- 2. Personal defensive reactions (Shield, Absorb Elements) never break active Channel for anyone
+    if IsPersonalDefensiveReaction(spell) then
+        Ext.Utils.Print(string.format("[%s] Personal defensive reaction '%s' permitted while Channeling for %s", MOD_NAME, tostring(spell), tostring(caster)))
+        return
+    end
+
+    -- 3. War Caster opportunity spells (reactions permitted via War Caster advantage or bonuses)
+    if IsReactionSpellCast(spell, caster) and (HasConcentrationAdvantage(caster) or Osi.HasPassive(caster, "WarCaster_Bonuses") == 1 or Osi.HasPassive(caster, "WarCaster_Concentration") == 1) then
+        Ext.Utils.Print(string.format("[%s] War Caster reaction spell '%s' permitted while Channeling for %s", MOD_NAME, tostring(spell), tostring(caster)))
         return
     end
     
-    -- 5. Physical weapon actions
+    -- 4. Physical weapon actions
     local isWep = false
     pcall(function() isWep = IsWeaponAction(spell, spellType) end)
     
@@ -1877,7 +2005,7 @@ local function HandleSpellInterruption(caster, spell, spellType)
         end
     end
     
-    -- 6. Leveled Standard-Action Spells & Offensive Reactions break active Channel
+    -- 5. Leveled Standard-Action Spells break active Channel
     Ext.Utils.Print(string.format("[%s] Leveled action spell '%s' breaking active channel for %s", MOD_NAME, tostring(spell), tostring(caster)))
     VoluntaryInterruptionTimes[rawUuid] = Ext.Utils.MonotonicTime()
     VoluntaryInterruptionTimes[caster] = VoluntaryInterruptionTimes[rawUuid]
@@ -1961,9 +2089,15 @@ local function HandleDamageConcentrationCheck(victim, damageAmount)
     -- 2. CONCENTRATION CHECK:
     -- Is the character also maintaining a native concentration spell?
     -- Overclock = maintaining BOTH Focus AND native Concentration simultaneously!
-    local hasConc = IsCharacterConcentrating(victimGuid) or (Osi.HasActiveStatus(victimGuid, CONC_TRACKER_STATUS) == 1)
+    local hasConc = IsCharacterConcentrating(victimGuid)
+        or (Osi.HasActiveStatus(victimGuid, CHANNEL_ACTIVE_STATUS) == 1)
+        or (Osi.HasActiveStatus(victimGuid, CHANNEL_ACTIVE_COMBAT_STATUS) == 1)
+        or (Osi.HasActiveStatus(victimGuid, CONC_TRACKER_STATUS) == 1)
     if not hasConc and rawUuid then
-        hasConc = IsCharacterConcentrating(rawUuid) or (Osi.HasActiveStatus(rawUuid, CONC_TRACKER_STATUS) == 1)
+        hasConc = IsCharacterConcentrating(rawUuid)
+            or (Osi.HasActiveStatus(rawUuid, CHANNEL_ACTIVE_STATUS) == 1)
+            or (Osi.HasActiveStatus(rawUuid, CHANNEL_ACTIVE_COMBAT_STATUS) == 1)
+            or (Osi.HasActiveStatus(rawUuid, CONC_TRACKER_STATUS) == 1)
     end
     
     -- STANCE CHECK:

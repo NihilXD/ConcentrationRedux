@@ -14,6 +14,14 @@ v1.1.2
 - Expeditious Retreat & Self-Buff Spells (Focus vs Channeling Fix):
   - Fixed an issue where Expeditious Retreat was labelled as a Focus spell in tooltips but acted as a Channeling spell in gameplay due to vanilla engine spell prefix definitions (Shout_ExpeditiousRetreat).
   - Properly mapped Expeditious Retreat, Blur, Pass Without Trace, and Detect Thoughts across INNATE_SPELLS so they function strictly as indefinite, damage-resilient Focus buffs as designed.
+- Dynamic Channeling Status Indicators & Defensive Reaction Rules:
+  - Added dynamic player status badges (CHANNEL_ACTIVE and CHANNEL_ACTIVE_COMBAT) to the character portrait/status tray while actively maintaining a Channel spell.
+  - Distinct tooltips and icons dynamically adapt to caster discipline:
+    - Pure Casters (Channeling): Permitted: Cantrips, Bonus Action spells (including Quickened spells), defensive reactions (Shield), and War Caster opportunity spells. Breaks Channel: Action-costing levelled spells, offensive reactions (Counterspell), and physical weapon attacks.
+    - Martial Gishes (Combat Channeling): Permitted: Physical weapon attacks, Cantrips, Bonus Action spells (including Quickened spells), defensive reactions (Shield), and War Caster opportunity spells. Breaks Channel: Action-costing levelled spells and offensive reactions (Counterspell).
+  - Personal defensive reactions (Shield, Absorb Elements, Feather Fall) are now unconditionally permitted during active Channeling for all characters without breaking concentration.
+  - War Caster reaction opportunity spells are now permitted during active Channeling for characters with War Caster.
+  - Offensive reactions (Counterspell, Hellish Rebuke) consistently demand total focus and break active Channeling as intended.
 
 v1.1.1
 - Spell Weaving (Cantrips, Bonus Actions & Quickened Metamagic):
