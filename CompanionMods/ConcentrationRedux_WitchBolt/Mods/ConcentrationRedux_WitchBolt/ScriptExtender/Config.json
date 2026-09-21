@@ -1,0 +1,6 @@
+{
+  "RequiredVersion": 30,
+  "ModTable": "CR_KineticWitchBolt",
+  "FeatureFlags": ["Lua"],
+  "CreateConsole": true
+}

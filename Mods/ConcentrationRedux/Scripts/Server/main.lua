@@ -50,6 +50,11 @@ local COMBAT_PASSIVES = {
     ["TrainingInWarAndSong"] = true,
     ["Bladesinger_Bladesong"] = true,
     ["Bladesong_ExtraAttack"] = true,
+    ["Bladesinger_3_Bladesong"] = true,
+    ["Bladesinger_3_TrainingInWarAndSong"] = true,
+    ["Bladesinger_3_Bladesong_ArcaneRecovery"] = true,
+    ["Bladesong_Unlock"] = true,
+    ["Bladesong_Bladework"] = true,
     
     -- Bard: College of Swords & College of Valour (Level 3+ subclasses)
     ["Bard_CollegeOfSwords"] = true,
@@ -220,6 +225,12 @@ local WHITELISTED_ACTIONS = {
     ["Target_CallLightning_Reapply"] = true,
     ["Target_Moonbeam_Reapply"] = true,
     ["Target_WitchBolt_Reapply"] = true,
+    ["Shout_WitchBolt_Activate"] = true,
+    ["Shout_WitchBolt_Activate_3"] = true,
+    ["Shout_WitchBolt_Activate_5"] = true,
+    ["Target_WitchBolt_Whip"] = true,
+    ["Target_WitchBolt_Whip_3"] = true,
+    ["Target_WitchBolt_Whip_5"] = true,
     ["Target_Eyebite_Reapply"] = true,
     ["Target_Telekinesis_Reapply"] = true,
     ["Target_HuntersMark_Reapply"] = true,
@@ -676,7 +687,9 @@ local function GetEntitySafe(character)
     return entity
 end
 
-local function HasCombatChanneling(character)
+local CombatChannelingCache = {}
+
+local function ComputeHasCombatChanneling(character)
     if not character then return false end
     
     -- 1. Check inherent domain & martial passives
@@ -896,6 +909,19 @@ local function HasCombatChanneling(character)
     return false
 end
 
+local function HasCombatChanneling(character)
+    if not character or character == "" then return false end
+    local rawUuid = character:match("%x%x%x%x%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%x%x%x%x%x%x%x%x") or character
+    local now = Ext.Utils.MonotonicTime()
+    local cached = CombatChannelingCache[rawUuid]
+    if cached and (now - cached.Time < 4000) then
+        return cached.Value
+    end
+    local result = ComputeHasCombatChanneling(character)
+    CombatChannelingCache[rawUuid] = { Value = result, Time = now }
+    return result
+end
+
 local CONCENTRATION_ADVANTAGE_PASSIVES = {
     ["WarCaster_Concentration"] = true,
     ["WarCaster_Bonuses"] = true,
@@ -939,32 +965,40 @@ local CONC_TRACKER_STATUS = "ACTIVE_CONCENTRATION_TRACKER"
 local CHANNEL_ACTIVE_STATUS = "CHANNEL_ACTIVE"
 local CHANNEL_ACTIVE_COMBAT_STATUS = "CHANNEL_ACTIVE_COMBAT"
 
+local function IsNullGuid(guid)
+    if not guid or guid == "" then return true end
+    if type(guid) == "string" and guid:find("00000000%-0000%-0000%-0000%-000000000000") then return true end
+    return false
+end
+
 local function IsCharacterConcentrating(character)
-    if not character or character == "" then return false end
+    if not character or character == "" or IsNullGuid(character) then return false end
+    local rawUuid = nil
+    if type(character) == "string" then
+        rawUuid = character:match("%x%x%x%x%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%x%x%x%x%x%x%x%x")
+    end
+    
+    -- 1. Native Osiris concentration queries (ground truth)
     local isConc = false
+    pcall(function()
+        if Osi.IsConcentrating(character) == 1 or Osi.HasActiveStatus(character, "CONCENTRATION") == 1 then
+            isConc = true
+        elseif rawUuid and rawUuid ~= character and (Osi.IsConcentrating(rawUuid) == 1 or Osi.HasActiveStatus(rawUuid, "CONCENTRATION") == 1) then
+            isConc = true
+        end
+    end)
+    if isConc then return true end
+
+    -- 2. Direct entity component check (only if prototype is a valid non-empty spell ID)
     pcall(function()
         local entity = GetEntitySafe(character)
         if entity and entity.Concentration and entity.Concentration.SpellId then
-            local proto = entity.Concentration.SpellId.Prototype or ""
-            local origProto = entity.Concentration.SpellId.OriginatorPrototype or ""
-            local srcType = entity.Concentration.SpellId.SourceType or ""
-            if (proto ~= "" and proto ~= "Sentinel") or (origProto ~= "" and origProto ~= "Sentinel") or (srcType ~= "" and srcType ~= "Sentinel") then
+            local proto = entity.Concentration.SpellId.Prototype
+            if proto and proto ~= "" and proto ~= "Sentinel" then
                 isConc = true
             end
         end
     end)
-    if not isConc then
-        pcall(function()
-            if Osi.HasActiveStatus(character, "CONCENTRATION") == 1 then
-                isConc = true
-            elseif type(character) == "string" then
-                local raw = character:match("%x%x%x%x%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%x%x%x%x%x%x%x%x")
-                if raw and raw ~= character and Osi.HasActiveStatus(raw, "CONCENTRATION") == 1 then
-                    isConc = true
-                end
-            end
-        end)
-    end
     return isConc
 end
 
@@ -990,50 +1024,29 @@ local function BreakCharacterConcentration(character)
     end
 end
 
+local TrackedConcentrators = {}
+
 local function UpdateConcentrationTracker(character)
     if not character or character == "" then return end
     pcall(function()
+        local rawUuid = character:match("%x%x%x%x%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%x%x%x%x%x%x%x%x") or character
         local isConc = IsCharacterConcentrating(character)
-        local isCombat = HasCombatChanneling(character)
-        local desiredStatus = isCombat and CHANNEL_ACTIVE_COMBAT_STATUS or CHANNEL_ACTIVE_STATUS
-        local otherStatus = isCombat and CHANNEL_ACTIVE_STATUS or CHANNEL_ACTIVE_COMBAT_STATUS
         
-        if isConc then
-            if Osi.HasActiveStatus(character, otherStatus) == 1 then
-                Osi.RemoveStatus(character, otherStatus)
-            end
-            if Osi.HasActiveStatus(character, desiredStatus) == 0 then
-                Osi.ApplyStatus(character, desiredStatus, -1.0, 1, character)
-                Ext.Utils.Print(string.format("[%s] Applied %s to %s", MOD_NAME, desiredStatus, tostring(character)))
-            end
-        else
-            if Osi.HasActiveStatus(character, CHANNEL_ACTIVE_STATUS) == 1 then
-                Osi.RemoveStatus(character, CHANNEL_ACTIVE_STATUS)
-            end
-            if Osi.HasActiveStatus(character, CHANNEL_ACTIVE_COMBAT_STATUS) == 1 then
-                Osi.RemoveStatus(character, CHANNEL_ACTIVE_COMBAT_STATUS)
-            end
-            if Osi.HasActiveStatus(character, CONC_TRACKER_STATUS) == 1 then
-                Osi.RemoveStatus(character, CONC_TRACKER_STATUS)
-            end
-        end
-    end)
-    if type(character) == "string" then
-        local rawUuid = character:match("%x%x%x%x%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%x%x%x%x%x%x%x%x")
-        if rawUuid and rawUuid ~= character then
-            pcall(function()
-                local isConc = IsCharacterConcentrating(rawUuid)
-                local isCombat = HasCombatChanneling(rawUuid)
-                local desiredStatus = isCombat and CHANNEL_ACTIVE_COMBAT_STATUS or CHANNEL_ACTIVE_STATUS
-                local otherStatus = isCombat and CHANNEL_ACTIVE_STATUS or CHANNEL_ACTIVE_COMBAT_STATUS
-                if isConc then
-                    if Osi.HasActiveStatus(rawUuid, otherStatus) == 1 then
-                        Osi.RemoveStatus(rawUuid, otherStatus)
-                    end
-                    if Osi.HasActiveStatus(rawUuid, desiredStatus) == 0 then
-                        Osi.ApplyStatus(rawUuid, desiredStatus, -1.0, 1, rawUuid)
-                    end
-                else
+        if not isConc then
+            -- Early exit if character is not concentrating and not currently tracked
+            if TrackedConcentrators[character] or TrackedConcentrators[rawUuid] then
+                TrackedConcentrators[character] = nil
+                TrackedConcentrators[rawUuid] = nil
+                if Osi.HasActiveStatus(character, CHANNEL_ACTIVE_STATUS) == 1 then
+                    Osi.RemoveStatus(character, CHANNEL_ACTIVE_STATUS)
+                end
+                if Osi.HasActiveStatus(character, CHANNEL_ACTIVE_COMBAT_STATUS) == 1 then
+                    Osi.RemoveStatus(character, CHANNEL_ACTIVE_COMBAT_STATUS)
+                end
+                if Osi.HasActiveStatus(character, CONC_TRACKER_STATUS) == 1 then
+                    Osi.RemoveStatus(character, CONC_TRACKER_STATUS)
+                end
+                if rawUuid ~= character then
                     if Osi.HasActiveStatus(rawUuid, CHANNEL_ACTIVE_STATUS) == 1 then
                         Osi.RemoveStatus(rawUuid, CHANNEL_ACTIVE_STATUS)
                     end
@@ -1044,9 +1057,33 @@ local function UpdateConcentrationTracker(character)
                         Osi.RemoveStatus(rawUuid, CONC_TRACKER_STATUS)
                     end
                 end
-            end)
+            end
+            return
         end
-    end
+
+        TrackedConcentrators[character] = true
+        TrackedConcentrators[rawUuid] = true
+
+        local isCombat = HasCombatChanneling(rawUuid)
+        local desiredStatus = isCombat and CHANNEL_ACTIVE_COMBAT_STATUS or CHANNEL_ACTIVE_STATUS
+        local otherStatus = isCombat and CHANNEL_ACTIVE_STATUS or CHANNEL_ACTIVE_COMBAT_STATUS
+        
+        if Osi.HasActiveStatus(character, otherStatus) == 1 then
+            Osi.RemoveStatus(character, otherStatus)
+        end
+        if Osi.HasActiveStatus(character, desiredStatus) == 0 then
+            Osi.ApplyStatus(character, desiredStatus, -1.0, 1, character)
+            Ext.Utils.Print(string.format("[%s] Applied %s to %s", MOD_NAME, desiredStatus, tostring(character)))
+        end
+        if rawUuid ~= character then
+            if Osi.HasActiveStatus(rawUuid, otherStatus) == 1 then
+                Osi.RemoveStatus(rawUuid, otherStatus)
+            end
+            if Osi.HasActiveStatus(rawUuid, desiredStatus) == 0 then
+                Osi.ApplyStatus(rawUuid, desiredStatus, -1.0, 1, rawUuid)
+            end
+        end
+    end)
 end
 
 local function UpdateAllConcentrationTrackers()
@@ -1356,10 +1393,10 @@ Ext.Osiris.RegisterListener("StatusApplied", 4, "after", function(target, status
     if status == "CHANNEL_HASTE" or status == "CHANNEL_HASTE_ALLY" or status == "INNATE_BUFF_HASTE" then
         local caster = causee
         local now = Ext.Utils.MonotonicTime()
-        if (not caster or caster == "") and PendingHasteCaster and (now - PendingHasteTime < 2500) then
+        if IsNullGuid(caster) and PendingHasteCaster and (now - PendingHasteTime < 2500) then
             caster = PendingHasteCaster
         end
-        if not caster or caster == "" then
+        if IsNullGuid(caster) then
             pcall(function()
                 local party = Osi.DB_PartyMembers:Get(nil) or Osi.DB_Players:Get(nil)
                 if party then
@@ -1373,7 +1410,7 @@ Ext.Osiris.RegisterListener("StatusApplied", 4, "after", function(target, status
                 end
             end)
         end
-        if caster and caster ~= "" then
+        if not IsNullGuid(caster) then
             local rawCaster = caster:match("%x%x%x%x%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%x%x%x%x%x%x%x%x") or caster
             local rawTarget = target:match("%x%x%x%x%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%x%x%x%x%x%x%x%x") or target
             
@@ -1400,7 +1437,7 @@ Ext.Osiris.RegisterListener("StatusApplied", 4, "after", function(target, status
     if status:find("INNATE_BUFF_") and status ~= "INNATE_BUFF_HASTE" then
         local caster = causee
         local now = Ext.Utils.MonotonicTime()
-        if (not caster or caster == "") and PendingInnateCast then
+        if IsNullGuid(caster) and PendingInnateCast then
             for c, pending in pairs(PendingInnateCast) do
                 if pending.Status == status and (now - pending.Time < 3500) then
                     caster = c
@@ -1408,11 +1445,15 @@ Ext.Osiris.RegisterListener("StatusApplied", 4, "after", function(target, status
                 end
             end
         end
-        if (not caster or caster == "") and (status:find("SELF") or status:find("DETECT") or status:find("EXPEDITIOUS") or status:find("BLUR") or status:find("PASSWITHOUTTRACE")) then
+        if IsNullGuid(caster) and (status:find("SELF") or status:find("DETECT") or status:find("EXPEDITIOUS") or status:find("BLUR") or status:find("PASSWITHOUTTRACE") or status:find("BLADE_WARD") or status:find("WARD")) then
+            caster = target
+        end
+        -- Ultimate fallback for any unanchored innate buff: anchor to recipient
+        if IsNullGuid(caster) and target and not IsNullGuid(target) then
             caster = target
         end
         
-        if caster and caster ~= "" then
+        if not IsNullGuid(caster) then
             local rawCaster = caster:match("%x%x%x%x%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%x%x%x%x%x%x%x%x") or caster
             local rawTarget = target:match("%x%x%x%x%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%x%x%x%x%x%x%x%x") or target
 
@@ -1463,25 +1504,28 @@ Ext.Osiris.RegisterListener("CastSpellFailed", 5, "after", function(caster, spel
         rawUuid = caster:match("%x%x%x%x%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%x%x%x%x%x%x%x%x")
     end
     
-    if PendingInnateCast then
-        PendingInnateCast[caster] = nil
-        if rawUuid then
-            PendingInnateCast[rawUuid] = nil
+    -- Only clean up Focus state if the spell that failed was actually an innate Focus spell!
+    if GetInnateSpellInfo(spell) ~= nil then
+        if PendingInnateCast then
+            PendingInnateCast[caster] = nil
+            if rawUuid then
+                PendingInnateCast[rawUuid] = nil
+            end
         end
-    end
-    
-    -- If caster somehow has INNATE_CONCENTRATION_CASTER without any active targets, clean it up
-    local info, realKey = GetActiveInnateCasterInfo(caster)
-    if (not info or not info.Targets or next(info.Targets) == nil) then
-        if realKey then ActiveInnateCasters[realKey] = nil end
-        ActiveInnateCasters[caster] = nil
-        if rawUuid then ActiveInnateCasters[rawUuid] = nil end
         
-        if Osi.HasActiveStatus(caster, INNATE_CASTER_STATUS) == 1 then
-            pcall(function() Osi.RemoveStatus(caster, INNATE_CASTER_STATUS) end)
-        end
-        if rawUuid and rawUuid ~= caster and Osi.HasActiveStatus(rawUuid, INNATE_CASTER_STATUS) == 1 then
-            pcall(function() Osi.RemoveStatus(rawUuid, INNATE_CASTER_STATUS) end)
+        -- If caster somehow has INNATE_CONCENTRATION_CASTER without any active targets, clean it up
+        local info, realKey = GetActiveInnateCasterInfo(caster)
+        if (not info or not info.Targets or next(info.Targets) == nil) then
+            if realKey then ActiveInnateCasters[realKey] = nil end
+            ActiveInnateCasters[caster] = nil
+            if rawUuid then ActiveInnateCasters[rawUuid] = nil end
+            
+            if Osi.HasActiveStatus(caster, INNATE_CASTER_STATUS) == 1 then
+                pcall(function() Osi.RemoveStatus(caster, INNATE_CASTER_STATUS) end)
+            end
+            if rawUuid and rawUuid ~= caster and Osi.HasActiveStatus(rawUuid, INNATE_CASTER_STATUS) == 1 then
+                pcall(function() Osi.RemoveStatus(rawUuid, INNATE_CASTER_STATUS) end)
+            end
         end
     end
     
@@ -1837,17 +1881,51 @@ local function IsMeleeSpellCantrip(spell)
 end
 
 local function IsConcentrationSpell(spell)
-    if not spell then return false end
+    if not spell or spell == "" then return false end
+    
+    -- Fast path for known concentration spells and Witch Bolt tiers
+    if spell:find("WitchBolt") or spell:find("Haste") or spell:find("CallLightning") 
+       or spell:find("Moonbeam") or spell:find("Cloudkill") or spell:find("HoldPerson")
+       or spell:find("HoldMonster") or spell:find("Banishment") or spell:find("Fear")
+       or spell:find("HypnoticPattern") or spell:find("Slow") or spell:find("StinkingCloud")
+       or spell:find("InsectPlague") or spell:find("WallOf") or spell:find("SpiritGuardians") then
+        if not spell:find("Activate") and not spell:find("Whip") and not spell:find("Reapply") then
+            return true
+        end
+    end
+    
     local isConc = false
     pcall(function()
         local stat = Ext.Stats.Get(spell)
-        if stat and stat.SpellFlags then
-            if type(stat.SpellFlags) == "string" and stat.SpellFlags:find("IsConcentration") then
-                isConc = true
-            elseif type(stat.SpellFlags) == "table" or type(stat.SpellFlags) == "userdata" then
-                if tostring(stat.SpellFlags):find("IsConcentration") then
-                    isConc = true
+        if not stat then return end
+        
+        local flags = stat.SpellFlags
+        if flags then
+            if type(flags) == "string" then
+                if flags:find("IsConcentration") then isConc = true end
+            elseif type(flags) == "userdata" or type(flags) == "table" then
+                pcall(function()
+                    if flags["IsConcentration"] == true or flags.IsConcentration == true then
+                        isConc = true
+                    end
+                end)
+                if not isConc then
+                    pcall(function()
+                        for k, v in pairs(flags) do
+                            if k == "IsConcentration" or v == "IsConcentration" or tostring(k):find("IsConcentration") or tostring(v):find("IsConcentration") then
+                                isConc = true
+                                break
+                            end
+                        end
+                    end)
                 end
+            end
+        end
+        
+        if not isConc then
+            local props = tostring(stat.SpellProperties or "") .. tostring(stat.SpellSuccess or "")
+            if props:find("CONCENTRATION") or props:find("WITCH_BOLT") then
+                isConc = true
             end
         end
     end)
@@ -2090,14 +2168,8 @@ local function HandleDamageConcentrationCheck(victim, damageAmount)
     -- Is the character also maintaining a native concentration spell?
     -- Overclock = maintaining BOTH Focus AND native Concentration simultaneously!
     local hasConc = IsCharacterConcentrating(victimGuid)
-        or (Osi.HasActiveStatus(victimGuid, CHANNEL_ACTIVE_STATUS) == 1)
-        or (Osi.HasActiveStatus(victimGuid, CHANNEL_ACTIVE_COMBAT_STATUS) == 1)
-        or (Osi.HasActiveStatus(victimGuid, CONC_TRACKER_STATUS) == 1)
-    if not hasConc and rawUuid then
+    if not hasConc and rawUuid and rawUuid ~= victimGuid then
         hasConc = IsCharacterConcentrating(rawUuid)
-            or (Osi.HasActiveStatus(rawUuid, CHANNEL_ACTIVE_STATUS) == 1)
-            or (Osi.HasActiveStatus(rawUuid, CHANNEL_ACTIVE_COMBAT_STATUS) == 1)
-            or (Osi.HasActiveStatus(rawUuid, CONC_TRACKER_STATUS) == 1)
     end
     
     -- STANCE CHECK:
@@ -2343,32 +2415,13 @@ local function ReconstructSessionStateFromEngine()
     end)
 end
 
--- Continuous synchronization of concentration state & self-healing save recovery
-local tickCounter = 0
+-- Continuous synchronization of concentration state (throttled heartbeat)
+local lastTrackerSyncTime = 0
 Ext.Events.Tick:Subscribe(function()
-    tickCounter = tickCounter + 1
-    if tickCounter % 15 == 0 then
+    local now = Ext.Utils.MonotonicTime()
+    if now - lastTrackerSyncTime >= 2000 then
+        lastTrackerSyncTime = now
         UpdateAllConcentrationTrackers()
-    end
-    -- Self-healing check: if party has active Haste but runtime tables are empty, rebuild immediately
-    if tickCounter % 60 == 0 then
-        local hasteActive = false
-        pcall(function()
-            local party = Osi.DB_PartyMembers:Get(nil)
-            if party then
-                for _, row in ipairs(party) do
-                    local m = row[1]
-                    if m and (Osi.HasActiveStatus(m, "CHANNEL_HASTE") == 1 or Osi.HasActiveStatus(m, "CHANNEL_HASTE_ALLY") == 1) then
-                        hasteActive = true
-                        break
-                    end
-                end
-            end
-        end)
-        if hasteActive and next(ActiveHasteChannels) == nil then
-            Ext.Utils.Print(string.format("[%s] Detected orphaned Haste status in party; running state reconstruction.", MOD_NAME))
-            ReconstructSessionStateFromEngine()
-        end
     end
 end)
 
