@@ -61,7 +61,7 @@ The BG3 combat AI does not operate on a rule of *"If I am not concentrating, cas
 ### Stacking Immunity
 `INNATE_BUFF_BLESS` inherits from `BLESS` and uses:
 ```txt
-data "StackId" "INNATE_CONCENTRATION_BUFF"
+data "StackId" "BLESS"
 data "StackPriority" "1"
 ```
 The game engine recognizes it as a non-stacking unique status. The AI cannot "double bless" a target.
