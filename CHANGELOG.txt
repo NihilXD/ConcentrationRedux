@@ -6,8 +6,12 @@ v1.1.5
   - Because of this false positive, characters with combat passives (like Bladesingers) were continuously flagged with the Combat Channeling state even when not channeling any spell.
   - Casting Blade Ward (or any Focus buff) then mistakenly registered the character as being in "Overclock" (holding both Focus and native Channeling simultaneously). Any subsequent out-of-combat damage tick (stepping on environmental fire surfaces, poison, or area effects) forced an Overclock concentration saving throw, causing Blade Ward to break prematurely.
   - IsCharacterConcentrating now strictly verifies active concentration via Osi.IsConcentrating / Osi.HasActiveStatus(..., "CONCENTRATION") and validates non-empty spell prototypes, ensuring unburdened Focus buffs remain 100% unbreakable to damage.
-- Explicit Physical Damage Resistance on Blade Ward (INNATE_BUFF_BLADE_WARD):
-  - Added explicit bludgeoning, piercing, and slashing resistance directly to INNATE_BUFF_BLADE_WARD and cleared aura attributes, guaranteeing full physical damage resistance even when compatibility mods (such as DnD 2024 / 5.5e) override base game BLADE_WARD with auras or reaction mechanics.
+- Explicit Boosts & Immunity to Third-Party Overrides Across All Focus Spells:
+  - Audited all 40+ INNATE_BUFF_* statuses directly against vanilla engine definitions (Shared.pak), guaranteeing explicit, robust Boosts and mechanics across every single Focus spell (Bless, Shield of Faith, Guidance, Resistance, Blade Ward, Heroism, Protection from Evil and Good, Barkskin, Stoneskin, Haste, Enlarge/Reduce, Fly, Expeditious Retreat, Blur, Magic Weapon, Elemental Weapon, Invisibility, Greater Invisibility, Pass Without Trace, Detect Thoughts, Bane, Bestow Curse, Hex, and Hunter's Mark).
+  - 100% immune to other mods (such as DnD 2024 / 5.5e or spell overhauls) tampering with base game status inheritance or stripping properties.
+  - Added missing HUNTERS_MARK_OWNER to Target_HuntersMark and HEX_OWNER to Target_Hex (including all Target_Hex_Reapply_* sub-spells) so weapon attacks against marked/hexed targets reliably trigger their extra 1d6 damage.
+  - Added Item/MainHand equipment fallback checks to Magic Weapon and Elemental Weapon spells (IF(Item())... IF(not Item()):ApplyEquipmentStatus(MainHand...)), ensuring casting on a weapon directly or targeting a character reliably enchants their main-hand weapon.
+  - Corrected Target_Bane to apply via SpellSuccess so its -1d4 penalty strictly triggers on a failed Charisma saving throw.
 - Null GUID Resilience & Robust Cast Failure Handling:
   - Added IsNullGuid check to properly handle engine-passed null GUID strings ("NULL_00000000-..." and "00000000-..."), ensuring buff recipient fallback triggers reliably.
   - Guarded CastSpellFailed cleanup so only actual innate Focus spell cast failures clear pending focus states, preventing unrelated failed actions from disturbing active buffs.
